@@ -138,7 +138,7 @@ namespace ChampionsOfForest
 				reduction /= 1.5f;
 			}
 
-			float dmg = damage * (1 - reduction);
+			float dmg = damage * (1f - reduction);
 			if (Steadfast != 100)
 			{
 				dmg = Mathf.Min(dmg, steadfastCap);
@@ -254,7 +254,8 @@ namespace ChampionsOfForest
 			{
 				dmg = Mathf.Min(dmg, (int)steadfastCap);
 			}
-
+			if (dmg < 0)
+				return -dmg;
 			return dmg;
 		}
 

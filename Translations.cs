@@ -180,10 +180,6 @@ namespace ChampionsOfForest.Localization
 		public string _MainMenu_Guide_17 = "Armor";
 		public static string MainMenu_Guide_18(params object[] objects) => string.Format(instance._MainMenu_Guide_18, objects);
 		public string _MainMenu_Guide_18 = "Armor provides physical damage reduction.\nPhysical damage reduction from armor is equal to {0}";
-		public static string MainMenu_Guide_19 => instance._MainMenu_Guide_19;
-		public string _MainMenu_Guide_19 = "Magic Resistance";
-		public static string MainMenu_Guide_20 => instance._MainMenu_Guide_20;
-		public string _MainMenu_Guide_20 = "Magic damage reduction. Decreases damage from enemy abilities.";
 		public static string MainMenu_Guide_21 => instance._MainMenu_Guide_21;
 		public string _MainMenu_Guide_21 = "Dodge Chance";
 		public static string MainMenu_Guide_22 => instance._MainMenu_Guide_22;

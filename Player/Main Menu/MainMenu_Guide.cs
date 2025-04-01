@@ -349,9 +349,9 @@ namespace ChampionsOfForest
 					ModdedPlayer.Stats.armor.GetFormattedAmount(),
 					Translations.MainMenu_Guide_18( 
 					ModReferences.DamageReduction(ModdedPlayer.Stats.armor.Value).ToString("P2")));
-				Stat(Translations.MainMenu_Guide_19, 
-					(1 - ModdedPlayer.Stats.magicDamageTaken.GetAmount()).ToString("P"),
-					Translations.MainMenu_Guide_20);  
+				Stat("Reduced damage from Elites", 
+					(1 - ModdedPlayer.Stats.damageFromElite.GetAmount()).ToString("P"),
+					"Decreases the damage taken from elite monsters and their abilities."); 
 				Stat(Translations.MainMenu_Guide_21, 
 					(1 - ModdedPlayer.Stats.getHitChance.GetAmount()).ToString("P"),
 					Translations.MainMenu_Guide_22);    

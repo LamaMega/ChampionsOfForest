@@ -175,14 +175,14 @@ namespace ChampionsOfForest.Items
 			ModdedPlayer.Stats.armor.Substract(Mathf.RoundToInt(f));
 		}
 
-		public static void AddMagicResistance(float f)
+		public static void AddEliteDamageReduction(float f)
 		{
-			ModdedPlayer.Stats.magicDamageTaken.valueMultiplicative *= 1 - f;
+			ModdedPlayer.Stats.damageFromElite.valueMultiplicative *= 1 - f;
 		}
 
-		public static void RemoveMagicResistance(float f)
+		public static void RemoveEliteDamageReduction(float f)
 		{
-			ModdedPlayer.Stats.magicDamageTaken.valueMultiplicative /= 1 - f;
+			ModdedPlayer.Stats.damageFromElite.valueMultiplicative /= 1 - f;
 		}
 
 		public static void AddAttackSpeed(float f)

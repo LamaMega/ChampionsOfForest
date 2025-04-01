@@ -67,7 +67,7 @@ namespace ChampionsOfForest.Player
 			public readonly AdditivePlayerStat<float> energyRecoveryperSecond;
 
 			public readonly MultiplicativePlayerStat<float> allDamageTaken;
-			public readonly MultiplicativePlayerStat<float> magicDamageTaken;
+			public readonly MultiplicativePlayerStat<float> damageFromElite;
 			public readonly MultiplicativePlayerStat<float> fireDamageTaken;
 			public readonly MultiplicativePlayerStat<float> getHitChance;
 			public readonly AdditivePlayerStat<int> armor;
@@ -385,7 +385,7 @@ namespace ChampionsOfForest.Player
 				this.energyRecoveryperSecond = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 
 				this.allDamageTaken = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
-				this.magicDamageTaken = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
+				this.damageFromElite = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.fireDamageTaken = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.getHitChance = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.armor = new AdditivePlayerStat<int>(0, addint, substractint);

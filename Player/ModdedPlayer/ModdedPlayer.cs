@@ -22,13 +22,8 @@ namespace ChampionsOfForest.Player
 		public static ModdedPlayer instance = null;
 
 
-
-
 		public int level = 1;
 
-
-	
-	
 		public float basejumpPower;
 		public long ExpCurrent = 0;
 		public long ExpGoal = 1;
@@ -39,11 +34,6 @@ namespace ChampionsOfForest.Player
 		public string MassacreText = "";
 		public float MassacreMultiplier = 1;
 		public float TimeUntillMassacreReset;
-
-		
-
-
-		
 
 		public float DamageAbsorbAmount
 		{
@@ -61,11 +51,6 @@ namespace ChampionsOfForest.Player
 		public float[] damageAbsorbAmounts = new float[3];//every unique source of shielding gets their own slot here, if its not unique it uses [0]
 														  //[1] is channeled shield spell;
 
-
-
-		
-	
-		
 		
 		public Dictionary<int, int> GeneratedResources = new Dictionary<int, int>();
 
@@ -80,9 +65,6 @@ namespace ChampionsOfForest.Player
 		//Death Pact shoulders
 
 
-
-
-
 		public float lostArmor = 0;
 
 
@@ -90,8 +72,6 @@ namespace ChampionsOfForest.Player
 		public float _lastCrossfireTime;
 		public float _HexedPantsOfMrM_StandTime;
 		public float _DeathPact_Amount = 1;
-
-
 
 
 		public Dictionary<int, ExtraItemCapacity> ExtraCarryingCapactity = new Dictionary<int, ExtraItemCapacity>();
@@ -416,7 +396,7 @@ namespace ChampionsOfForest.Player
 				}
 				if (dmgPerSecond != 0)
 				{
-					dmgPerSecond *=  stats.magicDamageTaken;
+					dmgPerSecond *= stats.damageFromElite;
 					dmgPerSecond *= Stats.allDamageTaken;
 					LocalPlayer.Stats.Health -= dmgPerSecond * Time.deltaTime;
 					LocalPlayer.Stats.HealthTarget -= dmgPerSecond * Time.deltaTime * 2;
@@ -672,16 +652,13 @@ namespace ChampionsOfForest.Player
 			{
 				return;
 			}
-			duration *= stats.magicDamageTaken;
 			LocalPlayer.HitReactions.enableFootShake(1, 0.6f);
-
 			Stats.stunned.value = true;
 			if (StunDuration < duration)
 			{
 				StunDuration = duration;
 			}
 			COTFEvents.Instance.OnStun.Invoke();
-
 		}
 
 		public void AddKillExperience(long Amount)

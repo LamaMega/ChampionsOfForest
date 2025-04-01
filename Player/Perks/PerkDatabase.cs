@@ -72,7 +72,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.energyRecoveryFromInt.valueAdditive += 0.002f,
+				onApply = () => ModdedPlayer.Stats.energyRecoveryFromInt.valueAdditive += 0.001f,
 
 				category = PerkCategory.Utility,
 				texture = null,
@@ -83,7 +83,7 @@ namespace ChampionsOfForest.Player
 				posX = 1.5f,
 				posY = 0,
 				name = Translations.PerkDatabase_7,
-				originalDescription = Translations.PerkDatabase_8("0.2%"),
+				originalDescription = Translations.PerkDatabase_8("0.1%"),
 				textureVariation = 0, //0 or 1
 				stackable = false,
 			};
@@ -222,7 +222,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.strength.Add(20),
+				onApply = () => ModdedPlayer.Stats.strength.Add(10),
 				category = PerkCategory.MeleeOffense,
 				texture = null,
 				unlockPath = new int[] { 0, 10 },
@@ -232,13 +232,13 @@ namespace ChampionsOfForest.Player
 				posX = 2f,
 				posY = -0.75f,
 				name = Translations.PerkDatabase_26,
-				originalDescription = Translations.PerkDatabase_27(20),
+				originalDescription = Translations.PerkDatabase_27(10),
 				textureVariation = 0, //0 or 1
 				stackable = false,
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.rangedFlatDmg.valueAdditive += 8,
+				onApply = () => ModdedPlayer.Stats.rangedFlatDmg.valueAdditive += 5,
 				category = PerkCategory.RangedOffense,
 				texture = null,
 				unlockPath = new int[] { 2 },
@@ -248,12 +248,12 @@ namespace ChampionsOfForest.Player
 				posX = 2f,
 				posY = -0.75f,
 				name = Translations.PerkDatabase_28,
-				originalDescription = Translations.PerkDatabase_29("8"),
+				originalDescription = Translations.PerkDatabase_29("5"),
 				textureVariation = 0, //0 or 1
 				stackable = true,
 				updateDescription = x =>
 				{
-					return Translations.PerkDatabase_15(x * 8);
+					return Translations.PerkDatabase_15(x * 5);
 				},
 			};
 			new Perk()
@@ -316,7 +316,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.spellCost.valueMultiplicative *= 1 - 0.09f,
+				onApply = () => ModdedPlayer.Stats.spellCost.valueMultiplicative *= 1 - 0.05f,
 
 				category = PerkCategory.MagicOffense,
 				texture = null,
@@ -327,14 +327,14 @@ namespace ChampionsOfForest.Player
 				posX = 2f,
 				posY = 0.75f,
 				name = Translations.PerkDatabase_36,
-				originalDescription = Translations.PerkDatabase_37("9%"),
+				originalDescription = Translations.PerkDatabase_37("5%"),
 				textureVariation = 0, //0 or 1
 				stackable = true,
 				updateDescription = x =>
 				{
-					float f = 0.91f;
+					float f = 0.95f;
 					for (int i = 1; i < x; i++)
-						f *= 0.91f;
+						f *= 0.95f;
 					return Translations.PerkDatabase_15((1 - f).ToString("P"));
 				},
 			};
@@ -416,7 +416,7 @@ namespace ChampionsOfForest.Player
 
 			new Perk()
 			{
-				onApply = () => StatActions.AddAllStats(20),
+				onApply = () => StatActions.AddAllStats(15),
 
 				category = PerkCategory.Utility,
 				unlockPath = new int[] { 20 },
@@ -426,7 +426,7 @@ namespace ChampionsOfForest.Player
 				posX = 3.5f,
 				posY = 0f,
 				name = Translations.PerkDatabase_44,
-				originalDescription = Translations.PerkDatabase_45(20),
+				originalDescription = Translations.PerkDatabase_45(15),
 				textureVariation = 0,
 				stackable = false,
 			};
@@ -448,7 +448,7 @@ namespace ChampionsOfForest.Player
 				stackable = true,
 				updateDescription = x =>
 				{
-					return Translations.PerkDatabase_15((0.05f * x).ToString("P"));
+					return Translations.PerkDatabase_15((0.02f * x).ToString("P"));
 				},
 			};
 
@@ -604,7 +604,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.armor.Add(80),
+				onApply = () => ModdedPlayer.Stats.armor.Add(100),
 
 				category = PerkCategory.Defense,
 				unlockPath = new int[] { 5 },
@@ -614,12 +614,12 @@ namespace ChampionsOfForest.Player
 				posX = 2.5f,
 				posY = 0f,
 				name = Translations.PerkDatabase_63,
-				originalDescription = Translations.PerkDatabase_64("80"),
+				originalDescription = Translations.PerkDatabase_64("100"),
 				textureVariation = 0,
 				stackable = true,
 				updateDescription = x =>
 				{
-					return Translations.PerkDatabase_15((80 * x).ToString("N"));
+					return Translations.PerkDatabase_15((100 * x).ToString("N"));
 				},
 			};
 			new Perk()
@@ -673,7 +673,7 @@ namespace ChampionsOfForest.Player
 
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.magicDamageTaken.Multiply(0.85f),
+				onApply = () => ModdedPlayer.Stats.damageFromElite.Multiply(0.85f),
 
 				category = PerkCategory.Defense,
 				unlockPath = new int[] { 29, 31 },
@@ -682,8 +682,8 @@ namespace ChampionsOfForest.Player
 				scale = 1,
 				posX = 3f,
 				posY = -0.75f,
-				name = Translations.MainMenu_Guide_19,
-				originalDescription = Translations.PerkDatabase_70("15%"),
+				name = "Elite Slayer",
+				originalDescription = "Reduces damage taken from elites by 15%",
 				textureVariation = 0,
 				stackable = true,
 				updateDescription = x =>
@@ -2826,7 +2826,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.magicDamageTaken.Multiply(0.8f),
+				onApply = () => ModdedPlayer.Stats.damageFromElite.Multiply(0.7f),
 
 				category = PerkCategory.Defense,
 				unlockPath = new int[] { 35, 32 },
@@ -2835,8 +2835,8 @@ namespace ChampionsOfForest.Player
 				scale = 1,
 				posX = 4f,
 				posY = -0.75f,
-				name = Translations.PerkDatabase_332,
-				originalDescription = Translations.PerkDatabase_333("20%"),
+				name = "Elite Eater",
+				originalDescription = "Reduces damage taken from elites by 30%",
 				textureVariation = 0,
 				stackable = false,
 			};
