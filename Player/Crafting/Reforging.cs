@@ -20,12 +20,12 @@ namespace ChampionsOfForest.Player.Crafting
 					if (CraftingHandler.changedItem.i == null)
 						return false;
 					int itemCount = 0;
-					int rarity = CraftingHandler.changedItem.i.Rarity;
+					int rarity = CraftingHandler.changedItem.i.rarity;
 					for (int i = 0; i < CraftingHandler.ingredients.Length; i++)
 					{
 						if (CraftingHandler.ingredients[i].i != null)
 						{
-							if (CraftingHandler.ingredients[i].i.Rarity >= rarity)
+							if (CraftingHandler.ingredients[i].i.rarity >= rarity)
 							{
 								itemCount++;
 							}
@@ -46,7 +46,7 @@ namespace ChampionsOfForest.Player.Crafting
 					if (validRecipe)
 					{
 						int lvl = CraftingHandler.changedItem.i.level;
-						var v = ItemDataBase.ItemBases.Where(x => x.Value.ID != CraftingHandler.changedItem.i.ID && x.Value.Rarity == CraftingHandler.changedItem.i.Rarity).Select(x => x.Value).ToArray();
+						var v = ItemDataBase.ItemBases.Where(x => x.Value.ID != CraftingHandler.changedItem.i.ID && x.Value.rarity == CraftingHandler.changedItem.i.rarity).Select(x => x.Value).ToArray();
 						var ib = v[UnityEngine.Random.Range(0, v.Length)];
 
 						var newItem = new Item(ib, 1, 0, false)
@@ -82,7 +82,7 @@ namespace ChampionsOfForest.Player.Crafting
 
 						Rect nameRect = new Rect(x + 10 * screenScale, ypos, w - 20 * screenScale, 30 * screenScale);
 						ypos += 30 * screenScale;
-						GUI.color = MainMenu.RarityColors[CustomCrafting.instance.changedItem.i.Rarity];
+						GUI.color = MainMenu.RarityColors[CustomCrafting.instance.changedItem.i.rarity];
 						GUI.Label(nameRect, CustomCrafting.instance.changedItem.i.name, styles[3]);
 						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.Stats)
 						{

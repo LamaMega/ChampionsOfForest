@@ -858,17 +858,17 @@ namespace ChampionsOfForest.Network
 													var pu = PickUpManager.PickUps[PickupID];
 													if (PlayerID == ModReferences.ThisPlayerID)
 													{
-														MainMenu.Instance.localPlayerPing = new MarkPickup(pu.transform, pu.item.name, pu.item.Rarity);
+														MainMenu.Instance.localPlayerPing = new MarkPickup(pu.transform, pu.item.name, pu.item.rarity);
 													}
 													else
 													{
 														if (MainMenu.Instance.otherPlayerPings.ContainsKey(PlayerID))
 														{
-															MainMenu.Instance.otherPlayerPings[PlayerID] = new MarkPickup(pu.transform, pu.item.name, pu.item.Rarity);
+															MainMenu.Instance.otherPlayerPings[PlayerID] = new MarkPickup(pu.transform, pu.item.name, pu.item.rarity);
 														}
 														else
 														{
-															MainMenu.Instance.otherPlayerPings.Add(PlayerID, new MarkPickup(pu.transform, pu.item.name, pu.item.Rarity));
+															MainMenu.Instance.otherPlayerPings.Add(PlayerID, new MarkPickup(pu.transform, pu.item.name, pu.item.rarity));
 														}
 													}
 												}

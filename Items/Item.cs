@@ -68,7 +68,7 @@ namespace ChampionsOfForest
 					}
 
 					int statindex = Stats.FindIndex(x => x.StatID == 3000);
-					Stats[statindex] = StatActions.GetSocketedStat(other.Rarity, this.type, other.subtype);
+					Stats[statindex] = StatActions.GetSocketedStat(other.rarity, this.type, other.subtype);
 					OnEquip();
 					return true;
 				}
@@ -289,7 +289,7 @@ namespace ChampionsOfForest
 			base.onEquip = b.onEquip;
 			base.onUnequip = b.onUnequip;
 			base.PossibleStats = b.PossibleStats;
-			base.Rarity = b.Rarity;
+			base.rarity = b.rarity;
 			base.uniqueStat = b.uniqueStat;
 			base.ID = b.ID;
 			base.type = b.type;
@@ -311,7 +311,7 @@ namespace ChampionsOfForest
 
 		public float GetRarityMultiplier()
 		{
-			switch (Rarity)
+			switch (rarity)
 			{
 				case 0:
 					return 0.5f;

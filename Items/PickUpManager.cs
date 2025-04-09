@@ -136,22 +136,22 @@ namespace ChampionsOfForest
 
 							foreach (var rend in meshRenderes)
 							{
-								rend.material.color = MainMenu.RarityColors[item.Rarity];
+								rend.material.color = MainMenu.RarityColors[item.rarity];
 							}
-							if (item.Rarity > 2)
+							if (item.rarity > 2)
 							{
 								Light l = spawn.AddComponent<Light>();
 								l.type = LightType.Point;
 								l.shadowStrength = 1;
-								l.color = MainMenu.RarityColors[item.Rarity];
+								l.color = MainMenu.RarityColors[item.rarity];
 								l.intensity = 1f;
 								l.range = 4f;
-								if (item.Rarity > 5)
+								if (item.rarity > 5)
 								{
 									l.range = 7f;
 									l.intensity = 1.7f;
 									l.cookieSize = 5f;
-									if (item.Rarity == 7)
+									if (item.rarity == 7)
 									{
 										l.range = 12f;
 										l.intensity = 4f;
@@ -209,21 +209,21 @@ namespace ChampionsOfForest
 							break;
 					}
 
-					if (item.Rarity > 2)
+					if (item.rarity > 2)
 					{
 						Light l = spawn.AddComponent<Light>();
 						l.type = LightType.Point;
 						l.shadowStrength = 1;
-						l.color = MainMenu.RarityColors[item.Rarity];
+						l.color = MainMenu.RarityColors[item.rarity];
 						l.intensity = 1f;
 						l.range = 4f;
-						renderer.material.color = MainMenu.RarityColors[item.Rarity];
-						if (item.Rarity > 5)
+						renderer.material.color = MainMenu.RarityColors[item.rarity];
+						if (item.rarity > 5)
 						{
 							l.range = 7f;
 							l.intensity = 1.7f;
 							l.cookieSize = 5f;
-							if (item.Rarity == 7)
+							if (item.rarity == 7)
 							{
 								l.range = 12f;
 								l.intensity = 4f;
@@ -238,7 +238,7 @@ namespace ChampionsOfForest
 				}
 
 				ItemPickUp pickup = spawn.AddComponent<ItemPickUp>();
-				pickup.lifetime = (int)dropSource + item.Rarity * item.Rarity * 2;
+				pickup.lifetime = (int)dropSource + item.rarity * item.rarity * 2;
 				pickup.item = item;
 				pickup.amount = amount;
 				pickup.ID = id;

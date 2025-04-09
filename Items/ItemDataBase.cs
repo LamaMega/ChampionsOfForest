@@ -42,13 +42,13 @@ namespace ChampionsOfForest
 				try
 				{
 					ItemBases.Add(_Item_Bases[i].ID, _Item_Bases[i]);
-					if (ItemRarityGroups.ContainsKey(_Item_Bases[i].Rarity))
+					if (ItemRarityGroups.ContainsKey(_Item_Bases[i].rarity))
 					{
-						ItemRarityGroups[_Item_Bases[i].Rarity].Add(_Item_Bases[i].ID);
+						ItemRarityGroups[_Item_Bases[i].rarity].Add(_Item_Bases[i].ID);
 					}
 					else
 					{
-						ItemRarityGroups.Add(_Item_Bases[i].Rarity, new List<int>() { _Item_Bases[i].ID });
+						ItemRarityGroups.Add(_Item_Bases[i].rarity, new List<int>() { _Item_Bases[i].ID });
 					}
 				}
 				catch (System.Exception ex)
@@ -79,7 +79,7 @@ namespace ChampionsOfForest
 			s += "\n\n\n There are " + ItemBases.Count + " items:\n";
 			for (int i = 0; i < 8; i++)
 			{
-				BaseItem[] items = _Item_Bases.Where(a => a.Rarity == i).ToArray();
+				BaseItem[] items = _Item_Bases.Where(a => a.rarity == i).ToArray();
 				s += " • Rarity tier of item [" + i + "] =  " + items.Length;
 				foreach (BaseItem a in items)
 				{
@@ -99,13 +99,13 @@ namespace ChampionsOfForest
 				s += "\n • Item type: [" + t.ToString() + "] = " + items.Length;
 				for (int b = 0; b < 8; b++)
 				{
-					BaseItem[] items2 = items.Where(a => a.Rarity == b).ToArray();
+					BaseItem[] items2 = items.Where(a => a.rarity == b).ToArray();
 					s += "\n\t\t • RARITY " + b + " \"" + items2.Length + "\"";
 				}
 
 				foreach (BaseItem a in items)
 				{
-					s += "\n\t • Item \"" + a.name + "    ID [" + a.ID + "]    RARITY [" + a.Rarity + "]\"";
+					s += "\n\t • Item \"" + a.name + "    ID [" + a.ID + "]    RARITY [" + a.rarity + "]\"";
 				}
 				s += "\n";
 			}
@@ -125,12 +125,12 @@ namespace ChampionsOfForest
 				{
 					for (int j = 1; j <= (int)BaseItem.WeaponModelType.Greatbow; j++)
 					{
-						var weapons = itemsByType.Where(a => a.weaponModel == (BaseItem.WeaponModelType)j).OrderBy(a => a.ID + a.Rarity * 100000);
+						var weapons = itemsByType.Where(a => a.weaponModel == (BaseItem.WeaponModelType)j).OrderBy(a => a.ID + a.rarity * 100000);
 						f.WriteLine(((BaseItem.WeaponModelType)j) + ";" + weapons.Count());
 						f.WriteLine("ID;RARITY;NAME;UNIQUE STAT;MIN LEVEL; MIN STATS QUANTITY;MAX STATS QUANTITY");
 						foreach (var weapon in weapons)
 						{
-							f.WriteLine(weapon.ID + ";" + weapon.Rarity + ";" + weapon.name + ";" + weapon.uniqueStat + " ;" + weapon.minLevel + ";" + weapon.PossibleStats.Count(y => !y.Contains(null)) + ";" + weapon.PossibleStats.Count);
+							f.WriteLine(weapon.ID + ";" + weapon.rarity + ";" + weapon.name + ";" + weapon.uniqueStat + " ;" + weapon.minLevel + ";" + weapon.PossibleStats.Count(y => !y.Contains(null)) + ";" + weapon.PossibleStats.Count);
 
 						}
 						f.WriteLine(" ");
@@ -139,11 +139,11 @@ namespace ChampionsOfForest
 				}
 				else
 				{
-					itemsByType = itemsByType.OrderBy(a => a.ID + a.Rarity * 100000);
+					itemsByType = itemsByType.OrderBy(a => a.ID + a.rarity * 100000);
 					f.WriteLine("ID;RARITY;NAME;UNIQUE STAT;MIN LEVEL; MIN STATS QUANTITY;MAX STATS QUANTITY");
 					foreach (var item in itemsByType)
 					{
-						f.WriteLine(item.ID + ";" + item.Rarity + ";" + item.name + ";" + item.uniqueStat + " ;" + item.minLevel + ";" + item.PossibleStats.Count(y => !y.Contains(null)) + ";" + item.PossibleStats.Count);
+						f.WriteLine(item.ID + ";" + item.rarity + ";" + item.name + ";" + item.uniqueStat + " ;" + item.minLevel + ";" + item.PossibleStats.Count(y => !y.Contains(null)) + ";" + item.PossibleStats.Count);
 
 					}
 					f.WriteLine(" ");

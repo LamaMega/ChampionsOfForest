@@ -32,7 +32,7 @@ namespace ChampionsOfForest.Player
 			for (int i = 0; i < count; i++)
 			{
 				Item randomItem = ItemDataBase.GetRandomItem(bounty, type, difficulty, position);
-				if (randomItem.Rarity >= ModSettings.LootFilterMinRarity || randomItem.type == BaseItem.ItemType.Material || randomItem.type == BaseItem.ItemType.Other)
+				if (randomItem.rarity >= ModSettings.LootFilterMinRarity || randomItem.type == BaseItem.ItemType.Material || randomItem.type == BaseItem.ItemType.Other)
 				{
 					yield return null;
 					Network.NetworkManager.SendItemDrop(randomItem, position + Vector3.up * (2f + i / 10) + Random.Range(-1, 1) * Vector3.forward + Random.Range(-1, 1) * Vector3.right, ItemPickUp.DropSource.EnemyOnDeath);

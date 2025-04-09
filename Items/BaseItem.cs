@@ -20,7 +20,7 @@ namespace ChampionsOfForest
 		public delegate bool OnItemConsume(Item other);
 
 		public List<List<ItemStat>> PossibleStats;
-		public int Rarity = 0;                  //rarity to display in different color
+		public int rarity = 0;                  //rarity to display in different color
 		public int ID = 0;                      //the id of an item
 		public int StackSize = 1;               //how many items can be placed in one item slot?
 		public bool CanConsume = false;             //can you eat this bad boy?
@@ -39,8 +39,8 @@ namespace ChampionsOfForest
 		public int level = 1;                   //level of this item
 		public int minLevel = 1;
 		public int maxLevel = 1;
-		public Texture2D icon;              //icon of this item
-		public bool PickUpAll = true;              //should the item be picked one by one, or grab all at once
+		public Texture2D icon;					//icon of this item
+		public bool PickUpAll = true;           //should the item be picked one by one, or grab all at once
 		public int subtype = 0;
 
 		//Drop settings
@@ -119,7 +119,7 @@ namespace ChampionsOfForest
 		public BaseItem(List<List<ItemStat>> possibleStats, int rarity, int StackSize, ItemType itemType, string name, string description, string lore, string tooltip, int minlevel, int maxlevel, Texture2D texture, bool pickupAll = false)
 		{
 			PossibleStats = possibleStats;
-			Rarity = rarity;
+			this.rarity = rarity;
 			ID = ItemDataBase._Item_Bases.Count;
 			this.StackSize = StackSize;
 			type = itemType;
@@ -147,7 +147,7 @@ namespace ChampionsOfForest
 				}
 				PossibleStats.Add(list);
 			}
-			Rarity = rarity;
+			this.rarity = rarity;
 			ID = ItemDataBase._Item_Bases.Count;
 			this.StackSize = StackSize;
 			type = itemType;
@@ -175,7 +175,7 @@ namespace ChampionsOfForest
 				}
 				PossibleStats.Add(list);
 			}
-			Rarity = rarity;
+			this.rarity = rarity;
 			ID = iD;
 			this.StackSize = StackSize;
 			type = ItemType.Weapon;
@@ -302,7 +302,7 @@ namespace ChampionsOfForest
 
 		public float GetInvSoundPitch()
 		{
-			return 1.15f - (float)Rarity / 15f;
+			return 1.15f - (float)rarity / 15f;
 		}
 	}
 }

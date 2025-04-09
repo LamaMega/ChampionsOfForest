@@ -109,7 +109,7 @@ namespace ChampionsOfForest
 					}
 				}
 
-				GUI.color = new Color(MainMenu.RarityColors[item.Rarity].r, MainMenu.RarityColors[item.Rarity].g, MainMenu.RarityColors[item.Rarity].b, displayTime);
+				GUI.color = new Color(MainMenu.RarityColors[item.rarity].r, MainMenu.RarityColors[item.rarity].g, MainMenu.RarityColors[item.rarity].b, displayTime);
 
 				GUIStyle style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.UpperCenter, font = MainMenu.Instance.mainFont, fontSize = Mathf.RoundToInt(40 * MainMenu.Instance.screenScale) };
 				float titleHeight = style.CalcHeight(new GUIContent(label), r.width);

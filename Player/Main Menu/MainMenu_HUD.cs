@@ -957,11 +957,11 @@ namespace ChampionsOfForest
 										NetworkManager.SendLine(answerStream.ToArray(), NetworkManager.Target.Others);
 										answerStream.Close();
 									}
-									localPlayerPing = new MarkPickup(pu.transform, pu.item.name, pu.item.Rarity);
+									localPlayerPing = new MarkPickup(pu.transform, pu.item.name, pu.item.rarity);
 								}
 								else
 								{
-									localPlayerPing = new MarkPickup(pu.transform, pu.item.name, pu.item.Rarity);
+									localPlayerPing = new MarkPickup(pu.transform, pu.item.name, pu.item.rarity);
 								}
 							}
 						}

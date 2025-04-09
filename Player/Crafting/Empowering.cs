@@ -15,12 +15,12 @@ namespace ChampionsOfForest.Player.Crafting
 					if (CraftingHandler.changedItem.i == null || CraftingHandler.changedItem.i.destinationSlotID > -2)
 						return false;
 					int itemCount = 0;
-					int rarity = CraftingHandler.changedItem.i.Rarity;
+					int rarity = CraftingHandler.changedItem.i.rarity;
 					for (int i = 0; i < CraftingHandler.ingredients.Length; i++)
 					{
 						if (CraftingHandler.ingredients[i].i != null)
 						{
-							if (CraftingHandler.ingredients[i].i.Rarity >= rarity)
+							if (CraftingHandler.ingredients[i].i.rarity >= rarity)
 							{
 								itemCount++;
 							}

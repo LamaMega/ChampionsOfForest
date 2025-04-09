@@ -264,7 +264,7 @@ namespace ChampionsOfForest
 
 		public void CraftingIngredientBox(Rect r, CustomCrafting.CraftingIngredient ingredient)
 		{
-			GUI.color = ingredient.i != null ? RarityColors[ingredient.i.Rarity] : Color.white;
+			GUI.color = ingredient.i != null ? RarityColors[ingredient.i.rarity] : Color.white;
 			GUI.DrawTexture(r, Res.ResourceLoader.instance.LoadedTextures[12]);
 
 			GUI.color = new Color(1, 1, 1, 1);
@@ -377,7 +377,7 @@ namespace ChampionsOfForest
 			}
 			GUI.color = new Color(1, 1, 1, 0.8f);
 			GUI.DrawTexture(descriptionBox, blackSquareTex);
-			GUI.color = RarityColors[item.Rarity];
+			GUI.color = RarityColors[item.rarity];
 			GUI.Label(ItemNameRect, item.name, ItemNameStyle);
 			for (int i = 0; i < StatRects.Length; i++)
 			{
@@ -619,7 +619,7 @@ namespace ChampionsOfForest
 
 			if (Inventory.Instance.ItemSlots[index] != null)
 			{
-				frameColor = RarityColors[Inventory.Instance.ItemSlots[index].Rarity];
+				frameColor = RarityColors[Inventory.Instance.ItemSlots[index].rarity];
 				if (Inventory.Instance.ItemSlots[index].icon != null)
 				{
 					Rect itemRect = new Rect(r);

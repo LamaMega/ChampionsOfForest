@@ -211,6 +211,7 @@
     <Compile Include="ExpSources\FishEX.cs" />
     <Compile Include="Fun\Cheats.cs" />
     <Compile Include="Fun\SpaceX.cs" />
+    <Compile Include="Items\ItemTemplates.cs" />
     <Compile Include="Items\MoreCraftingReceipes.cs" />
     <Compile Include="Items\ItemDataBase_ItemDefinitions.cs" />
     <Compile Include="Items\ItemDataBase_Loot.cs" />
