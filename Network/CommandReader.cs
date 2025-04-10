@@ -287,7 +287,7 @@ namespace ChampionsOfForest.Network
 										{
 											ItemStat stat = new ItemStat(ItemDataBase.Stats[r.ReadInt32()], itemLvl, r.ReadInt32())
 											{
-												Amount = r.ReadSingle()
+												amount = r.ReadSingle()
 											};
 											item.Stats.Add(stat);
 										}
@@ -644,7 +644,7 @@ namespace ChampionsOfForest.Network
 												int statPoolIdx = r.ReadInt32();
 												ItemStat stat = new ItemStat(ItemDataBase.Stats[statId], 1, statPoolIdx)
 												{
-													Amount = r.ReadSingle()
+													amount = r.ReadSingle()
 												};
 												item.Stats.Add(stat);
 											}

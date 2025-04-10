@@ -1166,7 +1166,7 @@ namespace ChampionsOfForest.Player
 					{
 						try
 						{
-							stat.OnUnequip?.Invoke(stat.Amount);
+							stat.OnUnequip?.Invoke(stat.amount);
 						}
 						catch (Exception e)
 						{

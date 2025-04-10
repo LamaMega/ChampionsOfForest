@@ -464,7 +464,7 @@ namespace ChampionsOfForest.Items
 			}
 			statid = 5 * (subtypeOffset - 1) + 3001 + statid;
 			ItemStat stat = new ItemStat(ItemDataBase.StatByID(statid));
-			stat.Amount = value * stat.Multipier;
+			stat.amount = value * stat.multipier;
 			return stat;
 		}
 		public static float GetSocketedStatAmount(in int rarity, BaseItem.ItemType type, int subtypeOffset)
@@ -507,7 +507,7 @@ namespace ChampionsOfForest.Items
 					break;
 			}
 			int stat = 5 * (subtypeOffset - 1) + 3001 + statid;
-			return value * ItemDataBase.StatByID(stat).Multipier;
+			return value * ItemDataBase.StatByID(stat).multipier;
 		}
 		public static float GetSocketStatAmount_Amulet(in int rarity)
 		{

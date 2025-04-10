@@ -130,25 +130,25 @@ namespace ChampionsOfForest
 				for (int i = 0; i < item.Stats.Count; i++)
 				{
 					ItemStat stat = item.Stats[i];
-					double amount = stat.Amount;
-					if (stat.DisplayAsPercent)
+					double amount = stat.amount;
+					if (stat.displayAsPercent)
 					{
 						amount *= 100;
 					}
 
-					amount = Math.Round(amount, stat.RoundingCount);
-					string statslabel = $" {stat.Name}";
+					amount = Math.Round(amount, stat.roundingCount);
+					string statslabel = $" {stat.name}";
 					string statsvalue;
 
-					if (stat.DisplayAsPercent)
+					if (stat.displayAsPercent)
 					{
-						statsvalue = amount.ToString("N" + stat.RoundingCount) + "% ";
+						statsvalue = amount.ToString("N" + stat.roundingCount) + "% ";
 					}
 					else
 					{
-						statsvalue = amount.ToString("N" + stat.RoundingCount) + " ";
+						statsvalue = amount.ToString("N" + stat.roundingCount) + " ";
 					}
-					GUI.color = MainMenu.RarityColors[stat.Rarity];
+					GUI.color = MainMenu.RarityColors[stat.rarity];
 					//Name
 					statStyle.alignment = TextAnchor.UpperLeft;
 

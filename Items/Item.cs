@@ -24,10 +24,10 @@ namespace ChampionsOfForest
 			var grouped = new Dictionary<int, List<float>>();
 			foreach (var stat in Stats)
 			{
-				if (grouped.ContainsKey(stat.StatID))
-					grouped[stat.StatID].Add(stat.Amount);
+				if (grouped.ContainsKey(stat.id))
+					grouped[stat.id].Add(stat.amount);
 				else
-					grouped.Add(stat.StatID, new List<float>() { stat.Amount });
+					grouped.Add(stat.id, new List<float>() { stat.amount });
 			}
 			groupedStats = new Dictionary<int, float>(grouped.Count);
 			foreach (var group in grouped)
@@ -60,14 +60,14 @@ namespace ChampionsOfForest
 
 					return returnval;
 				}
-				else if (this.Stats.Any(x => x.StatID == 3000))
+				else if (this.Stats.Any(x => x.id == 3000))
 				{
 					if (Equipped)
 					{
 						OnUnequip();
 					}
 
-					int statindex = Stats.FindIndex(x => x.StatID == 3000);
+					int statindex = Stats.FindIndex(x => x.id == 3000);
 					Stats[statindex] = StatActions.GetSocketedStat(other.rarity, this.type, other.subtype);
 					OnEquip();
 					return true;
@@ -352,10 +352,10 @@ namespace ChampionsOfForest
 				if (PS[random] != null)
 				{
 					ItemStat stat = new ItemStat(PS[random], level);
-					stat.Amount *= GetRarityMultiplier();
-					if (stat.ValueCap != 0)
+					stat.amount *= GetRarityMultiplier();
+					if (stat.valueCap != 0)
 					{
-						stat.Amount = Mathf.Min(stat.Amount, stat.ValueCap);
+						stat.amount = Mathf.Min(stat.amount, stat.valueCap);
 					}
 					stat.possibleStatsIndex = i;
 					Stats.Add(stat);
@@ -379,7 +379,7 @@ namespace ChampionsOfForest
 		}
 		public void SortStats()
 		{
-			Stats = Stats.OrderBy(x => -x.Rarity).ToList();
+			Stats = Stats.OrderBy(x => -x.rarity).ToList();
 		}
 
 		public void OnEquip()
@@ -387,9 +387,9 @@ namespace ChampionsOfForest
 			Equipped = true;
 			foreach (ItemStat item in Stats)
 			{
-				if (item.Amount != 0)
+				if (item.amount != 0)
 				{
-					item.OnEquip?.Invoke(item.Amount);
+					item.OnEquip?.Invoke(item.amount);
 				}
 			}
 			onEquip?.Invoke();
@@ -400,9 +400,9 @@ namespace ChampionsOfForest
 			Equipped = false;
 			foreach (ItemStat item in Stats)
 			{
-				if (item.Amount != 0)
+				if (item.amount != 0)
 				{
-					item.OnUnequip(item.Amount);
+					item.OnUnequip(item.amount);
 				}
 			}
 			onUnequip?.Invoke();
@@ -415,9 +415,9 @@ namespace ChampionsOfForest
 				onEquip?.Invoke();
 				foreach (ItemStat item in Stats)
 				{
-					if (item.Amount != 0)
+					if (item.amount != 0)
 					{
-						item.OnConsume(item.Amount);
+						item.OnConsume(item.amount);
 					}
 				}
 				return true;

@@ -169,7 +169,7 @@ namespace ChampionsOfForest.Fun
 					"[",
 					item.Key,
 					"]  ",
-					item.Value.Name,
+					item.Value.name,
 					"\n"
 				});
 			}

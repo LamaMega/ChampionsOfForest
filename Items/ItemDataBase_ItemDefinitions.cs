@@ -631,7 +631,7 @@ namespace ChampionsOfForest
                 type = BaseItem.ItemType.ChestArmor,
                 icon = Res.ResourceLoader.GetTexture(96),
             };
-            baseItem1.PossibleStats[1][0].Multipier = 2.5f;
+            baseItem1.PossibleStats[1][0].multipier = 2.5f;
             new BaseItem(new int[][]
           {
                 new int[] {5 },
@@ -1876,8 +1876,8 @@ namespace ChampionsOfForest
 
             };
             armsyFingerNecklace.DropSettings_OnlyArmsy();
-            armsyFingerNecklace.PossibleStats[0][0].Multipier = 2;
-            armsyFingerNecklace.PossibleStats[1][0].Multipier = 2;
+            armsyFingerNecklace.PossibleStats[0][0].multipier = 2;
+            armsyFingerNecklace.PossibleStats[1][0].multipier = 2;
             var virginiaHeartPedant = new BaseItem(new int[][]
             {
             new int[] {2},
@@ -1903,8 +1903,8 @@ namespace ChampionsOfForest
                 icon = Res.ResourceLoader.GetTexture(101), //icon ids, don't worry about that
             };
             virginiaHeartPedant.DropSettings_OnlyVags();
-            virginiaHeartPedant.PossibleStats[0][0].Multipier = 2;
-            virginiaHeartPedant.PossibleStats[1][0].Multipier = 2.25f;
+            virginiaHeartPedant.PossibleStats[0][0].multipier = 2;
+            virginiaHeartPedant.PossibleStats[1][0].multipier = 2.25f;
 
             var cowmanToeNecklace = new BaseItem(new int[][]
             {
@@ -1931,8 +1931,8 @@ namespace ChampionsOfForest
                 icon = Res.ResourceLoader.GetTexture(101), //icon ids, don't worry about that
             };
             cowmanToeNecklace.DropSettings_OnlyCow();
-            cowmanToeNecklace.PossibleStats[0][0].Multipier = 3;
-            cowmanToeNecklace.PossibleStats[1][0].Multipier = 2;
+            cowmanToeNecklace.PossibleStats[0][0].multipier = 3;
+            cowmanToeNecklace.PossibleStats[1][0].multipier = 2;
             new BaseItem(new int[][]
             {
             new int[] {47},
@@ -2013,7 +2013,7 @@ namespace ChampionsOfForest
                 weaponModel = BaseItem.WeaponModelType.Hammer,
                 icon = Res.ResourceLoader.GetTexture(109),
             };
-            RelicHammer.PossibleStats[1][0].Multipier = -4;
+            RelicHammer.PossibleStats[1][0].multipier = -4;
 
             BaseItem GreaterHammer = new BaseItem(new int[][]
         {
@@ -2038,7 +2038,7 @@ namespace ChampionsOfForest
                 weaponModel = BaseItem.WeaponModelType.Hammer,
                 icon = Res.ResourceLoader.GetTexture(109),
             };
-            GreaterHammer.PossibleStats[1][0].Multipier = -3;
+            GreaterHammer.PossibleStats[1][0].multipier = -3;
             //Item 0/6
             new BaseItem(new int[][]
             {
@@ -2387,9 +2387,9 @@ new int[] {39,40,41,42,43},
                 type = BaseItem.ItemType.ShoulderArmor,
                 icon = Res.ResourceLoader.GetTexture(95),
             };
-            Heavy_Shoulder_Plates.PossibleStats[0][0].Multipier = -1;
-            Heavy_Shoulder_Plates.PossibleStats[1][0].Multipier = -1;
-            Heavy_Shoulder_Plates.PossibleStats[2][0].Multipier = 3;
+            Heavy_Shoulder_Plates.PossibleStats[0][0].multipier = -1;
+            Heavy_Shoulder_Plates.PossibleStats[1][0].multipier = -1;
+            Heavy_Shoulder_Plates.PossibleStats[2][0].multipier = 3;
 
             //Item 3/6
             new BaseItem(new int[][]
@@ -2612,7 +2612,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.LongSword,
                 icon = Res.ResourceLoader.GetTexture(89),
-            }.PossibleStats[0][0].Multipier = -3;
+            }.PossibleStats[0][0].multipier = -3;
 
             new BaseItem(new int[][]
             {
@@ -2634,7 +2634,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(101),
                 onEquip = () => ModdedPlayer.Stats.spell_warCryGiveArmor.value = true,
                 onUnequip = () => ModdedPlayer.Stats.spell_warCryGiveArmor.value = false,
-            }.PossibleStats[0][0].Multipier = 2;
+            }.PossibleStats[0][0].multipier = 2;
 
             //Item 1/5
             new BaseItem(new int[][]
@@ -2671,7 +2671,7 @@ new int[] {0,0,0,0,62,63,64},
                     ModdedPlayer.Stats.spell_warCryGiveArmor.value = false;
                     ModdedPlayer.Stats.spell_warCryGiveDamageResistance.value = true;
                 },
-            }.PossibleStats[0][0].Multipier = 5;
+            }.PossibleStats[0][0].multipier = 5;
 
             //Item 2/5
             new BaseItem(new int[][]
@@ -2735,11 +2735,11 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Helmet,
                 icon = Res.ResourceLoader.GetTexture(91),
             };
-            mask.PossibleStats[2][0].Multipier = -4;
-            mask.PossibleStats[0][0].Multipier = 1.5f;
-            mask.PossibleStats[1][0].Multipier = 2.5f;
-            mask.PossibleStats[1][1].Multipier = 2.5f;
-            mask.PossibleStats[1][2].Multipier = 2.5f;
+            mask.PossibleStats[2][0].multipier = -4;
+            mask.PossibleStats[0][0].multipier = 1.5f;
+            mask.PossibleStats[1][0].multipier = 2.5f;
+            mask.PossibleStats[1][1].multipier = 2.5f;
+            mask.PossibleStats[1][2].multipier = 2.5f;
 
             new BaseItem(new int[][]
              {
@@ -2972,7 +2972,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Axe,
                 icon = Res.ResourceLoader.GetTexture(138),
-            }.PossibleStats[1][0].Multipier = 1.6f;
+            }.PossibleStats[1][0].multipier = 1.6f;
             new BaseItem(new int[][]
              {
                 new int[]{1,26,22},
@@ -2991,7 +2991,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Axe,
                 icon = Res.ResourceLoader.GetTexture(138),
-            }.PossibleStats[1][0].Multipier = 2.5f;
+            }.PossibleStats[1][0].multipier = 2.5f;
 
             new BaseItem(new int[][]
              {
@@ -3013,7 +3013,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Axe,
                 icon = Res.ResourceLoader.GetTexture(138),
-            }.PossibleStats[1][0].Multipier = 2.5f;
+            }.PossibleStats[1][0].multipier = 2.5f;
             new BaseItem(new int[][]
                       {
                 new int[]{26,22},
@@ -3035,7 +3035,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Axe,
                 icon = Res.ResourceLoader.GetTexture(138),
-            }.PossibleStats[1][0].Multipier = 3;
+            }.PossibleStats[1][0].multipier = 3;
 
             new BaseItem(new int[][]
          {
@@ -3153,7 +3153,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(15),
                 onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(15),
-            }.PossibleStats[0][0].Multipier = 5;
+            }.PossibleStats[0][0].multipier = 5;
 
             BaseItem jaggedRipper = new BaseItem(new int[][]
             {
@@ -3184,7 +3184,7 @@ new int[] {0,0,0,0,62,63,64},
                 onEquip = () => ModdedPlayer.Stats.spell_bashBleedChance.Add(0.3f),
                 onUnequip = () => ModdedPlayer.Stats.spell_bashBleedChance.Substract(0.3f),
             };
-            jaggedRipper.PossibleStats[1][0].Multipier = 2;
+            jaggedRipper.PossibleStats[1][0].multipier = 2;
 
             new BaseItem(new int[][]
                      {
@@ -3215,7 +3215,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(89),
                 onEquip = () => ModdedPlayer.Stats.spell_bashLifesteal.Add(0.02f),
                 onUnequip = () => ModdedPlayer.Stats.spell_bashLifesteal.Substract(0.02f),
-            }.PossibleStats[0][0].Multipier = 3;
+            }.PossibleStats[0][0].multipier = 3;
             new BaseItem(new int[][]
          {
                 new int[] {25 },
@@ -3252,7 +3252,7 @@ new int[] {0,0,0,0,62,63,64},
                     ModdedPlayer.Stats.i_HammerStunDuration.Divide(2);
                     ModdedPlayer.Stats.i_HammerStunAmount.Reset();
                 },
-            }.PossibleStats[0][0].Multipier = 3.25f;
+            }.PossibleStats[0][0].multipier = 3.25f;
 
             new BaseItem(new int[][]
             {
@@ -3363,7 +3363,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Greatbow,
                 icon = Res.ResourceLoader.GetTexture(170),
-            }.PossibleStats[0][0].Multipier = -1.55f;
+            }.PossibleStats[0][0].multipier = -1.55f;
 
             new BaseItem(new int[][]
         {
@@ -3392,7 +3392,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(170),
                 onEquip = () => ModdedPlayer.Stats.i_greatBowIgnites.value = true,
                 onUnequip = () => ModdedPlayer.Stats.i_greatBowIgnites.value = false,
-            }.PossibleStats[0][0].Multipier = -1.7f;
+            }.PossibleStats[0][0].multipier = -1.7f;
 
             new BaseItem(new int[][]
         {
@@ -3424,7 +3424,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(170),
                 onEquip = () => ModdedPlayer.Stats.spell_bia_HealthDmMult.Add(100),
                 onUnequip = () => ModdedPlayer.Stats.spell_bia_HealthDmMult.Substract(100),
-            }.PossibleStats[0][0].Multipier = -1.7f;
+            }.PossibleStats[0][0].multipier = -1.7f;
 
             new BaseItem(new int[][]
             {
@@ -3443,7 +3443,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Greatbow,
                 icon = Res.ResourceLoader.GetTexture(170),
-            }.PossibleStats[0][0].Multipier = -2.7f;
+            }.PossibleStats[0][0].multipier = -2.7f;
 
             new BaseItem(new int[][]
         {
@@ -3713,8 +3713,8 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Pants,
                 icon = Res.ResourceLoader.GetTexture(87),
             };
-            titaniumleggins.PossibleStats[0][0].Multipier = 3;
-            titaniumleggins.PossibleStats[1][0].Multipier = 1.5f;
+            titaniumleggins.PossibleStats[0][0].multipier = 3;
+            titaniumleggins.PossibleStats[1][0].multipier = 1.5f;
             new BaseItem(new int[][]
      {
                 new int[] {42,39,40,41,43,0,0 },
@@ -3805,7 +3805,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Shield,
                 icon = Res.ResourceLoader.GetTexture(99),
-            }.PossibleStats[0][0].Multipier = 2;
+            }.PossibleStats[0][0].multipier = 2;
 
             new BaseItem(new int[][]
           {
@@ -4009,7 +4009,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(170),
                 onEquip = () => ModdedPlayer.Stats.i_EruptionBow.value = true,
                 onUnequip = () => ModdedPlayer.Stats.i_EruptionBow.value = false,
-            }.PossibleStats[0][0].Multipier = -1.6f;
+            }.PossibleStats[0][0].multipier = -1.6f;
 
             new BaseItem(new int[][]
         {
@@ -4041,7 +4041,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(170),
                 onEquip = () => ModdedPlayer.Stats.i_ArchangelBow.value = true,
                 onUnequip = () => ModdedPlayer.Stats.i_ArchangelBow.value = false,
-            }.PossibleStats[0][0].Multipier = -2f;
+            }.PossibleStats[0][0].multipier = -2f;
             new BaseItem(new int[][]
             {
                 new int[] {1,4 },
@@ -4879,7 +4879,7 @@ new int[] {0,0,0,0,62,63,64},
                     type = BaseItem.ItemType.ChestArmor,
                     icon = Res.ResourceLoader.GetTexture(96),
                 };
-                SomeItem.PossibleStats[0][0].Multipier = 2;
+                SomeItem.PossibleStats[0][0].multipier = 2;
             }
             {
                 var demoVestItem = new BaseItem(new Stat[][]
@@ -4905,7 +4905,7 @@ new int[] {0,0,0,0,62,63,64},
                     type = BaseItem.ItemType.ChestArmor,
                     icon = Res.ResourceLoader.GetTexture(96),
                 };
-                demoVestItem.PossibleStats[0][0].Multipier = 7;
+                demoVestItem.PossibleStats[0][0].multipier = 7;
 
             }
             new BaseItem(new Stat[][]
@@ -4976,7 +4976,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.Greatbow,
                 icon = Res.ResourceLoader.GetTexture(170),
 
-            }.PossibleStats[0][0].Multipier = -2f;
+            }.PossibleStats[0][0].multipier = -2f;
 
             new BaseItem(new Stat[][]
             {
@@ -5060,7 +5060,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Amulet,
                 icon = Res.ResourceLoader.GetTexture(100),
-            }.PossibleStats[0][0].Multipier = 7f;
+            }.PossibleStats[0][0].multipier = 7f;
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH,VITALITY,AGILITY,ALLATTRIBUTES,INTELLIGENCE},
@@ -5464,7 +5464,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(15),
                 onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(15),
-            }.PossibleStats[0][0].Multipier = 1.5f;
+            }.PossibleStats[0][0].multipier = 1.5f;
 
 
             new BaseItem(new Stat[][]
@@ -5633,7 +5633,7 @@ new int[] {0,0,0,0,62,63,64},
                 onConsume = x =>
                 {
                     int socketMax = StatActions.GetMaxSocketAmountOnItem(in x.type);
-                    int socketCurrent = x.Stats.Count(y => y.StatID >= 3000);
+                    int socketCurrent = x.Stats.Count(y => y.id >= 3000);
                     if (socketCurrent < socketMax)
                     {
                         x.Stats.Add(new ItemStat(ItemDataBase.StatByID(3000)));
@@ -5664,7 +5664,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(85),
                 onEquip = () => ModdedPlayer.Stats.movementSpeed.Multiply(-1.2f),
                 onUnequip = () => ModdedPlayer.Stats.movementSpeed.Divide(-1.2f)
-            }.PossibleStats[0][0].Multipier = 3;
+            }.PossibleStats[0][0].multipier = 3;
 
             new BaseItem(new Stat[][]
             {
@@ -6133,10 +6133,10 @@ new int[] {0,0,0,0,62,63,64},
                     if (x.Equipped)
                         return false;
 
-                    var stats = x.Stats.Where(y => y.StatID == (int)VITALITY || y.StatID == (int)INTELLIGENCE || y.StatID == (int)AGILITY
-                                                     || y.StatID == (int)LESSERVITALITY || y.StatID == (int)LESSERINTELLIGENCE || y.StatID == (int)LESSERAGILITY
-                                                     || y.StatID == (int)BASERANGEDDAMAGE || y.StatID == (int)BASESPELLDAMAGE
-                                                     || y.StatID == (int)RANGEDDAMAGEINCREASE || y.StatID == (int)SPELLDAMAGEINCREASE).ToArray();
+                    var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)INTELLIGENCE || y.id == (int)AGILITY
+                                                     || y.id == (int)LESSERVITALITY || y.id == (int)LESSERINTELLIGENCE || y.id == (int)LESSERAGILITY
+                                                     || y.id == (int)BASERANGEDDAMAGE || y.id == (int)BASESPELLDAMAGE
+                                                     || y.id == (int)RANGEDDAMAGEINCREASE || y.id == (int)SPELLDAMAGEINCREASE).ToArray();
 
                     int c = stats.Count();
 
@@ -6148,7 +6148,7 @@ new int[] {0,0,0,0,62,63,64},
                     int index = x.Stats.IndexOf(stat);
 
                     ItemStat newStat;
-                    Stat statID = (Stat)stat.StatID;
+                    Stat statID = (Stat)stat.id;
                     switch (statID)
                     {
                         case VITALITY:
@@ -6172,7 +6172,7 @@ new int[] {0,0,0,0,62,63,64},
                         default:
                             return false;
                     }
-                    newStat.Amount = stat.Amount;
+                    newStat.amount = stat.amount;
                     newStat.possibleStatsIndex = stat.possibleStatsIndex;
                     x.Stats[index] = newStat;
                     return true;
@@ -6195,10 +6195,10 @@ new int[] {0,0,0,0,62,63,64},
                     if (x.Equipped)
                         return false;
 
-                    var stats = x.Stats.Where(y => y.StatID == (int)VITALITY || y.StatID == (int)STRENGTH || y.StatID == (int)AGILITY
-                                                     || y.StatID == (int)LESSERVITALITY || y.StatID == (int)LESSERSTRENGTH || y.StatID == (int)LESSERAGILITY
-                                                     || y.StatID == (int)BASERANGEDDAMAGE || y.StatID == (int)BASEMELEEDAMAGE
-                                                     || y.StatID == (int)RANGEDDAMAGEINCREASE || y.StatID == (int)MELEEDAMAGEINCREASE).ToArray();
+                    var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)STRENGTH || y.id == (int)AGILITY
+                                                     || y.id == (int)LESSERVITALITY || y.id == (int)LESSERSTRENGTH || y.id == (int)LESSERAGILITY
+                                                     || y.id == (int)BASERANGEDDAMAGE || y.id == (int)BASEMELEEDAMAGE
+                                                     || y.id == (int)RANGEDDAMAGEINCREASE || y.id == (int)MELEEDAMAGEINCREASE).ToArray();
 
                     int c = stats.Count();
 
@@ -6210,7 +6210,7 @@ new int[] {0,0,0,0,62,63,64},
                     int index = x.Stats.IndexOf(stat);
 
                     ItemStat newStat;
-                    Stat statID = (Stat)stat.StatID;
+                    Stat statID = (Stat)stat.id;
                     switch (statID)
                     {
                         case VITALITY:
@@ -6234,7 +6234,7 @@ new int[] {0,0,0,0,62,63,64},
                         default:
                             return false;
                     }
-                    newStat.Amount = stat.Amount;
+                    newStat.amount = stat.amount;
                     newStat.possibleStatsIndex = stat.possibleStatsIndex;
                     x.Stats[index] = newStat;
                     return true;
@@ -6257,10 +6257,10 @@ new int[] {0,0,0,0,62,63,64},
                     if (x.Equipped)
                         return false;
 
-                    var stats = x.Stats.Where(y => y.StatID == (int)VITALITY || y.StatID == (int)STRENGTH || y.StatID == (int)INTELLIGENCE
-                                                     || y.StatID == (int)LESSERVITALITY || y.StatID == (int)LESSERSTRENGTH || y.StatID == (int)LESSERINTELLIGENCE
-                                                     || y.StatID == (int)BASESPELLDAMAGE || y.StatID == (int)BASEMELEEDAMAGE
-                                                     || y.StatID == (int)SPELLDAMAGEINCREASE || y.StatID == (int)MELEEDAMAGEINCREASE).ToArray();
+                    var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)STRENGTH || y.id == (int)INTELLIGENCE
+                                                     || y.id == (int)LESSERVITALITY || y.id == (int)LESSERSTRENGTH || y.id == (int)LESSERINTELLIGENCE
+                                                     || y.id == (int)BASESPELLDAMAGE || y.id == (int)BASEMELEEDAMAGE
+                                                     || y.id == (int)SPELLDAMAGEINCREASE || y.id == (int)MELEEDAMAGEINCREASE).ToArray();
 
                     int c = stats.Count();
 
@@ -6272,7 +6272,7 @@ new int[] {0,0,0,0,62,63,64},
                     int index = x.Stats.IndexOf(stat);
 
                     ItemStat newStat;
-                    Stat statID = (Stat)stat.StatID;
+                    Stat statID = (Stat)stat.id;
                     switch (statID)
                     {
                         case VITALITY:
@@ -6296,7 +6296,7 @@ new int[] {0,0,0,0,62,63,64},
                         default:
                             return false;
                     }
-                    newStat.Amount = stat.Amount;
+                    newStat.amount = stat.amount;
                     newStat.possibleStatsIndex = stat.possibleStatsIndex;
                     x.Stats[index] = newStat;
                     return true;
@@ -6320,8 +6320,8 @@ new int[] {0,0,0,0,62,63,64},
                     if (x.Equipped)
                         return false;
 
-                    var stats = x.Stats.Where(y => y.StatID == (int)VITALITY || y.StatID == (int)STRENGTH || y.StatID == (int)INTELLIGENCE
-                                                     || y.StatID == (int)LESSERAGILITY || y.StatID == (int)LESSERSTRENGTH || y.StatID == (int)LESSERINTELLIGENCE).ToArray();
+                    var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)STRENGTH || y.id == (int)INTELLIGENCE
+                                                     || y.id == (int)LESSERAGILITY || y.id == (int)LESSERSTRENGTH || y.id == (int)LESSERINTELLIGENCE).ToArray();
 
                     int c = stats.Count();
 
@@ -6333,7 +6333,7 @@ new int[] {0,0,0,0,62,63,64},
                     int index = x.Stats.IndexOf(stat);
 
                     ItemStat newStat;
-                    Stat statID = (Stat)stat.StatID;
+                    Stat statID = (Stat)stat.id;
                     switch (statID)
                     {
                         case AGILITY:
@@ -6349,7 +6349,7 @@ new int[] {0,0,0,0,62,63,64},
                         default:
                             return false;
                     }
-                    newStat.Amount = stat.Amount;
+                    newStat.amount = stat.amount;
                     newStat.possibleStatsIndex = stat.possibleStatsIndex;
                     x.Stats[index] = newStat;
                     return true;
@@ -6372,7 +6372,7 @@ new int[] {0,0,0,0,62,63,64},
                     if (x.Equipped)
                         return false;
 
-                    var stats = x.Stats.RemoveAll(y => y.Amount < 0);
+                    var stats = x.Stats.RemoveAll(y => y.amount < 0);
                     if (stats > 0)
                         return true;
                     return false;
@@ -6395,12 +6395,12 @@ new int[] {0,0,0,0,62,63,64},
                     if (x.Equipped)
                         return false;
 
-                    var stats = x.Stats.Where(y => y.Amount < 0).ToList();
+                    var stats = x.Stats.Where(y => y.amount < 0).ToList();
                     if (stats.Count > 0)
                     {
                         for (int i = 0; i < stats.Count; i++)
                         {
-                            stats[i].Amount *= -1;
+                            stats[i].amount *= -1;
                         }
                         return true;
                     }
@@ -6472,7 +6472,7 @@ new int[] {0,0,0,0,62,63,64},
                     var itemType = x.type;
                     if (itemType == BaseItem.ItemType.Other || itemType == BaseItem.ItemType.Material || x.Amount > 1)
                         return false;
-                    if (!x.Stats.Any(y => y.StatID == (int)ARMOR || y.StatID == (int)LESSERARMOR))
+                    if (!x.Stats.Any(y => y.id == (int)ARMOR || y.id == (int)LESSERARMOR))
                     {
                         ItemStat stat = new ItemStat(StatByID((int)ARMOR), x.level);
                         x.Stats.Add(stat);
@@ -6501,7 +6501,7 @@ new int[] {0,0,0,0,62,63,64},
                     var itemType = x.type;
                     if (itemType == BaseItem.ItemType.Other || itemType == BaseItem.ItemType.Material || x.Amount > 1)
                         return false;
-                    if (!x.Stats.Any(y => y.StatID == (int)DAMAGEREDUCTION))
+                    if (!x.Stats.Any(y => y.id == (int)DAMAGEREDUCTION))
                     {
                         ItemStat stat = new ItemStat(StatByID((int)DAMAGEREDUCTION), x.level);
                         x.Stats.Add(stat);
@@ -6590,7 +6590,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(138),
                 onEquip = () => ModdedPlayer.Stats.perk_bulletDamageMult.Multiply(2.5f),
                 onUnequip = () => ModdedPlayer.Stats.perk_bulletDamageMult.Divide(2.5f),
-            }.PossibleStats[0][0].Multipier = -1f;
+            }.PossibleStats[0][0].multipier = -1f;
 
             new BaseItem(new Stat[][]
              {
@@ -6746,7 +6746,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(91),
                 onEquip = () => ModdedPlayer.Stats.fireDuration.Add(2f),
                 onUnequip = () => ModdedPlayer.Stats.fireDuration.Substract(2f),
-            }.PossibleStats[0][0].Multipier = 2;
+            }.PossibleStats[0][0].multipier = 2;
 
             new BaseItem(new Stat[][]
             {
@@ -6774,7 +6774,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(91),
                 onEquip = () => { ModdedPlayer.Stats.fireDuration.Add(7f); ModdedPlayer.Stats.fireTickRate.Add(3f); },
                 onUnequip = () => { ModdedPlayer.Stats.fireDuration.Substract(7f); ModdedPlayer.Stats.fireTickRate.Substract(3f); },
-            }.PossibleStats[0][0].Multipier = 5;
+            }.PossibleStats[0][0].multipier = 5;
 
 
             new BaseItem(new Stat[][]
@@ -6892,7 +6892,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Weapon,
                 weaponModel = BaseItem.WeaponModelType.Polearm,
                 icon = Res.ResourceLoader.GetTexture(181),
-            }.PossibleStats[0][0].Multipier = 6;
+            }.PossibleStats[0][0].multipier = 6;
 
 
 
@@ -6915,7 +6915,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.ShoulderArmor,
                 icon = Res.ResourceLoader.GetTexture(95),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -7027,7 +7027,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Shield,
                 icon = Res.ResourceLoader.GetTexture(99),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -7126,7 +7126,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Shield,
                 icon = Res.ResourceLoader.GetTexture(99),
-            }.PossibleStats[0][0].Multipier = 2f;
+            }.PossibleStats[0][0].multipier = 2f;
 
 
             new BaseItem(new Stat[][]
@@ -7148,7 +7148,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Boot,
                 icon = Res.ResourceLoader.GetTexture(85),
-            }.PossibleStats[0][0].Multipier = 1.3f;
+            }.PossibleStats[0][0].multipier = 1.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {MOVEMENTSPEED},
@@ -7265,7 +7265,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Glove,
                 icon = Res.ResourceLoader.GetTexture(86),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -7378,7 +7378,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Pants,
                 icon = Res.ResourceLoader.GetTexture(87),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -7492,7 +7492,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.ChestArmor,
                 icon = Res.ResourceLoader.GetTexture(96),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -7604,7 +7604,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Bracer,
                 icon = Res.ResourceLoader.GetTexture(93),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -7716,7 +7716,7 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Helmet,
                 icon = Res.ResourceLoader.GetTexture(91),
-            }.PossibleStats[0][0].Multipier = -0.3f;
+            }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,EXPGAIN,MAGICFIND},
@@ -8107,7 +8107,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_berserkDamage.Add(3f),
                 onUnequip = () => ModdedPlayer.Stats.spell_berserkDamage.Substract(3f),
-            }.PossibleStats[0][0].Multipier = 5;
+            }.PossibleStats[0][0].multipier = 5;
             new BaseItem(new Stat[][]
             {
                 new [] {BASEMELEEDAMAGE,BASESPELLDAMAGE},
@@ -8136,7 +8136,7 @@ new int[] {0,0,0,0,62,63,64},
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_berserkDamage.Add(1f),
                 onUnequip = () => ModdedPlayer.Stats.spell_berserkDamage.Substract(1f),
-            }.PossibleStats[0][0].Multipier = 2;
+            }.PossibleStats[0][0].multipier = 2;
 
             new BaseItem(new Stat[][]
             {

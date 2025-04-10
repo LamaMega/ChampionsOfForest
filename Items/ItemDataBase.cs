@@ -26,7 +26,7 @@ namespace ChampionsOfForest
 			PopulateStats();
 			for (int i = 0; i < statList.Count; i++)
 			{
-				Stats.Add(statList[i].StatID, statList[i]);
+				Stats.Add(statList[i].id, statList[i]);
 			}
 			try
 			{
@@ -68,11 +68,11 @@ namespace ChampionsOfForest
 			string s = "There are " + Stats.Count + " stats:\n";
 			for (int i = 0; i < 8; i++)
 			{
-				ItemStat[] stats = statList.Where(a => a.Rarity == i).ToArray();
+				ItemStat[] stats = statList.Where(a => a.rarity == i).ToArray();
 				s += " • Rarity tier of stat[" + i + "] =  " + stats.Length;
 				foreach (ItemStat a in stats)
 				{
-					s += "\n\t • Stat \"" + a.Name + "  ID [" + a.StatID + "]\"";
+					s += "\n\t • Stat \"" + a.name + "  ID [" + a.id + "]\"";
 				}
 				s += "\n";
 			}

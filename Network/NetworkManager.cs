@@ -222,9 +222,9 @@ namespace ChampionsOfForest.Network
 					w.Write((int)dropSource);
 					foreach (ItemStat stat in item.Stats)
 					{
-						w.Write(stat.StatID);
+						w.Write(stat.id);
 						w.Write(stat.possibleStatsIndex);
-						w.Write(stat.Amount);
+						w.Write(stat.amount);
 					}
 					w.Close();
 				}
@@ -246,9 +246,9 @@ namespace ChampionsOfForest.Network
 					w.Write(item.level);
 					foreach (ItemStat stat in item.Stats)
 					{
-						w.Write(stat.StatID);
+						w.Write(stat.id);
 						w.Write(stat.possibleStatsIndex);
-						w.Write(stat.Amount);
+						w.Write(stat.amount);
 					}
 					w.Close();
 				}

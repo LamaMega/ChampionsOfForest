@@ -99,7 +99,7 @@ namespace ChampionsOfForest
 
 							ItemStat stat = new ItemStat(ItemDataBase.Stats[statID],1,statgroupID)
 							{
-								Amount = statAMO
+								amount = statAMO
 							};
 
 							LoadedItem.Stats.Add(stat);
@@ -233,9 +233,9 @@ namespace ChampionsOfForest
 					//save every stat
 					for (int i = 0; i < item.Value.Stats.Count; i++)
 					{
-						buf.Write(item.Value.Stats[i].StatID);
+						buf.Write(item.Value.Stats[i].id);
 						buf.Write(item.Value.Stats[i].possibleStatsIndex);
-						buf.Write(item.Value.Stats[i].Amount);
+						buf.Write(item.Value.Stats[i].amount);
 					}
 				}
 				else
