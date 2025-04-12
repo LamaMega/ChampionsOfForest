@@ -246,6 +246,7 @@
     <Compile Include="Player\ModdedPlayer\Stats\BaseClasses\INetworkSyncedPlayerStat.cs" />
     <Compile Include="Player\ModdedPlayer\Stats\BaseClasses\IPlayerStat.cs" />
     <Compile Include="Player\ModdedPlayer\ModdedPlayer_Stats_Arithmetics.cs" />
+    <Compile Include="Player\ModdedPlayer\Stats\Interfaces.cs" />
     <Compile Include="Player\ModdedPlayer\Stats\MultiOperationPlayerStat.cs" />
     <Compile Include="Player\ModdedPlayer\Stats\MultiplicativeNetworkSyncedPlayerStat.cs" />
     <Compile Include="Player\ModdedPlayer\Stats\MultiplicativePlayerStat.cs" />

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using ChampionsOfForest.Player;
+
 using UnityEngine;
 
+using static ChampionsOfForest.ItemDataBase;
 using static ChampionsOfForest.ItemStatBuilder;
 
 namespace ChampionsOfForest
@@ -34,31 +37,87 @@ namespace ChampionsOfForest
 			return 1 - f;
 		}
 
-
-
-
-		public ItemStatBuilder(int id, string name, float min, float max)
+		public ItemStatBuilder(Stat id, string name, float min, float max)
 		{
-			this.id = id;
+			this.id = (int)id;
 			this.name = name;
 			this.rangeMin = min;
 			this.rangeMax = max;
 			ItemDataBase.AddStat(this);
-
 		}
 
-		public ItemStatBuilder Rarity(int rarity)
+		public ItemStatBuilder Additive(IAdditiveStat<float> stat)
 		{
-			if (rarity < 0 || rarity > 7)
-				UnityEngine.Debug.LogError($"ItemStat {name} has incorrect rarity {rarity}");
-			this.rarity = rarity;
+			this.comparingFunc = CompareAdd;
+			this.OnEquip = f => stat.Add(f);
+			this.OnUnequip = f => stat.Substract(f);
+			return this;
+		}
+		public ItemStatBuilder Multiplicative(IMultiplicativeStat<float> stat)
+		{
+			this.comparingFunc = CompareMult;
+			this.OnEquip = f => stat.Multiply(f);
+			this.OnEquip = f => stat.Divide(f);
 			return this;
 		}
 
-		public ItemStatBuilder AdditiveComparing()
+		public ItemStatBuilder MultPlus1Comparing(IMultiplicativeStat<float> stat)
 		{
-			this.comparing = 
+			this.comparingFunc = CompareMultPlus1;
+			this.OnEquip = f => stat.Multiply(f+1f);
+			this.OnEquip = f => stat.Divide(f+1f);
+			return this;
 		}
+
+		public ItemStatBuilder OneMinusMultComparing(IMultiplicativeStat<float> stat)
+		{
+			this.comparingFunc = Compare1MinusMult;
+			this.OnEquip = f => stat.Multiply(1f-f);
+			this.OnEquip = f => stat.Divide(1f-f);
+			return this;
+		}
+
+		// this stat will scale linearly with item level
+		public ItemStatBuilder LinearLevelScaling()
+		{
+			this.levelExponent = 1;
+			return this;
+		}
+
+		// this stat will scale linearly with item level
+		public ItemStatBuilder NoLevelScaling()
+		{
+			this.levelExponent = 0;
+			return this;
+		}
+
+		public ItemStatBuilder LevelScaling(float scaling)
+		{
+			this.levelExponent = scaling;
+			return this;
+		}
+
+		public ItemStatBuilder RarityScaling(float scaling)
+		{
+			this.rarityCoefficient = scaling;
+			return this;
+		}
+
+		public ItemStatBuilder NoRarityScaling()
+		{
+			this.rarityCoefficient = 0;
+			return this;
+		}
+
+		public ItemStatBuilder AffectsStat<T>(NumericPlayerStatBase<T> stat) where T : struct, IComparable, IComparable<T>, IEquatable<T>, IConvertible, IFormattable
+		{
+			if (stat is null)
+				throw new ArgumentNullException(nameof(stat));
+			this.GetTotalStat = stat.GetFormattedAmount;
+			return this;
+		}
+
+
 	}
 	public class ItemStat
 	{
@@ -76,7 +135,6 @@ namespace ChampionsOfForest
 		public float valueCap = 0;
 		public int id = 0;
 		public string name = "";
-		public int rarity = 1;
 		public float rangeMin = 0;
 		public float rangeMax = 0;
 		public float amount = 1;
@@ -89,7 +147,7 @@ namespace ChampionsOfForest
 		public int possibleStatsIndex = -1;
 
 
-		private Func<List<float>, float> comparingFunc;
+		public Func<List<float>, float> comparingFunc;
 		public Func<string> GetTotalStat; 
 
 		public delegate void StatActionDelegate(float f);
@@ -100,8 +158,9 @@ namespace ChampionsOfForest
 
 		public float EvaluateTotalIncrease(List<float> amounts)
 		{
-			return comparing.CalculateValues(amounts);
+			return comparingFunc(amounts);
 		}
+
 
 		public ItemStat()
 		{
@@ -114,7 +173,6 @@ namespace ChampionsOfForest
 			name = original.name;
 			levelExponent = original.levelExponent;
 			id = original.id;
-			rarity = original.rarity;
 			rangeMin = original.rangeMin;
 			rangeMax = original.rangeMax;
 			OnEquip = original.OnEquip;

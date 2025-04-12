@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace ChampionsOfForest.Player
 {
-	public class AdditiveNetworkSyncedPlayerStat<T> : NumericPlayerStatBase<T>, INetworkSyncedPlayerStat, INetworkStatStorage<T> where T : struct, IComparable, IComparable<T>, IEquatable<T>, IConvertible, IFormattable
+	public class AdditiveNetworkSyncedPlayerStat<T> : NumericPlayerStatBase<T>, INetworkSyncedPlayerStat, INetworkStatStorage<T>, IAdditiveStat<T> where T : struct, IComparable, IComparable<T>, IEquatable<T>, IConvertible, IFormattable
 	{
 
 		protected Func<T, T, T> add, substract;

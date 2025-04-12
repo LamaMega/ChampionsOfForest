@@ -8,6 +8,8 @@ using TheForest.Utils;
 
 using UnityEngine;
 
+using static ChampionsOfForest.ItemDataBase.Stat;
+
 namespace ChampionsOfForest
 {
 	public static partial class ItemDataBase
@@ -104,8 +106,12 @@ namespace ChampionsOfForest
 
 		public static void PopulateStats()
 		{
-			
-
+			new ItemStatBuilder(Stat.STRENGTH, "Strength", 2f, 3f)
+				.AffectsStat(ModdedPlayer.Stats.strength)
+				.Additive(ModdedPlayer.Stats.strength)
+				.AdditiveComparing()
+				.LevelScaling(0.4f)
+				
 
 			int i = 1;
 			new ItemStat(i, 1.5f, 2.2f, 0.8f, Translations.MainMenu_Guide_4/*Strength*/, scAdd, 4, //tr
