@@ -11,7 +11,7 @@ using static ChampionsOfForest.ItemDataBase;
 
 namespace ChampionsOfForest
 {
-
+	
     public static partial class ItemDataBase
     {
         static Dictionary<BaseItem.ItemType, List<List<string>>> randomitemNamesPool;
@@ -281,10 +281,124 @@ namespace ChampionsOfForest
                 mythicQualityNames
             };
             return rarityNames;
-        }
+		}
 
+		public static void addNewItem()
+		{
+			//------------------------------------------------------
+			//Rarity 0 (Grey)
+			//------------------------------------------------------
+			new Shield()
+				.ShieldStatSlot(1)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Splintered Barrier")
+				.Description("Why is this shield still intact?")
+				.Rarity(0);
 
-        public static void PopulateItems()
+			new Shield()
+				.ShieldStatSlot(1)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Cracked Buckler")
+				.Description("Just throw it away.")
+				.Rarity(0);
+
+			new Shield()
+				.ShieldStatSlot(1)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Ftactured Aegis")
+				.Description("You can still see the pieces falling off.")
+				.Rarity(0);
+
+			new Shield()
+				.ShieldStatSlot(1)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Rusten Battered Shield")
+				.Description("Barely functional but better then empty handed.")
+				.Rarity(0);
+
+			new Shield()
+				.ShieldStatSlot(1)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Shattered Guard")
+				.Description("No warior would pick this up and call it a shield.")
+				.Rarity(0);
+
+			//------------------------------------------------------
+			//Rarity 1 (White)
+			//------------------------------------------------------
+
+			new Shield()
+				.ShieldStatSlot(2)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Iron Shield")
+				.Description("Fuck you Hazard. ~Lama Mega~")
+				.Rarity(1);
+
+			new Shield()
+				.ShieldStatSlot(1)
+				.StatSlot(new Stat[] { BLOCK })
+				.StatSlot(new Stat[] { THORNS })
+				.Name("Wooden Buckler")
+				.Description("Has a sticking out nail!")
+				.Rarity(1);
+
+			new Shield()
+				.ShieldStatSlot(2)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Footman's Protection")
+				.Description("")
+				.Rarity(1);
+
+			//------------------------------------------------------
+			//Rarity 2 (Dark Blue)
+			//------------------------------------------------------
+
+			new Shield()
+				.ShieldStatSlot(3)
+				.StatSlot(new Stat[] { BLOCK })
+				.StatSlot(new Stat[] { DODGECHANCE })
+				.Name("Reinforced Buckler")
+				.Description("Light and small shield that allows you to dodge attacks.")
+				.Rarity(2);
+
+				new Shield()
+				.ShieldStatSlot(3)
+				.StatSlot(new Stat[] { BLOCK })
+				.StatSlot(new Stat[] { DODGECHANCE })
+				.Name("Knight's Guard")
+				.Description("")
+				.Rarity(2);
+
+				new Shield()
+				.ShieldStatSlot(3)
+				.StatSlot(new Stat[] { BLOCK })
+				.StatSlot(new Stat[] { DODGECHANCE })
+				.Name("Knight's Guard")
+				.Description("")
+				.Rarity(2);
+
+			//------------------------------------------------------
+			//Rarity 3 (Blue)
+			//------------------------------------------------------
+
+			//------------------------------------------------------
+			//Rarity 4 (Yellow)
+			//------------------------------------------------------
+
+			//------------------------------------------------------
+			//Rarity 5 (Orange)
+			//------------------------------------------------------
+
+			//------------------------------------------------------
+			//Rarity 6 (Green)
+			//------------------------------------------------------
+
+			//------------------------------------------------------
+			//Rarity 7 (Red)
+			//------------------------------------------------------
+		}
+
+		public static void PopulateItems()
         {
             new BaseItem(new int[][]
             {

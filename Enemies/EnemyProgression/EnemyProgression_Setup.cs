@@ -150,12 +150,10 @@ namespace ChampionsOfForest
 			RollName(isElite);
 			setupDifficulty = ModSettings.difficulty;
 			//Assigning rest of stats
-			int dif = (int)setupDifficulty;
 			DamageMult = level < 65 ? 
 				(Mathf.Pow(2.7182818284f,level/6) + level) //e^(x/6) + x
 				: Mathf.Pow(level-60, 2.60f) * 600;
-			armor = Mathf.FloorToInt(Random.Range(Mathf.Pow(level, 2.43f) * 0.3333f + 1, Mathf.Pow(level, 2.43f) * 0.66666f + 20) * ModSettings.EnemyArmorMultiplier);
-			armor *= dif / 2 + 1;
+			armor = Mathf.FloorToInt(Random.Range(Mathf.Pow(level, 2.0f) * 0.3333f + 1, Mathf.Pow(level, 2.0f) * 0.66666f + 20) * ModSettings.EnemyArmorMultiplier);
 			armorReduction = 0;
 
 			//Set HP;
