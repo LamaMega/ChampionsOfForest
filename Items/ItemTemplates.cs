@@ -235,9 +235,57 @@ namespace ChampionsOfForest.Items.ItemTemplates
 
 	public class Shield : ItemTemplateBuilder
 	{
+
+		private static readonly Stat[] shieldStatIds =
+		{
+			STRENGTH,
+			VITALITY,
+			MAXIMUMLIFE,
+			MAXIMUMENERGY,
+			LIFEPERSECOND,
+			STAMINAPERSECOND,
+			STAMINAREGENERATION,
+			LIFEREGENERATION,
+			DAMAGEREDUCTION,
+			CRITICALHITCHANCE,
+			CRITICALHITDAMAGE,
+			LIFEONHIT,
+			DODGECHANCE,
+			ARMOR,
+			RESISTANCETOMAGIC,
+			ATTACKSPEED,
+			MASSACREDURATION,
+			MELEEDAMAGEINCREASE,
+			BASEMELEEDAMAGE,
+			ALLHEALINGPERCENT,
+			MELEEWEAPONRANGE,
+			ATTACKCOSTREDUCTION,
+			SPELLCOSTREDUCTION,
+			SPELLCOSTTOSTAMINA,
+			ENERGYPERSECOND,
+			PERCENTMAXIMUMLIFE,
+			PERCENTMAXIMUMENERGY,
+			COOLDOWNREDUCTION,
+			ENERGYONHIT,
+			BLOCK,
+			MELEEARMORPIERCING,
+			THORNS,
+			SPEARDAMAGE,
+			};
+		private static List<ItemStat> shieldStats = null;
+
+		public Shield ShieldStatSlot(int n = 1)
+		{
+			for (int i = 0; i < n; i++)
+				PossibleStats.Add(shieldStats);
+			return this;
+		}
+
 		public Shield()
 		{
 			type = ItemType.Shield;
+			if (shieldStats == null)
+				shieldStats = ToItemStatList(shieldStatIds);
 			LevelRequirement(10);
             Icon(99);
         }
@@ -406,6 +454,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Amulet;
 			if (amuletStats == null)
 				amuletStats = ToItemStatList(amuletStatIds);
+			LevelRequirement(20);
 			Icon(101);
 		}
 
@@ -470,6 +519,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			if (ringStats == null)
 				ringStats = ToItemStatList(ringStatIds);
 			Icon(90);
+			LevelRequirement(15);
 		}
 
 		public Ring RingStatSlot(int n = 1)
