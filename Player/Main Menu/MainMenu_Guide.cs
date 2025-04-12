@@ -338,7 +338,7 @@ namespace ChampionsOfForest
 				Stat(Translations.MainMenu_Guide_13, 
 					ModdedPlayer.Stats.TotalMaxHealth.ToString(),
 					Translations.MainMenu_Guide_14(
-					ModdedPlayer.ModdedPlayerStats.baseHealth, ModdedPlayer.Stats.maxHealthFromVit.GetAmount() * ModdedPlayer.Stats.vitality.GetAmount(), ModdedPlayer.Stats.maxHealth.GetFormattedAmount(), ModdedPlayer.Stats.maxHealthMult.GetFormattedAmount()));
+					ModdedPlayer.ModdedPlayerStats.baseHealth, ModdedPlayer.Stats.maxHealthFromVit.GetAmount() * ModdedPlayer.Stats.vitality.GetAmount(), ModdedPlayer.Stats.maxLife.GetFormattedAmount(), ModdedPlayer.Stats.maxHealthMult.GetFormattedAmount()));
 
 				Stat(Translations.MainMenu_Guide_15, 
 					ModdedPlayer.Stats.TotalMaxEnergy.ToString(),
@@ -373,11 +373,11 @@ namespace ChampionsOfForest
 
 				Stat(Translations.MainMenu_Guide_133, (ModdedPlayer.Stats.TotalStaminaRecoveryAmount).ToString("N2"), //tr
 					Translations.MainMenu_Guide_35( 
-					ModdedPlayer.Stats.staminaRecoveryperSecond.GetAmount(), ModdedPlayer.Stats.staminaPerSecRate.GetFormattedAmount()));
+					ModdedPlayer.Stats.energyRegenMult.GetAmount(), ModdedPlayer.Stats.staminaRegenBase.GetFormattedAmount()));
 
 				Stat(Translations.MainMenu_Guide_37, ModdedPlayer.Stats.energyRecoveryperSecond.GetAmount() * ModdedPlayer.Stats.TotalStaminaRecoveryMultiplier + "", Translations.MainMenu_Guide_36( ModdedPlayer.Stats.energyRecoveryperSecond.GetAmount(), ModdedPlayer.Stats.TotalStaminaRecoveryMultiplier)); 
 				Stat(Translations.MainMenu_Guide_39, ModdedPlayer.Stats.energyOnHit.GetAmount() * ModdedPlayer.Stats.TotalStaminaRecoveryMultiplier + "", Translations.MainMenu_Guide_38( ModdedPlayer.Stats.energyOnHit.GetAmount()));
-				Stat(Translations.MainMenu_Guide_41, ModdedPlayer.Stats.healthRecoveryPerSecond.GetAmount() * (ModdedPlayer.Stats.healthPerSecRate.GetAmount()) * ModdedPlayer.Stats.allRecoveryMult.GetAmount() + "", Translations.MainMenu_Guide_40( ModdedPlayer.Stats.healthRecoveryPerSecond.GetAmount(), ModdedPlayer.Stats.healthPerSecRate.GetFormattedAmount(), ModdedPlayer.Stats.allRecoveryMult.GetAmount() - 1));
+				Stat(Translations.MainMenu_Guide_41, ModdedPlayer.Stats.lifeRegenBase.GetAmount() * (ModdedPlayer.Stats.lifeRegenMult.GetAmount()) * ModdedPlayer.Stats.allRecoveryMult.GetAmount() + "", Translations.MainMenu_Guide_40( ModdedPlayer.Stats.lifeRegenBase.GetAmount(), ModdedPlayer.Stats.lifeRegenMult.GetFormattedAmount(), ModdedPlayer.Stats.allRecoveryMult.GetAmount() - 1));
 				Stat(Translations.MainMenu_Guide_43, ModdedPlayer.Stats.healthOnHit.GetAmount() * ModdedPlayer.Stats.allRecoveryMult.GetAmount() + "", Translations.MainMenu_Guide_42( ModdedPlayer.Stats.healthOnHit.GetAmount(), ModdedPlayer.Stats.allRecoveryMult.GetFormattedAmount(), ModdedPlayer.Stats.allRecoveryMult.GetAmount() - 1));
 
 				Space(60);

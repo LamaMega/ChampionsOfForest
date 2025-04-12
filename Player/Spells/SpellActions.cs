@@ -158,7 +158,7 @@ namespace ChampionsOfForest.Player
 		{
 			Vector3 pos = LocalPlayer.Transform.position;
 			float radius = 14f;
-			float healing = (ModdedPlayer.Stats.healthRecoveryPerSecond * ModdedPlayer.Stats.healthRecoveryPerSecond * 10 + 43.5f)*ModdedPlayer.Stats.allRecoveryMult;
+			float healing = (ModdedPlayer.Stats.lifeRegenBase * ModdedPlayer.Stats.lifeRegenBase * 10 + 43.5f)*ModdedPlayer.Stats.allRecoveryMult;
 			healing += ModdedPlayer.Stats.spellFlatDmg * ModdedPlayer.Stats.SpellDamageMult * 0.1f;
 			using (System.IO.MemoryStream answerStream = new System.IO.MemoryStream())
 			{
@@ -215,7 +215,7 @@ namespace ChampionsOfForest.Player
 			float boost = ModdedPlayer.Stats.spell_flareBoost;
 			float duration = ModdedPlayer.Stats.spell_flareDuration;
 			float radius = ModdedPlayer.Stats.spell_flareRadius;
-			float Healing = ModdedPlayer.Stats.spell_flareHeal + ModdedPlayer.Stats.spellFlatDmg / 20 + (ModdedPlayer.Stats.healthRecoveryPerSecond*2) * ModdedPlayer.Stats.healthPerSecRate;
+			float Healing = ModdedPlayer.Stats.spell_flareHeal + ModdedPlayer.Stats.spellFlatDmg / 20 + (ModdedPlayer.Stats.lifeRegenBase*2) * ModdedPlayer.Stats.lifeRegenMult;
 			Healing *= ModdedPlayer.Stats.TotalMagicDamageMultiplier;
 			using (System.IO.MemoryStream answerStream = new System.IO.MemoryStream())
 			{
@@ -947,8 +947,8 @@ portal_postPickingPos:
 				float dmg = ModdedPlayer.Stats.spell_parryDamage + ModdedPlayer.Stats.spellFlatDmg;
 				dmg *= ModdedPlayer.Stats.TotalMagicDamageMultiplier *ModdedPlayer.Stats.spell_parryDamageScaling;
 
-				float heal = ModdedPlayer.Stats.spell_parryHeal + ModdedPlayer.Stats.spellFlatDmg / 6 + ModdedPlayer.Stats.healthRecoveryPerSecond + ModdedPlayer.Stats.healthOnHit * 3;
-				heal *= ModdedPlayer.Stats.allRecoveryMult * (1 + ModdedPlayer.Stats.healthPerSecRate);
+				float heal = ModdedPlayer.Stats.spell_parryHeal + ModdedPlayer.Stats.spellFlatDmg / 6 + ModdedPlayer.Stats.lifeRegenBase + ModdedPlayer.Stats.healthOnHit * 3;
+				heal *= ModdedPlayer.Stats.allRecoveryMult * (1 + ModdedPlayer.Stats.lifeRegenMult);
 				LocalPlayer.Stats.HealthTarget += heal;
 				ParrySound.Play(parryPos);
 				float energy = (ModdedPlayer.Stats.spell_parryEnergy + ModdedPlayer.Stats.energyOnHit * 10) * ModdedPlayer.Stats.TotalEnergyRecoveryMultiplier + + ModdedPlayer.Stats.TotalMaxEnergy / 5.5f;

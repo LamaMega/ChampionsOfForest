@@ -32,7 +32,7 @@ namespace ChampionsOfForest.Player
 			ValueChanged();
 			return Value;
 		}
-		public T Substract(T amount)
+		public T Sub(T amount)
 		{
 			valueAdditive = substract(valueAdditive, amount);
 			return Value;

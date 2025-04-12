@@ -23,7 +23,7 @@
 			value = true;
 			return true;
 		}
-		public bool Substract(bool amount)
+		public bool Sub(bool amount)
 		{
 			value = false;
 			return false;

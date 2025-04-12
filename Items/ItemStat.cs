@@ -50,9 +50,17 @@ namespace ChampionsOfForest
 		{
 			this.comparingFunc = CompareAdd;
 			this.OnEquip = f => stat.Add(f);
-			this.OnUnequip = f => stat.Substract(f);
+			this.OnUnequip = f => stat.Sub(f);
 			return this;
 		}
+		public ItemStatBuilder Additive(IAdditiveStat<int> stat)
+		{
+			this.comparingFunc = CompareAdd;
+			this.OnEquip = f => stat.Add((int)f);
+			this.OnUnequip = f => stat.Sub((int)f);
+			return this;
+		}
+
 		public ItemStatBuilder Multiplicative(IMultiplicativeStat<float> stat)
 		{
 			this.comparingFunc = CompareMult;
@@ -61,7 +69,7 @@ namespace ChampionsOfForest
 			return this;
 		}
 
-		public ItemStatBuilder MultPlus1Comparing(IMultiplicativeStat<float> stat)
+		public ItemStatBuilder MultiplyPlusOne(IMultiplicativeStat<float> stat)
 		{
 			this.comparingFunc = CompareMultPlus1;
 			this.OnEquip = f => stat.Multiply(f+1f);
@@ -69,7 +77,7 @@ namespace ChampionsOfForest
 			return this;
 		}
 
-		public ItemStatBuilder OneMinusMultComparing(IMultiplicativeStat<float> stat)
+		public ItemStatBuilder OneMinusMultiplier(IMultiplicativeStat<float> stat)
 		{
 			this.comparingFunc = Compare1MinusMult;
 			this.OnEquip = f => stat.Multiply(1f-f);
@@ -117,6 +125,23 @@ namespace ChampionsOfForest
 			return this;
 		}
 
+		public ItemStatBuilder RoundTo(int digitsAfterZero)
+		{
+			this.roundingCount = digitsAfterZero;
+			return this;
+		}
+
+		public ItemStatBuilder PercentFormatting()
+		{
+			this.displayAsPercent = true;
+			return this;
+		}
+
+		public ItemStatBuilder Cap(float maximumPossibleValue)
+		{
+			this.valueCap = maximumPossibleValue;
+			return this;
+		}
 
 	}
 	public class ItemStat

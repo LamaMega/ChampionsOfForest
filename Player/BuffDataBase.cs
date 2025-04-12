@@ -152,7 +152,7 @@ namespace ChampionsOfForest.Player
 
 				new Buff(10, 152, "Decreased Damage", true, false, 2, f => ModdedPlayer.Stats.allDamage.valueMultiplicative /= f, f => ModdedPlayer.Stats.allDamage.valueMultiplicative *= f);
 
-				new Buff(11, 160, "Stamina regen", false, false, 0, f => ModdedPlayer.Stats.staminaPerSecRate.Substract(f), f => ModdedPlayer.Stats.staminaPerSecRate.Add(f));
+				new Buff(11, 160, "Stamina regen", false, false, 0, f => ModdedPlayer.Stats.staminaRegenBase.Sub(f), f => ModdedPlayer.Stats.staminaRegenBase.Add(f));
 
 				new Buff(12, 153, "Death Pact Damage", false, false) { OnAddOverrideAmount = true };
 				new Buff(13, 151, "Increased Melee Damage", false, false, 0, f => ModdedPlayer.Stats.meleeIncreasedDmg.valueMultiplicative /= f, f => ModdedPlayer.Stats.meleeIncreasedDmg.valueMultiplicative *= f);
@@ -189,10 +189,10 @@ namespace ChampionsOfForest.Player
 
 				new Buff(21, 147, "Armor Corruption", true, true, 1, null, null) { DisplayAsPercent = false };
 
-				new Buff(22, 151, "Increased Flat Melee Damage", false, false, 0, f => ModdedPlayer.Stats.meleeFlatDmg.Substract(f), f => ModdedPlayer.Stats.meleeFlatDmg.Add(f)) { DisplayAsPercent = false };
+				new Buff(22, 151, "Increased Flat Melee Damage", false, false, 0, f => ModdedPlayer.Stats.meleeFlatDmg.Sub(f), f => ModdedPlayer.Stats.meleeFlatDmg.Add(f)) { DisplayAsPercent = false };
 				new Buff(23, 151, "Counter Strike", false, true, 0, f => ModdedPlayer.Stats.perk_parryCounterStrikeDamage.valueAdditive = 0) { DisplayAsPercent = false };
-				new Buff(24, 151, "Critical Damage", false, false, 0, f => ModdedPlayer.Stats.critDamage.Substract(f), f => ModdedPlayer.Stats.critDamage.Add(f));
-				new Buff(25, 146, "Life Regeneration", false, false, 0, f => ModdedPlayer.Stats.healthRecoveryPerSecond.Add(-f), f => ModdedPlayer.Stats.healthRecoveryPerSecond.Add(f)) { DisplayAsPercent = false };
+				new Buff(24, 151, "Critical Damage", false, false, 0, f => ModdedPlayer.Stats.critDamage.Sub(f), f => ModdedPlayer.Stats.critDamage.Add(f));
+				new Buff(25, 146, "Life Regeneration", false, false, 0, f => ModdedPlayer.Stats.lifeRegenBase.Add(-f), f => ModdedPlayer.Stats.lifeRegenBase.Add(f)) { DisplayAsPercent = false };
 				new Buff(26, 146, "Resistance", false, false, 0, f => ModdedPlayer.Stats.allDamageTaken.Divide(1 - f), f => ModdedPlayer.Stats.allDamageTaken.Multiply(1 - f));
 				new Buff(27, 136, "Fury Swipes", false, true, 1, f =>
 				{
@@ -205,7 +205,7 @@ namespace ChampionsOfForest.Player
 				{
 					DisplayAsPercent = false
 				};
-				new Buff(28, 151, "Critical Chance", false, false, 0, f => ModdedPlayer.Stats.critChance.Substract(f - 1), f => ModdedPlayer.Stats.critChance.Add(f - 1)) { DisplayAsPercent = true };
+				new Buff(28, 151, "Critical Chance", false, false, 0, f => ModdedPlayer.Stats.critChance.Sub(f - 1), f => ModdedPlayer.Stats.critChance.Add(f - 1)) { DisplayAsPercent = true };
 
 				new Buff(29, 151, "Dodge Chance", false, false, 0, f => ModdedPlayer.Stats.getHitChance.Divide(f), f => ModdedPlayer.Stats.getHitChance.Multiply(f)) { DisplayAsPercent = true };
 

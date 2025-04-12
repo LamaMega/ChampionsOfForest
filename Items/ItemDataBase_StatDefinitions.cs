@@ -22,15 +22,15 @@ namespace ChampionsOfForest
 			AGILITY,
 			VITALITY,
 			INTELLIGENCE,
-			MAXIMUMLIFE,
-			MAXIMUMENERGY,
-			LIFEPERSECOND,
-			STAMINAPERSECOND,
-			STAMINAREGENERATION,
-			LIFEREGENERATION,
-			DAMAGEREDUCTION,
-			CRITICALHITCHANCE,
-			CRITICALHITDAMAGE,
+			MAX_LIFE,
+			MAX_ENERGY,
+			LIFE_REGEN_BASE,
+			STAMINA_REGEN_BASE,
+			STAMINA_AND_ENERGY_REGEN_MULT,
+			LIFE_REGEN_MULT,
+			DAMAGE_REDUCTION,
+			CRIT_CHANCE,
+			CRIT_DAMAGE,
 			LIFEONHIT,
 			DODGECHANCE,
 			ARMOR,
@@ -74,7 +74,7 @@ namespace ChampionsOfForest
 			RANGEDARMORPIERCING,
 			ARMORPIERCING,
 			MAGICFIND,
-			ALLATTRIBUTES,
+			ALL_ATTRIBUTES,
 			REFUNDPOINTS,
 			JUMPPOWER,
 			HEADSHOTDAMAGE,
@@ -106,39 +106,106 @@ namespace ChampionsOfForest
 
 		public static void PopulateStats()
 		{
+			// Attributes
 			new ItemStatBuilder(Stat.STRENGTH, "Strength", 2f, 3f)
 				.AffectsStat(ModdedPlayer.Stats.strength)
 				.Additive(ModdedPlayer.Stats.strength)
-				.AdditiveComparing()
-				.LevelScaling(0.4f)
-				
+				.LevelScaling(0.4f);
 
-			int i = 1;
-			new ItemStat(i, 1.5f, 2.2f, 0.8f, Translations.MainMenu_Guide_4/*Strength*/, scAdd, 4, //tr
-				()=>ModdedPlayer.Stats.strength.GetFormattedAmount(), StatActions.AddStrength, StatActions.RemoveStrength, StatActions.AddStrength);
-			i++;
-			new ItemStat(i, 1.5f, 2.2f, 0.8f, Translations.MainMenu_Guide_6/*Agility*/, scAdd, 4, () => ModdedPlayer.Stats.agility.GetFormattedAmount(), StatActions.AddAgility, StatActions.RemoveAgility, StatActions.AddAgility); //tr
-			i++;
-			new ItemStat(i, 1.5f, 2.2f, 0.8f, Translations.MainMenu_Guide_8/*Vitality*/, scAdd, 4, () => ModdedPlayer.Stats.vitality.GetFormattedAmount(), StatActions.AddVitality, StatActions.RemoveVitality, StatActions.AddVitality); //tr
-			i++;
-			new ItemStat(i, 1.5f, 2.2f, 0.8f, Translations.MainMenu_Guide_10/*Intelligence*/, scAdd, 4, () => ModdedPlayer.Stats.intelligence.GetFormattedAmount(), StatActions.AddIntelligence, StatActions.RemoveIntelligence, StatActions.AddIntelligence); //tr
-			i++;
-			new ItemStat(i, 3.75f, 5.65f, 1.21f, Translations.ItemDataBase_StatDefinitions_1/*Maximum Life*/, scAdd, 3, () => ModdedPlayer.Stats.maxHealth.GetFormattedAmount(), StatActions.AddHealth, StatActions.RemoveHealth, StatActions.AddHealth); //tr
-			i++;
-			new ItemStat(i, 1f, 1.30f, 1.21f, Translations.ItemDataBase_StatDefinitions_2/*Maximum Energy*/, scAdd, 3, () => ModdedPlayer.Stats.maxEnergy.GetFormattedAmount(), StatActions.AddEnergy, StatActions.RemoveEnergy, StatActions.AddEnergy); //tr
-			i++;
-			new ItemStat(i, 0.013f, 0.0225f, 1.05f, Translations.ItemDataBase_StatDefinitions_3/*Life Per Second*/, scAdd, 3, () => ModdedPlayer.Stats.healthRecoveryPerSecond.GetFormattedAmount(), StatActions.AddHPRegen, StatActions.RemoveHPRegen, StatActions.AddHPRegen) { displayAsPercent = false, roundingCount = 2 }; //tr
-			i++;
-			new ItemStat(i, 0.025f, 0.031f, 1.23f, Translations.ItemDataBase_StatDefinitions_4/*Stamina Per Second*/, scAdd, 2, () => ModdedPlayer.Stats.staminaRecoveryperSecond.GetFormattedAmount(), StatActions.AddStaminaRegen, StatActions.RemoveStaminaRegen, StatActions.AddStaminaRegen) { displayAsPercent = false, roundingCount = 2 }; //tr
-			i++;
-			new ItemStat(i, 0.02f, 0.03f, 0.45f, Translations.ItemDataBase_StatDefinitions_5/*Energy Regeneration*/, scAdd,5, () => ModdedPlayer.Stats.staminaPerSecRate.GetFormattedAmount(),  StatActions.AddStaminaRegenPercent, StatActions.RemoveStaminaRegenPercent, StatActions.AddStaminaRegenPercent) { displayAsPercent = true, roundingCount = 1, valueCap = 2f }; //tr
-			i++;
-			new ItemStat(i, 0.02f, 0.03f, 0.45f, Translations.ItemDataBase_StatDefinitions_6/*Life Regeneration*/, scAdd, 5, () => ModdedPlayer.Stats.healthPerSecRate.GetFormattedAmount(), StatActions.AddHealthRegenPercent, StatActions.RemoveHealthRegenPercent, StatActions.AddHealthRegenPercent) { displayAsPercent = true, roundingCount = 1, valueCap = 1.5f }; //tr
-			i++;
-			new ItemStat(i, 0.005f, 0.0075f, 0.5f, Translations.MainMenu_Guide_23/*Damage Reduction*/, scOneMinusMult, 4, () => (1-ModdedPlayer.Stats.allDamageTaken).ToString("P"), StatActions.AddDamageReduction, StatActions.RemoveDamageReduction, StatActions.AddDamageReduction) { valueCap = 0.4f, displayAsPercent = true, roundingCount = 1 }; //tr
-			i++;
-			new ItemStat(i, 0.008f, 0.0125f, 0.25f, Translations.ItemDataBase_StatDefinitions_7/*Critical Hit Chance*/, scAdd, 6, () => ModdedPlayer.Stats.critChance.GetFormattedAmount(), StatActions.AddCritChance, StatActions.RemoveCritChance, StatActions.AddCritChance) { displayAsPercent = true, roundingCount = 1, valueCap = 0.5f }; //tr
-			i++;
+			new ItemStatBuilder(Stat.AGILITY, "Agility", 2f, 3f)
+				.AffectsStat(ModdedPlayer.Stats.agility)
+				.Additive(ModdedPlayer.Stats.agility)
+				.LevelScaling(0.4f);
+
+			new ItemStatBuilder(Stat.VITALITY, "Vitality", 2f, 3f)
+				.AffectsStat(ModdedPlayer.Stats.vitality)
+				.Additive(ModdedPlayer.Stats.vitality)
+				.LevelScaling(0.4f);
+
+			new ItemStatBuilder(Stat.INTELLIGENCE, "Intelligence", 2f, 3f)
+				.AffectsStat(ModdedPlayer.Stats.vitality)
+				.Additive(ModdedPlayer.Stats.vitality)
+				.LevelScaling(0.4f);
+
+			new ItemStatBuilder(Stat.ALL_ATTRIBUTES, "All Attributes", 1f, 1.5f) 
+			{ 
+				OnEquip = f => {
+					ModdedPlayer.Stats.strength.Add((int)f);
+					ModdedPlayer.Stats.intelligence.Add((int)f);
+					ModdedPlayer.Stats.agility.Add((int)f);
+					ModdedPlayer.Stats.vitality.Add((int)f);
+				},
+				OnUnequip = f => {
+					ModdedPlayer.Stats.strength.Sub((int)f);
+					ModdedPlayer.Stats.intelligence.Sub((int)f);
+					ModdedPlayer.Stats.agility.Sub((int)f);
+					ModdedPlayer.Stats.vitality.Sub((int)f);
+				},
+				GetTotalStat = () => $"{ModdedPlayer.Stats.strength} Str, {ModdedPlayer.Stats.agility} Agi, {ModdedPlayer.Stats.intelligence} Int, {ModdedPlayer.Stats.vitality} Vit"
+			}.LevelScaling(0.4f);
+
+
+			// Life
+			new ItemStatBuilder(Stat.MAX_LIFE, "Max Life", 3.75f, 5.65f)
+				.AffectsStat(ModdedPlayer.Stats.maxLife)
+				.Additive(ModdedPlayer.Stats.maxLife)
+				.LevelScaling(1.21f);
+
+			new ItemStatBuilder(Stat.MAX_ENERGY, "Max Energy", 0.7f, 1.5f)
+				.AffectsStat(ModdedPlayer.Stats.maxEnergy)
+				.Additive(ModdedPlayer.Stats.maxEnergy)
+				.LevelScaling(0.5f);
+
+			new ItemStatBuilder(Stat.LIFE_REGEN_BASE, "Life Regeneration", 0.013f, 0.023f)
+				.AffectsStat(ModdedPlayer.Stats.lifeRegenBase)
+				.Additive(ModdedPlayer.Stats.lifeRegenBase)
+				.LinearLevelScaling()
+				.RoundTo(2);
+
+			new ItemStatBuilder(Stat.STAMINA_REGEN_BASE, "Stamina Regeneration", 0.035f, 0.11f)
+				.AffectsStat(ModdedPlayer.Stats.staminaRegenBase)
+				.Additive(ModdedPlayer.Stats.staminaRegenBase)
+				.LevelScaling(0.5f)
+				.RoundTo(2);
+
+			new ItemStatBuilder(Stat.STAMINA_AND_ENERGY_REGEN_MULT, "Stamina and Energy Regeneration", 0.04f, 0.08f)
+				.AffectsStat(ModdedPlayer.Stats.energyRegenMult)
+				.Additive(ModdedPlayer.Stats.energyRegenMult)
+				.LevelScaling(0.1f)
+				.RarityScaling(0.2f)
+				.PercentFormatting()
+				.RoundTo(2);
+
+			new ItemStatBuilder(Stat.LIFE_REGEN_MULT, "Life Regeneration", 0.04f, 0.08f)
+				.AffectsStat(ModdedPlayer.Stats.lifeRegenMult)
+				.Additive(ModdedPlayer.Stats.lifeRegenMult)
+				.LevelScaling(0.1f)
+				.RarityScaling(0.2f)
+				.PercentFormatting();
+
+			new ItemStatBuilder(Stat.DAMAGE_REDUCTION, "Reduced Damage Taken", 0.03f, 0.07f) // needs tweaking
+				.AffectsStat(ModdedPlayer.Stats.allDamageTaken)
+				.OneMinusMultiplier(ModdedPlayer.Stats.allDamageTaken)
+				.LevelScaling(0.1f)
+				.RarityScaling(0.33f)
+				.PercentFormatting();
+
+			new ItemStatBuilder(Stat.CRIT_CHANCE, "Critical Hit Chance", 0.035f, 0.06f)
+				.AffectsStat(ModdedPlayer.Stats.critChance)
+				.Additive(ModdedPlayer.Stats.critChance)    // change to OneMinusMultiplier if you dont want players reaching 100% crit chance
+				.LevelScaling(0.1f)
+				.RarityScaling(0.1f)
+				.PercentFormatting()
+				.RoundTo(2);
+
+			new ItemStatBuilder(Stat.CRIT_DAMAGE, "Critical Hit Damage", 0.30f, 0.50f)
+				.AffectsStat(ModdedPlayer.Stats.critDamage)
+				.Additive(ModdedPlayer.Stats.critDamage)
+				.LevelScaling(0.1f)
+				.RarityScaling(0.1f)
+				.PercentFormatting();
+
+
 			new ItemStat(i, 0.03f, 0.06f, 0.4f, Translations.MainMenu_Guide_46, scAdd, 6, () => ModdedPlayer.Stats.critDamage.GetFormattedAmount(), StatActions.AddCritDamage, StatActions.RemoveCritDamage, StatActions.AddCritDamage) { displayAsPercent = true, roundingCount = 1, valueCap = 10f };//tr
 			i++;
 			new ItemStat(i, 0.07f, 0.13f, 1f, Translations.ItemDataBase_StatDefinitions_8/*Life on hit*/, scAdd, 4, () => ModdedPlayer.Stats.healthOnHit.GetFormattedAmount(), StatActions.AddLifeOnHit, StatActions.RemoveLifeOnHit, StatActions.AddLifeOnHit)

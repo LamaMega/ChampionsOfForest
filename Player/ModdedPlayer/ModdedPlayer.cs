@@ -440,11 +440,11 @@ namespace ChampionsOfForest.Player
 				{
 					if (LocalPlayer.Stats.Health < LocalPlayer.Stats.HealthTarget)
 					{
-						LocalPlayer.Stats.Health += stats.healthRecoveryPerSecond* (stats.healthPerSecRate) * stats.allRecoveryMult;
+						LocalPlayer.Stats.Health += stats.lifeRegenBase* (stats.lifeRegenMult) * stats.allRecoveryMult;
 					}
 					else
 					{
-						LocalPlayer.Stats.Health += stats.healthRecoveryPerSecond * (stats.healthPerSecRate) * stats.allRecoveryMult / 10;
+						LocalPlayer.Stats.Health += stats.lifeRegenBase * (stats.lifeRegenMult) * stats.allRecoveryMult / 10;
 					}
 				}
 

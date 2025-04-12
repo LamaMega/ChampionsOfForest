@@ -510,7 +510,7 @@ namespace ChampionsOfForest
 				}
 				if (Health < HealthTarget)
 				{
-					Health = Mathf.MoveTowards(Health, HealthTarget, (GameSettings.Survival.HealthRegenPerSecond + ModdedPlayer.Stats.TotalMaxHealth * 0.0025f + ModdedPlayer.Stats.healthRecoveryPerSecond) * (ModdedPlayer.Stats.healthPerSecRate + 1) * ModdedPlayer.Stats.allRecoveryMult * Time.deltaTime);
+					Health = Mathf.MoveTowards(Health, HealthTarget, (GameSettings.Survival.HealthRegenPerSecond + ModdedPlayer.Stats.TotalMaxHealth * 0.0025f + ModdedPlayer.Stats.lifeRegenBase) * (ModdedPlayer.Stats.lifeRegenMult + 1) * ModdedPlayer.Stats.allRecoveryMult * Time.deltaTime);
 
 					Scene.HudGui.HealthBarTarget.enabled = true;
 				}

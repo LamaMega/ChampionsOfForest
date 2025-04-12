@@ -8,7 +8,7 @@ namespace ChampionsOfForest.Player
 	public interface IAdditiveStat<T>
 	{
 		T Add(T amount);
-		T Substract(T amount);
+		T Sub(T amount);
 	}
 	public interface IMultiplicativeStat<T>
 	{

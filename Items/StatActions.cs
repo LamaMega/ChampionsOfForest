@@ -47,12 +47,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddHealth(float f)
 		{
-			ModdedPlayer.Stats.maxHealth.Add(Mathf.RoundToInt(f));
+			ModdedPlayer.Stats.maxLife.Add(Mathf.RoundToInt(f));
 		}
 
 		public static void RemoveHealth(float f)
 		{
-			ModdedPlayer.Stats.maxHealth.Substract(Mathf.RoundToInt(f));
+			ModdedPlayer.Stats.maxLife.Substract(Mathf.RoundToInt(f));
 		}
 
 		public static void AddEnergy(float f)
@@ -67,22 +67,22 @@ namespace ChampionsOfForest.Items
 
 		public static void AddHPRegen(float f)
 		{
-			ModdedPlayer.Stats.healthRecoveryPerSecond.Add(f);
+			ModdedPlayer.Stats.lifeRegenBase.Add(f);
 		}
 
 		public static void RemoveHPRegen(float f)
 		{
-			ModdedPlayer.Stats.healthRecoveryPerSecond.Substract(f);
+			ModdedPlayer.Stats.lifeRegenBase.Sub(f);
 		}
 
 		public static void AddStaminaRegen(float f)
 		{
-			ModdedPlayer.Stats.staminaRecoveryperSecond.Add(f);
+			ModdedPlayer.Stats.energyRegenMult.Add(f);
 		}
 
 		public static void RemoveStaminaRegen(float f)
 		{
-			ModdedPlayer.Stats.staminaRecoveryperSecond.Substract(f);
+			ModdedPlayer.Stats.energyRegenMult.Sub(f);
 		}
 
 		public static void AddEnergyRegen(float f)
@@ -92,27 +92,27 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveEnergyRegen(float f)
 		{
-			ModdedPlayer.Stats.energyRecoveryperSecond.Substract(f);
+			ModdedPlayer.Stats.energyRecoveryperSecond.Sub(f);
 		}
 
 		public static void AddStaminaRegenPercent(float f)
 		{
-			ModdedPlayer.Stats.staminaPerSecRate.Add(f);
+			ModdedPlayer.Stats.staminaRegenBase.Add(f);
 		}
 
 		public static void RemoveStaminaRegenPercent(float f)
 		{
-			ModdedPlayer.Stats.staminaPerSecRate.Substract(f);
+			ModdedPlayer.Stats.staminaRegenBase.Sub(f);
 		}
 
 		public static void AddHealthRegenPercent(float f)
 		{
-			ModdedPlayer.Stats.healthPerSecRate.Add(f);
+			ModdedPlayer.Stats.lifeRegenMult.Add(f);
 		}
 
 		public static void RemoveHealthRegenPercent(float f)
 		{
-			ModdedPlayer.Stats.healthPerSecRate.Substract(f);
+			ModdedPlayer.Stats.lifeRegenMult.Sub(f);
 		}
 
 		public static void AddDamageReduction(float f)
@@ -132,7 +132,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveCritChance(float f)
 		{
-			ModdedPlayer.Stats.critChance.Substract(f);
+			ModdedPlayer.Stats.critChance.Sub(f);
 		}
 
 		public static void AddCritDamage(float f)
@@ -142,7 +142,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveCritDamage(float f)
 		{
-			ModdedPlayer.Stats.critDamage.Substract(f);
+			ModdedPlayer.Stats.critDamage.Sub(f);
 		}
 
 		public static void AddLifeOnHit(float f)
@@ -152,7 +152,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveLifeOnHit(float f)
 		{
-			ModdedPlayer.Stats.healthOnHit.Substract(f);
+			ModdedPlayer.Stats.healthOnHit.Sub(f);
 		}
 
 		public static void AddDodgeChance(float f)
@@ -192,7 +192,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveAttackSpeed(float f)
 		{
-			ModdedPlayer.Stats.attackSpeed.Substract(f);
+			ModdedPlayer.Stats.attackSpeed.Sub(f);
 		}
 
 		public static void AddExpFactor(float f)
@@ -202,7 +202,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveExpFactor(float f)
 		{
-			ModdedPlayer.Stats.expGain.Substract(f);
+			ModdedPlayer.Stats.expGain.Sub(f);
 		}
 
 		public static void AddMaxMassacreTime(float f)
@@ -212,7 +212,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveMaxMassacreTime(float f)
 		{
-			ModdedPlayer.Stats.maxMassacreTime.Substract(f);
+			ModdedPlayer.Stats.maxMassacreTime.Sub(f);
 		}
 
 		public static void AddSpellDamageAmplifier(float f)
@@ -222,7 +222,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveSpellDamageAmplifier(float f)
 		{
-			ModdedPlayer.Stats.spellIncreasedDmg.Substract(f);
+			ModdedPlayer.Stats.spellIncreasedDmg.Sub(f);
 		}
 
 		public static void AddMeleeDamageAmplifier(float f)
@@ -232,7 +232,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveMeleeDamageAmplifier(float f)
 		{
-			ModdedPlayer.Stats.meleeIncreasedDmg.Substract(f);
+			ModdedPlayer.Stats.meleeIncreasedDmg.Sub(f);
 		}
 
 		public static void AddRangedDamageAmplifier(float f)
@@ -242,7 +242,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveRangedDamageAmplifier(float f)
 		{
-			ModdedPlayer.Stats.rangedIncreasedDmg.Substract(f);
+			ModdedPlayer.Stats.rangedIncreasedDmg.Sub(f);
 		}
 
 		public static void AddspellFlatDmg(float f)
@@ -252,7 +252,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemovespellFlatDmg(float f)
 		{
-			ModdedPlayer.Stats.spellFlatDmg.Substract(f);
+			ModdedPlayer.Stats.spellFlatDmg.Sub(f);
 		}
 
 		public static void AddMeleeDamageBonus(float f)
@@ -262,7 +262,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveMeleeDamageBonus(float f)
 		{
-			ModdedPlayer.Stats.meleeFlatDmg.Substract(f);
+			ModdedPlayer.Stats.meleeFlatDmg.Sub(f);
 		}
 
 		public static void AddRangedDamageBonus(float f)
@@ -272,7 +272,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveRangedDamageBonus(float f)
 		{
-			ModdedPlayer.Stats.rangedFlatDmg.Substract(f);
+			ModdedPlayer.Stats.rangedFlatDmg.Sub(f);
 		}
 
 		public static void AddmaxEnergyFromAgi(float f)
@@ -282,7 +282,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemovemaxEnergyFromAgi(float f)
 		{
-			ModdedPlayer.Stats.maxEnergyFromAgi.Substract(f);
+			ModdedPlayer.Stats.maxEnergyFromAgi.Sub(f);
 		}
 
 		public static void AddmaxHealthFromVit(float f)
@@ -292,7 +292,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemovemaxHealthFromVit(float f)
 		{
-			ModdedPlayer.Stats.maxHealthFromVit.Substract(f);
+			ModdedPlayer.Stats.maxHealthFromVit.Sub(f);
 		}
 
 		public static void AddspellDmgFromInt(float f)
@@ -302,7 +302,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemovespellDmgFromInt(float f)
 		{
-			ModdedPlayer.Stats.spellDmgFromInt.Substract(f);
+			ModdedPlayer.Stats.spellDmgFromInt.Sub(f);
 		}
 
 		public static void AddmeleeDmgFromStr(float f)
@@ -312,7 +312,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemovemeleeDmgFromStr(float f)
 		{
-			ModdedPlayer.Stats.meleeDmgFromStr.Substract(f);
+			ModdedPlayer.Stats.meleeDmgFromStr.Sub(f);
 		}
 
 		public static void AddHealingMultipier(float f)
@@ -322,7 +322,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveHealingMultipier(float f)
 		{
-			ModdedPlayer.Stats.allRecoveryMult.Substract(f);
+			ModdedPlayer.Stats.allRecoveryMult.Sub(f);
 		}
 
 		public static void AddMoveSpeed(float f)
@@ -332,7 +332,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveMoveSpeed(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Substract(f);
+			ModdedPlayer.Stats.movementSpeed.Sub(f);
 		}
 
 		public static void AddJump(float f)
@@ -342,7 +342,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveJump(float f)
 		{
-			ModdedPlayer.Stats.jumpPower.Substract(f);
+			ModdedPlayer.Stats.jumpPower.Sub(f);
 		}
 
 		//   public static void Add( float f)
@@ -372,7 +372,7 @@ namespace ChampionsOfForest.Items
 
 		public static void RemoveMagicFind(float f)
 		{
-			ModdedPlayer.Stats.magicFind.Substract(f);
+			ModdedPlayer.Stats.magicFind.Sub(f);
 
 		}
 

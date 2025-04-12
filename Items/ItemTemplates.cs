@@ -15,12 +15,38 @@ namespace ChampionsOfForest.Items.ItemTemplates
 	{
 
 		private static List<ItemStat> defaultStats = null;
+		private static List<ItemStat> magicStats = null;
+		private static List<ItemStat> meleeStats = null;
+		private static List<ItemStat> rangedStats = null;
+		private static List<ItemStat> defenseStats = null;
+		private static List<ItemStat> recoveryStats = null;
 		public ItemTemplateBuilder()
 		{
 			if (defaultStats == null || defaultStats.Count() == 0)
 			{
 				defaultStats = ToItemStatList(defaultStatIds);
 			}
+			if (magicStats == null || magicStats.Count() == 0)
+			{
+				magicStats = ToItemStatList(magicStatIds);
+			}
+			if (meleeStats == null || meleeStats.Count() == 0)
+			{
+				meleeStats = ToItemStatList(meleeStatIds);
+			}
+			if (rangedStats == null || rangedStats.Count() == 0)
+			{
+				rangedStats = ToItemStatList(rangedStatIds);
+			}
+			if (defenseStats == null || defenseStats.Count() == 0)
+			{
+				defenseStats = ToItemStatList(defenseStatIds);
+			}
+			if (recoveryStats == null || recoveryStats.Count() == 0)
+			{
+				recoveryStats = ToItemStatList(recoveryStatIds);
+			}
+
 			ID = ItemDataBase._Item_Bases.Count;
 			ItemDataBase._Item_Bases.Add(this);
 		}
@@ -38,51 +64,51 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		// pool of stats to appear on items by default
 		private readonly Stat[] defaultStatIds = new Stat[]
 		{
-				STRENGTH,
-				AGILITY,
-				VITALITY,
-				INTELLIGENCE,
-				MAXIMUMLIFE,
-				MAXIMUMENERGY,
-				LIFEPERSECOND,
-				STAMINAPERSECOND,
-				STAMINAREGENERATION,
-				LIFEREGENERATION,
-				DAMAGEREDUCTION,
-				CRITICALHITCHANCE,
-				CRITICALHITDAMAGE,
-				LIFEONHIT,
-				DODGECHANCE,
-				ARMOR,
-				RESISTANCETOMAGIC,
-				ATTACKSPEED,
-				EXPGAIN,
-				MASSACREDURATION,
-				SPELLDAMAGEINCREASE,
-				MELEEDAMAGEINCREASE,
-				RANGEDDAMAGEINCREASE,
-				BASESPELLDAMAGE,
-				BASEMELEEDAMAGE,
-				BASERANGEDDAMAGE,
-				ALLHEALINGPERCENT,
-				MOVEMENTSPEED,
-				ATTACKCOSTREDUCTION,
-				SPELLCOSTREDUCTION,
-				SPELLCOSTTOSTAMINA,
-				LESSERSTRENGTH,
-				LESSERAGILITY,
-				LESSERVITALITY,
-				LESSERINTELLIGENCE,
-				LESSERARMOR,
-				ENERGYPERSECOND,
-				PERCENTMAXIMUMLIFE,
-				PERCENTMAXIMUMENERGY,
-				COOLDOWNREDUCTION,
-				ENERGYONHIT,
-				MAGICFIND,  // think about keeping this later
-				ALLATTRIBUTES,
-				JUMPPOWER,
-				THORNS
+			STRENGTH,
+			AGILITY,
+			VITALITY,
+			INTELLIGENCE,
+			MAX_LIFE,
+			MAX_ENERGY,
+			LIFE_REGEN_BASE,
+			STAMINA_REGEN_BASE,
+			STAMINA_AND_ENERGY_REGEN_MULT,
+			LIFE_REGEN_MULT,
+			DAMAGE_REDUCTION,
+			CRIT_CHANCE,
+			CRIT_DAMAGE,
+			LIFEONHIT,
+			DODGECHANCE,
+			ARMOR,
+			RESISTANCETOMAGIC,
+			ATTACKSPEED,
+			EXPGAIN,
+			MASSACREDURATION,
+			SPELLDAMAGEINCREASE,
+			MELEEDAMAGEINCREASE,
+			RANGEDDAMAGEINCREASE,
+			BASESPELLDAMAGE,
+			BASEMELEEDAMAGE,
+			BASERANGEDDAMAGE,
+			ALLHEALINGPERCENT,
+			MOVEMENTSPEED,
+			ATTACKCOSTREDUCTION,
+			SPELLCOSTREDUCTION,
+			SPELLCOSTTOSTAMINA,
+			LESSERSTRENGTH,
+			LESSERAGILITY,
+			LESSERVITALITY,
+			LESSERINTELLIGENCE,
+			LESSERARMOR,
+			ENERGYPERSECOND,
+			PERCENTMAXIMUMLIFE,
+			PERCENTMAXIMUMENERGY,
+			COOLDOWNREDUCTION,
+			ENERGYONHIT,
+			MAGICFIND,  // think about keeping this later
+			ALL_ATTRIBUTES,
+			JUMPPOWER,
+			THORNS
 		};
 
 		// adds the defaultStatIds n times to the stat pool for the item
@@ -158,7 +184,104 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			icon = Res.ResourceLoader.GetTexture(iconid); // Texture2D <- int
             return this;
         }
-    }
+
+		private readonly Stat[] magicStatIds = new Stat[]
+		{
+			INTELLIGENCE,
+			SPELLDAMAGEINCREASE,
+			BASESPELLDAMAGE,
+			SPELLCOSTREDUCTION,
+			ENERGYPERSECOND,
+			PERCENTMAXIMUMENERGY,
+			COOLDOWNREDUCTION,
+			SPELLDMGFROMINT
+		};
+
+		public ItemTemplateBuilder MagicStatSlot(int n = 1)
+		{
+			for (int i = 0; i < n; i++)
+				PossibleStats.Add(magicStats);
+			return this;
+		}
+
+		private readonly Stat[] meleeStatIds = new Stat[]
+		{
+			STRENGTH,
+			MELEEDAMAGEINCREASE,
+			BASEMELEEDAMAGE,
+			MELEEDMGFROMSTR,
+			MELEEWEAPONRANGE,
+			MELEEARMORPIERCING,
+		};
+
+		public ItemTemplateBuilder MeleeStatSlot(int n = 1)
+		{
+			for (int i = 0; i < n; i++)
+				PossibleStats.Add(meleeStats);
+			return this;
+		}
+
+		private readonly Stat[] rangedStatIds = new Stat[]
+		{
+			AGILITY,
+			RANGEDDAMAGEINCREASE,
+			BASERANGEDDAMAGE,
+			RANGEDDMGFROMAGI,
+			PROJECTILESPEED,
+			PROJECTILESIZE,
+			RANGEDARMORPIERCING,
+			HEADSHOTDAMAGE,
+			PIERCECHANCE,
+			SPEARDAMAGE,
+		};
+
+		public ItemTemplateBuilder RangedStatSlot(int n = 1)
+		{
+			for (int i = 0; i < n; i++)
+				PossibleStats.Add(rangedStats);
+			return this;
+		}
+
+		private readonly Stat[] defenseStatIds = new Stat[]
+		{
+			VITALITY,
+			MAX_LIFE,
+			DAMAGE_REDUCTION,
+			DODGECHANCE,
+			ARMOR,
+			RESISTANCETOMAGIC,
+			MAXHEALTHFROMVIT,
+			PERCENTMAXIMUMLIFE,
+			BLOCK,
+			THORNS,
+		};
+
+		public ItemTemplateBuilder DefenseStatSlot(int n = 1)
+		{
+			for (int i = 0; i < n; i++)
+				PossibleStats.Add(defenseStats);
+			return this;
+		}
+
+		private readonly Stat[] recoveryStatIds = new Stat[]
+		{
+			LIFE_REGEN_BASE,
+			LIFE_REGEN_MULT,
+			LIFEONHIT,
+			ALLHEALINGPERCENT,
+			ENERGYPERSECOND,
+			ENERGYONHIT,
+			STAMINA_REGEN_BASE,
+			STAMINA_AND_ENERGY_REGEN_MULT,
+		};
+
+		public ItemTemplateBuilder RecoveryStatSlot(int n = 1)
+		{
+			for (int i = 0; i < n; i++)
+				PossibleStats.Add(recoveryStats);
+			return this;
+		}
+	}
 
 	public class Greatsword : ItemTemplateBuilder
 	{
@@ -240,15 +363,15 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		{
 			STRENGTH,
 			VITALITY,
-			MAXIMUMLIFE,
-			MAXIMUMENERGY,
-			LIFEPERSECOND,
-			STAMINAPERSECOND,
-			STAMINAREGENERATION,
-			LIFEREGENERATION,
-			DAMAGEREDUCTION,
-			CRITICALHITCHANCE,
-			CRITICALHITDAMAGE,
+			MAX_LIFE,
+			MAX_ENERGY,
+			LIFE_REGEN_BASE,
+			STAMINA_REGEN_BASE,
+			STAMINA_AND_ENERGY_REGEN_MULT,
+			LIFE_REGEN_MULT,
+			DAMAGE_REDUCTION,
+			CRIT_CHANCE,
+			CRIT_DAMAGE,
 			LIFEONHIT,
 			DODGECHANCE,
 			ARMOR,
@@ -389,15 +512,15 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			AGILITY,
 			VITALITY,
 			INTELLIGENCE,
-			MAXIMUMLIFE,
-			MAXIMUMENERGY,
-			LIFEPERSECOND,
-			STAMINAPERSECOND,
-			STAMINAREGENERATION,
-			LIFEREGENERATION,
-			DAMAGEREDUCTION,
-			CRITICALHITCHANCE,
-			CRITICALHITDAMAGE,
+			MAX_LIFE,
+			MAX_ENERGY,
+			LIFE_REGEN_BASE,
+			STAMINA_REGEN_BASE,
+			STAMINA_AND_ENERGY_REGEN_MULT,
+			LIFE_REGEN_MULT,
+			DAMAGE_REDUCTION,
+			CRIT_CHANCE,
+			CRIT_DAMAGE,
 			LIFEONHIT,
 			DODGECHANCE,
 			ARMOR,
@@ -433,7 +556,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			MELEEARMORPIERCING,
 			RANGEDARMORPIERCING,
 			ARMORPIERCING,
-			ALLATTRIBUTES,
+			ALL_ATTRIBUTES,
 			HEADSHOTDAMAGE,
 			FIREDAMAGE,
 			CHANCEONHITTOSLOW,
@@ -480,14 +603,14 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				AGILITY,
 				VITALITY,
 				INTELLIGENCE,
-				MAXIMUMLIFE,
-				MAXIMUMENERGY,
-				LIFEPERSECOND,
-				STAMINAPERSECOND,
-				STAMINAREGENERATION,
-				LIFEREGENERATION,
-				CRITICALHITCHANCE,
-				CRITICALHITDAMAGE,
+				MAX_LIFE,
+				MAX_ENERGY,
+				LIFE_REGEN_BASE,
+				STAMINA_REGEN_BASE,
+				STAMINA_AND_ENERGY_REGEN_MULT,
+				LIFE_REGEN_MULT,
+				CRIT_CHANCE,
+				CRIT_DAMAGE,
 				LIFEONHIT,
 				ATTACKSPEED,
 				EXPGAIN,
@@ -508,7 +631,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				PROJECTILESPEED,
 				PROJECTILESIZE,
 				MAGICFIND,
-				ALLATTRIBUTES
+				ALL_ATTRIBUTES
 
 			};
 		private static List<ItemStat> ringStats = null;

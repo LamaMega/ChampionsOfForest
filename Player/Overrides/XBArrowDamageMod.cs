@@ -50,7 +50,7 @@ namespace ChampionsOfForest.Player
 				{
 					if (ModdedPlayer.Stats.i_HazardCrownBonus > 0)
 					{
-						ModdedPlayer.Stats.i_HazardCrownBonus.Substract(1);
+						ModdedPlayer.Stats.i_HazardCrownBonus.Sub(1);
 					}
 					else
 						ModdedPlayer.Stats.spell_bia_AccumulatedDamage.valueAdditive = 0;
@@ -418,7 +418,7 @@ namespace ChampionsOfForest.Player
 					{
 						if (ModdedPlayer.Stats.i_ArchangelBow && GreatBow.isEnabled)
 						{
-							float lifePerSecond = (ModdedPlayer.Stats.healthRecoveryPerSecond) * ModdedPlayer.Stats.allRecoveryMult * (ModdedPlayer.Stats.healthPerSecRate) * 2;
+							float lifePerSecond = (ModdedPlayer.Stats.lifeRegenBase) * ModdedPlayer.Stats.allRecoveryMult * (ModdedPlayer.Stats.lifeRegenMult) * 2;
 							using (System.IO.MemoryStream answerStream = new System.IO.MemoryStream())
 							{
 								using (System.IO.BinaryWriter w = new System.IO.BinaryWriter(answerStream))

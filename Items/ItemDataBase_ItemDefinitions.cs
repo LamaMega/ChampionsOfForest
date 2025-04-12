@@ -283,7 +283,7 @@ namespace ChampionsOfForest
             return rarityNames;
 		}
 
-		public static void addNewItem()
+		public static void AddShields()
 		{
 			//------------------------------------------------------
 			//Rarity 0 (Grey)
@@ -291,34 +291,20 @@ namespace ChampionsOfForest
 			new Shield()
 				.ShieldStatSlot(1)
 				.StatSlot(new Stat[] { BLOCK })
-				.Name("Splintered Barrier")
-				.Description("Why is this shield still intact?")
+				.Name("Rusten Battered Shield")
+				.Description("Covered in rust and scarred from countless blows, this battered shield has seen better days. It creaks with every movement, offering only the most basic protection.")
 				.Rarity(0);
 
 			new Shield()
-				.ShieldStatSlot(1)
 				.StatSlot(new Stat[] { BLOCK })
 				.Name("Cracked Buckler")
-				.Description("Just throw it away.")
+				.Description("Cracked and barely holding together, this old buckler offers little more than false hope. Its surface is marred with dents and splits from battles long forgotten.")
 				.Rarity(0);
 
+			
 			new Shield()
-				.ShieldStatSlot(1)
 				.StatSlot(new Stat[] { BLOCK })
-				.Name("Ftactured Aegis")
-				.Description("You can still see the pieces falling off.")
-				.Rarity(0);
-
-			new Shield()
-				.ShieldStatSlot(1)
-				.StatSlot(new Stat[] { BLOCK })
-				.Name("Rusten Battered Shield")
-				.Description("Barely functional but better then empty handed.")
-				.Rarity(0);
-
-			new Shield()
-				.ShieldStatSlot(1)
-				.StatSlot(new Stat[] { BLOCK })
+				.StatSlot(new Stat[] { STRENGTH, NONE })
 				.Name("Shattered Guard")
 				.Description("No warior would pick this up and call it a shield.")
 				.Rarity(0);
@@ -330,28 +316,37 @@ namespace ChampionsOfForest
 			new Shield()
 				.ShieldStatSlot(2)
 				.StatSlot(new Stat[] { BLOCK })
-				.Name("Iron Shield")
+				.Name("Plain Iron Shield")
 				.Description("Fuck you Hazard. ~Lama Mega~")
 				.Rarity(1);
 
 			new Shield()
 				.ShieldStatSlot(1)
 				.StatSlot(new Stat[] { BLOCK })
-				.StatSlot(new Stat[] { THORNS })
+				.StatSlot(new Stat[] { THORNS, BASEMELEEDAMAGE })
 				.Name("Wooden Buckler")
-				.Description("Has a sticking out nail!")
+				.Description("This shield has a precariously sticking out nail.")
 				.Rarity(1);
 
 			new Shield()
-				.ShieldStatSlot(2)
+				.ShieldStatSlot(1)
+				.DefaultStatSlot(1)
 				.StatSlot(new Stat[] { BLOCK })
-				.Name("Footman's Protection")
+				.Name("Footknights's Roundshield")
 				.Description("")
 				.Rarity(1);
 
 			//------------------------------------------------------
 			//Rarity 2 (Dark Blue)
 			//------------------------------------------------------
+
+			new Shield()
+				.ShieldStatSlot(3)
+				.StatSlot(new Stat[] { BLOCK })
+				.Name("Runed Iron Bulwark")
+				.Description("Fuck you Hazard. ~Lama Mega~")
+				.Rarity(1);
+
 
 			new Shield()
 				.ShieldStatSlot(3)
@@ -1073,7 +1068,7 @@ namespace ChampionsOfForest
                 type = BaseItem.ItemType.ShoulderArmor,
                 icon = Res.ResourceLoader.GetTexture(95),
                 onEquip = () => { ModdedPlayer.Stats.spell_blinkRange.Add(40); ModdedPlayer.Stats.spell_blinkDamage.Add(60); },
-                onUnequip = () => { ModdedPlayer.Stats.spell_blinkRange.Substract(40); ModdedPlayer.Stats.spell_blinkDamage.Substract(60); },
+                onUnequip = () => { ModdedPlayer.Stats.spell_blinkRange.Sub(40); ModdedPlayer.Stats.spell_blinkDamage.Sub(60); },
             };
             new BaseItem(new int[][]
                      {
@@ -2900,7 +2895,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Bracer,
                 icon = Res.ResourceLoader.GetTexture(94),
                 onEquip = () => ModdedPlayer.Stats.spell_portalDuration.Add(570),
-                onUnequip = () => ModdedPlayer.Stats.spell_portalDuration.Substract(570),
+                onUnequip = () => ModdedPlayer.Stats.spell_portalDuration.Sub(570),
             };
             new BaseItem(new int[][]
             {
@@ -2927,7 +2922,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Glove,
                 icon = Res.ResourceLoader.GetTexture(86),
                 onEquip = () => ModdedPlayer.Stats.spell_magicArrowDuration.Add(15),
-                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowDuration.Substract(15),
+                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowDuration.Sub(15),
             };
 
             new BaseItem(new int[][]
@@ -3046,7 +3041,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.SpellScroll,
                 icon = Res.ResourceLoader.GetTexture(110),
                 onEquip = () => { ModdedPlayer.Stats.spell_snapDamageScaling.Add(250f); ModdedPlayer.Stats.spell_snapFreezeDuration.Add(2); },
-                onUnequip = () => { ModdedPlayer.Stats.spell_snapDamageScaling.Substract(250f); ModdedPlayer.Stats.spell_snapFreezeDuration.Add(2); }
+                onUnequip = () => { ModdedPlayer.Stats.spell_snapDamageScaling.Sub(250f); ModdedPlayer.Stats.spell_snapFreezeDuration.Add(2); }
             };
             new BaseItem(new int[][]
           {
@@ -3235,7 +3230,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Quiver,
                 icon = Res.ResourceLoader.GetTexture(98),
                 onEquip = () => ModdedPlayer.Stats.spell_focusOnAtkSpeedDuration.Add(16),
-                onUnequip = () => ModdedPlayer.Stats.spell_focusOnAtkSpeedDuration.Substract(16),
+                onUnequip = () => ModdedPlayer.Stats.spell_focusOnAtkSpeedDuration.Sub(16),
             };
             new BaseItem(new int[][]
           {
@@ -3266,7 +3261,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.GreatSword,
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(15),
-                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(15),
+                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Sub(15),
             }.PossibleStats[0][0].multipier = 5;
 
             BaseItem jaggedRipper = new BaseItem(new int[][]
@@ -3296,7 +3291,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.Axe,
                 icon = Res.ResourceLoader.GetTexture(138),
                 onEquip = () => ModdedPlayer.Stats.spell_bashBleedChance.Add(0.3f),
-                onUnequip = () => ModdedPlayer.Stats.spell_bashBleedChance.Substract(0.3f),
+                onUnequip = () => ModdedPlayer.Stats.spell_bashBleedChance.Sub(0.3f),
             };
             jaggedRipper.PossibleStats[1][0].multipier = 2;
 
@@ -3328,7 +3323,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.LongSword,
                 icon = Res.ResourceLoader.GetTexture(89),
                 onEquip = () => ModdedPlayer.Stats.spell_bashLifesteal.Add(0.02f),
-                onUnequip = () => ModdedPlayer.Stats.spell_bashLifesteal.Substract(0.02f),
+                onUnequip = () => ModdedPlayer.Stats.spell_bashLifesteal.Sub(0.02f),
             }.PossibleStats[0][0].multipier = 3;
             new BaseItem(new int[][]
          {
@@ -3537,7 +3532,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.Greatbow,
                 icon = Res.ResourceLoader.GetTexture(170),
                 onEquip = () => ModdedPlayer.Stats.spell_bia_HealthDmMult.Add(100),
-                onUnequip = () => ModdedPlayer.Stats.spell_bia_HealthDmMult.Substract(100),
+                onUnequip = () => ModdedPlayer.Stats.spell_bia_HealthDmMult.Sub(100),
             }.PossibleStats[0][0].multipier = -1.7f;
 
             new BaseItem(new int[][]
@@ -4778,10 +4773,10 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR},
                 new [] {STRENGTH},
                 new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE},
-                new [] {MELEEARMORPIERCING,ARMORPIERCING,ALLATTRIBUTES},
+                new [] {MELEEARMORPIERCING,ARMORPIERCING,ALL_ATTRIBUTES},
                 new [] {ATTACKCOSTREDUCTION,ATTACKSPEED},
                 new [] {ATTACKSPEED},
-                new [] {ALLATTRIBUTES,MELEEWEAPONRANGE,VITALITY,MAXIMUMLIFE},
+                new [] {ALL_ATTRIBUTES,MELEEWEAPONRANGE,VITALITY,MAX_LIFE},
                 new [] {ENERGYONHIT,VITALITY,LIFEONHIT }
             })
             {
@@ -4799,16 +4794,16 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH},
-                new [] {STRENGTH,ALLATTRIBUTES,MELEEARMORPIERCING,MELEEDAMAGEINCREASE,COOLDOWNREDUCTION,SPELLDAMAGEINCREASE},
-                new [] {MAXIMUMLIFE,VITALITY,PERCENTMAXIMUMLIFE,ALLATTRIBUTES},
-                new [] {MELEEDAMAGEINCREASE,DAMAGEREDUCTION},
+                new [] {STRENGTH,ALL_ATTRIBUTES,MELEEARMORPIERCING,MELEEDAMAGEINCREASE,COOLDOWNREDUCTION,SPELLDAMAGEINCREASE},
+                new [] {MAX_LIFE,VITALITY,PERCENTMAXIMUMLIFE,ALL_ATTRIBUTES},
+                new [] {MELEEDAMAGEINCREASE,DAMAGE_REDUCTION},
                 new [] {THORNS},
-                new [] {VITALITY,LIFEPERSECOND,LIFEREGENERATION},
-                new [] {VITALITY,LIFEPERSECOND,LIFEREGENERATION,THORNS},
+                new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT},
+                new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,THORNS},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ENERGYPERSECOND,MAXIMUMENERGY,DODGECHANCE,ARMOR,},
+                new [] {ENERGYPERSECOND,MAX_ENERGY,DODGECHANCE,ARMOR,},
                 new [] {STRENGTH,INTELLIGENCE,ARMOR,ARMORPIERCING,THORNS,}
             })
             {
@@ -4821,7 +4816,7 @@ new int[] {0,0,0,0,62,63,64},
                 CanConsume = false,
                 StackSize = 1,
                 onEquip = () => ModdedPlayer.Stats.thornsPerVit.Add(9),
-                onUnequip = () => ModdedPlayer.Stats.thornsPerVit.Substract(9),
+                onUnequip = () => ModdedPlayer.Stats.thornsPerVit.Sub(9),
                 type = BaseItem.ItemType.Glove,
                 icon = Res.ResourceLoader.GetTexture(86),
             };
@@ -4856,8 +4851,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
                 new [] {MAXENERGYFROMAGI,SPELLDMGFROMINT,RANGEDDMGFROMAGI},
                 new [] {ARMOR},
-                new [] {VITALITY,LIFEPERSECOND,LIFEREGENERATION,INTELLIGENCE,AGILITY,STRENGTH,ALLATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,MOVEMENTSPEED,DAMAGEREDUCTION},
+                new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,MOVEMENTSPEED,DAMAGE_REDUCTION},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -4874,17 +4869,17 @@ new int[] {0,0,0,0,62,63,64},
                 CanConsume = false,
                 StackSize = 1,
                 onEquip = () => ModdedPlayer.Stats.spell_magicArrowDamageScaling.Add(16.66f),
-                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowDamageScaling.Substract(16.66f),
+                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowDamageScaling.Sub(16.66f),
                 type = BaseItem.ItemType.Bracer,
                 icon = Res.ResourceLoader.GetTexture(93),
             };
             new BaseItem(new Stat[][]
         {
                 new [] {INTELLIGENCE,AGILITY},
-                new [] {CRITICALHITCHANCE},
-                new [] {CRITICALHITDAMAGE},
-                new [] {VITALITY,LIFEPERSECOND,LIFEREGENERATION,INTELLIGENCE,AGILITY,STRENGTH,ALLATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,MOVEMENTSPEED,DAMAGEREDUCTION},
+                new [] {CRIT_CHANCE},
+                new [] {CRIT_DAMAGE},
+                new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,MOVEMENTSPEED,DAMAGE_REDUCTION},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -4903,7 +4898,7 @@ new int[] {0,0,0,0,62,63,64},
                 CanConsume = false,
                 StackSize = 1,
                 onEquip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Add(3),
-                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Substract(3),
+                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Sub(3),
                 type = BaseItem.ItemType.Ring,
                 icon = Res.ResourceLoader.GetTexture(90),
             };
@@ -4933,7 +4928,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {BASERANGEDDAMAGE,RANGEDDAMAGEINCREASE},
                 new [] {SPEARDAMAGE},
                 new [] {PROJECTILESPEED},
-                new [] {ALLATTRIBUTES,PROJECTILESIZE,LESSERAGILITY},
+                new [] {ALL_ATTRIBUTES,PROJECTILESIZE,LESSERAGILITY},
                 new [] {ENERGYONHIT,VITALITY,LIFEONHIT }
             })
             {
@@ -4950,12 +4945,12 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH},
-                new [] {MAXIMUMLIFE, VITALITY,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE, VITALITY,PERCENTMAXIMUMLIFE},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
                 new [] {MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
-                new [] {ATTACKSPEED, CRITICALHITDAMAGE,CRITICALHITCHANCE},
-                new [] {MAXENERGYFROMAGI,PERCENTMAXIMUMENERGY,ENERGYONHIT,LIFEONHIT,LIFEPERSECOND,LIFEREGENERATION,STAMINAPERSECOND,STAMINAREGENERATION},
-                new [] {ARMOR,THORNS,DAMAGEREDUCTION,PERCENTMAXIMUMLIFE},
+                new [] {ATTACKSPEED, CRIT_DAMAGE,CRIT_CHANCE},
+                new [] {MAXENERGYFROMAGI,PERCENTMAXIMUMENERGY,ENERGYONHIT,LIFEONHIT,LIFE_REGEN_BASE,LIFE_REGEN_MULT,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT},
+                new [] {ARMOR,THORNS,DAMAGE_REDUCTION,PERCENTMAXIMUMLIFE},
                 new [] {ALL},
                 new [] {ALL},
 
@@ -4976,9 +4971,9 @@ new int[] {0,0,0,0,62,63,64},
                 var SomeItem = new BaseItem(new Stat[][]
                     {
                 new [] {STRENGTH},
-                new [] {MAXIMUMLIFE, VITALITY,MAXHEALTHFROMVIT,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE, VITALITY,MAXHEALTHFROMVIT,PERCENTMAXIMUMLIFE},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,BASEMELEEDAMAGE,ATTACKSPEED},
-                new [] {SPELLCOSTREDUCTION, CRITICALHITDAMAGE,CRITICALHITCHANCE},
+                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE,CRIT_CHANCE},
                 new [] {ALL},
                 new [] {STRENGTH, THORNS},
                 })
@@ -4999,8 +4994,8 @@ new int[] {0,0,0,0,62,63,64},
                 var demoVestItem = new BaseItem(new Stat[][]
                     {
                 new [] {EXPLOSIONDAMAGE},
-                new [] {AGILITY,INTELLIGENCE, ALLATTRIBUTES},
-                new [] {MAXIMUMLIFE, VITALITY, LIFEONHIT},
+                new [] {AGILITY,INTELLIGENCE, ALL_ATTRIBUTES},
+                new [] {MAX_LIFE, VITALITY, LIFEONHIT},
                 new [] {ALLHEALINGPERCENT},
                 new [] {ALL},
                 new [] {MELEEWEAPONRANGE,ENERGYONHIT,ARMORPIERCING, DODGECHANCE},
@@ -5024,13 +5019,13 @@ new int[] {0,0,0,0,62,63,64},
             }
             new BaseItem(new Stat[][]
             {
-                new [] {STRENGTH,ALLATTRIBUTES,BASEMELEEDAMAGE},
-                new [] {MAXIMUMLIFE, VITALITY,DAMAGEREDUCTION,MELEEWEAPONRANGE},
+                new [] {STRENGTH,ALL_ATTRIBUTES,BASEMELEEDAMAGE},
+                new [] {MAX_LIFE, VITALITY,DAMAGE_REDUCTION,MELEEWEAPONRANGE},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE},
                 new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-                new [] {SPELLCOSTREDUCTION, CRITICALHITDAMAGE},
+                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE},
                 new [] {ALL},
-                new [] {STRENGTH,THORNS,BASEMELEEDAMAGE,CRITICALHITCHANCE,ATTACKSPEED,MELEEWEAPONRANGE},
+                new [] {STRENGTH,THORNS,BASEMELEEDAMAGE,CRIT_CHANCE,ATTACKSPEED,MELEEWEAPONRANGE},
                 new [] {ARMOR},
 
             })
@@ -5046,13 +5041,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALLATTRIBUTES,STRENGTH,AGILITY,INTELLIGENCE},
-                new [] {MAXIMUMLIFE, VITALITY,STRENGTH,INTELLIGENCE},
+                new [] {ALL_ATTRIBUTES,STRENGTH,AGILITY,INTELLIGENCE},
+                new [] {MAX_LIFE, VITALITY,STRENGTH,INTELLIGENCE},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,RANGEDARMORPIERCING},
-                new [] {SPELLCOSTREDUCTION, CRITICALHITDAMAGE,CRITICALHITCHANCE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION},
+                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE,CRIT_CHANCE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION},
                 new [] {ARMORPIERCING},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,RESISTANCETOMAGIC,VITALITY,LESSERVITALITY},
+                new [] {ARMOR,DAMAGE_REDUCTION,RESISTANCETOMAGIC,VITALITY,LESSERVITALITY},
 
             })
             {
@@ -5074,7 +5069,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {BASERANGEDDAMAGE},
                 new [] {BASERANGEDDAMAGE,NONE},
                 new [] {PROJECTILESIZE,LESSERAGILITY,AGILITY},
-                new [] {PROJECTILESPEED,CRITICALHITCHANCE,CRITICALHITDAMAGE},
+                new [] {PROJECTILESPEED,CRIT_CHANCE,CRIT_DAMAGE},
                 new [] {AGILITY,NONE},
                 new [] {RANGEDARMORPIERCING, ARMORPIERCING,ENERGYONHIT},
                 new [] {ALL},
@@ -5095,7 +5090,7 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH,LESSERSTRENGTH},
-                new [] {MAXIMUMLIFE, VITALITY,MELEEDMGFROMSTR,ARMOR},
+                new [] {MAX_LIFE, VITALITY,MELEEDMGFROMSTR,ARMOR},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE},
 
             })
@@ -5113,9 +5108,9 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-                new [] {MAXIMUMLIFE, VITALITY,MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
+                new [] {MAX_LIFE, VITALITY,MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,ARMOR},
-                new [] {SPELLCOSTREDUCTION, CRITICALHITDAMAGE,CRITICALHITCHANCE},
+                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE,CRIT_CHANCE},
                 new [] {ALL},
                 new [] {STRENGTH,LESSERSTRENGTH},
 
@@ -5133,9 +5128,9 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH},
-                new [] {MAXIMUMLIFE, VITALITY},
+                new [] {MAX_LIFE, VITALITY},
                 new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE},
-                new [] {SPELLCOSTREDUCTION, CRITICALHITDAMAGE},
+                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE},
                 new [] {STRENGTH},
 
             })
@@ -5177,10 +5172,10 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = 7f;
             new BaseItem(new Stat[][]
             {
-                new [] {STRENGTH,VITALITY,AGILITY,ALLATTRIBUTES,INTELLIGENCE},
+                new [] {STRENGTH,VITALITY,AGILITY,ALL_ATTRIBUTES,INTELLIGENCE},
                 new [] {MAXENERGYFROMAGI,MELEEDMGFROMSTR,SPELLDMGFROMINT,RANGEDDMGFROMAGI,MAXHEALTHFROMVIT},
-                new [] {ARMOR,DAMAGEREDUCTION},
-                new [] { CRITICALHITCHANCE, CRITICALHITDAMAGE},
+                new [] {ARMOR,DAMAGE_REDUCTION},
+                new [] { CRIT_CHANCE, CRIT_DAMAGE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -5206,14 +5201,14 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ARMOR},
-                new [] {MAXIMUMLIFE, VITALITY},
-                new [] {CRITICALHITCHANCE, CRITICALHITDAMAGE,ATTACKSPEED,BASESPELLDAMAGE,STAMINAPERSECOND},
+                new [] {MAX_LIFE, VITALITY},
+                new [] {CRIT_CHANCE, CRIT_DAMAGE,ATTACKSPEED,BASESPELLDAMAGE,STAMINA_REGEN_BASE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ALLATTRIBUTES},
+                new [] {ALL_ATTRIBUTES},
                 new [] {EXPLOSIONDAMAGE},
                 new [] {EXPLOSIONDAMAGE},
 
@@ -5233,8 +5228,8 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ARMOR},
-                new [] {MAXIMUMLIFE, VITALITY},
-                new [] {CRITICALHITCHANCE, CRITICALHITDAMAGE,ATTACKSPEED,BASESPELLDAMAGE,STAMINAPERSECOND},
+                new [] {MAX_LIFE, VITALITY},
+                new [] {CRIT_CHANCE, CRIT_DAMAGE,ATTACKSPEED,BASESPELLDAMAGE,STAMINA_REGEN_BASE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -5264,7 +5259,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {MAXIMUMLIFE, VITALITY,ARMOR,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,MAXHEALTHFROMVIT,THORNS,RESISTANCETOMAGIC},
+                new [] {MAX_LIFE, VITALITY,ARMOR,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,MAXHEALTHFROMVIT,THORNS,RESISTANCETOMAGIC},
                 new [] {JUMPPOWER},
                 new [] {MOVEMENTSPEED},
                 new [] {EMPTYSOCKET},
@@ -5290,7 +5285,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {MAXIMUMLIFE, VITALITY,ARMOR,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,MAXHEALTHFROMVIT,THORNS,RESISTANCETOMAGIC},
+                new [] {MAX_LIFE, VITALITY,ARMOR,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,MAXHEALTHFROMVIT,THORNS,RESISTANCETOMAGIC},
                 new [] {EMPTYSOCKET},
                 new [] {EMPTYSOCKET},
                 new [] {EXPLOSIONDAMAGE},
@@ -5310,9 +5305,9 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ALL},
-                new [] {MAXIMUMLIFE, VITALITY,ARMOR},
+                new [] {MAX_LIFE, VITALITY,ARMOR},
                 new [] {MELEEARMORPIERCING, RANGEDARMORPIERCING},
-                new [] {ARMOR, ALLATTRIBUTES,VITALITY,LESSERVITALITY},
+                new [] {ARMOR, ALL_ATTRIBUTES,VITALITY,LESSERVITALITY},
                 new [] {EXTRACARRIEDSTICKS,EXTRACARRIEDROCKS,EXTRACARRIEDROPES},
                 new [] {EXPLOSIONDAMAGE},
                 new [] {EXPLOSIONDAMAGE},
@@ -5355,7 +5350,7 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {CRITICALHITCHANCE},
+                new [] {CRIT_CHANCE},
                 new [] {MAGICFIND,NONE,EXPGAIN},
                 new [] {RANGEDDAMAGEINCREASE,MELEEDAMAGEINCREASE},
                 new [] {STRENGTH,AGILITY},
@@ -5363,7 +5358,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {CHANCEONHITTOBLEED},
                 new [] {CHANCEONHITTOSLOW},
                 new [] {CHANCEONHITTOWEAKEN},
-                new [] {MAXENERGYFROMAGI,FIREDAMAGE,CRITICALHITDAMAGE,RANGEDDMGFROMAGI,MELEEDMGFROMSTR},
+                new [] {MAXENERGYFROMAGI,FIREDAMAGE,CRIT_DAMAGE,RANGEDDMGFROMAGI,MELEEDMGFROMSTR},
 
 
             })
@@ -5382,7 +5377,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {SPELLDAMAGEINCREASE},
                 new [] {INTELLIGENCE},
                 new [] {COOLDOWNREDUCTION},
-                new [] {ALLATTRIBUTES, INTELLIGENCE,SPELLDAMAGEINCREASE},
+                new [] {ALL_ATTRIBUTES, INTELLIGENCE,SPELLDAMAGEINCREASE},
                 new [] {SPELLDMGFROMINT,MAXENERGYFROMAGI},
                 new [] {BASESPELLDAMAGE},
                 new [] {PERCENTMAXIMUMENERGY,ENERGYONHIT,ENERGYPERSECOND},
@@ -5402,16 +5397,16 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {MELEEDMGFROMSTR,ALLATTRIBUTES,STAMINAPERSECOND,STAMINAREGENERATION,DODGECHANCE},
+                new [] {MELEEDMGFROMSTR,ALL_ATTRIBUTES,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT,DODGECHANCE},
                 new [] {STRENGTH,LESSERSTRENGTH,VITALITY,ARMOR},
                 new [] {MELEEWEAPONRANGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
                 new [] {VITALITY},
                 new [] {MAXHEALTHFROMVIT,MAXENERGYFROMAGI},
-                new [] {LIFEPERSECOND},
+                new [] {LIFE_REGEN_BASE},
                 new [] {LIFEONHIT},
                 new [] {ENERGYONHIT,ENERGYPERSECOND,INTELLIGENCE,AGILITY},
-                new [] {MAXIMUMLIFE},
-                new [] {PERCENTMAXIMUMLIFE,CRITICALHITCHANCE},
+                new [] {MAX_LIFE},
+                new [] {PERCENTMAXIMUMLIFE,CRIT_CHANCE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_416/*Life Ring*/, //tr
@@ -5426,17 +5421,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
             new [] {STRENGTH},
-            new [] {MOVEMENTSPEED,DODGECHANCE,DAMAGEREDUCTION},
-            new [] {VITALITY,MAXHEALTHFROMVIT,MAXIMUMLIFE,PERCENTMAXIMUMLIFE,ARMOR},
-            new [] {INTELLIGENCE,MAXENERGYFROMAGI,PERCENTMAXIMUMENERGY,MAXIMUMENERGY,BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,ARMOR,DAMAGEREDUCTION},
+            new [] {MOVEMENTSPEED,DODGECHANCE,DAMAGE_REDUCTION},
+            new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE,ARMOR},
+            new [] {INTELLIGENCE,MAXENERGYFROMAGI,PERCENTMAXIMUMENERGY,MAX_ENERGY,BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,ARMOR,DAMAGE_REDUCTION},
             new [] {MELEEARMORPIERCING,MELEEDAMAGEINCREASE},
             new [] {ARMOR,ATTACKSPEED,STRENGTH},
             new [] {BASEMELEEDAMAGE},
             new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE},
             new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-            new [] {CRITICALHITCHANCE,MELEEWEAPONRANGE,ATTACKSPEED},
-            new [] {CRITICALHITDAMAGE, MELEEDAMAGEINCREASE, STRENGTH},
-            new [] {ENERGYONHIT,ENERGYPERSECOND,MAXIMUMLIFE},
+            new [] {CRIT_CHANCE,MELEEWEAPONRANGE,ATTACKSPEED},
+            new [] {CRIT_DAMAGE, MELEEDAMAGEINCREASE, STRENGTH},
+            new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_417/*Moritz's Gear*/, //tr
@@ -5451,15 +5446,15 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH,BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,ATTACKSPEED},
-                new [] {MOVEMENTSPEED,DODGECHANCE,DAMAGEREDUCTION},
-                new [] {VITALITY,MAXHEALTHFROMVIT,MAXIMUMLIFE,PERCENTMAXIMUMLIFE,MELEEARMORPIERCING},
-                new [] {INTELLIGENCE,STRENGTH,CRITICALHITDAMAGE,PERCENTMAXIMUMENERGY,MAXIMUMENERGY},
+                new [] {MOVEMENTSPEED,DODGECHANCE,DAMAGE_REDUCTION},
+                new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE,MELEEARMORPIERCING},
+                new [] {INTELLIGENCE,STRENGTH,CRIT_DAMAGE,PERCENTMAXIMUMENERGY,MAX_ENERGY},
                 new [] {BASEMELEEDAMAGE},
                 new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE},
                 new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-                new [] {CRITICALHITCHANCE,MELEEWEAPONRANGE},
-                new [] {CRITICALHITDAMAGE, MELEEDAMAGEINCREASE, STRENGTH},
-                new [] {ENERGYONHIT,ENERGYPERSECOND,MAXIMUMLIFE},
+                new [] {CRIT_CHANCE,MELEEWEAPONRANGE},
+                new [] {CRIT_DAMAGE, MELEEDAMAGEINCREASE, STRENGTH},
+                new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_418/*Band of Hurting*/, //tr
@@ -5476,9 +5471,9 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {AGILITY,RANGEDDAMAGEINCREASE},
-                new [] {ALLATTRIBUTES, ARMOR,PERCENTMAXIMUMLIFE},
-                new [] {CRITICALHITCHANCE},
-                new [] {CRITICALHITDAMAGE,NONE},
+                new [] {ALL_ATTRIBUTES, ARMOR,PERCENTMAXIMUMLIFE},
+                new [] {CRIT_CHANCE},
+                new [] {CRIT_DAMAGE,NONE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_420/*Straw Hat*/, //tr
@@ -5493,7 +5488,7 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {INTELLIGENCE},
-                new [] {ALLATTRIBUTES, ARMOR,ENERGYONHIT},
+                new [] {ALL_ATTRIBUTES, ARMOR,ENERGYONHIT},
                 new [] {BASESPELLDAMAGE},
                 new [] {FIREDAMAGE,SPELLDAMAGEINCREASE,SPELLCOSTREDUCTION},
             })
@@ -5511,7 +5506,7 @@ new int[] {0,0,0,0,62,63,64},
         {
                 new [] {SPEARDAMAGE},
                 new [] {AGILITY},
-                new [] {STAMINAPERSECOND},
+                new [] {STAMINA_REGEN_BASE},
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_421/*Rusty Javelin*/, //tr
@@ -5527,8 +5522,8 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
             new [] {INTELLIGENCE},
-            new [] {DODGECHANCE,DAMAGEREDUCTION},
-            new [] {VITALITY,MAXHEALTHFROMVIT,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+            new [] {DODGECHANCE,DAMAGE_REDUCTION},
+            new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE},
             new [] {SPELLDMGFROMINT},
             new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
             new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
@@ -5537,7 +5532,7 @@ new int[] {0,0,0,0,62,63,64},
             new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
             new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
             new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
-            new [] {ENERGYONHIT,ENERGYPERSECOND,MAXIMUMLIFE},
+            new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_422/*Star Robe*/, //tr
@@ -5553,16 +5548,16 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ATTACKSPEED},
                 new [] {BASESPELLDAMAGE},
-                new [] {DODGECHANCE,DAMAGEREDUCTION,MELEEWEAPONRANGE,ARMORPIERCING,FIREDAMAGE,CRITICALHITCHANCE},
-                new [] {VITALITY,MAXHEALTHFROMVIT,MAXIMUMLIFE,PERCENTMAXIMUMLIFE,LIFEPERSECOND,LIFEONHIT},
+                new [] {DODGECHANCE,DAMAGE_REDUCTION,MELEEWEAPONRANGE,ARMORPIERCING,FIREDAMAGE,CRIT_CHANCE},
+                new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE,LIFE_REGEN_BASE,LIFEONHIT},
                 new [] {SPELLDMGFROMINT},
-                new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION,CRITICALHITCHANCE,CRITICALHITDAMAGE},
-                new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA,PERCENTMAXIMUMENERGY,LIFEREGENERATION},
+                new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION,CRIT_CHANCE,CRIT_DAMAGE},
+                new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA,PERCENTMAXIMUMENERGY,LIFE_REGEN_MULT},
                 new [] {ENERGYPERSECOND,PERCENTMAXIMUMENERGY,MAXENERGYFROMAGI},
-                new [] {INTELLIGENCE,STAMINAPERSECOND,STAMINAREGENERATION},
-                new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE,BASEMELEEDAMAGE,ALLATTRIBUTES},
-                new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE,DAMAGEREDUCTION},
-                new [] {ENERGYONHIT,ENERGYPERSECOND,MAXIMUMLIFE,MASSACREDURATION,MAGICFIND,EXPLOSIONDAMAGE},
+                new [] {INTELLIGENCE,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT},
+                new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE,BASEMELEEDAMAGE,ALL_ATTRIBUTES},
+                new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE,DAMAGE_REDUCTION},
+                new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE,MASSACREDURATION,MAGICFIND,EXPLOSIONDAMAGE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_423/*Anger*/, //tr
@@ -5577,7 +5572,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.LongSword,
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(15),
-                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(15),
+                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Sub(15),
             }.PossibleStats[0][0].multipier = 1.5f;
 
 
@@ -5586,15 +5581,15 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { ARMOR },
                 new[] { MOVEMENTSPEED},
                 new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALLATTRIBUTES},
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, ALLATTRIBUTES },
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, DAMAGEREDUCTION },
-                new[] { VITALITY, MAXHEALTHFROMVIT, MAXIMUMLIFE, PERCENTMAXIMUMLIFE, LIFEPERSECOND, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRITICALHITCHANCE, CRITICALHITDAMAGE, ARMOR,MAXHEALTHFROMVIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFEREGENERATION },
+                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, ALL_ATTRIBUTES },
+                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, DAMAGE_REDUCTION },
+                new[] { VITALITY, MAXHEALTHFROMVIT, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR,MAXHEALTHFROMVIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT },
                 new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI },
-                new[] { INTELLIGENCE, STAMINAPERSECOND, STAMINAREGENERATION, ALLATTRIBUTES, ALLHEALINGPERCENT },
-                new[] { ENERGYONHIT, ENERGYPERSECOND, MAXIMUMLIFE, MASSACREDURATION, MAGICFIND, EXPLOSIONDAMAGE },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { ENERGYONHIT, ENERGYPERSECOND, MAX_LIFE, MASSACREDURATION, MAGICFIND, EXPLOSIONDAMAGE },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_426/*Yuki-Onna Strides*/, //tr
@@ -5617,15 +5612,15 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
                 new[] { ALLHEALINGPERCENT,DODGECHANCE,SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
-                new[] { SPELLDMGFROMINT,DAMAGEREDUCTION },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALLATTRIBUTES},
-                new[] { ARMOR,DAMAGEREDUCTION ,RESISTANCETOMAGIC},
-                new[] { INTELLIGENCE, MAXIMUMLIFE,LIFEPERSECOND,SPELLDAMAGEINCREASE,BASESPELLDAMAGE },
-                new[] { VITALITY, MAXIMUMLIFE, PERCENTMAXIMUMLIFE, LIFEPERSECOND, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRITICALHITCHANCE, CRITICALHITDAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFEREGENERATION,RESISTANCETOMAGIC },
+                new[] { SPELLDMGFROMINT,DAMAGE_REDUCTION },
+                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { ARMOR,DAMAGE_REDUCTION ,RESISTANCETOMAGIC},
+                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE,SPELLDAMAGEINCREASE,BASESPELLDAMAGE },
+                new[] { VITALITY, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
                 new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINAPERSECOND, STAMINAREGENERATION, ALLATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_430/*Yuki-Onna Greaves*/, //tr
@@ -5647,15 +5642,15 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
                 new[] { ALLHEALINGPERCENT,DODGECHANCE},
-                new[] { SPELLDMGFROMINT,DAMAGEREDUCTION },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALLATTRIBUTES},
-                new[] { ARMOR,DAMAGEREDUCTION ,RESISTANCETOMAGIC,SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
-                new[] { INTELLIGENCE, MAXIMUMLIFE,LIFEPERSECOND,SPELLDAMAGEINCREASE,BASESPELLDAMAGE },
-                new[] { VITALITY, MAXIMUMLIFE, PERCENTMAXIMUMLIFE, LIFEPERSECOND, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRITICALHITCHANCE, CRITICALHITDAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFEREGENERATION,RESISTANCETOMAGIC },
+                new[] { SPELLDMGFROMINT,DAMAGE_REDUCTION },
+                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { ARMOR,DAMAGE_REDUCTION ,RESISTANCETOMAGIC,SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
+                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE,SPELLDAMAGEINCREASE,BASESPELLDAMAGE },
+                new[] { VITALITY, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
                 new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINAPERSECOND, STAMINAREGENERATION, ALLATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_431/*Yuki-Onna Kimono*/, //tr
@@ -5676,16 +5671,16 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
-                new[] { CRITICALHITCHANCE,CRITICALHITDAMAGE},
+                new[] { CRIT_CHANCE,CRIT_DAMAGE},
                 new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALLATTRIBUTES},
+                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
                 new[] { ARMOR, SPELLDAMAGEINCREASE, BASESPELLDAMAGE, RESISTANCETOMAGIC},
-                new[] { INTELLIGENCE, MAXIMUMLIFE,LIFEPERSECOND },
-                new[] { SPELLDAMAGEINCREASE,BASESPELLDAMAGE, MAXIMUMLIFE, PERCENTMAXIMUMLIFE, LIFEPERSECOND, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRITICALHITCHANCE, CRITICALHITDAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFEREGENERATION,RESISTANCETOMAGIC },
+                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE },
+                new[] { SPELLDAMAGEINCREASE,BASESPELLDAMAGE, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
                 new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINAPERSECOND, STAMINAREGENERATION, ALLATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_432/*Yuki-Onna's Headdress*/, //tr
@@ -5706,16 +5701,16 @@ new int[] {0,0,0,0,62,63,64},
         {
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
-                new[] { CRITICALHITCHANCE,CRITICALHITDAMAGE},
+                new[] { CRIT_CHANCE,CRIT_DAMAGE},
                 new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALLATTRIBUTES},
+                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
                 new[] { ARMOR, SPELLDAMAGEINCREASE, BASESPELLDAMAGE, RESISTANCETOMAGIC},
-                new[] { INTELLIGENCE, MAXIMUMLIFE,LIFEPERSECOND },
-                new[] { SPELLDAMAGEINCREASE,BASESPELLDAMAGE, MAXIMUMLIFE, PERCENTMAXIMUMLIFE, LIFEPERSECOND, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRITICALHITCHANCE, CRITICALHITDAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFEREGENERATION,RESISTANCETOMAGIC },
+                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE },
+                new[] { SPELLDAMAGEINCREASE,BASESPELLDAMAGE, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
                 new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINAPERSECOND, STAMINAREGENERATION, ALLATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_434/*Lama Mega's Blood Bag*/, //tr
@@ -5760,7 +5755,7 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new[] { MOVEMENTSPEED},
                 new[] { INTELLIGENCE,STRENGTH,AGILITY },
-                new[] { ALLATTRIBUTES,VITALITY },
+                new[] { ALL_ATTRIBUTES,VITALITY },
                 new[] { ARMOR },
                 new[] { NONE,JUMPPOWER},
             })
@@ -5785,7 +5780,7 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { JUMPPOWER},
                 new[] { LESSERAGILITY},
                 new[] { LESSERARMOR},
-                new[] { PROJECTILESIZE,PROJECTILESIZE,ALLATTRIBUTES,LIFEREGENERATION,LIFEPERSECOND,LESSERVITALITY,AGILITY},
+                new[] { PROJECTILESIZE,PROJECTILESIZE,ALL_ATTRIBUTES,LIFE_REGEN_MULT,LIFE_REGEN_BASE,LESSERVITALITY,AGILITY},
                 new[] { RANGEDARMORPIERCING,RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,ATTACKSPEED},
             })
             {
@@ -5805,7 +5800,7 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { JUMPPOWER},
                 new[] { AGILITY},
                 new[] { ARMOR},
-                new[] { PROJECTILESIZE,PROJECTILESIZE,ALLATTRIBUTES,LIFEREGENERATION,LIFEPERSECOND,VITALITY,INTELLIGENCE,AGILITY},
+                new[] { PROJECTILESIZE,PROJECTILESIZE,ALL_ATTRIBUTES,LIFE_REGEN_MULT,LIFE_REGEN_BASE,VITALITY,INTELLIGENCE,AGILITY},
                 new[] { RANGEDARMORPIERCING,RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,ATTACKSPEED},
             })
             {
@@ -5868,8 +5863,8 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ALL},
                 new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGEREDUCTION},
-                new [] {ALLATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
+                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
             })
             {
@@ -5883,15 +5878,15 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Amulet,
                 icon = Res.ResourceLoader.GetTexture(100),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(2),
-                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(2),
+                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Sub(2),
             };
             new BaseItem(new Stat[][]
         {
                 new [] {ALL},
                 new [] {ALL},
                 new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGEREDUCTION},
-                new [] {ALLATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
+                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
         })
             {
@@ -5905,7 +5900,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Amulet,
                 icon = Res.ResourceLoader.GetTexture(100),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(3),
-                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(3),
+                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Sub(3),
             };
             new BaseItem(new Stat[][]
             {
@@ -5913,8 +5908,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGEREDUCTION},
-                new [] {ALLATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
+                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
             })
             {
@@ -5928,7 +5923,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Amulet,
                 icon = Res.ResourceLoader.GetTexture(100),
                 onEquip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Add(4),
-                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Substract(4),
+                onUnequip = () => ModdedPlayer.Stats.spell_frenzyMaxStacks.Sub(4),
             };
             new BaseItem(new Stat[][]
          {
@@ -5936,8 +5931,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {MOVEMENTSPEED,COOLDOWNREDUCTION},
                 new [] {JUMPPOWER,ATTACKSPEED,MOVEMENTSPEED,ENERGYPERSECOND},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE,CRITICALHITCHANCE,CRITICALHITDAMAGE},
-                new [] {ALLATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
+                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE,CRIT_CHANCE,CRIT_DAMAGE},
+                new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
          })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_454/*Travel Band*/, //tr
@@ -5950,7 +5945,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Ring,
                 icon = Res.ResourceLoader.GetTexture(90),
                 onEquip = () => { ModdedPlayer.Stats.spell_blinkRange.Add(25); },
-                onUnequip = () => { ModdedPlayer.Stats.spell_blinkRange.Substract(25); },
+                onUnequip = () => { ModdedPlayer.Stats.spell_blinkRange.Sub(25); },
             };
 
             new BaseItem(new Stat[][]
@@ -5998,7 +5993,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.Hammer,
                 icon = Res.ResourceLoader.GetTexture(109),
                 onEquip = () => ModdedPlayer.Stats.chanceToWeaken.Add(0.3f),
-                onUnequip = () => ModdedPlayer.Stats.chanceToWeaken.Substract(0.3f),
+                onUnequip = () => ModdedPlayer.Stats.chanceToWeaken.Sub(0.3f),
             };
 
             new BaseItem(new int[][]
@@ -6024,7 +6019,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.Hammer,
                 icon = Res.ResourceLoader.GetTexture(109),
                 onEquip = () => ModdedPlayer.Stats.chanceToWeaken.Add(0.45f),
-                onUnequip = () => ModdedPlayer.Stats.chanceToWeaken.Substract(0.45f),
+                onUnequip = () => ModdedPlayer.Stats.chanceToWeaken.Sub(0.45f),
             };
             new BaseItem(new Stat[][]
             {
@@ -6034,7 +6029,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {STRENGTH},
                 new [] {BASEMELEEDAMAGE},
                 new [] {ATTACKCOSTREDUCTION,ATTACKSPEED,LIFEONHIT,ENERGYONHIT,NONE,NONE,NONE},
-                new [] {ALLATTRIBUTES,VITALITY,MELEEDAMAGEINCREASE,MELEEARMORPIERCING},
+                new [] {ALL_ATTRIBUTES,VITALITY,MELEEDAMAGEINCREASE,MELEEARMORPIERCING},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_464/*Smasher*/, //tr
@@ -6056,7 +6051,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {LIFEONHIT},
                 new [] {ENERGYONHIT},
-                new [] {STAMINAREGENERATION,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {STAMINA_AND_ENERGY_REGEN_MULT,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_466/*Vampiric Band*/, //tr
@@ -6077,10 +6072,10 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {LIFEONHIT},
-                new [] {CRITICALHITCHANCE,CRITICALHITDAMAGE},
+                new [] {CRIT_CHANCE,CRIT_DAMAGE},
                 new [] {MELEEDAMAGEINCREASE,RANGEDDAMAGEINCREASE,SPELLDAMAGEINCREASE},
                 new [] {ENERGYONHIT},
-                new [] {STAMINAREGENERATION,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {STAMINA_AND_ENERGY_REGEN_MULT,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_468/*Vampire Ring*/, //tr
@@ -6099,8 +6094,8 @@ new int[] {0,0,0,0,62,63,64},
         {
                 new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
                 new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
-                new [] {VITALITY,LIFEPERSECOND,LIFEREGENERATION,INTELLIGENCE,AGILITY,STRENGTH,ALLATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,INTELLIGENCE,DAMAGEREDUCTION},
+                new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,INTELLIGENCE,DAMAGE_REDUCTION},
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_470/*Tricksters Scarf*/, //tr
@@ -6112,7 +6107,7 @@ new int[] {0,0,0,0,62,63,64},
                 CanConsume = false,
                 StackSize = 1,
                 onEquip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Add(1),
-                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Substract(1),
+                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Sub(1),
                 type = BaseItem.ItemType.Amulet,
                 icon = Res.ResourceLoader.GetTexture(100)
             };
@@ -6120,8 +6115,8 @@ new int[] {0,0,0,0,62,63,64},
         {
                 new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
                 new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
-                new [] {VITALITY,LIFEPERSECOND,LIFEREGENERATION,INTELLIGENCE,AGILITY,STRENGTH,ALLATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,INTELLIGENCE,DAMAGEREDUCTION},
+                new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,INTELLIGENCE,DAMAGE_REDUCTION},
                 new [] {INTELLIGENCE},
                 new [] {ALL},
 
@@ -6136,7 +6131,7 @@ new int[] {0,0,0,0,62,63,64},
                 CanConsume = false,
                 StackSize = 1,
                 onEquip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Add(2),
-                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Substract(2),
+                onUnequip = () => ModdedPlayer.Stats.spell_magicArrowVolleyCount.Sub(2),
                 type = BaseItem.ItemType.Amulet,
                 icon = Res.ResourceLoader.GetTexture(100)
             };
@@ -6158,7 +6153,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Quiver,
                 icon = Res.ResourceLoader.GetTexture(98),
                 onEquip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Add(0.15f),
-                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Substract(0.15f),
+                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Sub(0.15f),
             };
             new BaseItem(new int[][]
             {
@@ -6180,7 +6175,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Quiver,
                 icon = Res.ResourceLoader.GetTexture(98),
                 onEquip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Add(0.2f),
-                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Substract(0.2f),
+                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Sub(0.2f),
             };
             new BaseItem(new int[][]
             {
@@ -6203,7 +6198,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Quiver,
                 icon = Res.ResourceLoader.GetTexture(98),
                 onEquip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Add(0.25f),
-                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Substract(0.25f),
+                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Sub(0.25f),
             };
             new BaseItem(new int[][]
             {
@@ -6227,7 +6222,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Quiver,
                 icon = Res.ResourceLoader.GetTexture(98),
                 onEquip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Add(0.4f),
-                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Substract(0.4f),
+                onUnequip = () => ModdedPlayer.Stats.perk_projectileNoConsumeChance.Sub(0.4f),
             };
 
             new BaseItem(new int[][] { })
@@ -6615,9 +6610,9 @@ new int[] {0,0,0,0,62,63,64},
                     var itemType = x.type;
                     if (itemType == BaseItem.ItemType.Other || itemType == BaseItem.ItemType.Material || x.Amount > 1)
                         return false;
-                    if (!x.Stats.Any(y => y.id == (int)DAMAGEREDUCTION))
+                    if (!x.Stats.Any(y => y.id == (int)DAMAGE_REDUCTION))
                     {
-                        ItemStat stat = new ItemStat(StatByID((int)DAMAGEREDUCTION), x.level);
+                        ItemStat stat = new ItemStat(StatByID((int)DAMAGE_REDUCTION), x.level);
                         x.Stats.Add(stat);
                         return true;
                     }
@@ -6681,12 +6676,12 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
              {
-                new [] {SPELLCOSTREDUCTION,MELEEDAMAGEINCREASE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION,DAMAGEREDUCTION, RANGEDDMGFROMAGI, ATTACKSPEED},
+                new [] {SPELLCOSTREDUCTION,MELEEDAMAGEINCREASE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION,DAMAGE_REDUCTION, RANGEDDMGFROMAGI, ATTACKSPEED},
                 new [] {AGILITY,LESSERAGILITY},
                 new [] {MELEEARMORPIERCING,RANGEDARMORPIERCING,ARMORPIERCING,ARMOR},
-                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI,BASERANGEDDAMAGE,CRITICALHITCHANCE,CRITICALHITDAMAGE,ALLATTRIBUTES},
-                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALLATTRIBUTES,MAXIMUMLIFE,MAXIMUMENERGY},
-                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALLATTRIBUTES,LIFEONHIT,ENERGYONHIT,ENERGYPERSECOND,ALLHEALINGPERCENT},
+                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI,BASERANGEDDAMAGE,CRIT_CHANCE,CRIT_DAMAGE,ALL_ATTRIBUTES},
+                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,MAX_LIFE,MAX_ENERGY},
+                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,LIFEONHIT,ENERGYONHIT,ENERGYPERSECOND,ALLHEALINGPERCENT},
                 new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY},
                 new [] {ALL},
                 new [] {ALL},
@@ -6708,16 +6703,16 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
              {
-                new [] {SPELLCOSTREDUCTION,BASESPELLDAMAGE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION,DAMAGEREDUCTION},
+                new [] {SPELLCOSTREDUCTION,BASESPELLDAMAGE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION,DAMAGE_REDUCTION},
                 new [] {ATTACKSPEED,PROJECTILESIZE,PROJECTILESPEED},
                 new [] {AGILITY,LESSERAGILITY},
                 new [] {HEADSHOTDAMAGE},
                 new [] {MELEEARMORPIERCING,RANGEDARMORPIERCING,ARMORPIERCING,ARMOR,RESISTANCETOMAGIC,MAGICFIND},
-                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI,BASERANGEDDAMAGE,CRITICALHITCHANCE,CRITICALHITDAMAGE,ALLATTRIBUTES,MAXENERGYFROMAGI},
-                new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY,VITALITY,INTELLIGENCE,CRITICALHITCHANCE,CRITICALHITDAMAGE},
+                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI,BASERANGEDDAMAGE,CRIT_CHANCE,CRIT_DAMAGE,ALL_ATTRIBUTES,MAXENERGYFROMAGI},
+                new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY,VITALITY,INTELLIGENCE,CRIT_CHANCE,CRIT_DAMAGE},
                 new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY,VITALITY,INTELLIGENCE,HEADSHOTDAMAGE},
-                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALLATTRIBUTES,MAXIMUMLIFE,MAXIMUMENERGY},
-                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALLATTRIBUTES,LIFEONHIT,ENERGYONHIT,ENERGYPERSECOND,ALLHEALINGPERCENT},
+                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,MAX_LIFE,MAX_ENERGY},
+                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,LIFEONHIT,ENERGYONHIT,ENERGYPERSECOND,ALLHEALINGPERCENT},
                 new [] {ALL},
                 new [] {ALL},
              })
@@ -6733,15 +6728,15 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.Axe,
                 icon = Res.ResourceLoader.GetTexture(138),
                 onEquip = () => { ModdedPlayer.Stats.perk_bulletDamageMult.Multiply(6f); ModdedPlayer.Stats.perk_bulletCritChance.Add(0.5f); },
-                onUnequip = () => { ModdedPlayer.Stats.perk_bulletDamageMult.Divide(6f); ModdedPlayer.Stats.perk_bulletCritChance.Substract(0.5f); },
+                onUnequip = () => { ModdedPlayer.Stats.perk_bulletDamageMult.Divide(6f); ModdedPlayer.Stats.perk_bulletCritChance.Sub(0.5f); },
             };
             new BaseItem(new Stat[][]
          {
                 new [] {ARMORPIERCING,MELEEARMORPIERCING,NONE},
                 new [] {BLOCK,NONE},
-                new [] {ARMOR,MAXIMUMLIFE,MAXHEALTHFROMVIT,DAMAGEREDUCTION,RESISTANCETOMAGIC,DODGECHANCE},
-                new [] {ARMOR,MAXIMUMLIFE,MAXHEALTHFROMVIT,DAMAGEREDUCTION,VITALITY,STRENGTH,ALLATTRIBUTES},
-                new [] {ARMOR,MAXIMUMLIFE,MAXHEALTHFROMVIT,DAMAGEREDUCTION,VITALITY,STRENGTH,ALLATTRIBUTES,THORNS},
+                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,RESISTANCETOMAGIC,DODGECHANCE},
+                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES,THORNS},
                 new [] {THORNS,MELEEDAMAGEINCREASE,VITALITY,STRENGTH},
                 new [] {STRENGTH,ARMOR,MELEEARMORPIERCING},
                 new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR,BASEMELEEDAMAGE},
@@ -6764,9 +6759,9 @@ new int[] {0,0,0,0,62,63,64},
          {
                 new [] {ARMORPIERCING,MELEEARMORPIERCING},
                 new [] {BLOCK,NONE},
-                new [] {ARMOR,MAXIMUMLIFE,MAXHEALTHFROMVIT,DAMAGEREDUCTION,RESISTANCETOMAGIC,DODGECHANCE},
-                new [] {ARMOR,MAXIMUMLIFE,MAXHEALTHFROMVIT,DAMAGEREDUCTION,VITALITY,STRENGTH,ALLATTRIBUTES},
-                new [] {ARMOR,MAXIMUMLIFE,MAXHEALTHFROMVIT,DAMAGEREDUCTION,VITALITY,STRENGTH,ALLATTRIBUTES,THORNS},
+                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,RESISTANCETOMAGIC,DODGECHANCE},
+                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES,THORNS},
                 new [] {THORNS,MELEEDAMAGEINCREASE,VITALITY,STRENGTH},
                 new [] {STRENGTH,ARMOR,MELEEARMORPIERCING},
                 new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR,BASEMELEEDAMAGE},
@@ -6787,16 +6782,16 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.GreatSword,
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_bashDamageDebuffAmount.Add(2.00f),
-                onUnequip = () => ModdedPlayer.Stats.spell_bashDamageDebuffAmount.Substract(2.00f),
+                onUnequip = () => ModdedPlayer.Stats.spell_bashDamageDebuffAmount.Sub(2.00f),
             };
 
             new BaseItem(new Stat[][]
          {
                 new[] { ARMORPIERCING, MELEEARMORPIERCING },
                 new[] { BLOCK,STRENGTH},
-                new[] { ARMOR, MAXIMUMLIFE, MAXHEALTHFROMVIT, DAMAGEREDUCTION, RESISTANCETOMAGIC, DODGECHANCE },
-                new[] { ARMOR, MAXIMUMLIFE , DAMAGEREDUCTION, VITALITY, STRENGTH, ALLATTRIBUTES },
-                new[] { ARMOR, MAXIMUMLIFE, DAMAGEREDUCTION, VITALITY, STRENGTH, ALLATTRIBUTES, THORNS },
+                new[] { ARMOR, MAX_LIFE, MAXHEALTHFROMVIT, DAMAGE_REDUCTION, RESISTANCETOMAGIC, DODGECHANCE },
+                new[] { ARMOR, MAX_LIFE , DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES },
+                new[] { ARMOR, MAX_LIFE, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES, THORNS },
                 new[] { THORNS, MELEEDAMAGEINCREASE, VITALITY, STRENGTH },
                 new[] { STRENGTH, ARMOR, MELEEARMORPIERCING },
                 new[] { MELEEDAMAGEINCREASE, MELEEDMGFROMSTR, BASEMELEEDAMAGE },
@@ -6822,9 +6817,9 @@ new int[] {0,0,0,0,62,63,64},
          {
                 new[] { ARMOR,BASEMELEEDAMAGE },
                 new[] { BLOCK},
-                new[] { ARMOR, MAXIMUMLIFE,MAXIMUMENERGY,STAMINAREGENERATION, DAMAGEREDUCTION, RESISTANCETOMAGIC, DODGECHANCE },
-                new[] { ARMOR, MAXIMUMLIFE, MAXIMUMENERGY, DAMAGEREDUCTION, VITALITY, STRENGTH, ALLATTRIBUTES,CHANCEONHITTOBLEED,CHANCEONHITTOSLOW,CHANCEONHITTOWEAKEN },
-                new[] { ARMOR, MAXIMUMLIFE, MAXHEALTHFROMVIT, DAMAGEREDUCTION, VITALITY, STRENGTH, ALLATTRIBUTES, THORNS },
+                new[] { ARMOR, MAX_LIFE,MAX_ENERGY,STAMINA_AND_ENERGY_REGEN_MULT, DAMAGE_REDUCTION, RESISTANCETOMAGIC, DODGECHANCE },
+                new[] { ARMOR, MAX_LIFE, MAX_ENERGY, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES,CHANCEONHITTOBLEED,CHANCEONHITTOSLOW,CHANCEONHITTOWEAKEN },
+                new[] { ARMOR, MAX_LIFE, MAXHEALTHFROMVIT, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES, THORNS },
                 new[] { THORNS, MELEEDAMAGEINCREASE, VITALITY, STRENGTH },
                 new[] { MELEEDAMAGEINCREASE, ATTACKSPEED, BASEMELEEDAMAGE, MELEEWEAPONRANGE,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,ALLHEALINGPERCENT },
          })
@@ -6841,11 +6836,11 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {FIREDAMAGE},
-                new [] {MAXIMUMENERGY,MAXIMUMLIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
-                new [] {ARMOR,DAMAGEREDUCTION},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {ARMOR,DAMAGE_REDUCTION},
                 new [] {RESISTANCETOMAGIC,MAGICFIND,MOVEMENTSPEED,ARMOR},
             })
             {
@@ -6859,7 +6854,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Helmet,
                 icon = Res.ResourceLoader.GetTexture(91),
                 onEquip = () => ModdedPlayer.Stats.fireDuration.Add(2f),
-                onUnequip = () => ModdedPlayer.Stats.fireDuration.Substract(2f),
+                onUnequip = () => ModdedPlayer.Stats.fireDuration.Sub(2f),
             }.PossibleStats[0][0].multipier = 2;
 
             new BaseItem(new Stat[][]
@@ -6867,13 +6862,13 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {FIREDAMAGE},
                 new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI},
                 new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT},
-                new [] {MAXIMUMENERGY,MAXIMUMLIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION},
+                new [] {ARMOR,DAMAGE_REDUCTION},
                 new [] {RESISTANCETOMAGIC,MAGICFIND,MOVEMENTSPEED,ARMOR},
             })
             {
@@ -6887,7 +6882,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Helmet,
                 icon = Res.ResourceLoader.GetTexture(91),
                 onEquip = () => { ModdedPlayer.Stats.fireDuration.Add(7f); ModdedPlayer.Stats.fireTickRate.Add(3f); },
-                onUnequip = () => { ModdedPlayer.Stats.fireDuration.Substract(7f); ModdedPlayer.Stats.fireTickRate.Substract(3f); },
+                onUnequip = () => { ModdedPlayer.Stats.fireDuration.Sub(7f); ModdedPlayer.Stats.fireTickRate.Sub(3f); },
             }.PossibleStats[0][0].multipier = 5;
 
 
@@ -6896,14 +6891,14 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {FIREDAMAGE},
                 new [] {ARMOR,DODGECHANCE},
                 new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI},
-                new [] {MAXIMUMENERGY,MAXIMUMLIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION,PROJECTILESPEED,PROJECTILESIZE},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION},
+                new [] {ARMOR,DAMAGE_REDUCTION},
                 new [] {RESISTANCETOMAGIC,MAGICFIND,MOVEMENTSPEED,ARMOR},
             })
             {
@@ -6924,21 +6919,21 @@ new int[] {0,0,0,0,62,63,64},
                 },
                 onUnequip = () =>
                 {
-                    ModdedPlayer.Stats.spell_fireboltEnergyCost.Substract(5);
-                    ModdedPlayer.Stats.spell_fireboltDamageScaling.Substract(7.5f);
+                    ModdedPlayer.Stats.spell_fireboltEnergyCost.Sub(5);
+                    ModdedPlayer.Stats.spell_fireboltDamageScaling.Sub(7.5f);
                 },
             };
             new BaseItem(new Stat[][]
             {
                 new [] {SPELLDMGFROMINT},
                 new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT},
-                new [] {MAXIMUMENERGY,MAXIMUMLIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {RESISTANCETOMAGIC,ENERGYONHIT,ENERGYPERSECOND,STAMINAREGENERATION,STAMINAPERSECOND},
+                new [] {RESISTANCETOMAGIC,ENERGYONHIT,ENERGYPERSECOND,STAMINA_AND_ENERGY_REGEN_MULT,STAMINA_REGEN_BASE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_523/*Ancient Scroll*/, //tr
@@ -6951,23 +6946,23 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.SpellScroll,
                 icon = Res.ResourceLoader.GetTexture(110),
                 onEquip = () => ModdedPlayer.Stats.spell_fireboltDamageScaling.Add(8),
-                onUnequip = () => ModdedPlayer.Stats.spell_fireboltDamageScaling.Substract(8),
+                onUnequip = () => ModdedPlayer.Stats.spell_fireboltDamageScaling.Sub(8),
             };
             new BaseItem(new Stat[][]
             {
                 new [] {SPELLDMGFROMINT},
                 new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT},
-                new [] {MAXIMUMENERGY,MAXIMUMLIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALLATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {RESISTANCETOMAGIC,ENERGYONHIT,ENERGYPERSECOND,STAMINAREGENERATION,STAMINAPERSECOND},
+                new [] {RESISTANCETOMAGIC,ENERGYONHIT,ENERGYPERSECOND,STAMINA_AND_ENERGY_REGEN_MULT,STAMINA_REGEN_BASE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_524/*Guide on Tearing Spacetime*/, //tr
@@ -6988,12 +6983,12 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDAMAGEINCREASE},
                 new [] {ATTACKSPEED},
                 new [] {MELEEDMGFROMSTR},
-                new [] {BLOCK,ARMOR,DAMAGEREDUCTION},
+                new [] {BLOCK,ARMOR,DAMAGE_REDUCTION},
                 new [] {BASEMELEEDAMAGE,NONE},
                 new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,STRENGTH},
-                new [] {MELEEARMORPIERCING,ARMORPIERCING,ALLATTRIBUTES},
+                new [] {MELEEARMORPIERCING,ARMORPIERCING,ALL_ATTRIBUTES},
                 new [] {ATTACKCOSTREDUCTION,ATTACKSPEED},
-                new [] {ALLATTRIBUTES,MELEEWEAPONRANGE,VITALITY,MAXIMUMLIFE},
+                new [] {ALL_ATTRIBUTES,MELEEWEAPONRANGE,VITALITY,MAX_LIFE},
                 new [] {ENERGYONHIT,VITALITY,LIFEONHIT }
         })
             {
@@ -7021,7 +7016,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_527/*Stone Pauldrons*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7041,7 +7036,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_529/*Iron Shoulder Pads*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7062,7 +7057,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_531/*Steel Shoulder Pads*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7085,7 +7080,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_533/*Battle scarred Shoulder Pads*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7111,7 +7106,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_535/*Mystery Shoulder Pads*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7133,7 +7128,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_537/*Stone Shield*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7155,7 +7150,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_538/*Iron Shield*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7178,7 +7173,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_539/*Steel Tower Shield*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7204,7 +7199,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_540/*Guardian*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7232,7 +7227,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_541/*Mystery Shield*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7254,7 +7249,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_542/*Light Boot*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7275,7 +7270,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_543/*Iron Boots*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7297,7 +7292,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_544/*Steel Boots*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7321,7 +7316,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_545/*Threads*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7348,7 +7343,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_546/*Mystery Boots*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7371,7 +7366,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_547/*Wraps*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7391,7 +7386,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_301/*Iron Gauntlet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7412,7 +7407,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_548/*Steel Gauntlet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7435,7 +7430,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_549/*Titanium Gauntlet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7461,7 +7456,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_550/*Mystery Gauntlet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7484,7 +7479,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_551/*Leather Tasset*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7505,7 +7500,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_552/*Iron Tasset*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7527,7 +7522,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_553/*Steel Tasset*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7551,7 +7546,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_554/*Black Steel Leggins*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7578,7 +7573,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_555/*Mystery Leggins*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7598,7 +7593,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_556/*Leather Vest*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7618,7 +7613,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_557/*Iron Breastplate*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7639,7 +7634,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_558/*Steel Breastplate*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7663,7 +7658,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_559/*Silver Armor*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7690,7 +7685,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_560/*Mystery Breastplate*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7710,7 +7705,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_561/*Cloth Band*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7730,7 +7725,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_562/*Iron Wristguard*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7751,7 +7746,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_563/*Steel Wristguard*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7774,7 +7769,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_564/*Baron Wristguards*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7800,7 +7795,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_565/*Mystery Wristguards*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7822,7 +7817,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_218/*Horned Helmet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_528("3%")/*All damage increased by 3%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.03f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.03f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.03f),
                 rarity = 2,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7843,7 +7838,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_566/*Iron Helmet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_530("4%")/*All damage increased by 4%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.04f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.04f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.04f),
                 rarity = 3,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7865,7 +7860,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_567/*Steel Helmet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_532("5%")/*All damage increased by 5%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.05f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.05f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.05f),
                 rarity = 4,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7889,7 +7884,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_568/*Armored Hood*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_534("6%")/*All damage increased by 6%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.06f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.06f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.06f),
                 rarity = 5,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7916,7 +7911,7 @@ new int[] {0,0,0,0,62,63,64},
                 name = Translations.ItemDataBase_ItemDefinitions_569/*Mystery Helmet*/, //tr
                 uniqueStat = Translations.ItemDataBase_ItemDefinitions_536("10%")/*All damage increased by 10%*/, //tr
                 onEquip = () => ModdedPlayer.Stats.allDamage.Add(0.1f),
-                onUnequip = () => ModdedPlayer.Stats.allDamage.Substract(0.1f),
+                onUnequip = () => ModdedPlayer.Stats.allDamage.Sub(0.1f),
                 rarity = 6,
                 minLevel = 1,
                 maxLevel = 3,
@@ -7932,14 +7927,14 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
                 new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
                 new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
-                new [] {CRITICALHITCHANCE,CRITICALHITDAMAGE,},
-                new [] {MELEEDAMAGEINCREASE,NONE,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+                new [] {CRIT_CHANCE,CRIT_DAMAGE,},
+                new [] {MELEEDAMAGEINCREASE,NONE,MAX_LIFE,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION},
+                new [] {ARMOR,DAMAGE_REDUCTION},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
                 })
@@ -7963,15 +7958,15 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
                 new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
                 new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MAXIMUMLIFE},
-                new [] {MELEEDAMAGEINCREASE,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE},
+                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,ALLATTRIBUTES},
+                new [] {ARMOR,DAMAGE_REDUCTION,ALL_ATTRIBUTES},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_573/*Yorium's Ruthlessness*/, //tr
@@ -7994,15 +7989,15 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
                 new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
                 new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MAXIMUMLIFE},
-                new [] {MELEEDAMAGEINCREASE,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE},
+                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,ALLATTRIBUTES},
+                new [] {ARMOR,DAMAGE_REDUCTION,ALL_ATTRIBUTES},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
@@ -8028,15 +8023,15 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
                 new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
                 new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MAXIMUMLIFE},
-                new [] {MELEEDAMAGEINCREASE,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE},
+                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,ALLATTRIBUTES},
+                new [] {ARMOR,DAMAGE_REDUCTION,ALL_ATTRIBUTES},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
@@ -8062,15 +8057,15 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
                 new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
                 new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MAXIMUMLIFE},
-                new [] {MELEEDAMAGEINCREASE,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE},
+                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,ALLATTRIBUTES},
+                new [] {ARMOR,DAMAGE_REDUCTION,ALL_ATTRIBUTES},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
             })
@@ -8094,15 +8089,15 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
                 new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
                 new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MAXIMUMLIFE},
-                new [] {MELEEDAMAGEINCREASE,MAXIMUMLIFE,PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE},
+                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,ALLATTRIBUTES},
+                new [] {ARMOR,DAMAGE_REDUCTION,ALL_ATTRIBUTES},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
                 new [] {EMPTYSOCKET,NONE},
@@ -8130,15 +8125,15 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY},
                 new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE,INTELLIGENCE},
                 new [] {ALL},
-                new [] {MAXIMUMLIFE},
-                new [] {MAXIMUMLIFE,PERCENTMAXIMUMLIFE,MAXIMUMENERGY,PERCENTMAXIMUMENERGY},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY,ALLATTRIBUTES,ATTACKSPEED,ATTACKCOSTREDUCTION,SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MAX_LIFE},
+                new [] {MAX_LIFE,PERCENTMAXIMUMLIFE,MAX_ENERGY,PERCENTMAXIMUMENERGY},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY,ALL_ATTRIBUTES,ATTACKSPEED,ATTACKCOSTREDUCTION,SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION,ALLATTRIBUTES,NONE},
+                new [] {ARMOR,DAMAGE_REDUCTION,ALL_ATTRIBUTES,NONE},
 
             })
             {
@@ -8156,7 +8151,7 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {CRITICALHITDAMAGE},
+                new [] {CRIT_DAMAGE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY },
                 new [] {ALL},
                 new [] {ALL},
@@ -8168,8 +8163,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGEREDUCTION },
-                new [] {MAXIMUMLIFE},
+                new [] {ARMOR,DAMAGE_REDUCTION },
+                new [] {MAX_LIFE},
 
             })
             {
@@ -8183,7 +8178,7 @@ new int[] {0,0,0,0,62,63,64},
                 type = BaseItem.ItemType.Pants,
                 icon = Res.ResourceLoader.GetTexture(87),
                 onEquip = () => { ModdedPlayer.Stats.spell_frenzy_active_critChance.Add(0.05f); ModdedPlayer.Stats.spell_frenzyAtkSpeed.Add(0.03f); },
-                onUnequip = () => { ModdedPlayer.Stats.spell_frenzy_active_critChance.Substract(0.05f); ModdedPlayer.Stats.spell_frenzyAtkSpeed.Add(0.03f); },
+                onUnequip = () => { ModdedPlayer.Stats.spell_frenzy_active_critChance.Sub(0.05f); ModdedPlayer.Stats.spell_frenzyAtkSpeed.Add(0.03f); },
             };
 
 
@@ -8195,8 +8190,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY },
                 new [] {MELEEDAMAGEINCREASE, SPELLDAMAGEINCREASE },
                 new [] {ATTACKSPEED},
-                new [] {CRITICALHITCHANCE},
-                new [] {CRITICALHITDAMAGE},
+                new [] {CRIT_CHANCE},
+                new [] {CRIT_DAMAGE},
                 new [] {MELEEDMGFROMSTR},
                 new [] {ALL},
                 new [] {ALL},
@@ -8205,7 +8200,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {BLOCK, NONE},
-                new [] {MAXIMUMLIFE},
+                new [] {MAX_LIFE},
 
             })
             {
@@ -8220,7 +8215,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.GreatSword,
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_berserkDamage.Add(3f),
-                onUnequip = () => ModdedPlayer.Stats.spell_berserkDamage.Substract(3f),
+                onUnequip = () => ModdedPlayer.Stats.spell_berserkDamage.Sub(3f),
             }.PossibleStats[0][0].multipier = 5;
             new BaseItem(new Stat[][]
             {
@@ -8229,8 +8224,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY },
                 new [] {MELEEDAMAGEINCREASE, SPELLDAMAGEINCREASE },
                 new [] {ATTACKSPEED},
-                new [] {CRITICALHITCHANCE},
-                new [] {CRITICALHITDAMAGE},
+                new [] {CRIT_CHANCE},
+                new [] {CRIT_DAMAGE},
                 new [] {MELEEDMGFROMSTR},
                 new [] {STRENGTH},
                 new [] {ALL},
@@ -8249,7 +8244,7 @@ new int[] {0,0,0,0,62,63,64},
                 weaponModel = BaseItem.WeaponModelType.GreatSword,
                 icon = Res.ResourceLoader.GetTexture(88),
                 onEquip = () => ModdedPlayer.Stats.spell_berserkDamage.Add(1f),
-                onUnequip = () => ModdedPlayer.Stats.spell_berserkDamage.Substract(1f),
+                onUnequip = () => ModdedPlayer.Stats.spell_berserkDamage.Sub(1f),
             }.PossibleStats[0][0].multipier = 2;
 
             new BaseItem(new Stat[][]
@@ -8258,8 +8253,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE, NONE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGEREDUCTION},
-                new [] {ALLATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
+                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
             })
             {
@@ -8279,16 +8274,16 @@ new int[] {0,0,0,0,62,63,64},
                 },
                 onUnequip = () =>
                 {
-                    ModdedPlayer.Stats.spell_berserkAttackSpeed.Substract(0.1f);
-                    ModdedPlayer.Stats.spell_berserkMovementSpeed.Substract(0.1f);
+                    ModdedPlayer.Stats.spell_berserkAttackSpeed.Sub(0.1f);
+                    ModdedPlayer.Stats.spell_berserkMovementSpeed.Sub(0.1f);
                 },
             };
             new BaseItem(new Stat[][]
             {
-                new [] {STRENGTH,VITALITY,AGILITY,ALLATTRIBUTES,INTELLIGENCE},
+                new [] {STRENGTH,VITALITY,AGILITY,ALL_ATTRIBUTES,INTELLIGENCE},
                 new [] {MAXENERGYFROMAGI,MELEEDMGFROMSTR,SPELLDMGFROMINT,RANGEDDMGFROMAGI,MAXHEALTHFROMVIT},
-                new [] {ARMOR,DAMAGEREDUCTION},
-                new [] { CRITICALHITCHANCE, CRITICALHITDAMAGE},
+                new [] {ARMOR,DAMAGE_REDUCTION},
+                new [] { CRIT_CHANCE, CRIT_DAMAGE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -8299,7 +8294,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE, NONE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGEREDUCTION},
+                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
 
             })
             {
@@ -8323,25 +8318,25 @@ new int[] {0,0,0,0,62,63,64},
                 {
                     ModdedPlayer.Stats.meleeIncreasedDmg.Divide(2f);
                     ModdedPlayer.Stats.rangedIncreasedDmg.Divide(2f);
-                    ModdedPlayer.Stats.spell_berserkAttackSpeed.Substract(0.15f);
-                    ModdedPlayer.Stats.spell_berserkMovementSpeed.Substract(0.3f);
+                    ModdedPlayer.Stats.spell_berserkAttackSpeed.Sub(0.15f);
+                    ModdedPlayer.Stats.spell_berserkMovementSpeed.Sub(0.3f);
                 },
             };
             new BaseItem(new Stat[][]
             {
-                new[] { LIFEPERSECOND },
+                new[] { LIFE_REGEN_BASE },
                 new[] { ARMOR, NONE, ALLHEALINGPERCENT },
                 new[] { ALL},
                 new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALLATTRIBUTES},
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, ALLATTRIBUTES },
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, DAMAGEREDUCTION },
-                new[] { VITALITY, MAXHEALTHFROMVIT, MAXIMUMLIFE, PERCENTMAXIMUMLIFE, LIFEPERSECOND, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRITICALHITCHANCE, CRITICALHITDAMAGE, ARMOR,MAXHEALTHFROMVIT },
-                new[] { DAMAGEREDUCTION, PERCENTMAXIMUMENERGY, LIFEREGENERATION },
+                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, ALL_ATTRIBUTES },
+                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, DAMAGE_REDUCTION },
+                new[] { VITALITY, MAXHEALTHFROMVIT, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
+                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR,MAXHEALTHFROMVIT },
+                new[] { DAMAGE_REDUCTION, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT },
                 new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI },
-                new[] { INTELLIGENCE, STAMINAPERSECOND, STAMINAREGENERATION, ALLATTRIBUTES, ALLHEALINGPERCENT },
-                new[] { ENERGYONHIT, ENERGYPERSECOND, MAXIMUMLIFE, MASSACREDURATION, MAGICFIND, EXPLOSIONDAMAGE },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { ENERGYONHIT, ENERGYPERSECOND, MAX_LIFE, MASSACREDURATION, MAGICFIND, EXPLOSIONDAMAGE },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_617, //tr
@@ -8356,11 +8351,11 @@ new int[] {0,0,0,0,62,63,64},
                 onEquip = () =>
                 {
                     ModdedPlayer.Stats.spell_healingDomeCooldownRate.Add(1.0f);
-                    ModdedPlayer.Stats.spell_healingDomeSpellCostReduction.Substract(0.4f);
+                    ModdedPlayer.Stats.spell_healingDomeSpellCostReduction.Sub(0.4f);
                 },
                 onUnequip = () =>
                 {
-                    ModdedPlayer.Stats.spell_healingDomeCooldownRate.Substract(1.0f);
+                    ModdedPlayer.Stats.spell_healingDomeCooldownRate.Sub(1.0f);
                     ModdedPlayer.Stats.spell_healingDomeSpellCostReduction.Add(0.4f);
                 },
             };
