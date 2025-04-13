@@ -49,7 +49,7 @@ namespace ChampionsOfForest
 			new Shield()
 				.ShieldStatSlot(1)
 				.StatSlot(new Stat[] { BLOCK })
-				.StatSlot(new Stat[] { THORNS, BASEMELEEDAMAGE })
+				.StatSlot(new Stat[] { THORNS, BASE_MELEE_DAMAGE })
 				.Name("Wooden Buckler")
 				.Description("This shield has a precariously sticking out nail.")
 				.Rarity(1);
@@ -77,7 +77,7 @@ namespace ChampionsOfForest
 			new Shield()
 				.ShieldStatSlot(3)
 				.StatSlot(new Stat[] { BLOCK })
-				.StatSlot(new Stat[] { DODGECHANCE })
+				.StatSlot(new Stat[] { DODGE_CHANCE })
 				.Name("Reinforced Buckler")
 				.Description("Light and small shield that allows you to dodge attacks.")
 				.Rarity(2);
@@ -85,7 +85,7 @@ namespace ChampionsOfForest
 			new Shield()
 				.ShieldStatSlot(3)
 				.StatSlot(new Stat[] { BLOCK })
-				.StatSlot(new Stat[] { DODGECHANCE })
+				.StatSlot(new Stat[] { DODGE_CHANCE })
 				.Name("Knight's Guard")
 				.Description("")
 				.Rarity(2);

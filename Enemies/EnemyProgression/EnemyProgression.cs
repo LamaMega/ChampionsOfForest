@@ -398,7 +398,7 @@ namespace ChampionsOfForest
 		private void DropLoot()
 		{
 
-			if (Random.value <= 0.1f * ModSettings.DropChanceMultiplier * ModdedPlayer.Stats.magicFind.Value || AIScript.creepy_boss || abilities.Count > 0)
+			if (Random.value <= 0.1f * ModSettings.DropChanceMultiplier * ModdedPlayer.Stats.magicFind_quantity.Value || AIScript.creepy_boss || abilities.Count > 0)
 			{
 				int itemCount = Random.Range(2, 4);
 				if (AIScript.creepy_boss)

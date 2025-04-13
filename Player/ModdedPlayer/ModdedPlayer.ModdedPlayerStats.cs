@@ -16,7 +16,7 @@ namespace ChampionsOfForest.Player
 			public readonly AdditivePlayerStat<int> vitality;
 			public readonly MultiOperationPlayerStat<float> maxEnergyMult;
 			public readonly AdditivePlayerStat<int> maxEnergy;
-			public readonly MultiOperationPlayerStat<float> maxHealthMult;
+			public readonly MultiOperationPlayerStat<float> maxLifeMult;
 			public readonly AdditivePlayerStat<int> maxLife;
 			public readonly AdditivePlayerStat<float> meleeDmgFromStr;
 			public readonly AdditivePlayerStat<float> spellDmgFromInt;
@@ -34,12 +34,12 @@ namespace ChampionsOfForest.Player
 			public readonly AdditivePlayerStat<float> critChance;
 			public readonly AdditivePlayerStat<float> critDamage;
 
-			public readonly MultiOperationPlayerStat<float> rangedFlatDmg;
-			public readonly MultiOperationPlayerStat<float> meleeFlatDmg;
-			public readonly AdditivePlayerStat<float> spellFlatDmg;
+			public readonly MultiOperationPlayerStat<float> baseRangedDamage;
+			public readonly MultiOperationPlayerStat<float> baseMeleeDamage;
+			public readonly AdditivePlayerStat<float> baseSpellDamage;
 			public readonly MultiOperationPlayerStat<float> rangedIncreasedDmg;
 			public readonly MultiOperationPlayerStat<float> meleeIncreasedDmg;
-			public readonly MultiOperationPlayerStat<float> spellIncreasedDmg;
+			public readonly MultiOperationPlayerStat<float> spellDamageMult;
 			public readonly AdditivePlayerStat<int> meleeArmorPiercing;
 			public readonly AdditivePlayerStat<int> rangedArmorPiercing;
 			public readonly AdditivePlayerStat<float> thornsArmorPiercing;
@@ -59,18 +59,19 @@ namespace ChampionsOfForest.Player
 			public readonly AdditivePlayerStat<float> headShotDamage;
 
 			public readonly MultiOperationPlayerStat<float> allRecoveryMult;
-			public readonly AdditivePlayerStat<float> healthOnHit;
+			public readonly AdditivePlayerStat<float> lifeOnHit;
 			public readonly AdditivePlayerStat<float> staminaOnHit;
 			public readonly AdditivePlayerStat<float> energyOnHit;
 			public readonly AdditivePlayerStat<float> lifeRegenBase;
 			public readonly AdditivePlayerStat<float> energyRegenMult;
-			public readonly AdditivePlayerStat<float> energyRecoveryperSecond;
+			public readonly AdditivePlayerStat<float> energyRecoveryBase;
 
 			public readonly MultiplicativePlayerStat<float> allDamageTaken;
-			public readonly MultiplicativePlayerStat<float> damageFromElite;
+			public readonly MultiplicativePlayerStat<float> damageFromElites;
 			public readonly MultiplicativePlayerStat<float> fireDamageTaken;
 			public readonly MultiplicativePlayerStat<float> getHitChance;
 			public readonly AdditivePlayerStat<int> armor;
+			public readonly AdditivePlayerStat<float> armorPerStrength;
 			public readonly MultiplicativePlayerStat<float> thornsDmgMult;
 			public readonly AdditivePlayerStat<float> thorns;
 			public readonly AdditivePlayerStat<float> thornsPerStrenght;
@@ -95,7 +96,8 @@ namespace ChampionsOfForest.Player
 			public readonly BooleanPlayerStat silenced;
 			public readonly BooleanPlayerStat rooted;
 			public readonly BooleanPlayerStat stunned;
-			public readonly AdditiveNetworkSyncedPlayerStat<float> magicFind;
+			public readonly AdditiveNetworkSyncedPlayerStat<float> magicFind_quantity;
+			public readonly AdditiveNetworkSyncedPlayerStat<float> magicFind_quality;
 			public readonly AdditiveNetworkSyncedPlayerStat<float> explosionDamage;
 			public readonly AdditiveNetworkSyncedPlayerStat<float> fireTickRate;
 			public readonly AdditiveNetworkSyncedPlayerStat<float> fireDuration;
@@ -332,7 +334,7 @@ namespace ChampionsOfForest.Player
 				this.vitality = new AdditivePlayerStat<int>(1, addint, substractint);
 				this.maxEnergyMult = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
 				this.maxEnergy = new AdditivePlayerStat<int>(0, addint, substractint);
-				this.maxHealthMult = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
+				this.maxLifeMult = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
 				this.maxLife = new AdditivePlayerStat<int>(0, addint, substractint);
 				this.meleeDmgFromStr = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat, "P0");
 				this.spellDmgFromInt = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat, "P0");
@@ -351,12 +353,12 @@ namespace ChampionsOfForest.Player
 				this.critChance = new AdditivePlayerStat<float>(0.05f, addfloat, substractfloat, "P1");
 				this.critDamage = new AdditivePlayerStat<float>(0.5f, addfloat, substractfloat, "P0");
 
-				this.rangedFlatDmg = new MultiOperationPlayerStat<float>(0.0f, 1.0f, addfloat, substractfloat, multfloat, dividefloat);
-				this.meleeFlatDmg = new MultiOperationPlayerStat<float>(0.0f,1.0f, addfloat, substractfloat, multfloat, dividefloat);
-				this.spellFlatDmg = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
+				this.baseRangedDamage = new MultiOperationPlayerStat<float>(0.0f, 1.0f, addfloat, substractfloat, multfloat, dividefloat);
+				this.baseMeleeDamage = new MultiOperationPlayerStat<float>(0.0f,1.0f, addfloat, substractfloat, multfloat, dividefloat);
+				this.baseSpellDamage = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.rangedIncreasedDmg = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
 				this.meleeIncreasedDmg = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
-				this.spellIncreasedDmg = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
+				this.spellDamageMult = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
 				this.meleeArmorPiercing = new AdditivePlayerStat<int>(0, addint, substractint);
 				this.rangedArmorPiercing = new AdditivePlayerStat<int>(0, addint, substractint);
 				this.thornsArmorPiercing = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat, "P0");
@@ -377,18 +379,19 @@ namespace ChampionsOfForest.Player
 				this.projectile_DamagePerDistance = new AdditivePlayerStat<float>(0.00f, addfloat, substractfloat);
 
 				this.allRecoveryMult = new MultiOperationPlayerStat<float>(1,1, addfloat, substractfloat, multfloat, dividefloat, "P0");
-				this.healthOnHit = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
+				this.lifeOnHit = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.staminaOnHit = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.energyOnHit = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.lifeRegenBase = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.energyRegenMult = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
-				this.energyRecoveryperSecond = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
+				this.energyRecoveryBase = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 
 				this.allDamageTaken = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
-				this.damageFromElite = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
+				this.damageFromElites = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.fireDamageTaken = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.getHitChance = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.armor = new AdditivePlayerStat<int>(0, addint, substractint);
+				this.armorPerStrength = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.thornsDmgMult = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P0");
 				this.thorns = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.thornsPerStrenght = new AdditivePlayerStat<float>(0.0f, addfloat, substractfloat);
@@ -414,7 +417,8 @@ namespace ChampionsOfForest.Player
 				this.rooted = new BooleanPlayerStat(false);
 				this.stunned = new BooleanPlayerStat(false);
 
-				this.magicFind = new AdditiveNetworkSyncedPlayerStat<float>(1.0f, addfloat, substractfloat, "P0");
+				this.magicFind_quantity = new AdditiveNetworkSyncedPlayerStat<float>(1.0f, addfloat, substractfloat, "P0");
+				this.magicFind_quality = new AdditiveNetworkSyncedPlayerStat<float>(1.0f, addfloat, substractfloat, "P0");
 				this.explosionDamage = new AdditiveNetworkSyncedPlayerStat<float>(0.0f, addfloat, substractfloat, "N1");
 				this.fireTickRate = new AdditiveNetworkSyncedPlayerStat<float>(0.0f, addfloat, substractfloat);
 				this.fireDuration = new AdditiveNetworkSyncedPlayerStat<float>(0.0f, addfloat, substractfloat);
@@ -648,7 +652,7 @@ namespace ChampionsOfForest.Player
 				get
 				{
 					float x = baseHealth + (vitality.Value * maxHealthFromVit.Value) + maxLife.Value;
-					x *= maxHealthMult;
+					x *= maxLifeMult;
 					return x;
 				}
 			}
@@ -666,13 +670,13 @@ namespace ChampionsOfForest.Player
 				get
 				{
 					float f = spellDmgFromInt.Value * intelligence.Value;
-					return (1 + f) * spellIncreasedDmg.Value * allDamage.Value;
+					return (1 + f) * spellDamageMult.Value * allDamage.Value;
 				}
 			}
 			public float SpellCostToStamina => 1 - spellCostEnergyCost;
 			public float TotalThorns => thorns.Value + thornsPerStrenght * strength.Value + thornsPerVit * vitality.Value;
 			public float TotalThornsDamage => TotalThorns * thornsDmgMult.Value * meleeIncreasedDmg * allDamage;
-			public float TotalArmor => armor.Value - instance.lostArmor;
+			public float TotalArmor => armorPerStrength.Value * strength + armor.Value - instance.lostArmor;
 			public float TotalStaminaRecoveryAmount => (baseStaminaRecovery + energyRegenMult) * TotalStaminaRecoveryMultiplier;
 			public float TotalStaminaRecoveryMultiplier => 1 + (1 + intelligence * energyRecoveryFromInt) * allRecoveryMult * staminaRegenBase;
 			public float TotalEnergyRecoveryMultiplier => 1 + (1 + intelligence * energyRecoveryFromInt) * allRecoveryMult * staminaRegenBase;
@@ -680,7 +684,7 @@ namespace ChampionsOfForest.Player
 
 			public float MeleeDamageMult => allDamage.Value * meleeIncreasedDmg.Value * (1 + (strength * meleeDmgFromStr));
 			public float RangedDamageMult => allDamage.Value * rangedIncreasedDmg.Value * (1 + (agility * rangedDmgFromAgi)) * (perk_projectileDamageIncreasedBySize ? 1 + (projectileSize.Value - 1) : 1f);
-			public float SpellDamageMult => allDamage.Value * spellIncreasedDmg.Value * (1 + intelligence * spellDmgFromInt);
+			public float SpellDamageMult => allDamage.Value * spellDamageMult.Value * (1 + intelligence * spellDmgFromInt);
 
 			public int TotalMeleeArmorPiercing => allArmorPiercing + meleeArmorPiercing;
 			public int TotalRangedArmorPiercing => allArmorPiercing + rangedArmorPiercing;

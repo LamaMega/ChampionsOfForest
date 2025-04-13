@@ -87,12 +87,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddEnergyRegen(float f)
 		{
-			ModdedPlayer.Stats.energyRecoveryperSecond.Add(f);
+			ModdedPlayer.Stats.energyRecoveryBase.Add(f);
 		}
 
 		public static void RemoveEnergyRegen(float f)
 		{
-			ModdedPlayer.Stats.energyRecoveryperSecond.Sub(f);
+			ModdedPlayer.Stats.energyRecoveryBase.Sub(f);
 		}
 
 		public static void AddStaminaRegenPercent(float f)
@@ -147,12 +147,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddLifeOnHit(float f)
 		{
-			ModdedPlayer.Stats.healthOnHit.Add(f);
+			ModdedPlayer.Stats.lifeOnHit.Add(f);
 		}
 
 		public static void RemoveLifeOnHit(float f)
 		{
-			ModdedPlayer.Stats.healthOnHit.Sub(f);
+			ModdedPlayer.Stats.lifeOnHit.Sub(f);
 		}
 
 		public static void AddDodgeChance(float f)
@@ -177,12 +177,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddEliteDamageReduction(float f)
 		{
-			ModdedPlayer.Stats.damageFromElite.valueMultiplicative *= 1 - f;
+			ModdedPlayer.Stats.damageFromElites.valueMultiplicative *= 1 - f;
 		}
 
 		public static void RemoveEliteDamageReduction(float f)
 		{
-			ModdedPlayer.Stats.damageFromElite.valueMultiplicative /= 1 - f;
+			ModdedPlayer.Stats.damageFromElites.valueMultiplicative /= 1 - f;
 		}
 
 		public static void AddAttackSpeed(float f)
@@ -217,12 +217,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddSpellDamageAmplifier(float f)
 		{
-			ModdedPlayer.Stats.spellIncreasedDmg.Add(f);
+			ModdedPlayer.Stats.spellDamageMult.Add(f);
 		}
 
 		public static void RemoveSpellDamageAmplifier(float f)
 		{
-			ModdedPlayer.Stats.spellIncreasedDmg.Sub(f);
+			ModdedPlayer.Stats.spellDamageMult.Sub(f);
 		}
 
 		public static void AddMeleeDamageAmplifier(float f)
@@ -247,32 +247,32 @@ namespace ChampionsOfForest.Items
 
 		public static void AddspellFlatDmg(float f)
 		{
-			ModdedPlayer.Stats.spellFlatDmg.Add(f);
+			ModdedPlayer.Stats.baseSpellDamage.Add(f);
 		}
 
 		public static void RemovespellFlatDmg(float f)
 		{
-			ModdedPlayer.Stats.spellFlatDmg.Sub(f);
+			ModdedPlayer.Stats.baseSpellDamage.Sub(f);
 		}
 
 		public static void AddMeleeDamageBonus(float f)
 		{
-			ModdedPlayer.Stats.meleeFlatDmg.Add(f);
+			ModdedPlayer.Stats.baseMeleeDamage.Add(f);
 		}
 
 		public static void RemoveMeleeDamageBonus(float f)
 		{
-			ModdedPlayer.Stats.meleeFlatDmg.Sub(f);
+			ModdedPlayer.Stats.baseMeleeDamage.Sub(f);
 		}
 
 		public static void AddRangedDamageBonus(float f)
 		{
-			ModdedPlayer.Stats.rangedFlatDmg.Add(f);
+			ModdedPlayer.Stats.baseRangedDamage.Add(f);
 		}
 
 		public static void RemoveRangedDamageBonus(float f)
 		{
-			ModdedPlayer.Stats.rangedFlatDmg.Sub(f);
+			ModdedPlayer.Stats.baseRangedDamage.Sub(f);
 		}
 
 		public static void AddmaxEnergyFromAgi(float f)
@@ -367,12 +367,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddMagicFind(float f)
 		{
-			ModdedPlayer.Stats.magicFind.Add(f);
+			ModdedPlayer.Stats.magicFind_quantity.Add(f);
 		}
 
 		public static void RemoveMagicFind(float f)
 		{
-			ModdedPlayer.Stats.magicFind.Sub(f);
+			ModdedPlayer.Stats.magicFind_quantity.Sub(f);
 
 		}
 

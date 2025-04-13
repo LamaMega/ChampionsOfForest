@@ -396,7 +396,7 @@ namespace ChampionsOfForest.Player
 				}
 				if (dmgPerSecond != 0)
 				{
-					dmgPerSecond *= stats.damageFromElite;
+					dmgPerSecond *= stats.damageFromElites;
 					dmgPerSecond *= Stats.allDamageTaken;
 					LocalPlayer.Stats.Health -= dmgPerSecond * Time.deltaTime;
 					LocalPlayer.Stats.HealthTarget -= dmgPerSecond * Time.deltaTime * 2;
@@ -727,8 +727,8 @@ namespace ChampionsOfForest.Player
 		public void OnHit()
 		{
 			
-			LocalPlayer.Stats.HealthTarget +=stats.healthOnHit *stats.allRecoveryMult;
-			LocalPlayer.Stats.Health += stats.healthOnHit * stats.allRecoveryMult;
+			LocalPlayer.Stats.HealthTarget +=stats.lifeOnHit *stats.allRecoveryMult;
+			LocalPlayer.Stats.Health += stats.lifeOnHit * stats.allRecoveryMult;
 			LocalPlayer.Stats.Energy += stats.energyOnHit * stats.TotalEnergyRecoveryMultiplier;
 			LocalPlayer.Stats.Stamina += stats.staminaOnHit * Stats.TotalEnergyRecoveryMultiplier;
 			SpellActions.OnFrenzyAttack();
@@ -822,18 +822,18 @@ namespace ChampionsOfForest.Player
 				if (hit == FurySwipesLastHit)
 				{
 					FurySwipesDmg += 10;
-					Stats.rangedFlatDmg.valueAdditive += 10;
-					Stats.spellFlatDmg.valueAdditive += 10;
-					Stats.meleeFlatDmg.valueAdditive += 10;
+					Stats.baseRangedDamage.valueAdditive += 10;
+					Stats.baseSpellDamage.valueAdditive += 10;
+					Stats.baseMeleeDamage.valueAdditive += 10;
 					AddBuff(27, 98, 10, 60);
 
 				}
 				else
 				{
 					FurySwipesLastHit = hit;
-					Stats.rangedFlatDmg.valueAdditive -= FurySwipesDmg;
-					Stats.spellFlatDmg.valueAdditive -= FurySwipesDmg;
-					Stats.meleeFlatDmg.valueAdditive -= FurySwipesDmg;
+					Stats.baseRangedDamage.valueAdditive -= FurySwipesDmg;
+					Stats.baseSpellDamage.valueAdditive -= FurySwipesDmg;
+					Stats.baseMeleeDamage.valueAdditive -= FurySwipesDmg;
 					FurySwipesDmg = 0;
 					if (activeBuffs.ContainsKey(98))
 						activeBuffs[98].amount = 0;
@@ -854,18 +854,18 @@ namespace ChampionsOfForest.Player
 				if (hit == FurySwipesLastHit)
 				{
 					FurySwipesDmg += 100;
-					Stats.rangedFlatDmg.valueAdditive += 100;
-					Stats.spellFlatDmg.valueAdditive +=100;
-					Stats.meleeFlatDmg.valueAdditive += 100;
+					Stats.baseRangedDamage.valueAdditive += 100;
+					Stats.baseSpellDamage.valueAdditive +=100;
+					Stats.baseMeleeDamage.valueAdditive += 100;
 					AddBuff(27, 98, 100, 60);
 
 				}
 				else
 				{
 					FurySwipesLastHit = hit;
-					Stats.rangedFlatDmg.valueAdditive -= FurySwipesDmg;
-					Stats.spellFlatDmg.valueAdditive -= FurySwipesDmg;
-					Stats.meleeFlatDmg.valueAdditive -= FurySwipesDmg;
+					Stats.baseRangedDamage.valueAdditive -= FurySwipesDmg;
+					Stats.baseSpellDamage.valueAdditive -= FurySwipesDmg;
+					Stats.baseMeleeDamage.valueAdditive -= FurySwipesDmg;
 					FurySwipesDmg = 0;
 					if (activeBuffs.ContainsKey(98))
 						activeBuffs[98].amount = 0;

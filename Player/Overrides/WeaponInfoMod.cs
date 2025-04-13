@@ -119,7 +119,7 @@ namespace ChampionsOfForest.Player
 				outputdmg = smashDamage;
 			else
 				outputdmg = weaponDamage;
-			outputdmg += ModdedPlayer.Stats.meleeFlatDmg + SpellActions.GetParryCounterStrikeDmg();
+			outputdmg += ModdedPlayer.Stats.baseMeleeDamage + SpellActions.GetParryCounterStrikeDmg();
 			float critDmg = ModdedPlayer.Stats.RandomCritDamage;
 			outputdmg *= critDmg * ModdedPlayer.Stats.MeleeDamageMult;
 
@@ -227,7 +227,7 @@ namespace ChampionsOfForest.Player
 						if (ModdedPlayer.Stats.perk_fireDmgIncreaseOnHit)
 						{
 							int myID = 2000 + ModReferences.Players.IndexOf(LocalPlayer.GameObject);
-							float fireDmg = 1 + ModdedPlayer.Stats.spellFlatDmg / 3;
+							float fireDmg = 1 + ModdedPlayer.Stats.baseSpellDamage / 3;
 							fireDmg *= ModdedPlayer.Stats.TotalMagicDamageMultiplier;
 							fireDmg *= ModdedPlayer.Stats.fireDamage + 1;
 							fireDmg *= 0.35f;
@@ -316,7 +316,7 @@ namespace ChampionsOfForest.Player
 						if (ModdedPlayer.Stats.perk_fireDmgIncreaseOnHit)
 						{
 							int myID = 2000 + ModReferences.Players.IndexOf(LocalPlayer.GameObject);
-							float fireDmg = 1 + ModdedPlayer.Stats.spellFlatDmg / 3;
+							float fireDmg = 1 + ModdedPlayer.Stats.baseSpellDamage / 3;
 							fireDmg *= ModdedPlayer.Stats.TotalMagicDamageMultiplier;
 							fireDmg *= ModdedPlayer.Stats.fireDamage + 1;
 							fireDmg *= 0.35f;
@@ -356,7 +356,7 @@ namespace ChampionsOfForest.Player
 							ModdedPlayer.instance.OnHit();
 							ModdedPlayer.instance.OnHit_Melee(other.transform);
 
-							DamageMath.ReduceDamageToSendOverNet(2f * (WeaponDamage + ModdedPlayer.Stats.meleeFlatDmg + SpellActions.GetParryCounterStrikeDmg()) * ModdedPlayer.Stats.MeleeDamageMult * ModdedPlayer.Stats.RandomCritDamage, out int dmg, out int repetitions);
+							DamageMath.ReduceDamageToSendOverNet(2f * (WeaponDamage + ModdedPlayer.Stats.baseMeleeDamage + SpellActions.GetParryCounterStrikeDmg()) * ModdedPlayer.Stats.MeleeDamageMult * ModdedPlayer.Stats.RandomCritDamage, out int dmg, out int repetitions);
 
 							HitPlayer hitPlayer = HitPlayer.Create(component3, EntityTargets.Everyone);
 							hitPlayer.damage = dmg;

@@ -28,7 +28,7 @@ namespace ChampionsOfForest.Player
 			pierceCount = 0;
 
 			//flat damage part
-			OutputDmg = damage + ModdedPlayer.Stats.rangedFlatDmg;
+			OutputDmg = damage + ModdedPlayer.Stats.baseRangedDamage;
 			if (ModdedPlayer.Stats.spell_seekingArrow)
 			{
 				OutputDmg += ModdedPlayer.Stats.spell_seekingArrow_DamageBonus.Value;
@@ -327,7 +327,7 @@ namespace ChampionsOfForest.Player
 				if (ModdedPlayer.Stats.perk_fireDmgIncreaseOnHit)
 				{
 					int myID = 1000 + ModReferences.Players.IndexOf(LocalPlayer.GameObject);
-					float dmg = 1 + ModdedPlayer.Stats.spellFlatDmg / 3;
+					float dmg = 1 + ModdedPlayer.Stats.baseSpellDamage / 3;
 					dmg *= ModdedPlayer.Stats.TotalMagicDamageMultiplier;
 					dmg *= ModdedPlayer.Stats.fireDamage + 1;
 					dmg *= 0.3f;

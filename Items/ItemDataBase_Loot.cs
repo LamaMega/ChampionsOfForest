@@ -94,7 +94,7 @@ namespace ChampionsOfForest
 		{
 			int level = GetLevel(pos);
 			float w = Worth;
-			w *= ModdedPlayer.Stats.magicFind.Value;
+			w *= ModdedPlayer.Stats.magicFind_quantity.Value;
 
 			int rarity = GetRarity(w, ModSettings.difficulty);
 
@@ -136,7 +136,7 @@ namespace ChampionsOfForest
 		{
 			int level = GetLevel(pos);
 			float w = Worth / (level);
-			w *= ModdedPlayer.Stats.magicFind.Value;
+			w *= ModdedPlayer.Stats.magicFind_quantity.Value;
 
 			int rarity = GetRarity(w, difficulty);
 
@@ -167,7 +167,7 @@ namespace ChampionsOfForest
 		{
 			int dif = (int)difficulty;
 			int rarity = 0;
-			float mf = Mathf.Sqrt(ModdedPlayer.Stats.magicFind.Value) - 1;
+			float mf = Mathf.Sqrt(ModdedPlayer.Stats.magicFind_quantity.Value) - 1;
 			if ((w > 20 && Random.value < 0.70f + 0.45 * mf + dif * 0.075) || (dif > 5 && w > 2000))
 			{
 				rarity = 1;

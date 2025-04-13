@@ -3490,8 +3490,8 @@ new int[] {0,0,0,0,62,63,64},
                 StackSize = 1,
                 type = BaseItem.ItemType.Glove,
                 icon = Res.ResourceLoader.GetTexture(86),
-                onEquip = () => { ModdedPlayer.Stats.spellIncreasedDmg.valueMultiplicative *= 2f; ModdedPlayer.Stats.spellCost.valueMultiplicative *= 2f; },
-                onUnequip = () => { ModdedPlayer.Stats.spellIncreasedDmg.valueMultiplicative /= 2f; ModdedPlayer.Stats.spellCost.valueMultiplicative /= 2f; }
+                onEquip = () => { ModdedPlayer.Stats.spellDamageMult.valueMultiplicative *= 2f; ModdedPlayer.Stats.spellCost.valueMultiplicative *= 2f; },
+                onUnequip = () => { ModdedPlayer.Stats.spellDamageMult.valueMultiplicative /= 2f; ModdedPlayer.Stats.spellCost.valueMultiplicative /= 2f; }
             };
             new BaseItem(new int[][]
               {
@@ -4392,14 +4392,14 @@ new int[] {0,0,0,0,62,63,64},
             //This is the new better way of defining items, no longer uses item ids, now uses enum like in C++, the enum is Stats, you can find it in ItemDataBase_StatDefinitons.cs
             new BaseItem(new Stat[][]
             {
-                new [] {MELEEDMGFROMSTR},
+                new [] {MELEE_DMG_FROM_STR},
                 new [] {STRENGTH},
-                new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE},
-                new [] {MELEEARMORPIERCING,ARMORPIERCING,ALL_ATTRIBUTES},
-                new [] {ATTACKCOSTREDUCTION,ATTACKSPEED},
+                new [] {BASE_MELEE_DAMAGE,MELEE_DAMAGE_INCREASE},
+                new [] {MELEE_ARMOR_PIERCING,ARMOR_PIERCING,ALL_ATTRIBUTES},
+                new [] {ATTACK_COST_REDUCTION,ATTACKSPEED},
                 new [] {ATTACKSPEED},
-                new [] {ALL_ATTRIBUTES,MELEEWEAPONRANGE,VITALITY,MAX_LIFE},
-                new [] {ENERGYONHIT,VITALITY,LIFEONHIT }
+                new [] {ALL_ATTRIBUTES,MELEE_WEAPON_RANGE,VITALITY,MAX_LIFE},
+                new [] {ENERGY_ON_HIT,VITALITY,LIFE_ON_HIT }
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_372/*Knife on a stick*/, //tr
@@ -4416,17 +4416,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH},
-                new [] {STRENGTH,ALL_ATTRIBUTES,MELEEARMORPIERCING,MELEEDAMAGEINCREASE,COOLDOWNREDUCTION,SPELLDAMAGEINCREASE},
-                new [] {MAX_LIFE,VITALITY,PERCENTMAXIMUMLIFE,ALL_ATTRIBUTES},
-                new [] {MELEEDAMAGEINCREASE,DAMAGE_REDUCTION},
+                new [] {STRENGTH,ALL_ATTRIBUTES,MELEE_ARMOR_PIERCING,MELEE_DAMAGE_INCREASE,COOLDOWN_REDUCTION,SPELL_DAMAGE_MULTIPLIER},
+                new [] {MAX_LIFE,VITALITY,MAX_LIFE_MULT,ALL_ATTRIBUTES},
+                new [] {MELEE_DAMAGE_INCREASE,DAMAGE_REDUCTION},
                 new [] {THORNS},
                 new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT},
                 new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,THORNS},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {ENERGYPERSECOND,MAX_ENERGY,DODGECHANCE,ARMOR,},
-                new [] {STRENGTH,INTELLIGENCE,ARMOR,ARMORPIERCING,THORNS,}
+                new [] {ENERGY_REGEN_BASE,MAX_ENERGY,DODGE_CHANCE,ARMOR,},
+                new [] {STRENGTH,INTELLIGENCE,ARMOR,ARMOR_PIERCING,THORNS,}
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_374/*Fists of Nails*/, //tr
@@ -4469,17 +4469,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {INTELLIGENCE,AGILITY},
-                new [] {MAGICFIND,SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
-                new [] {MAXENERGYFROMAGI,SPELLDMGFROMINT,RANGEDDMGFROMAGI},
+                new [] {LOOT_QUANTITY,SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE},
+                new [] {MAX_ENERGY_FROM_AGILITY,SPELL_DMG_FROM_INT,RANGED_DMG_FROM_AGI},
                 new [] {ARMOR},
                 new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,MOVEMENTSPEED,DAMAGE_REDUCTION},
+                new [] {COOLDOWN_REDUCTION,SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,MOVEMENT_SPEED,DAMAGE_REDUCTION},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {DODGECHANCE,ARMOR,BASESPELLDAMAGE,BASERANGEDDAMAGE},
-                new [] {BASERANGEDDAMAGE,RANGEDARMORPIERCING,RANGEDDAMAGEINCREASE}
+                new [] {DODGE_CHANCE,ARMOR,BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE},
+                new [] {BASE_RANGED_DAMAGE,RANGED_ARMOR_PIERCING,RANGED_DAMAGE_INCREASE}
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_380/*Aezyn*/, //tr
@@ -4501,14 +4501,14 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {CRIT_CHANCE},
                 new [] {CRIT_DAMAGE},
                 new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,MOVEMENTSPEED,DAMAGE_REDUCTION},
+                new [] {COOLDOWN_REDUCTION,SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,MOVEMENT_SPEED,DAMAGE_REDUCTION},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {DODGECHANCE,ARMOR,BASESPELLDAMAGE,BASERANGEDDAMAGE},
-                new [] {BASERANGEDDAMAGE,RANGEDARMORPIERCING,RANGEDDAMAGEINCREASE}
+                new [] {DODGE_CHANCE,ARMOR,BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE},
+                new [] {BASE_RANGED_DAMAGE,RANGED_ARMOR_PIERCING,RANGED_DAMAGE_INCREASE}
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_383/*Punny's Reflective Ring*/, //tr
@@ -4545,13 +4545,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {RANGEDARMORPIERCING},
+                new [] {RANGED_ARMOR_PIERCING},
                 new [] {AGILITY},
-                new [] {BASERANGEDDAMAGE,RANGEDDAMAGEINCREASE},
-                new [] {SPEARDAMAGE},
-                new [] {PROJECTILESPEED},
-                new [] {ALL_ATTRIBUTES,PROJECTILESIZE,LESSERAGILITY},
-                new [] {ENERGYONHIT,VITALITY,LIFEONHIT }
+                new [] {BASE_RANGED_DAMAGE,RANGED_DAMAGE_INCREASE},
+                new [] {THROWN_SPEAR_DAMAGE},
+                new [] {PROJECTILE_SPEED},
+                new [] {ALL_ATTRIBUTES,PROJECTILE_SIZE,LESSERAGILITY},
+                new [] {ENERGY_ON_HIT,VITALITY,LIFE_ON_HIT }
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_389/*Javelin*/, //tr
@@ -4567,12 +4567,12 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH},
-                new [] {MAX_LIFE, VITALITY,PERCENTMAXIMUMLIFE},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
-                new [] {MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
+                new [] {MAX_LIFE, VITALITY,MAX_LIFE_MULT},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE,BASE_MELEE_DAMAGE},
+                new [] {MELEE_DAMAGE_INCREASE,BASE_MELEE_DAMAGE},
                 new [] {ATTACKSPEED, CRIT_DAMAGE,CRIT_CHANCE},
-                new [] {MAXENERGYFROMAGI,PERCENTMAXIMUMENERGY,ENERGYONHIT,LIFEONHIT,LIFE_REGEN_BASE,LIFE_REGEN_MULT,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT},
-                new [] {ARMOR,THORNS,DAMAGE_REDUCTION,PERCENTMAXIMUMLIFE},
+                new [] {MAX_ENERGY_FROM_AGILITY,MAX_ENERGY_MULT,ENERGY_ON_HIT,LIFE_ON_HIT,LIFE_REGEN_BASE,LIFE_REGEN_MULT,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT},
+                new [] {ARMOR,THORNS,DAMAGE_REDUCTION,MAX_LIFE_MULT},
                 new [] {ALL},
                 new [] {ALL},
 
@@ -4593,9 +4593,9 @@ new int[] {0,0,0,0,62,63,64},
                 var SomeItem = new BaseItem(new Stat[][]
                     {
                 new [] {STRENGTH},
-                new [] {MAX_LIFE, VITALITY,MAXHEALTHFROMVIT,PERCENTMAXIMUMLIFE},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,BASEMELEEDAMAGE,ATTACKSPEED},
-                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE,CRIT_CHANCE},
+                new [] {MAX_LIFE, VITALITY,MAX_HEALTH_FROM_VITALITY,MAX_LIFE_MULT},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE,BASE_MELEE_DAMAGE,ATTACKSPEED},
+                new [] {SPELL_COST_REDUCTION, CRIT_DAMAGE,CRIT_CHANCE},
                 new [] {ALL},
                 new [] {STRENGTH, THORNS},
                 })
@@ -4615,13 +4615,13 @@ new int[] {0,0,0,0,62,63,64},
             {
                 var demoVestItem = new BaseItem(new Stat[][]
                     {
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXPLOSION_DAMAGE},
                 new [] {AGILITY,INTELLIGENCE, ALL_ATTRIBUTES},
-                new [] {MAX_LIFE, VITALITY, LIFEONHIT},
-                new [] {ALLHEALINGPERCENT},
+                new [] {MAX_LIFE, VITALITY, LIFE_ON_HIT},
+                new [] {ALL_RECOVERY},
                 new [] {ALL},
-                new [] {MELEEWEAPONRANGE,ENERGYONHIT,ARMORPIERCING, DODGECHANCE},
-                new [] {MOVEMENTSPEED,BLOCK,MAGICFIND},
+                new [] {MELEE_WEAPON_RANGE,ENERGY_ON_HIT,ARMOR_PIERCING, DODGE_CHANCE},
+                new [] {MOVEMENT_SPEED,BLOCK,LOOT_QUANTITY},
 
                     })
                 {
@@ -4641,13 +4641,13 @@ new int[] {0,0,0,0,62,63,64},
             }
             new BaseItem(new Stat[][]
             {
-                new [] {STRENGTH,ALL_ATTRIBUTES,BASEMELEEDAMAGE},
-                new [] {MAX_LIFE, VITALITY,DAMAGE_REDUCTION,MELEEWEAPONRANGE},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE},
-                new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE},
+                new [] {STRENGTH,ALL_ATTRIBUTES,BASE_MELEE_DAMAGE},
+                new [] {MAX_LIFE, VITALITY,DAMAGE_REDUCTION,MELEE_WEAPON_RANGE},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR},
+                new [] {SPELL_COST_REDUCTION, CRIT_DAMAGE},
                 new [] {ALL},
-                new [] {STRENGTH,THORNS,BASEMELEEDAMAGE,CRIT_CHANCE,ATTACKSPEED,MELEEWEAPONRANGE},
+                new [] {STRENGTH,THORNS,BASE_MELEE_DAMAGE,CRIT_CHANCE,ATTACKSPEED,MELEE_WEAPON_RANGE},
                 new [] {ARMOR},
 
             })
@@ -4665,11 +4665,11 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ALL_ATTRIBUTES,STRENGTH,AGILITY,INTELLIGENCE},
                 new [] {MAX_LIFE, VITALITY,STRENGTH,INTELLIGENCE},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,RANGEDARMORPIERCING},
-                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE,CRIT_CHANCE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION},
-                new [] {ARMORPIERCING},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE,RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,RANGED_ARMOR_PIERCING},
+                new [] {SPELL_COST_REDUCTION, CRIT_DAMAGE,CRIT_CHANCE,SPELL_DAMAGE_MULTIPLIER,COOLDOWN_REDUCTION},
+                new [] {ARMOR_PIERCING},
                 new [] {ALL},
-                new [] {ARMOR,DAMAGE_REDUCTION,RESISTANCETOMAGIC,VITALITY,LESSERVITALITY},
+                new [] {ARMOR,DAMAGE_REDUCTION,ELITE_DAMAGE_REDUCTION,VITALITY,LESSERVITALITY},
 
             })
             {
@@ -4687,13 +4687,13 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ATTACKSPEED},
-                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI},
-                new [] {BASERANGEDDAMAGE},
-                new [] {BASERANGEDDAMAGE,NONE},
-                new [] {PROJECTILESIZE,LESSERAGILITY,AGILITY},
-                new [] {PROJECTILESPEED,CRIT_CHANCE,CRIT_DAMAGE},
+                new [] {RANGED_DAMAGE_INCREASE,RANGED_DMG_FROM_AGI},
+                new [] {BASE_RANGED_DAMAGE},
+                new [] {BASE_RANGED_DAMAGE,NONE},
+                new [] {PROJECTILE_SIZE,LESSERAGILITY,AGILITY},
+                new [] {PROJECTILE_SPEED,CRIT_CHANCE,CRIT_DAMAGE},
                 new [] {AGILITY,NONE},
-                new [] {RANGEDARMORPIERCING, ARMORPIERCING,ENERGYONHIT},
+                new [] {RANGED_ARMOR_PIERCING, ARMOR_PIERCING,ENERGY_ON_HIT},
                 new [] {ALL},
             })
             {
@@ -4712,8 +4712,8 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH,LESSERSTRENGTH},
-                new [] {MAX_LIFE, VITALITY,MELEEDMGFROMSTR,ARMOR},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE},
+                new [] {MAX_LIFE, VITALITY,MELEE_DMG_FROM_STR,ARMOR},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE},
 
             })
             {
@@ -4729,10 +4729,10 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-                new [] {MAX_LIFE, VITALITY,MELEEDAMAGEINCREASE,BASEMELEEDAMAGE},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,ARMOR},
-                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE,CRIT_CHANCE},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR},
+                new [] {MAX_LIFE, VITALITY,MELEE_DAMAGE_INCREASE,BASE_MELEE_DAMAGE},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,ARMOR},
+                new [] {SPELL_COST_REDUCTION, CRIT_DAMAGE,CRIT_CHANCE},
                 new [] {ALL},
                 new [] {STRENGTH,LESSERSTRENGTH},
 
@@ -4751,8 +4751,8 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {STRENGTH},
                 new [] {MAX_LIFE, VITALITY},
-                new [] {MELEEARMORPIERCING, MELEEDAMAGEINCREASE},
-                new [] {SPELLCOSTREDUCTION, CRIT_DAMAGE},
+                new [] {MELEE_ARMOR_PIERCING, MELEE_DAMAGE_INCREASE},
+                new [] {SPELL_COST_REDUCTION, CRIT_DAMAGE},
                 new [] {STRENGTH},
 
             })
@@ -4768,7 +4768,7 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXPLOSION_DAMAGE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -4777,9 +4777,9 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE,NONE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE,NONE},
 
             })
             {
@@ -4795,7 +4795,7 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH,VITALITY,AGILITY,ALL_ATTRIBUTES,INTELLIGENCE},
-                new [] {MAXENERGYFROMAGI,MELEEDMGFROMSTR,SPELLDMGFROMINT,RANGEDDMGFROMAGI,MAXHEALTHFROMVIT},
+                new [] {MAX_ENERGY_FROM_AGILITY,MELEE_DMG_FROM_STR,SPELL_DMG_FROM_INT,RANGED_DMG_FROM_AGI,MAX_HEALTH_FROM_VITALITY},
                 new [] {ARMOR,DAMAGE_REDUCTION},
                 new [] { CRIT_CHANCE, CRIT_DAMAGE},
                 new [] {ALL},
@@ -4803,9 +4803,9 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE,NONE},
-                new [] {EXPLOSIONDAMAGE,NONE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE,NONE},
+                new [] {EXPLOSION_DAMAGE,NONE},
 
             })
             {
@@ -4824,15 +4824,15 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ARMOR},
                 new [] {MAX_LIFE, VITALITY},
-                new [] {CRIT_CHANCE, CRIT_DAMAGE,ATTACKSPEED,BASESPELLDAMAGE,STAMINA_REGEN_BASE},
+                new [] {CRIT_CHANCE, CRIT_DAMAGE,ATTACKSPEED,BASE_SPELL_DAMAGE,STAMINA_REGEN_BASE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL_ATTRIBUTES},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
 
             })
             {
@@ -4851,7 +4851,7 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ARMOR},
                 new [] {MAX_LIFE, VITALITY},
-                new [] {CRIT_CHANCE, CRIT_DAMAGE,ATTACKSPEED,BASESPELLDAMAGE,STAMINA_REGEN_BASE},
+                new [] {CRIT_CHANCE, CRIT_DAMAGE,ATTACKSPEED,BASE_SPELL_DAMAGE,STAMINA_REGEN_BASE},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -4859,8 +4859,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {EMPTYSOCKET},
                 new [] {EMPTYSOCKET},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
 
             })
             {
@@ -4881,13 +4881,13 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {MAX_LIFE, VITALITY,ARMOR,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,MAXHEALTHFROMVIT,THORNS,RESISTANCETOMAGIC},
-                new [] {JUMPPOWER},
-                new [] {MOVEMENTSPEED},
+                new [] {MAX_LIFE, VITALITY,ARMOR,MAX_LIFE_MULT,MAX_ENERGY_MULT,MAX_HEALTH_FROM_VITALITY,THORNS,ELITE_DAMAGE_REDUCTION},
+                new [] {JUMP_POWER},
+                new [] {MOVEMENT_SPEED},
                 new [] {EMPTYSOCKET},
                 new [] {EMPTYSOCKET},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
 
             })
             {
@@ -4907,11 +4907,11 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {MAX_LIFE, VITALITY,ARMOR,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,MAXHEALTHFROMVIT,THORNS,RESISTANCETOMAGIC},
+                new [] {MAX_LIFE, VITALITY,ARMOR,MAX_LIFE_MULT,MAX_ENERGY_MULT,MAX_HEALTH_FROM_VITALITY,THORNS,ELITE_DAMAGE_REDUCTION},
                 new [] {EMPTYSOCKET},
                 new [] {EMPTYSOCKET},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
 
             })
             {
@@ -4928,11 +4928,11 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ALL},
                 new [] {MAX_LIFE, VITALITY,ARMOR},
-                new [] {MELEEARMORPIERCING, RANGEDARMORPIERCING},
+                new [] {MELEE_ARMOR_PIERCING, RANGED_ARMOR_PIERCING},
                 new [] {ARMOR, ALL_ATTRIBUTES,VITALITY,LESSERVITALITY},
-                new [] {EXTRACARRIEDSTICKS,EXTRACARRIEDROCKS,EXTRACARRIEDROPES},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
+                new [] {EXTRA_CARRIED_STICKS,EXTRA_CARRIED_ROCKS,EXTRA_CARRIED_ROPES},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_412/*Gunpowder Boxers*/, //tr
@@ -4947,16 +4947,16 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE},
-                new [] {EXPLOSIONDAMAGE,NONE},
-                new [] {EXPLOSIONDAMAGE,NONE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE},
+                new [] {EXPLOSION_DAMAGE,NONE},
+                new [] {EXPLOSION_DAMAGE,NONE},
                 new [] {ARMOR},
-                new [] {PERCENTMAXIMUMLIFE},
+                new [] {MAX_LIFE_MULT},
 
             })
             {
@@ -4973,14 +4973,14 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {CRIT_CHANCE},
-                new [] {MAGICFIND,NONE,EXPGAIN},
-                new [] {RANGEDDAMAGEINCREASE,MELEEDAMAGEINCREASE},
+                new [] {LOOT_QUANTITY,NONE,EXP_GAIN_MULT},
+                new [] {RANGED_DAMAGE_INCREASE,MELEE_DAMAGE_INCREASE},
                 new [] {STRENGTH,AGILITY},
                 new [] {ALL},
-                new [] {CHANCEONHITTOBLEED},
-                new [] {CHANCEONHITTOSLOW},
-                new [] {CHANCEONHITTOWEAKEN},
-                new [] {MAXENERGYFROMAGI,FIREDAMAGE,CRIT_DAMAGE,RANGEDDMGFROMAGI,MELEEDMGFROMSTR},
+                new [] {CHANCE_ON_HIT_TO_BLEED},
+                new [] {CHANCE_ON_HIT_TO_SLOW},
+                new [] {CHANCE_ON_HIT_TO_WEAKEN},
+                new [] {MAX_ENERGY_FROM_AGILITY,FIRE_DAMAGE,CRIT_DAMAGE,RANGED_DMG_FROM_AGI,MELEE_DMG_FROM_STR},
 
 
             })
@@ -4996,14 +4996,14 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {SPELLDAMAGEINCREASE},
+                new [] {SPELL_DAMAGE_MULTIPLIER},
                 new [] {INTELLIGENCE},
-                new [] {COOLDOWNREDUCTION},
-                new [] {ALL_ATTRIBUTES, INTELLIGENCE,SPELLDAMAGEINCREASE},
-                new [] {SPELLDMGFROMINT,MAXENERGYFROMAGI},
-                new [] {BASESPELLDAMAGE},
-                new [] {PERCENTMAXIMUMENERGY,ENERGYONHIT,ENERGYPERSECOND},
-                new [] {FIREDAMAGE,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA},
+                new [] {COOLDOWN_REDUCTION},
+                new [] {ALL_ATTRIBUTES, INTELLIGENCE,SPELL_DAMAGE_MULTIPLIER},
+                new [] {SPELL_DMG_FROM_INT,MAX_ENERGY_FROM_AGILITY},
+                new [] {BASE_SPELL_DAMAGE},
+                new [] {MAX_ENERGY_MULT,ENERGY_ON_HIT,ENERGY_REGEN_BASE},
+                new [] {FIRE_DAMAGE,SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA},
 
 
             })
@@ -5019,16 +5019,16 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {MELEEDMGFROMSTR,ALL_ATTRIBUTES,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT,DODGECHANCE},
+                new [] {MELEE_DMG_FROM_STR,ALL_ATTRIBUTES,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT,DODGE_CHANCE},
                 new [] {STRENGTH,LESSERSTRENGTH,VITALITY,ARMOR},
-                new [] {MELEEWEAPONRANGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
+                new [] {MELEE_WEAPON_RANGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE},
                 new [] {VITALITY},
-                new [] {MAXHEALTHFROMVIT,MAXENERGYFROMAGI},
+                new [] {MAX_HEALTH_FROM_VITALITY,MAX_ENERGY_FROM_AGILITY},
                 new [] {LIFE_REGEN_BASE},
-                new [] {LIFEONHIT},
-                new [] {ENERGYONHIT,ENERGYPERSECOND,INTELLIGENCE,AGILITY},
+                new [] {LIFE_ON_HIT},
+                new [] {ENERGY_ON_HIT,ENERGY_REGEN_BASE,INTELLIGENCE,AGILITY},
                 new [] {MAX_LIFE},
-                new [] {PERCENTMAXIMUMLIFE,CRIT_CHANCE},
+                new [] {MAX_LIFE_MULT,CRIT_CHANCE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_416/*Life Ring*/, //tr
@@ -5043,17 +5043,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
             new [] {STRENGTH},
-            new [] {MOVEMENTSPEED,DODGECHANCE,DAMAGE_REDUCTION},
-            new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE,ARMOR},
-            new [] {INTELLIGENCE,MAXENERGYFROMAGI,PERCENTMAXIMUMENERGY,MAX_ENERGY,BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,ARMOR,DAMAGE_REDUCTION},
-            new [] {MELEEARMORPIERCING,MELEEDAMAGEINCREASE},
+            new [] {MOVEMENT_SPEED,DODGE_CHANCE,DAMAGE_REDUCTION},
+            new [] {VITALITY,MAX_HEALTH_FROM_VITALITY,MAX_LIFE,MAX_LIFE_MULT,ARMOR},
+            new [] {INTELLIGENCE,MAX_ENERGY_FROM_AGILITY,MAX_ENERGY_MULT,MAX_ENERGY,BASE_MELEE_DAMAGE,MELEE_DAMAGE_INCREASE,ARMOR,DAMAGE_REDUCTION},
+            new [] {MELEE_ARMOR_PIERCING,MELEE_DAMAGE_INCREASE},
             new [] {ARMOR,ATTACKSPEED,STRENGTH},
-            new [] {BASEMELEEDAMAGE},
-            new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE},
-            new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-            new [] {CRIT_CHANCE,MELEEWEAPONRANGE,ATTACKSPEED},
-            new [] {CRIT_DAMAGE, MELEEDAMAGEINCREASE, STRENGTH},
-            new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE},
+            new [] {BASE_MELEE_DAMAGE},
+            new [] {BASE_MELEE_DAMAGE,MELEE_DAMAGE_INCREASE},
+            new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR},
+            new [] {CRIT_CHANCE,MELEE_WEAPON_RANGE,ATTACKSPEED},
+            new [] {CRIT_DAMAGE, MELEE_DAMAGE_INCREASE, STRENGTH},
+            new [] {ENERGY_ON_HIT,ENERGY_REGEN_BASE,MAX_LIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_417/*Moritz's Gear*/, //tr
@@ -5067,16 +5067,16 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {STRENGTH,BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,ATTACKSPEED},
-                new [] {MOVEMENTSPEED,DODGECHANCE,DAMAGE_REDUCTION},
-                new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE,MELEEARMORPIERCING},
-                new [] {INTELLIGENCE,STRENGTH,CRIT_DAMAGE,PERCENTMAXIMUMENERGY,MAX_ENERGY},
-                new [] {BASEMELEEDAMAGE},
-                new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE},
-                new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
-                new [] {CRIT_CHANCE,MELEEWEAPONRANGE},
-                new [] {CRIT_DAMAGE, MELEEDAMAGEINCREASE, STRENGTH},
-                new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE},
+                new [] {STRENGTH,BASE_MELEE_DAMAGE,MELEE_DAMAGE_INCREASE,ATTACKSPEED},
+                new [] {MOVEMENT_SPEED,DODGE_CHANCE,DAMAGE_REDUCTION},
+                new [] {VITALITY,MAX_HEALTH_FROM_VITALITY,MAX_LIFE,MAX_LIFE_MULT,MELEE_ARMOR_PIERCING},
+                new [] {INTELLIGENCE,STRENGTH,CRIT_DAMAGE,MAX_ENERGY_MULT,MAX_ENERGY},
+                new [] {BASE_MELEE_DAMAGE},
+                new [] {BASE_MELEE_DAMAGE,MELEE_DAMAGE_INCREASE},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR},
+                new [] {CRIT_CHANCE,MELEE_WEAPON_RANGE},
+                new [] {CRIT_DAMAGE, MELEE_DAMAGE_INCREASE, STRENGTH},
+                new [] {ENERGY_ON_HIT,ENERGY_REGEN_BASE,MAX_LIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_418/*Band of Hurting*/, //tr
@@ -5092,8 +5092,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {AGILITY,RANGEDDAMAGEINCREASE},
-                new [] {ALL_ATTRIBUTES, ARMOR,PERCENTMAXIMUMLIFE},
+                new [] {AGILITY,RANGED_DAMAGE_INCREASE},
+                new [] {ALL_ATTRIBUTES, ARMOR,MAX_LIFE_MULT},
                 new [] {CRIT_CHANCE},
                 new [] {CRIT_DAMAGE,NONE},
             })
@@ -5110,9 +5110,9 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {INTELLIGENCE},
-                new [] {ALL_ATTRIBUTES, ARMOR,ENERGYONHIT},
-                new [] {BASESPELLDAMAGE},
-                new [] {FIREDAMAGE,SPELLDAMAGEINCREASE,SPELLCOSTREDUCTION},
+                new [] {ALL_ATTRIBUTES, ARMOR,ENERGY_ON_HIT},
+                new [] {BASE_SPELL_DAMAGE},
+                new [] {FIRE_DAMAGE,SPELL_DAMAGE_MULTIPLIER,SPELL_COST_REDUCTION},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_318/*Hood*/, //tr
@@ -5126,7 +5126,7 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
         {
-                new [] {SPEARDAMAGE},
+                new [] {THROWN_SPEAR_DAMAGE},
                 new [] {AGILITY},
                 new [] {STAMINA_REGEN_BASE},
         })
@@ -5144,17 +5144,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
             new [] {INTELLIGENCE},
-            new [] {DODGECHANCE,DAMAGE_REDUCTION},
-            new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE},
-            new [] {SPELLDMGFROMINT},
-            new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
-            new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
-            new [] {ENERGYPERSECOND,PERCENTMAXIMUMENERGY,MAXENERGYFROMAGI},
-            new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
-            new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
-            new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
-            new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE},
-            new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE},
+            new [] {DODGE_CHANCE,DAMAGE_REDUCTION},
+            new [] {VITALITY,MAX_HEALTH_FROM_VITALITY,MAX_LIFE,MAX_LIFE_MULT},
+            new [] {SPELL_DMG_FROM_INT},
+            new [] {SPELL_COST_REDUCTION,COOLDOWN_REDUCTION},
+            new [] {SPELL_COST_REDUCTION,COOLDOWN_REDUCTION},
+            new [] {ENERGY_REGEN_BASE,MAX_ENERGY_MULT,MAX_ENERGY_FROM_AGILITY},
+            new [] {BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE},
+            new [] {BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE},
+            new [] {BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE},
+            new [] {BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE},
+            new [] {ENERGY_ON_HIT,ENERGY_REGEN_BASE,MAX_LIFE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_422/*Star Robe*/, //tr
@@ -5169,17 +5169,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ATTACKSPEED},
-                new [] {BASESPELLDAMAGE},
-                new [] {DODGECHANCE,DAMAGE_REDUCTION,MELEEWEAPONRANGE,ARMORPIERCING,FIREDAMAGE,CRIT_CHANCE},
-                new [] {VITALITY,MAXHEALTHFROMVIT,MAX_LIFE,PERCENTMAXIMUMLIFE,LIFE_REGEN_BASE,LIFEONHIT},
-                new [] {SPELLDMGFROMINT},
-                new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION,CRIT_CHANCE,CRIT_DAMAGE},
-                new [] {SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA,PERCENTMAXIMUMENERGY,LIFE_REGEN_MULT},
-                new [] {ENERGYPERSECOND,PERCENTMAXIMUMENERGY,MAXENERGYFROMAGI},
+                new [] {BASE_SPELL_DAMAGE},
+                new [] {DODGE_CHANCE,DAMAGE_REDUCTION,MELEE_WEAPON_RANGE,ARMOR_PIERCING,FIRE_DAMAGE,CRIT_CHANCE},
+                new [] {VITALITY,MAX_HEALTH_FROM_VITALITY,MAX_LIFE,MAX_LIFE_MULT,LIFE_REGEN_BASE,LIFE_ON_HIT},
+                new [] {SPELL_DMG_FROM_INT},
+                new [] {SPELL_COST_REDUCTION,COOLDOWN_REDUCTION,CRIT_CHANCE,CRIT_DAMAGE},
+                new [] {SPELL_COST_REDUCTION,COOLDOWN_REDUCTION,SPELL_COST_TO_STAMINA,MAX_ENERGY_MULT,LIFE_REGEN_MULT},
+                new [] {ENERGY_REGEN_BASE,MAX_ENERGY_MULT,MAX_ENERGY_FROM_AGILITY},
                 new [] {INTELLIGENCE,STAMINA_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT},
-                new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE,BASEMELEEDAMAGE,ALL_ATTRIBUTES},
-                new [] {BASESPELLDAMAGE,SPELLDAMAGEINCREASE,INTELLIGENCE,DAMAGE_REDUCTION},
-                new [] {ENERGYONHIT,ENERGYPERSECOND,MAX_LIFE,MASSACREDURATION,MAGICFIND,EXPLOSIONDAMAGE},
+                new [] {BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE,BASE_MELEE_DAMAGE,ALL_ATTRIBUTES},
+                new [] {BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE,DAMAGE_REDUCTION},
+                new [] {ENERGY_ON_HIT,ENERGY_REGEN_BASE,MAX_LIFE,MASSACRE_DURATION,LOOT_QUANTITY,EXPLOSION_DAMAGE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_423/*Anger*/, //tr
@@ -5201,17 +5201,17 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new[] { ARMOR },
-                new[] { MOVEMENTSPEED},
-                new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, ALL_ATTRIBUTES },
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, DAMAGE_REDUCTION },
-                new[] { VITALITY, MAXHEALTHFROMVIT, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR,MAXHEALTHFROMVIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT },
-                new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI },
-                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
-                new[] { ENERGYONHIT, ENERGYPERSECOND, MAX_LIFE, MASSACREDURATION, MAGICFIND, EXPLOSIONDAMAGE },
+                new[] { MOVEMENT_SPEED},
+                new[] { SPELL_DMG_FROM_INT },
+                new[] { SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { BASE_SPELL_DAMAGE, SPELL_DAMAGE_MULTIPLIER, INTELLIGENCE, ALL_ATTRIBUTES },
+                new[] { BASE_SPELL_DAMAGE, SPELL_DAMAGE_MULTIPLIER, INTELLIGENCE, DAMAGE_REDUCTION },
+                new[] { VITALITY, MAX_HEALTH_FROM_VITALITY, MAX_LIFE, MAX_LIFE_MULT, LIFE_REGEN_BASE, LIFE_ON_HIT },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR,MAX_HEALTH_FROM_VITALITY },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, SPELL_COST_TO_STAMINA, MAX_ENERGY_MULT, LIFE_REGEN_MULT },
+                new[] { ENERGY_REGEN_BASE, MAX_ENERGY_MULT, MAX_ENERGY_FROM_AGILITY },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALL_RECOVERY },
+                new[] { ENERGY_ON_HIT, ENERGY_REGEN_BASE, MAX_LIFE, MASSACRE_DURATION, LOOT_QUANTITY, EXPLOSION_DAMAGE },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_426/*Yuki-Onna Strides*/, //tr
@@ -5233,16 +5233,16 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
-                new[] { ALLHEALINGPERCENT,DODGECHANCE,SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
-                new[] { SPELLDMGFROMINT,DAMAGE_REDUCTION },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
-                new[] { ARMOR,DAMAGE_REDUCTION ,RESISTANCETOMAGIC},
-                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE,SPELLDAMAGEINCREASE,BASESPELLDAMAGE },
-                new[] { VITALITY, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
-                new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { ALL_RECOVERY,DODGE_CHANCE,SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE},
+                new[] { SPELL_DMG_FROM_INT,DAMAGE_REDUCTION },
+                new[] { SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { ARMOR,DAMAGE_REDUCTION ,ELITE_DAMAGE_REDUCTION},
+                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE,SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE },
+                new[] { VITALITY, MAX_LIFE, MAX_LIFE_MULT, LIFE_REGEN_BASE, LIFE_ON_HIT },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, SPELL_COST_TO_STAMINA, MAX_ENERGY_MULT, LIFE_REGEN_MULT,ELITE_DAMAGE_REDUCTION },
+                new[] { ENERGY_REGEN_BASE, MAX_ENERGY_MULT, MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALL_RECOVERY },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_430/*Yuki-Onna Greaves*/, //tr
@@ -5263,16 +5263,16 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
-                new[] { ALLHEALINGPERCENT,DODGECHANCE},
-                new[] { SPELLDMGFROMINT,DAMAGE_REDUCTION },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
-                new[] { ARMOR,DAMAGE_REDUCTION ,RESISTANCETOMAGIC,SPELLDAMAGEINCREASE,BASESPELLDAMAGE},
-                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE,SPELLDAMAGEINCREASE,BASESPELLDAMAGE },
-                new[] { VITALITY, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
-                new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { ALL_RECOVERY,DODGE_CHANCE},
+                new[] { SPELL_DMG_FROM_INT,DAMAGE_REDUCTION },
+                new[] { SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { ARMOR,DAMAGE_REDUCTION ,ELITE_DAMAGE_REDUCTION,SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE},
+                new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE,SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE },
+                new[] { VITALITY, MAX_LIFE, MAX_LIFE_MULT, LIFE_REGEN_BASE, LIFE_ON_HIT },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, SPELL_COST_TO_STAMINA, MAX_ENERGY_MULT, LIFE_REGEN_MULT,ELITE_DAMAGE_REDUCTION },
+                new[] { ENERGY_REGEN_BASE, MAX_ENERGY_MULT, MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALL_RECOVERY },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_431/*Yuki-Onna Kimono*/, //tr
@@ -5294,15 +5294,15 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
                 new[] { CRIT_CHANCE,CRIT_DAMAGE},
-                new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
-                new[] { ARMOR, SPELLDAMAGEINCREASE, BASESPELLDAMAGE, RESISTANCETOMAGIC},
+                new[] { SPELL_DMG_FROM_INT },
+                new[] { SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { ARMOR, SPELL_DAMAGE_MULTIPLIER, BASE_SPELL_DAMAGE, ELITE_DAMAGE_REDUCTION},
                 new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE },
-                new[] { SPELLDAMAGEINCREASE,BASESPELLDAMAGE, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
-                new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, MAX_LIFE, MAX_LIFE_MULT, LIFE_REGEN_BASE, LIFE_ON_HIT },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, SPELL_COST_TO_STAMINA, MAX_ENERGY_MULT, LIFE_REGEN_MULT,ELITE_DAMAGE_REDUCTION },
+                new[] { ENERGY_REGEN_BASE, MAX_ENERGY_MULT, MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALL_RECOVERY },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_432/*Yuki-Onna's Headdress*/, //tr
@@ -5324,15 +5324,15 @@ new int[] {0,0,0,0,62,63,64},
                 new[] { INTELLIGENCE,NONE },
                 new[] { ARMOR },
                 new[] { CRIT_CHANCE,CRIT_DAMAGE},
-                new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
-                new[] { ARMOR, SPELLDAMAGEINCREASE, BASESPELLDAMAGE, RESISTANCETOMAGIC},
+                new[] { SPELL_DMG_FROM_INT },
+                new[] { SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { ARMOR, SPELL_DAMAGE_MULTIPLIER, BASE_SPELL_DAMAGE, ELITE_DAMAGE_REDUCTION},
                 new[] { INTELLIGENCE, MAX_LIFE,LIFE_REGEN_BASE },
-                new[] { SPELLDAMAGEINCREASE,BASESPELLDAMAGE, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, SPELLCOSTTOSTAMINA, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT,RESISTANCETOMAGIC },
-                new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI,MAXHEALTHFROMVIT },
-                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
+                new[] { SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, MAX_LIFE, MAX_LIFE_MULT, LIFE_REGEN_BASE, LIFE_ON_HIT },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, SPELL_COST_TO_STAMINA, MAX_ENERGY_MULT, LIFE_REGEN_MULT,ELITE_DAMAGE_REDUCTION },
+                new[] { ENERGY_REGEN_BASE, MAX_ENERGY_MULT, MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALL_RECOVERY },
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_434/*Lama Mega's Blood Bag*/, //tr
@@ -5375,11 +5375,11 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new[] { MOVEMENTSPEED},
+                new[] { MOVEMENT_SPEED},
                 new[] { INTELLIGENCE,STRENGTH,AGILITY },
                 new[] { ALL_ATTRIBUTES,VITALITY },
                 new[] { ARMOR },
-                new[] { NONE,JUMPPOWER},
+                new[] { NONE,JUMP_POWER},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_440/*Moonwalkers*/, //tr
@@ -5399,11 +5399,11 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new[] { JUMPPOWER},
+                new[] { JUMP_POWER},
                 new[] { LESSERAGILITY},
                 new[] { LESSERARMOR},
-                new[] { PROJECTILESIZE,PROJECTILESIZE,ALL_ATTRIBUTES,LIFE_REGEN_MULT,LIFE_REGEN_BASE,LESSERVITALITY,AGILITY},
-                new[] { RANGEDARMORPIERCING,RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,ATTACKSPEED},
+                new[] { PROJECTILE_SIZE,PROJECTILE_SIZE,ALL_ATTRIBUTES,LIFE_REGEN_MULT,LIFE_REGEN_BASE,LESSERVITALITY,AGILITY},
+                new[] { RANGED_ARMOR_PIERCING,RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,ATTACKSPEED},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_443/*Rabbit Ears Hairband*/, //tr
@@ -5419,11 +5419,11 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new[] { JUMPPOWER},
+                new[] { JUMP_POWER},
                 new[] { AGILITY},
                 new[] { ARMOR},
-                new[] { PROJECTILESIZE,PROJECTILESIZE,ALL_ATTRIBUTES,LIFE_REGEN_MULT,LIFE_REGEN_BASE,VITALITY,INTELLIGENCE,AGILITY},
-                new[] { RANGEDARMORPIERCING,RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,ATTACKSPEED},
+                new[] { PROJECTILE_SIZE,PROJECTILE_SIZE,ALL_ATTRIBUTES,LIFE_REGEN_MULT,LIFE_REGEN_BASE,VITALITY,INTELLIGENCE,AGILITY},
+                new[] { RANGED_ARMOR_PIERCING,RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,ATTACKSPEED},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_445/*Bunny Ears Hairband*/, //tr
@@ -5484,8 +5484,8 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ALL},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE},
+                new [] {SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,DAMAGE_REDUCTION},
                 new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
             })
@@ -5506,8 +5506,8 @@ new int[] {0,0,0,0,62,63,64},
         {
                 new [] {ALL},
                 new [] {ALL},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE},
+                new [] {SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,DAMAGE_REDUCTION},
                 new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
         })
@@ -5529,8 +5529,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE},
+                new [] {SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,DAMAGE_REDUCTION},
                 new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
             })
@@ -5551,9 +5551,9 @@ new int[] {0,0,0,0,62,63,64},
          {
                 new [] {ALL},
                 new [] {ALL},
-                new [] {MOVEMENTSPEED,COOLDOWNREDUCTION},
-                new [] {JUMPPOWER,ATTACKSPEED,MOVEMENTSPEED,ENERGYPERSECOND},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE,CRIT_CHANCE,CRIT_DAMAGE},
+                new [] {MOVEMENT_SPEED,COOLDOWN_REDUCTION},
+                new [] {JUMP_POWER,ATTACKSPEED,MOVEMENT_SPEED,ENERGY_REGEN_BASE},
+                new [] {BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE,CRIT_CHANCE,CRIT_DAMAGE},
                 new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
          })
             {
@@ -5576,7 +5576,7 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {COOLDOWNREDUCTION,NONE},
+                new [] {COOLDOWN_REDUCTION,NONE},
      })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_456/*Destroyed Void Shard*/, //tr
@@ -5647,11 +5647,11 @@ new int[] {0,0,0,0,62,63,64},
             {
                 new [] {ALL},
                 new [] {ALL},
-                new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR},
                 new [] {STRENGTH},
-                new [] {BASEMELEEDAMAGE},
-                new [] {ATTACKCOSTREDUCTION,ATTACKSPEED,LIFEONHIT,ENERGYONHIT,NONE,NONE,NONE},
-                new [] {ALL_ATTRIBUTES,VITALITY,MELEEDAMAGEINCREASE,MELEEARMORPIERCING},
+                new [] {BASE_MELEE_DAMAGE},
+                new [] {ATTACK_COST_REDUCTION,ATTACKSPEED,LIFE_ON_HIT,ENERGY_ON_HIT,NONE,NONE,NONE},
+                new [] {ALL_ATTRIBUTES,VITALITY,MELEE_DAMAGE_INCREASE,MELEE_ARMOR_PIERCING},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_464/*Smasher*/, //tr
@@ -5671,9 +5671,9 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ALL},
-                new [] {LIFEONHIT},
-                new [] {ENERGYONHIT},
-                new [] {STAMINA_AND_ENERGY_REGEN_MULT,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {LIFE_ON_HIT},
+                new [] {ENERGY_ON_HIT},
+                new [] {STAMINA_AND_ENERGY_REGEN_MULT,MAX_ENERGY_MULT,MAX_LIFE_MULT},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_466/*Vampiric Band*/, //tr
@@ -5693,11 +5693,11 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {LIFEONHIT},
+                new [] {LIFE_ON_HIT},
                 new [] {CRIT_CHANCE,CRIT_DAMAGE},
-                new [] {MELEEDAMAGEINCREASE,RANGEDDAMAGEINCREASE,SPELLDAMAGEINCREASE},
-                new [] {ENERGYONHIT},
-                new [] {STAMINA_AND_ENERGY_REGEN_MULT,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
+                new [] {MELEE_DAMAGE_INCREASE,RANGED_DAMAGE_INCREASE,SPELL_DAMAGE_MULTIPLIER},
+                new [] {ENERGY_ON_HIT},
+                new [] {STAMINA_AND_ENERGY_REGEN_MULT,MAX_ENERGY_MULT,MAX_LIFE_MULT},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_468/*Vampire Ring*/, //tr
@@ -5714,10 +5714,10 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
         {
-                new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
-                new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
+                new [] {SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE,BASE_SPELL_DAMAGE},
+                new [] {SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE,BASE_SPELL_DAMAGE},
                 new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,INTELLIGENCE,DAMAGE_REDUCTION},
+                new [] {COOLDOWN_REDUCTION,SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,INTELLIGENCE,DAMAGE_REDUCTION},
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_470/*Tricksters Scarf*/, //tr
@@ -5735,10 +5735,10 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
         {
-                new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
-                new [] {SPELLDAMAGEINCREASE,INTELLIGENCE,BASESPELLDAMAGE},
+                new [] {SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE,BASE_SPELL_DAMAGE},
+                new [] {SPELL_DAMAGE_MULTIPLIER,INTELLIGENCE,BASE_SPELL_DAMAGE},
                 new [] {VITALITY,LIFE_REGEN_BASE,LIFE_REGEN_MULT,INTELLIGENCE,AGILITY,STRENGTH,ALL_ATTRIBUTES},
-                new [] {COOLDOWNREDUCTION,SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,INTELLIGENCE,DAMAGE_REDUCTION},
+                new [] {COOLDOWN_REDUCTION,SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,INTELLIGENCE,DAMAGE_REDUCTION},
                 new [] {INTELLIGENCE},
                 new [] {ALL},
 
@@ -5866,8 +5866,8 @@ new int[] {0,0,0,0,62,63,64},
 
                     var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)INTELLIGENCE || y.id == (int)AGILITY
                                                      || y.id == (int)LESSERVITALITY || y.id == (int)LESSERINTELLIGENCE || y.id == (int)LESSERAGILITY
-                                                     || y.id == (int)BASERANGEDDAMAGE || y.id == (int)BASESPELLDAMAGE
-                                                     || y.id == (int)RANGEDDAMAGEINCREASE || y.id == (int)SPELLDAMAGEINCREASE).ToArray();
+                                                     || y.id == (int)BASE_RANGED_DAMAGE || y.id == (int)BASE_SPELL_DAMAGE
+                                                     || y.id == (int)RANGED_DAMAGE_INCREASE || y.id == (int)SPELL_DAMAGE_MULTIPLIER).ToArray();
 
                     int c = stats.Count();
 
@@ -5892,13 +5892,13 @@ new int[] {0,0,0,0,62,63,64},
                         case LESSERAGILITY:
                             newStat = new ItemStat(StatByID((int)LESSERSTRENGTH));
                             break;
-                        case BASERANGEDDAMAGE:
-                        case BASESPELLDAMAGE:
-                            newStat = new ItemStat(StatByID((int)BASEMELEEDAMAGE));
+                        case BASE_RANGED_DAMAGE:
+                        case BASE_SPELL_DAMAGE:
+                            newStat = new ItemStat(StatByID((int)BASE_MELEE_DAMAGE));
                             break;
-                        case RANGEDDAMAGEINCREASE:
-                        case SPELLDAMAGEINCREASE:
-                            newStat = new ItemStat(StatByID((int)MELEEDAMAGEINCREASE));
+                        case RANGED_DAMAGE_INCREASE:
+                        case SPELL_DAMAGE_MULTIPLIER:
+                            newStat = new ItemStat(StatByID((int)MELEE_DAMAGE_INCREASE));
                             break;
                         default:
                             return false;
@@ -5928,8 +5928,8 @@ new int[] {0,0,0,0,62,63,64},
 
                     var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)STRENGTH || y.id == (int)AGILITY
                                                      || y.id == (int)LESSERVITALITY || y.id == (int)LESSERSTRENGTH || y.id == (int)LESSERAGILITY
-                                                     || y.id == (int)BASERANGEDDAMAGE || y.id == (int)BASEMELEEDAMAGE
-                                                     || y.id == (int)RANGEDDAMAGEINCREASE || y.id == (int)MELEEDAMAGEINCREASE).ToArray();
+                                                     || y.id == (int)BASE_RANGED_DAMAGE || y.id == (int)BASE_MELEE_DAMAGE
+                                                     || y.id == (int)RANGED_DAMAGE_INCREASE || y.id == (int)MELEE_DAMAGE_INCREASE).ToArray();
 
                     int c = stats.Count();
 
@@ -5954,13 +5954,13 @@ new int[] {0,0,0,0,62,63,64},
                         case LESSERAGILITY:
                             newStat = new ItemStat(StatByID((int)LESSERINTELLIGENCE));
                             break;
-                        case BASERANGEDDAMAGE:
-                        case BASEMELEEDAMAGE:
-                            newStat = new ItemStat(StatByID((int)BASESPELLDAMAGE));
+                        case BASE_RANGED_DAMAGE:
+                        case BASE_MELEE_DAMAGE:
+                            newStat = new ItemStat(StatByID((int)BASE_SPELL_DAMAGE));
                             break;
-                        case RANGEDDAMAGEINCREASE:
-                        case MELEEDAMAGEINCREASE:
-                            newStat = new ItemStat(StatByID((int)SPELLDAMAGEINCREASE));
+                        case RANGED_DAMAGE_INCREASE:
+                        case MELEE_DAMAGE_INCREASE:
+                            newStat = new ItemStat(StatByID((int)SPELL_DAMAGE_MULTIPLIER));
                             break;
                         default:
                             return false;
@@ -5990,8 +5990,8 @@ new int[] {0,0,0,0,62,63,64},
 
                     var stats = x.Stats.Where(y => y.id == (int)VITALITY || y.id == (int)STRENGTH || y.id == (int)INTELLIGENCE
                                                      || y.id == (int)LESSERVITALITY || y.id == (int)LESSERSTRENGTH || y.id == (int)LESSERINTELLIGENCE
-                                                     || y.id == (int)BASESPELLDAMAGE || y.id == (int)BASEMELEEDAMAGE
-                                                     || y.id == (int)SPELLDAMAGEINCREASE || y.id == (int)MELEEDAMAGEINCREASE).ToArray();
+                                                     || y.id == (int)BASE_SPELL_DAMAGE || y.id == (int)BASE_MELEE_DAMAGE
+                                                     || y.id == (int)SPELL_DAMAGE_MULTIPLIER || y.id == (int)MELEE_DAMAGE_INCREASE).ToArray();
 
                     int c = stats.Count();
 
@@ -6016,13 +6016,13 @@ new int[] {0,0,0,0,62,63,64},
                         case LESSERSTRENGTH:
                             newStat = new ItemStat(StatByID((int)LESSERAGILITY));
                             break;
-                        case BASEMELEEDAMAGE:
-                        case BASESPELLDAMAGE:
-                            newStat = new ItemStat(StatByID((int)BASERANGEDDAMAGE));
+                        case BASE_MELEE_DAMAGE:
+                        case BASE_SPELL_DAMAGE:
+                            newStat = new ItemStat(StatByID((int)BASE_RANGED_DAMAGE));
                             break;
-                        case MELEEDAMAGEINCREASE:
-                        case SPELLDAMAGEINCREASE:
-                            newStat = new ItemStat(StatByID((int)RANGEDDAMAGEINCREASE));
+                        case MELEE_DAMAGE_INCREASE:
+                        case SPELL_DAMAGE_MULTIPLIER:
+                            newStat = new ItemStat(StatByID((int)RANGED_DAMAGE_INCREASE));
                             break;
                         default:
                             return false;
@@ -6298,13 +6298,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
              {
-                new [] {SPELLCOSTREDUCTION,MELEEDAMAGEINCREASE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION,DAMAGE_REDUCTION, RANGEDDMGFROMAGI, ATTACKSPEED},
+                new [] {SPELL_COST_REDUCTION,MELEE_DAMAGE_INCREASE,SPELL_DAMAGE_MULTIPLIER,COOLDOWN_REDUCTION,DAMAGE_REDUCTION, RANGED_DMG_FROM_AGI, ATTACKSPEED},
                 new [] {AGILITY,LESSERAGILITY},
-                new [] {MELEEARMORPIERCING,RANGEDARMORPIERCING,ARMORPIERCING,ARMOR},
-                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI,BASERANGEDDAMAGE,CRIT_CHANCE,CRIT_DAMAGE,ALL_ATTRIBUTES},
+                new [] {MELEE_ARMOR_PIERCING,RANGED_ARMOR_PIERCING,ARMOR_PIERCING,ARMOR},
+                new [] {RANGED_DAMAGE_INCREASE,RANGED_DMG_FROM_AGI,BASE_RANGED_DAMAGE,CRIT_CHANCE,CRIT_DAMAGE,ALL_ATTRIBUTES},
                 new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,MAX_LIFE,MAX_ENERGY},
-                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,LIFEONHIT,ENERGYONHIT,ENERGYPERSECOND,ALLHEALINGPERCENT},
-                new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY},
+                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,LIFE_ON_HIT,ENERGY_ON_HIT,ENERGY_REGEN_BASE,ALL_RECOVERY},
+                new [] {RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,AGILITY},
                 new [] {ALL},
                 new [] {ALL},
              })
@@ -6325,16 +6325,16 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
              {
-                new [] {SPELLCOSTREDUCTION,BASESPELLDAMAGE,SPELLDAMAGEINCREASE,COOLDOWNREDUCTION,DAMAGE_REDUCTION},
-                new [] {ATTACKSPEED,PROJECTILESIZE,PROJECTILESPEED},
+                new [] {SPELL_COST_REDUCTION,BASE_SPELL_DAMAGE,SPELL_DAMAGE_MULTIPLIER,COOLDOWN_REDUCTION,DAMAGE_REDUCTION},
+                new [] {ATTACKSPEED,PROJECTILE_SIZE,PROJECTILE_SPEED},
                 new [] {AGILITY,LESSERAGILITY},
-                new [] {HEADSHOTDAMAGE},
-                new [] {MELEEARMORPIERCING,RANGEDARMORPIERCING,ARMORPIERCING,ARMOR,RESISTANCETOMAGIC,MAGICFIND},
-                new [] {RANGEDDAMAGEINCREASE,RANGEDDMGFROMAGI,BASERANGEDDAMAGE,CRIT_CHANCE,CRIT_DAMAGE,ALL_ATTRIBUTES,MAXENERGYFROMAGI},
-                new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY,VITALITY,INTELLIGENCE,CRIT_CHANCE,CRIT_DAMAGE},
-                new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY,VITALITY,INTELLIGENCE,HEADSHOTDAMAGE},
+                new [] {HEADSHOT_DAMAGE_MULT},
+                new [] {MELEE_ARMOR_PIERCING,RANGED_ARMOR_PIERCING,ARMOR_PIERCING,ARMOR,ELITE_DAMAGE_REDUCTION,LOOT_QUANTITY},
+                new [] {RANGED_DAMAGE_INCREASE,RANGED_DMG_FROM_AGI,BASE_RANGED_DAMAGE,CRIT_CHANCE,CRIT_DAMAGE,ALL_ATTRIBUTES,MAX_ENERGY_FROM_AGILITY},
+                new [] {RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,AGILITY,VITALITY,INTELLIGENCE,CRIT_CHANCE,CRIT_DAMAGE},
+                new [] {RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,AGILITY,VITALITY,INTELLIGENCE,HEADSHOT_DAMAGE_MULT},
                 new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,MAX_LIFE,MAX_ENERGY},
-                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,LIFEONHIT,ENERGYONHIT,ENERGYPERSECOND,ALLHEALINGPERCENT},
+                new [] {INTELLIGENCE,STRENGTH,AGILITY,VITALITY,ALL_ATTRIBUTES,LIFE_ON_HIT,ENERGY_ON_HIT,ENERGY_REGEN_BASE,ALL_RECOVERY},
                 new [] {ALL},
                 new [] {ALL},
              })
@@ -6354,15 +6354,15 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
          {
-                new [] {ARMORPIERCING,MELEEARMORPIERCING,NONE},
+                new [] {ARMOR_PIERCING,MELEE_ARMOR_PIERCING,NONE},
                 new [] {BLOCK,NONE},
-                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,RESISTANCETOMAGIC,DODGECHANCE},
-                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES},
-                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES,THORNS},
-                new [] {THORNS,MELEEDAMAGEINCREASE,VITALITY,STRENGTH},
-                new [] {STRENGTH,ARMOR,MELEEARMORPIERCING},
-                new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR,BASEMELEEDAMAGE},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,MELEEWEAPONRANGE},
+                new [] {ARMOR,MAX_LIFE,MAX_HEALTH_FROM_VITALITY,DAMAGE_REDUCTION,ELITE_DAMAGE_REDUCTION,DODGE_CHANCE},
+                new [] {ARMOR,MAX_LIFE,MAX_HEALTH_FROM_VITALITY,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {ARMOR,MAX_LIFE,MAX_HEALTH_FROM_VITALITY,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES,THORNS},
+                new [] {THORNS,MELEE_DAMAGE_INCREASE,VITALITY,STRENGTH},
+                new [] {STRENGTH,ARMOR,MELEE_ARMOR_PIERCING},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR,BASE_MELEE_DAMAGE},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,MELEE_WEAPON_RANGE},
          })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_509/*Shield Blade*/, //tr
@@ -6379,15 +6379,15 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
          {
-                new [] {ARMORPIERCING,MELEEARMORPIERCING},
+                new [] {ARMOR_PIERCING,MELEE_ARMOR_PIERCING},
                 new [] {BLOCK,NONE},
-                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,RESISTANCETOMAGIC,DODGECHANCE},
-                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES},
-                new [] {ARMOR,MAX_LIFE,MAXHEALTHFROMVIT,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES,THORNS},
-                new [] {THORNS,MELEEDAMAGEINCREASE,VITALITY,STRENGTH},
-                new [] {STRENGTH,ARMOR,MELEEARMORPIERCING},
-                new [] {MELEEDAMAGEINCREASE,MELEEDMGFROMSTR,BASEMELEEDAMAGE},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,MELEEWEAPONRANGE},
+                new [] {ARMOR,MAX_LIFE,MAX_HEALTH_FROM_VITALITY,DAMAGE_REDUCTION,ELITE_DAMAGE_REDUCTION,DODGE_CHANCE},
+                new [] {ARMOR,MAX_LIFE,MAX_HEALTH_FROM_VITALITY,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES},
+                new [] {ARMOR,MAX_LIFE,MAX_HEALTH_FROM_VITALITY,DAMAGE_REDUCTION,VITALITY,STRENGTH,ALL_ATTRIBUTES,THORNS},
+                new [] {THORNS,MELEE_DAMAGE_INCREASE,VITALITY,STRENGTH},
+                new [] {STRENGTH,ARMOR,MELEE_ARMOR_PIERCING},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_DMG_FROM_STR,BASE_MELEE_DAMAGE},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,MELEE_WEAPON_RANGE},
                 new [] {ALL},
          })
             {
@@ -6409,15 +6409,15 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
          {
-                new[] { ARMORPIERCING, MELEEARMORPIERCING },
+                new[] { ARMOR_PIERCING, MELEE_ARMOR_PIERCING },
                 new[] { BLOCK,STRENGTH},
-                new[] { ARMOR, MAX_LIFE, MAXHEALTHFROMVIT, DAMAGE_REDUCTION, RESISTANCETOMAGIC, DODGECHANCE },
+                new[] { ARMOR, MAX_LIFE, MAX_HEALTH_FROM_VITALITY, DAMAGE_REDUCTION, ELITE_DAMAGE_REDUCTION, DODGE_CHANCE },
                 new[] { ARMOR, MAX_LIFE , DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES },
                 new[] { ARMOR, MAX_LIFE, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES, THORNS },
-                new[] { THORNS, MELEEDAMAGEINCREASE, VITALITY, STRENGTH },
-                new[] { STRENGTH, ARMOR, MELEEARMORPIERCING },
-                new[] { MELEEDAMAGEINCREASE, MELEEDMGFROMSTR, BASEMELEEDAMAGE },
-                new[] { MELEEDAMAGEINCREASE, ATTACKSPEED, BASEMELEEDAMAGE, MELEEWEAPONRANGE },
+                new[] { THORNS, MELEE_DAMAGE_INCREASE, VITALITY, STRENGTH },
+                new[] { STRENGTH, ARMOR, MELEE_ARMOR_PIERCING },
+                new[] { MELEE_DAMAGE_INCREASE, MELEE_DMG_FROM_STR, BASE_MELEE_DAMAGE },
+                new[] { MELEE_DAMAGE_INCREASE, ATTACKSPEED, BASE_MELEE_DAMAGE, MELEE_WEAPON_RANGE },
                 new[] { ALL },
                 new[] { ALL },
                 new[] { ALL },
@@ -6437,13 +6437,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
          {
-                new[] { ARMOR,BASEMELEEDAMAGE },
+                new[] { ARMOR,BASE_MELEE_DAMAGE },
                 new[] { BLOCK},
-                new[] { ARMOR, MAX_LIFE,MAX_ENERGY,STAMINA_AND_ENERGY_REGEN_MULT, DAMAGE_REDUCTION, RESISTANCETOMAGIC, DODGECHANCE },
-                new[] { ARMOR, MAX_LIFE, MAX_ENERGY, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES,CHANCEONHITTOBLEED,CHANCEONHITTOSLOW,CHANCEONHITTOWEAKEN },
-                new[] { ARMOR, MAX_LIFE, MAXHEALTHFROMVIT, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES, THORNS },
-                new[] { THORNS, MELEEDAMAGEINCREASE, VITALITY, STRENGTH },
-                new[] { MELEEDAMAGEINCREASE, ATTACKSPEED, BASEMELEEDAMAGE, MELEEWEAPONRANGE,PERCENTMAXIMUMLIFE,PERCENTMAXIMUMENERGY,ALLHEALINGPERCENT },
+                new[] { ARMOR, MAX_LIFE,MAX_ENERGY,STAMINA_AND_ENERGY_REGEN_MULT, DAMAGE_REDUCTION, ELITE_DAMAGE_REDUCTION, DODGE_CHANCE },
+                new[] { ARMOR, MAX_LIFE, MAX_ENERGY, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES,CHANCE_ON_HIT_TO_BLEED,CHANCE_ON_HIT_TO_SLOW,CHANCE_ON_HIT_TO_WEAKEN },
+                new[] { ARMOR, MAX_LIFE, MAX_HEALTH_FROM_VITALITY, DAMAGE_REDUCTION, VITALITY, STRENGTH, ALL_ATTRIBUTES, THORNS },
+                new[] { THORNS, MELEE_DAMAGE_INCREASE, VITALITY, STRENGTH },
+                new[] { MELEE_DAMAGE_INCREASE, ATTACKSPEED, BASE_MELEE_DAMAGE, MELEE_WEAPON_RANGE,MAX_LIFE_MULT,MAX_ENERGY_MULT,ALL_RECOVERY },
          })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_516/*Buckler*/, //tr
@@ -6457,13 +6457,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {FIREDAMAGE},
-                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {FIRE_DAMAGE},
+                new [] {MAX_ENERGY,MAX_LIFE,MAX_ENERGY_MULT,MAX_LIFE_MULT},
+                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELL_COST_REDUCTION},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ARMOR,DAMAGE_REDUCTION},
-                new [] {RESISTANCETOMAGIC,MAGICFIND,MOVEMENTSPEED,ARMOR},
+                new [] {ELITE_DAMAGE_REDUCTION,LOOT_QUANTITY,MOVEMENT_SPEED,ARMOR},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_517/*Pyromancy Mask*/, //tr
@@ -6481,17 +6481,17 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {FIREDAMAGE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI},
-                new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT},
-                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {FIRE_DAMAGE},
+                new [] {SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI},
+                new [] {MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY},
+                new [] {MAX_ENERGY,MAX_LIFE,MAX_ENERGY_MULT,MAX_LIFE_MULT},
+                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELL_COST_REDUCTION},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ARMOR,DAMAGE_REDUCTION},
-                new [] {RESISTANCETOMAGIC,MAGICFIND,MOVEMENTSPEED,ARMOR},
+                new [] {ELITE_DAMAGE_REDUCTION,LOOT_QUANTITY,MOVEMENT_SPEED,ARMOR},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_519/*Ember Mask*/, //tr
@@ -6510,18 +6510,18 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {FIREDAMAGE},
-                new [] {ARMOR,DODGECHANCE},
-                new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI},
-                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION,PROJECTILESPEED,PROJECTILESIZE},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {FIRE_DAMAGE},
+                new [] {ARMOR,DODGE_CHANCE},
+                new [] {MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI},
+                new [] {MAX_ENERGY,MAX_LIFE,MAX_ENERGY_MULT,MAX_LIFE_MULT},
+                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELL_COST_REDUCTION,PROJECTILE_SPEED,PROJECTILE_SIZE},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ARMOR,DAMAGE_REDUCTION},
-                new [] {RESISTANCETOMAGIC,MAGICFIND,MOVEMENTSPEED,ARMOR},
+                new [] {ELITE_DAMAGE_REDUCTION,LOOT_QUANTITY,MOVEMENT_SPEED,ARMOR},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_521/*Flame Pauldrons*/, //tr
@@ -6547,15 +6547,15 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {SPELLDMGFROMINT},
-                new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT},
-                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DMG_FROM_INT},
+                new [] {MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY},
+                new [] {MAX_ENERGY,MAX_LIFE,MAX_ENERGY_MULT,MAX_LIFE_MULT},
+                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELL_COST_REDUCTION,COOLDOWN_REDUCTION,SPELL_COST_TO_STAMINA},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {RESISTANCETOMAGIC,ENERGYONHIT,ENERGYPERSECOND,STAMINA_AND_ENERGY_REGEN_MULT,STAMINA_REGEN_BASE},
+                new [] {ELITE_DAMAGE_REDUCTION,ENERGY_ON_HIT,ENERGY_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT,STAMINA_REGEN_BASE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_523/*Ancient Scroll*/, //tr
@@ -6572,19 +6572,19 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {SPELLDMGFROMINT},
-                new [] {MAXENERGYFROMAGI,MAXHEALTHFROMVIT},
-                new [] {MAX_ENERGY,MAX_LIFE,PERCENTMAXIMUMENERGY,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELLCOSTREDUCTION,COOLDOWNREDUCTION,SPELLCOSTTOSTAMINA},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DMG_FROM_INT},
+                new [] {MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY},
+                new [] {MAX_ENERGY,MAX_LIFE,MAX_ENERGY_MULT,MAX_LIFE_MULT},
+                new [] {STRENGTH,INTELLIGENCE,AGILITY,SPELL_COST_REDUCTION,COOLDOWN_REDUCTION,SPELL_COST_TO_STAMINA},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE, INTELLIGENCE ,ALL_ATTRIBUTES},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {RESISTANCETOMAGIC,ENERGYONHIT,ENERGYPERSECOND,STAMINA_AND_ENERGY_REGEN_MULT,STAMINA_REGEN_BASE},
+                new [] {ELITE_DAMAGE_REDUCTION,ENERGY_ON_HIT,ENERGY_REGEN_BASE,STAMINA_AND_ENERGY_REGEN_MULT,STAMINA_REGEN_BASE},
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_524/*Guide on Tearing Spacetime*/, //tr
@@ -6602,16 +6602,16 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
         {
                 new [] {STRENGTH},
-                new [] {MELEEDAMAGEINCREASE},
+                new [] {MELEE_DAMAGE_INCREASE},
                 new [] {ATTACKSPEED},
-                new [] {MELEEDMGFROMSTR},
+                new [] {MELEE_DMG_FROM_STR},
                 new [] {BLOCK,ARMOR,DAMAGE_REDUCTION},
-                new [] {BASEMELEEDAMAGE,NONE},
-                new [] {BASEMELEEDAMAGE,MELEEDAMAGEINCREASE,STRENGTH},
-                new [] {MELEEARMORPIERCING,ARMORPIERCING,ALL_ATTRIBUTES},
-                new [] {ATTACKCOSTREDUCTION,ATTACKSPEED},
-                new [] {ALL_ATTRIBUTES,MELEEWEAPONRANGE,VITALITY,MAX_LIFE},
-                new [] {ENERGYONHIT,VITALITY,LIFEONHIT }
+                new [] {BASE_MELEE_DAMAGE,NONE},
+                new [] {BASE_MELEE_DAMAGE,MELEE_DAMAGE_INCREASE,STRENGTH},
+                new [] {MELEE_ARMOR_PIERCING,ARMOR_PIERCING,ALL_ATTRIBUTES},
+                new [] {ATTACK_COST_REDUCTION,ATTACKSPEED},
+                new [] {ALL_ATTRIBUTES,MELEE_WEAPON_RANGE,VITALITY,MAX_LIFE},
+                new [] {ENERGY_ON_HIT,VITALITY,LIFE_ON_HIT }
         })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_526/*300th Spear*/, //tr
@@ -6629,8 +6629,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {MOVEMENTSPEED,ATTACKSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {MOVEMENT_SPEED,ATTACKSPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
             })
@@ -6649,8 +6649,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 })
@@ -6669,8 +6669,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -6690,8 +6690,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -6714,8 +6714,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -6740,8 +6740,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {MOVEMENTSPEED,ATTACKSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {MOVEMENT_SPEED,ATTACKSPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {BLOCK},
@@ -6761,8 +6761,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -6783,8 +6783,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -6807,8 +6807,8 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
 
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -6834,8 +6834,8 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {BLOCK},
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -6862,8 +6862,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {MOVEMENTSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {MOVEMENT_SPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
         })
@@ -6882,9 +6882,9 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = 1.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {MOVEMENTSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {MOVEMENT_SPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 })
@@ -6903,9 +6903,9 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {MOVEMENTSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {MOVEMENT_SPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL,ARMOR},
@@ -6925,9 +6925,9 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {MOVEMENTSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {MOVEMENT_SPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -6950,9 +6950,9 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {MOVEMENTSPEED},
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {MOVEMENT_SPEED},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -6980,7 +6980,7 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
         })
@@ -6999,8 +6999,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 })
@@ -7019,8 +7019,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7040,8 +7040,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7064,8 +7064,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7092,7 +7092,7 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7112,8 +7112,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7133,8 +7133,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7155,8 +7155,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7180,8 +7180,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7207,7 +7207,7 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
         })
@@ -7226,8 +7226,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 })
@@ -7246,8 +7246,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7267,8 +7267,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7292,8 +7292,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7319,7 +7319,7 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
         })
@@ -7338,8 +7338,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 })
@@ -7358,8 +7358,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7379,8 +7379,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7403,8 +7403,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL},
                 new [] {ALL},
@@ -7430,7 +7430,7 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
         {
-                new [] {ALL,EXPGAIN,MAGICFIND},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7450,8 +7450,8 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = -0.3f;
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7471,8 +7471,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7493,8 +7493,8 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {ALL,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {ALL,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7518,8 +7518,8 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,RANGEDDMGFROMAGI,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
                 new [] {ALL},
@@ -7545,13 +7545,13 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,STRENGTH},
                 new [] {CRIT_CHANCE,CRIT_DAMAGE,},
-                new [] {MELEEDAMAGEINCREASE,NONE,MAX_LIFE,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MELEE_DAMAGE_INCREASE,NONE,MAX_LIFE,MAX_LIFE_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACK_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7576,13 +7576,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
         {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,STRENGTH},
                 new [] {MAX_LIFE},
-                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MELEE_DAMAGE_INCREASE,MAX_LIFE,MAX_LIFE_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACK_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7608,12 +7608,12 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,STRENGTH},
                 new [] {MAX_LIFE},
-                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MELEE_DAMAGE_INCREASE,MAX_LIFE,MAX_LIFE_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACK_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7642,12 +7642,12 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,STRENGTH},
                 new [] {MAX_LIFE},
-                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MELEE_DAMAGE_INCREASE,MAX_LIFE,MAX_LIFE_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACK_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7675,13 +7675,13 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {MOVEMENTSPEED},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
+                new [] {MOVEMENT_SPEED},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,STRENGTH},
                 new [] {MAX_LIFE},
-                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MELEE_DAMAGE_INCREASE,MAX_LIFE,MAX_LIFE_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACK_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7708,12 +7708,12 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {ALL,},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,MELEEWEAPONRANGE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {MELEEDAMAGEINCREASE,ATTACKSPEED,BASEMELEEDAMAGE,STRENGTH},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,MELEE_WEAPON_RANGE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {MELEE_DAMAGE_INCREASE,ATTACKSPEED,BASE_MELEE_DAMAGE,STRENGTH},
                 new [] {MAX_LIFE},
-                new [] {MELEEDAMAGEINCREASE,MAX_LIFE,PERCENTMAXIMUMLIFE},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACKCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MELEE_DAMAGE_INCREASE,MAX_LIFE,MAX_LIFE_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,ATTACKSPEED,ATTACK_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7741,15 +7741,15 @@ new int[] {0,0,0,0,62,63,64},
             };
             new BaseItem(new Stat[][]
             {
-                new [] {ALL,EXPGAIN,MAGICFIND},
-                new [] {MELEEDMGFROMSTR,MAXENERGYFROMAGI,RANGEDDMGFROMAGI,MAXHEALTHFROMVIT,SPELLDMGFROMINT},
-                new [] {MELEEDAMAGEINCREASE,BASEMELEEDAMAGE,STRENGTH},
-                new [] {RANGEDDAMAGEINCREASE,BASERANGEDDAMAGE,AGILITY},
-                new [] {SPELLDAMAGEINCREASE,BASESPELLDAMAGE,INTELLIGENCE},
+                new [] {ALL,EXP_GAIN_MULT,LOOT_QUANTITY},
+                new [] {MELEE_DMG_FROM_STR,MAX_ENERGY_FROM_AGILITY,RANGED_DMG_FROM_AGI,MAX_HEALTH_FROM_VITALITY,SPELL_DMG_FROM_INT},
+                new [] {MELEE_DAMAGE_INCREASE,BASE_MELEE_DAMAGE,STRENGTH},
+                new [] {RANGED_DAMAGE_INCREASE,BASE_RANGED_DAMAGE,AGILITY},
+                new [] {SPELL_DAMAGE_MULTIPLIER,BASE_SPELL_DAMAGE,INTELLIGENCE},
                 new [] {ALL},
                 new [] {MAX_LIFE},
-                new [] {MAX_LIFE,PERCENTMAXIMUMLIFE,MAX_ENERGY,PERCENTMAXIMUMENERGY},
-                new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY,ALL_ATTRIBUTES,ATTACKSPEED,ATTACKCOSTREDUCTION,SPELLCOSTREDUCTION,COOLDOWNREDUCTION},
+                new [] {MAX_LIFE,MAX_LIFE_MULT,MAX_ENERGY,MAX_ENERGY_MULT},
+                new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY,ALL_ATTRIBUTES,ATTACKSPEED,ATTACK_COST_REDUCTION,SPELL_COST_REDUCTION,COOLDOWN_REDUCTION},
                 new [] {ALL},
                 new [] {ALL,NONE},
                 new [] {ALL,NONE},
@@ -7807,14 +7807,14 @@ new int[] {0,0,0,0,62,63,64},
 
             new BaseItem(new Stat[][]
             {
-                new [] {BASEMELEEDAMAGE,BASESPELLDAMAGE},
-                new [] {BASEMELEEDAMAGE,BASESPELLDAMAGE},
+                new [] {BASE_MELEE_DAMAGE,BASE_SPELL_DAMAGE},
+                new [] {BASE_MELEE_DAMAGE,BASE_SPELL_DAMAGE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY },
-                new [] {MELEEDAMAGEINCREASE, SPELLDAMAGEINCREASE },
+                new [] {MELEE_DAMAGE_INCREASE, SPELL_DAMAGE_MULTIPLIER },
                 new [] {ATTACKSPEED},
                 new [] {CRIT_CHANCE},
                 new [] {CRIT_DAMAGE},
-                new [] {MELEEDMGFROMSTR},
+                new [] {MELEE_DMG_FROM_STR},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
@@ -7841,14 +7841,14 @@ new int[] {0,0,0,0,62,63,64},
             }.PossibleStats[0][0].multipier = 5;
             new BaseItem(new Stat[][]
             {
-                new [] {BASEMELEEDAMAGE,BASESPELLDAMAGE},
-                new [] {BASEMELEEDAMAGE, NONE},
+                new [] {BASE_MELEE_DAMAGE,BASE_SPELL_DAMAGE},
+                new [] {BASE_MELEE_DAMAGE, NONE},
                 new [] {STRENGTH,VITALITY,INTELLIGENCE,AGILITY },
-                new [] {MELEEDAMAGEINCREASE, SPELLDAMAGEINCREASE },
+                new [] {MELEE_DAMAGE_INCREASE, SPELL_DAMAGE_MULTIPLIER },
                 new [] {ATTACKSPEED},
                 new [] {CRIT_CHANCE},
                 new [] {CRIT_DAMAGE},
-                new [] {MELEEDMGFROMSTR},
+                new [] {MELEE_DMG_FROM_STR},
                 new [] {STRENGTH},
                 new [] {ALL},
                 new [] {ALL},
@@ -7874,8 +7874,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE, NONE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE, NONE},
+                new [] {SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,DAMAGE_REDUCTION},
                 new [] {ALL_ATTRIBUTES,AGILITY,STRENGTH,INTELLIGENCE,VITALITY},
 
             })
@@ -7903,7 +7903,7 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new [] {STRENGTH,VITALITY,AGILITY,ALL_ATTRIBUTES,INTELLIGENCE},
-                new [] {MAXENERGYFROMAGI,MELEEDMGFROMSTR,SPELLDMGFROMINT,RANGEDDMGFROMAGI,MAXHEALTHFROMVIT},
+                new [] {MAX_ENERGY_FROM_AGILITY,MELEE_DMG_FROM_STR,SPELL_DMG_FROM_INT,RANGED_DMG_FROM_AGI,MAX_HEALTH_FROM_VITALITY},
                 new [] {ARMOR,DAMAGE_REDUCTION},
                 new [] { CRIT_CHANCE, CRIT_DAMAGE},
                 new [] {ALL},
@@ -7915,8 +7915,8 @@ new int[] {0,0,0,0,62,63,64},
                 new [] {ALL},
                 new [] {ALL},
                 new [] {ALL},
-                new [] {BASESPELLDAMAGE,BASERANGEDDAMAGE,BASEMELEEDAMAGE, NONE},
-                new [] {SPELLDMGFROMINT,MELEEDMGFROMSTR,RANGEDDMGFROMAGI,DAMAGE_REDUCTION},
+                new [] {BASE_SPELL_DAMAGE,BASE_RANGED_DAMAGE,BASE_MELEE_DAMAGE, NONE},
+                new [] {SPELL_DMG_FROM_INT,MELEE_DMG_FROM_STR,RANGED_DMG_FROM_AGI,DAMAGE_REDUCTION},
 
             })
             {
@@ -7947,18 +7947,18 @@ new int[] {0,0,0,0,62,63,64},
             new BaseItem(new Stat[][]
             {
                 new[] { LIFE_REGEN_BASE },
-                new[] { ARMOR, NONE, ALLHEALINGPERCENT },
+                new[] { ARMOR, NONE, ALL_RECOVERY },
                 new[] { ALL},
-                new[] { SPELLDMGFROMINT },
-                new[] { SPELLCOSTREDUCTION,SPELLCOSTTOSTAMINA,ARMOR,ALL_ATTRIBUTES},
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, ALL_ATTRIBUTES },
-                new[] { BASESPELLDAMAGE, SPELLDAMAGEINCREASE, INTELLIGENCE, DAMAGE_REDUCTION },
-                new[] { VITALITY, MAXHEALTHFROMVIT, MAX_LIFE, PERCENTMAXIMUMLIFE, LIFE_REGEN_BASE, LIFEONHIT },
-                new[] { SPELLCOSTREDUCTION, COOLDOWNREDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR,MAXHEALTHFROMVIT },
-                new[] { DAMAGE_REDUCTION, PERCENTMAXIMUMENERGY, LIFE_REGEN_MULT },
-                new[] { ENERGYPERSECOND, PERCENTMAXIMUMENERGY, MAXENERGYFROMAGI },
-                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALLHEALINGPERCENT },
-                new[] { ENERGYONHIT, ENERGYPERSECOND, MAX_LIFE, MASSACREDURATION, MAGICFIND, EXPLOSIONDAMAGE },
+                new[] { SPELL_DMG_FROM_INT },
+                new[] { SPELL_COST_REDUCTION,SPELL_COST_TO_STAMINA,ARMOR,ALL_ATTRIBUTES},
+                new[] { BASE_SPELL_DAMAGE, SPELL_DAMAGE_MULTIPLIER, INTELLIGENCE, ALL_ATTRIBUTES },
+                new[] { BASE_SPELL_DAMAGE, SPELL_DAMAGE_MULTIPLIER, INTELLIGENCE, DAMAGE_REDUCTION },
+                new[] { VITALITY, MAX_HEALTH_FROM_VITALITY, MAX_LIFE, MAX_LIFE_MULT, LIFE_REGEN_BASE, LIFE_ON_HIT },
+                new[] { SPELL_COST_REDUCTION, COOLDOWN_REDUCTION, CRIT_CHANCE, CRIT_DAMAGE, ARMOR,MAX_HEALTH_FROM_VITALITY },
+                new[] { DAMAGE_REDUCTION, MAX_ENERGY_MULT, LIFE_REGEN_MULT },
+                new[] { ENERGY_REGEN_BASE, MAX_ENERGY_MULT, MAX_ENERGY_FROM_AGILITY },
+                new[] { INTELLIGENCE, STAMINA_REGEN_BASE, STAMINA_AND_ENERGY_REGEN_MULT, ALL_ATTRIBUTES, ALL_RECOVERY },
+                new[] { ENERGY_ON_HIT, ENERGY_REGEN_BASE, MAX_LIFE, MASSACRE_DURATION, LOOT_QUANTITY, EXPLOSION_DAMAGE },
             })
             {
                 name = Translations.ItemDataBase_ItemDefinitions_617, //tr

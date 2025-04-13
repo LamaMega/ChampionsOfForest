@@ -551,7 +551,7 @@ namespace ChampionsOfForest
 					if (!LocalPlayer.FpCharacter.running && !(LocalPlayer.FpCharacter.recoveringFromRun > 0f))
 					{
 						Stamina += ModdedPlayer.Stats.TotalStaminaRecoveryAmount * Time.deltaTime;
-						Energy += ModdedPlayer.Stats.energyRecoveryperSecond.Value * ModdedPlayer.Stats.TotalEnergyRecoveryMultiplier * Time.deltaTime;
+						Energy += ModdedPlayer.Stats.energyRecoveryBase.Value * ModdedPlayer.Stats.TotalEnergyRecoveryMultiplier * Time.deltaTime;
 					}
 					else if (LocalPlayer.FpCharacter.recoveringFromRun > 0f && Thirst < 1)
 					{
@@ -561,7 +561,7 @@ namespace ChampionsOfForest
 				else
 				{
 					Stamina = Energy;
-					Energy += ModdedPlayer.Stats.energyRecoveryperSecond.Value * ModdedPlayer.Stats.TotalEnergyRecoveryMultiplier * Time.deltaTime;
+					Energy += ModdedPlayer.Stats.energyRecoveryBase.Value * ModdedPlayer.Stats.TotalEnergyRecoveryMultiplier * Time.deltaTime;
 				}
 				if (CheckingBlood && Scene.SceneTracker.proxyAttackers.arrayList.Count > 0)
 				{

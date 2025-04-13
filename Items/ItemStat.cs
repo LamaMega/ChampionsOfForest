@@ -45,7 +45,13 @@ namespace ChampionsOfForest
 			this.rangeMax = max;
 			ItemDataBase.AddStat(this);
 		}
-
+		public ItemStatBuilder Additive(IAdditiveStat<bool> stat)
+		{
+			this.comparingFunc = CompareAdd;
+			this.OnEquip = f => stat.Add(true);
+			this.OnUnequip = f => stat.Sub(false);
+			return this;
+		}
 		public ItemStatBuilder Additive(IAdditiveStat<float> stat)
 		{
 			this.comparingFunc = CompareAdd;
@@ -142,6 +148,29 @@ namespace ChampionsOfForest
 			this.valueCap = maximumPossibleValue;
 			return this;
 		}
+
+		public ItemStatBuilder AffectsCarryCapacity(params MoreCraftingReceipes.VanillaItemIDs[] itemIdsToExpandCarryCapacity)
+		{
+			this.comparingFunc = CompareAdd;
+			this.OnEquip = f =>
+			{
+				for (int i = 0; i < itemIdsToExpandCarryCapacity.Length; i++)
+				{
+					ModdedPlayer.instance.AddExtraItemCapacity((int)itemIdsToExpandCarryCapacity[i], Mathf.RoundToInt(f));
+				}
+			};
+			this.OnUnequip = f =>
+			{
+				for (int i = 0; i < itemIdsToExpandCarryCapacity.Length; i++)
+				{
+					ModdedPlayer.instance.AddExtraItemCapacity((int)itemIdsToExpandCarryCapacity[i], -Mathf.RoundToInt(f));
+				}
+			};
+			this.GetTotalStat = () => string.Join("," , itemIdsToExpandCarryCapacity.Select(id => LocalPlayer.Inventory.GetMaxAmountOf((int)id).ToString()));
+			return this;
+		}
+
+
 
 	}
 	public class ItemStat

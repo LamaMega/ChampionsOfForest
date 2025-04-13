@@ -205,7 +205,7 @@ namespace ChampionsOfForest
 			{
 				if ((LocalPlayer.Transform.position - transform.position).sqrMagnitude < scale * scale * 2)
 				{
-					LocalPlayer.Stats.HealthChange(-damage * ModdedPlayer.Stats.allDamageTaken *  ModdedPlayer.Stats.damageFromElite * 0.5f);
+					LocalPlayer.Stats.HealthChange(-damage * ModdedPlayer.Stats.allDamageTaken *  ModdedPlayer.Stats.damageFromElites * 0.5f);
 					yield return new WaitForSeconds(0.5f);
 				}
 				else
