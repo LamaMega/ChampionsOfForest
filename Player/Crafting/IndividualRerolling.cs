@@ -20,10 +20,10 @@ namespace ChampionsOfForest.Player.Crafting
 						return false;
 					if (selectedStat == -1)
 						return false;
-					var stat = CraftingHandler.changedItem.i.Stats[selectedStat];
+					var stat = CraftingHandler.changedItem.i.stats[selectedStat];
 					if (stat.possibleStatsIndex == -1)
 						return false;
-					if (CraftingHandler.changedItem.i.PossibleStats[stat.possibleStatsIndex].Count < 2)
+					if (CraftingHandler.changedItem.i.statSlots[stat.possibleStatsIndex].Count < 2)
 						return false;
 					int itemCount = 0;
 					int rarity = CraftingHandler.changedItem.i.rarity;
@@ -50,14 +50,14 @@ namespace ChampionsOfForest.Player.Crafting
 				{
 					if (validRecipe)
 					{
-						var stat = CraftingHandler.changedItem.i.Stats[selectedStat];
+						var stat = CraftingHandler.changedItem.i.stats[selectedStat];
 						if (stat.id > 3000)
 						{
-							CraftingHandler.changedItem.i.Stats[selectedStat] = new ItemStat(ItemDataBase.Stats[3000]); //set to empty socket
+							CraftingHandler.changedItem.i.stats[selectedStat] = new ItemStat(ItemDataBase.Stats[3000]); //set to empty socket
 						}
 						else
 						{
-							var options = CraftingHandler.changedItem.i.PossibleStats[stat.possibleStatsIndex];
+							var options = CraftingHandler.changedItem.i.statSlots[stat.possibleStatsIndex];
 							int random = UnityEngine.Random.Range(0, options.Count);
 							{
 								ItemStat newStat = new ItemStat(options[random], CraftingHandler.changedItem.i.level);
@@ -67,8 +67,7 @@ namespace ChampionsOfForest.Player.Crafting
 								{
 									newStat.amount = Mathf.Min(newStat.amount, newStat.valueCap);
 								}
-								CraftingHandler.changedItem.i.Stats[selectedStat] = newStat;
-								CraftingHandler.changedItem.i.SortStats();
+								CraftingHandler.changedItem.i.stats[selectedStat] = newStat;
 							}
 							selectedStat = -1;
 
@@ -100,7 +99,7 @@ namespace ChampionsOfForest.Player.Crafting
 						float mult = CustomCrafting.instance.changedItem.i.GetRarityMultiplier();
 
 						int ind = 0;
-						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.Stats)
+						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.stats)
 						{
 							Rect statRect = new Rect(x + 10 * screenScale, ypos, w - 20 * screenScale, 26 * screenScale);
 							Rect valueMinMaxRect = new Rect(statRect.xMax + 15 * screenScale, ypos, statRect.width, statRect.height);
@@ -140,7 +139,7 @@ namespace ChampionsOfForest.Player.Crafting
 					{
 						if (validRecipe)
 						{
-							if (GUI.Button(new Rect(x, ypos, w, 40 * screenScale), CraftingHandler.changedItem.i.Stats[selectedStat].id > 3000 ? Translations.IndividualRerolling_3/*Empty socket*/ : Translations.IndividualRerolling_2/*Reroll stat*/, styles[2])) //tr
+							if (GUI.Button(new Rect(x, ypos, w, 40 * screenScale), CraftingHandler.changedItem.i.stats[selectedStat].id > 3000 ? Translations.IndividualRerolling_3/*Empty socket*/ : Translations.IndividualRerolling_2/*Reroll stat*/, styles[2])) //tr
 							{
 								Craft();
 							}
@@ -174,10 +173,10 @@ namespace ChampionsOfForest.Player.Crafting
 					}
 					if (selectedStat != -1)
 					{
-						var stat = CraftingHandler.changedItem.i.Stats[selectedStat];
+						var stat = CraftingHandler.changedItem.i.stats[selectedStat];
 						if (stat.possibleStatsIndex != -1)
 						{
-							var options = CraftingHandler.changedItem.i.PossibleStats[stat.possibleStatsIndex];
+							var options = CraftingHandler.changedItem.i.statSlots[stat.possibleStatsIndex];
 							if (options.Count == 1)
 							{
 								GUI.Label(new Rect(x, ypos, w, Screen.height - x), Translations.IndividualRerolling_5/*This stat cannot be changed*/, new GUIStyle(styles[0]) { alignment = TextAnchor.UpperLeft, fontSize = (int)(12 * screenScale), wordWrap = true }); //tr

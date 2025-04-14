@@ -59,31 +59,31 @@ namespace ChampionsOfForest
 
 						case BaseItem.ItemType.Weapon:
 
-							if (item.weaponModel == BaseItem.WeaponModelType.GreatSword)
+							if (item.subtype == BaseItem.WeaponModelType.GreatSword)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[52];
 							}
-							else if (item.weaponModel == BaseItem.WeaponModelType.LongSword)
+							else if (item.subtype == BaseItem.WeaponModelType.LongSword)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[51];
 							}
-							else if (item.weaponModel == BaseItem.WeaponModelType.Hammer)
+							else if (item.subtype == BaseItem.WeaponModelType.Hammer)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[108];
 								spawn.transform.localScale *= 1.2f;
 							}
-							else if (item.weaponModel == BaseItem.WeaponModelType.Axe)
+							else if (item.subtype == BaseItem.WeaponModelType.Axe)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[2001];
 								renderer.materials = new Material[] { pickupMaterial, pickupMaterial };
 								spawn.transform.localScale *= 1.12f;
 							}
-							else if (item.weaponModel == BaseItem.WeaponModelType.Greatbow)
+							else if (item.subtype == BaseItem.WeaponModelType.Greatbow)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[167];
 								spawn.transform.localScale *= 1.1f;
 							}
-							else if (item.weaponModel == BaseItem.WeaponModelType.Polearm)
+							else if (item.subtype == BaseItem.WeaponModelType.Polearm)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[175];
 								spawn.transform.localScale *= 0.60f;

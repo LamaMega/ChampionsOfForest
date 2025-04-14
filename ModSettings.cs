@@ -37,6 +37,10 @@ namespace ChampionsOfForest
 		public const bool RequiresNewSave = true;
 		public const string RequiresNewSaveVersion = "1.6.0.2";
 
+		public const int MinimumLevelForSocketsToAppear = 20;
+		public const float ChanceForFirstSocketToAppear = 0.25f;
+		public const float ChanceForSubsequentSocketsToAppear = 0.35f;
+
 		public static readonly List<int> outdatedFiles = new List<int>();
 
 		public static float DropQuantityMultiplier = 1;

@@ -554,10 +554,10 @@ namespace ChampionsOfForest
 			{
 				if (isDragging)
 				{
-					if (DraggedItem.Equipped)
+					if (DraggedItem.isEquipped)
 					{
 						DraggedItem.OnUnequip();
-						Inventory.Instance.ItemSlots[DraggedItemIndex].Equipped = false;
+						Inventory.Instance.ItemSlots[DraggedItemIndex].isEquipped = false;
 					}
 					Inventory.Instance.DropItem(DraggedItemIndex);
 					DraggedItem = null;

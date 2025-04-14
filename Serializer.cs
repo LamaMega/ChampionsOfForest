@@ -102,8 +102,7 @@ namespace ChampionsOfForest
 								amount = statAMO
 							};
 
-							LoadedItem.Stats.Add(stat);
-							LoadedItem.SortStats();
+							LoadedItem.stats.Add(stat);
 						}
 						Inventory.Instance.ItemSlots[Slot] = LoadedItem;
 					}
@@ -226,16 +225,16 @@ namespace ChampionsOfForest
 					//save the slot id
 
 					//save individual item
-					buf.Write(item.Value.ID);
+					buf.Write(item.Value.id);
 					buf.Write(item.Value.level);
-					buf.Write(item.Value.Amount);
-					buf.Write(item.Value.Stats.Count);
+					buf.Write(item.Value.stackedAmount);
+					buf.Write(item.Value.stats.Count);
 					//save every stat
-					for (int i = 0; i < item.Value.Stats.Count; i++)
+					for (int i = 0; i < item.Value.stats.Count; i++)
 					{
-						buf.Write(item.Value.Stats[i].id);
-						buf.Write(item.Value.Stats[i].possibleStatsIndex);
-						buf.Write(item.Value.Stats[i].amount);
+						buf.Write(item.Value.stats[i].id);
+						buf.Write(item.Value.stats[i].possibleStatsIndex);
+						buf.Write(item.Value.stats[i].amount);
 					}
 				}
 				else

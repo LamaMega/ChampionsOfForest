@@ -17,8 +17,8 @@
 			{
 				if (Inventory.Instance.ItemSlots.ContainsKey(pos))
 				{
-					Inventory.Instance.ItemSlots[pos].Amount--;
-					if (Inventory.Instance.ItemSlots[pos].Amount < 1)
+					Inventory.Instance.ItemSlots[pos].stackedAmount--;
+					if (Inventory.Instance.ItemSlots[pos].stackedAmount < 1)
 						Inventory.Instance.ItemSlots[pos] = null;
 				}
 				i = null;

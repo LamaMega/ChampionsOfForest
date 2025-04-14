@@ -301,10 +301,10 @@ namespace ChampionsOfForest.Player
 		{
 			if (ModAPI.Input.GetButtonDown("EquipWeapon"))
 			{
-				if (Inventory.Instance.ItemSlots[-12] != null && Inventory.Instance.ItemSlots[-12].Equipped)
+				if (Inventory.Instance.ItemSlots[-12] != null && Inventory.Instance.ItemSlots[-12].isEquipped)
 				{
-					PlayerInventoryMod.ToEquipWeaponType = Inventory.Instance.ItemSlots[-12].weaponModel;
-					switch (Inventory.Instance.ItemSlots[-12].weaponModel)
+					PlayerInventoryMod.ToEquipWeaponType = Inventory.Instance.ItemSlots[-12].subtype;
+					switch (Inventory.Instance.ItemSlots[-12].subtype)
 					{
 						case BaseItem.WeaponModelType.Polearm:
 							if (LocalPlayer.Inventory.AmountOf(56) <= 0)
@@ -1158,11 +1158,11 @@ namespace ChampionsOfForest.Player
 			{
 				if (item.Value == null)
 					continue;
-				if (item.Value.Equipped)
+				if (item.Value.isEquipped)
 				{
-					item.Value.onUnequip?.Invoke();
-					item.Value.Equipped = false;
-					foreach (var stat in item.Value.Stats)
+					item.Value.onUnequipCallback?.Invoke();
+					item.Value.isEquipped = false;
+					foreach (var stat in item.Value.stats)
 					{
 						try
 						{
@@ -1242,7 +1242,7 @@ namespace ChampionsOfForest.Player
 			{
 				if (Inventory.Instance.ItemSlots[key] != null)
 				{
-					Inventory.Instance.ItemSlots[key].Equipped = false;
+					Inventory.Instance.ItemSlots[key].isEquipped = false;
 					
 				}
 			}

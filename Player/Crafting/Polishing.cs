@@ -16,9 +16,9 @@ namespace ChampionsOfForest.Player.Crafting
 			{
 				get
 				{
-					if (CraftingHandler.changedItem.i == null || CraftingHandler.changedItem.i.Stats.Count <= selectedStat || selectedStat < 0)
+					if (CraftingHandler.changedItem.i == null || CraftingHandler.changedItem.i.stats.Count <= selectedStat || selectedStat < 0)
 						return false;
-					if (CraftingHandler.changedItem.i.Stats[selectedStat].id == 3000)
+					if (CraftingHandler.changedItem.i.stats[selectedStat].id == 3000)
 						return false;
 					int itemCount = 0;
 					int rarity = CraftingHandler.changedItem.i.rarity;
@@ -42,10 +42,10 @@ namespace ChampionsOfForest.Player.Crafting
 				{
 					if (validRecipe)
 					{
-						var stat = CraftingHandler.changedItem.i.Stats[selectedStat];
+						var stat = CraftingHandler.changedItem.i.stats[selectedStat];
 						if (stat.id > 3000)
 						{
-							CraftingHandler.changedItem.i.Stats[selectedStat] = new ItemStat(ItemDataBase.Stats[3000]); //set to empty socket
+							CraftingHandler.changedItem.i.stats[selectedStat] = new ItemStat(ItemDataBase.Stats[3000]); //set to empty socket
 						}
 						else
 						{
@@ -79,7 +79,7 @@ namespace ChampionsOfForest.Player.Crafting
 						float mult = CustomCrafting.instance.changedItem.i.GetRarityMultiplier();
 
 						int ind = 0;
-						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.Stats)
+						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.stats)
 						{
 							Rect statRect = new Rect(x + 10 * screenScale, ypos, w - 20 * screenScale, 26 * screenScale);
 							Rect valueMinMaxRect = new Rect(statRect.xMax + 15 * screenScale, ypos, statRect.width, statRect.height);
@@ -120,7 +120,7 @@ namespace ChampionsOfForest.Player.Crafting
 						if (validRecipe)
 						{
 
-							if (GUI.Button(new Rect(x, ypos, w, 40 * screenScale), CraftingHandler.changedItem.i.Stats[selectedStat].id > 3000 ? Translations.IndividualRerolling_3/*Empty socket*/ : Translations.Polishing_2/*Reroll stat value*/, styles[2])) //tr
+							if (GUI.Button(new Rect(x, ypos, w, 40 * screenScale), CraftingHandler.changedItem.i.stats[selectedStat].id > 3000 ? Translations.IndividualRerolling_3/*Empty socket*/ : Translations.Polishing_2/*Reroll stat value*/, styles[2])) //tr
 							{
 								Craft();
 							}

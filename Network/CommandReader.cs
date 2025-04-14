@@ -289,7 +289,7 @@ namespace ChampionsOfForest.Network
 											{
 												amount = r.ReadSingle()
 											};
-											item.Stats.Add(stat);
+											item.stats.Add(stat);
 										}
 										PickUpManager.SpawnPickUp(item, pos, amount, id, (ItemPickUp.DropSource)dropSource);
 										break;
@@ -646,10 +646,10 @@ namespace ChampionsOfForest.Network
 												{
 													amount = r.ReadSingle()
 												};
-												item.Stats.Add(stat);
+												item.stats.Add(stat);
 											}
 
-											Inventory.Instance.AddItem(item, item.Amount);
+											Inventory.Instance.AddItem(item, item.stackedAmount);
 										}
 
 										break;

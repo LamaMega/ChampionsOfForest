@@ -35,8 +35,8 @@ namespace ChampionsOfForest
 				this.itemIndex = itemIndex;
 				this.i = Inventory.Instance.ItemSlots[itemIndex];
 				buttons = AvailableContextMenuButtons.drop |
-					(i.CanConsume ? AvailableContextMenuButtons.consume : AvailableContextMenuButtons.none) |
-					(i.Amount > 1 ? AvailableContextMenuButtons.splitStack : AvailableContextMenuButtons.none);
+					(i.canConsume ? AvailableContextMenuButtons.consume : AvailableContextMenuButtons.none) |
+					(i.stackedAmount > 1 ? AvailableContextMenuButtons.splitStack : AvailableContextMenuButtons.none);
 				buttonCount = buttons == (AvailableContextMenuButtons)0b111 ? 3 :
 							(buttons != (AvailableContextMenuButtons)0b100 ? 2 : 1);
 			}
@@ -325,7 +325,7 @@ namespace ChampionsOfForest
 			Rect ItemNameRect = new Rect(pos.x, pos.y, width, 50 * screenScale);
 			GUIStyle ItemNameStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.UpperCenter, fontSize = Mathf.RoundToInt(35 * screenScale), fontStyle = FontStyle.Bold, font = mainFont };
 			float y = 70 + pos.y;
-			Rect[] StatRects = new Rect[item.Stats.Count];
+			Rect[] StatRects = new Rect[item.stats.Count];
 			GUIStyle StatNameStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontSize = Mathf.RoundToInt(18 * screenScale), font = mainFont, richText = true };
 			GUIStyle StatValueStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleRight, fontSize = Mathf.RoundToInt(18 * screenScale), fontStyle = FontStyle.Bold, font = mainFont, richText = true };
 
@@ -381,28 +381,28 @@ namespace ChampionsOfForest
 			GUI.Label(ItemNameRect, item.name, ItemNameStyle);
 			for (int i = 0; i < StatRects.Length; i++)
 			{
-				GUI.color = RarityColors[item.Stats[i].rarity];
-				GUI.Label(StatRects[i], item.Stats[i].name, StatNameStyle);
-				double amount = item.Stats[i].amount;
-				if (item.Stats[i].displayAsPercent)
+				GUI.color = RarityColors[item.stats[i].rarity];
+				GUI.Label(StatRects[i], item.stats[i].name, StatNameStyle);
+				double amount = item.stats[i].amount;
+				if (item.stats[i].displayAsPercent)
 				{
 					amount *= 100;
 				}
-				amount = Math.Round(amount, item.Stats[i].roundingCount);
+				amount = Math.Round(amount, item.stats[i].roundingCount);
 
-				if (item.Stats[i].displayAsPercent)
+				if (item.stats[i].displayAsPercent)
 				{
-					GUI.Label(StatRects[i], amount.ToString("N" + item.Stats[i].roundingCount) + "%", StatValueStyle);
+					GUI.Label(StatRects[i], amount.ToString("N" + item.stats[i].roundingCount) + "%", StatValueStyle);
 				}
 				else
 				{
-					GUI.Label(StatRects[i], amount.ToString("N" + item.Stats[i].roundingCount), StatValueStyle);
+					GUI.Label(StatRects[i], amount.ToString("N" + item.stats[i].roundingCount), StatValueStyle);
 				}
 			}
 			if (drawTotal)
 			{
 
-				int count = item.Stats.Count;
+				int count = item.stats.Count;
 				if (count > 0)
 				{
 					GUIStyle totalStatStyle = new GUIStyle(StatValueStyle)
@@ -418,10 +418,10 @@ namespace ChampionsOfForest
 					GUI.Label(new Rect(totalBG.x, totalBG.y, totalBG.width, 30 * screenScale), Translations.MainMenu_Inventory_14/*Total*/, new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, font = mainFont });   //tr
 					for (int i = 0; i < count; i++)
 					{
-						if (item.Stats[i].GetTotalStat != null)
+						if (item.stats[i].GetTotalStat != null)
 						{
 							Rect rect = new Rect(StatRects[i].xMax + 3f, StatRects[i].y, 100 * screenScale, StatRects[i].height);
-							GUI.Label(rect, item.Stats[i].GetTotalStat(), totalStatStyle);
+							GUI.Label(rect, item.stats[i].GetTotalStat(), totalStatStyle);
 						}
 					}
 					GUI.color = Color.white;
@@ -449,15 +449,15 @@ namespace ChampionsOfForest
 					GUI.DrawTexture(compareBG, blackSquareTex);
 					GUI.color = Color.gray;
 					GUI.Label(new Rect(compareBG.x, compareBG.y, compareBG.width, 30 * screenScale), Translations.MainMenu_Inventory_15/*Compare*/, new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, font = mainFont });   //tr
-					int count = item.Stats.Count;
+					int count = item.stats.Count;
 					for (int i = 0; i < count; i++)
 					{
 						Rect compareRect = new Rect(compareBG.x + 5 * screenScale, StatRects[i].y, 100 * screenScale, StatRects[i].height);
 						//object baseVarValue = item.Stats[i].GetVariable();
 						//dynamic castedValue = Convert.ChangeType(baseVarValue, item.Stats[i].variableType);
 
-						float statIncr = otherGrouped != null && otherGrouped.ContainsKey(item.Stats[i].id) ? -otherGrouped[item.Stats[i].id] : 0;
-						statIncr += grouped[item.Stats[i].id];
+						float statIncr = otherGrouped != null && otherGrouped.ContainsKey(item.stats[i].id) ? -otherGrouped[item.stats[i].id] : 0;
+						statIncr += grouped[item.stats[i].id];
 						string text = "↑   +";
 						if (statIncr > 0)
 						{
@@ -468,11 +468,11 @@ namespace ChampionsOfForest
 							GUI.color = Color.red;
 							text = "↓   ";
 						}
-						if (item.Stats[i].displayAsPercent)
+						if (item.stats[i].displayAsPercent)
 							statIncr *= 100;
-						statIncr = (float)Math.Round(statIncr, item.Stats[i].roundingCount);
+						statIncr = (float)Math.Round(statIncr, item.stats[i].roundingCount);
 						text += statIncr.ToString("N");
-						if (item.Stats[i].displayAsPercent)
+						if (item.stats[i].displayAsPercent)
 							text += "%";
 
 						GUI.Label(compareRect, text, statCompareStyle);
@@ -547,8 +547,8 @@ namespace ChampionsOfForest
 					Effects.Sound_Effects.GlobalSFX.Play(DraggedItem.GetInvSound(), 0, DraggedItem.GetInvSoundPitch());
 					if (Inventory.Instance.ItemSlots[index].CombineItems(DraggedItem))	//putting a material into a socket
 					{
-						Inventory.Instance.ItemSlots[DraggedItemIndex].Amount--;
-						if (Inventory.Instance.ItemSlots[DraggedItemIndex].Amount <= 0)
+						Inventory.Instance.ItemSlots[DraggedItemIndex].stackedAmount--;
+						if (Inventory.Instance.ItemSlots[DraggedItemIndex].stackedAmount <= 0)
 							Inventory.Instance.RemoveItemAtPosition(DraggedItemIndex);
 						
 						CancelDragging();
@@ -569,10 +569,10 @@ namespace ChampionsOfForest
 					}
 					else
 					{
-						if (DraggedItem.ID != Inventory.Instance.ItemSlots[index].ID
-						 || DraggedItem.Amount == DraggedItem.StackSize
-						 || Inventory.Instance.ItemSlots[index].Amount == Inventory.Instance.ItemSlots[index].StackSize
-						 || (Inventory.Instance.ItemSlots[index].StackSize <= 1 && DraggedItem.StackSize <= 1))
+						if (DraggedItem.id != Inventory.Instance.ItemSlots[index].id
+						 || DraggedItem.stackedAmount == DraggedItem.stackSize
+						 || Inventory.Instance.ItemSlots[index].stackedAmount == Inventory.Instance.ItemSlots[index].stackSize
+						 || (Inventory.Instance.ItemSlots[index].stackSize <= 1 && DraggedItem.stackSize <= 1))
 						{
 							if (canPlace)
 							{
@@ -585,17 +585,17 @@ namespace ChampionsOfForest
 						else if (DraggedItemIndex != index)
 						{
 							//stack items
-							int i = DraggedItem.Amount + Inventory.Instance.ItemSlots[index].Amount - DraggedItem.StackSize;
+							int i = DraggedItem.stackedAmount + Inventory.Instance.ItemSlots[index].stackedAmount - DraggedItem.stackSize;
 							if (i > 0)  //too much to stack completely and there is an excess
 							{
-								Inventory.Instance.ItemSlots[index].Amount = Inventory.Instance.ItemSlots[index].StackSize;
-								Inventory.Instance.ItemSlots[DraggedItemIndex].Amount = i;
+								Inventory.Instance.ItemSlots[index].stackedAmount = Inventory.Instance.ItemSlots[index].stackSize;
+								Inventory.Instance.ItemSlots[DraggedItemIndex].stackedAmount = i;
 								CancelDragging();
 
 							}
 							else //enough to stack completely
 							{
-								Inventory.Instance.ItemSlots[index].Amount += DraggedItem.Amount;
+								Inventory.Instance.ItemSlots[index].stackedAmount += DraggedItem.stackedAmount;
 								Inventory.Instance.RemoveItemAtPosition(DraggedItemIndex);
 								CustomCrafting.ClearIndex(DraggedItemIndex);
 								CancelDragging();
@@ -647,10 +647,10 @@ namespace ChampionsOfForest
 					GUI.DrawTexture(itemRect, Inventory.Instance.ItemSlots[index].icon);
 
 					//item count in the corner
-					if (Inventory.Instance.ItemSlots[index].StackSize > 1)
+					if (Inventory.Instance.ItemSlots[index].stackSize > 1)
 					{
 						GUI.color = Color.white;
-						GUI.Label(r, Inventory.Instance.ItemSlots[index].Amount.ToString("N0"), new GUIStyle(GUI.skin.label) { alignment = TextAnchor.LowerLeft, fontSize = Mathf.RoundToInt(15 * screenScale), font = mainFont, fontStyle = FontStyle.Bold });
+						GUI.Label(r, Inventory.Instance.ItemSlots[index].stackedAmount.ToString("N0"), new GUIStyle(GUI.skin.label) { alignment = TextAnchor.LowerLeft, fontSize = Mathf.RoundToInt(15 * screenScale), font = mainFont, fontStyle = FontStyle.Bold });
 					}
 
 					if (isDragging)
@@ -799,8 +799,8 @@ namespace ChampionsOfForest
 							consumedsomething = true;
 							if (itemContextMenu.Value.i.OnConsume())
 							{
-								itemContextMenu.Value.i.Amount--;
-								if (itemContextMenu.Value.i.Amount <= 0)
+								itemContextMenu.Value.i.stackedAmount--;
+								if (itemContextMenu.Value.i.stackedAmount <= 0)
 								{
 									Inventory.Instance.ItemSlots[itemContextMenu.Value.itemIndex] = null;
 								}
@@ -831,13 +831,13 @@ namespace ChampionsOfForest
 							}
 							if (emptySlot != -1)
 							{
-								int amount = itemContextMenu.Value.i.Amount / 2;
+								int amount = itemContextMenu.Value.i.stackedAmount / 2;
 								var itemClone = new Item(itemContextMenu.Value.i, amount, 0, false);
 								itemClone.level = itemContextMenu.Value.i.level;
-								if (itemContextMenu.Value.i.Stats != null)
-									itemClone.Stats = new System.Collections.Generic.List<ItemStat>(itemContextMenu.Value.i.Stats);
+								if (itemContextMenu.Value.i.stats != null)
+									itemClone.stats = new System.Collections.Generic.List<ItemStat>(itemContextMenu.Value.i.stats);
 
-								itemContextMenu.Value.i.Amount -= amount;
+								itemContextMenu.Value.i.stackedAmount -= amount;
 
 								Inventory.Instance.ItemSlots[emptySlot] = itemClone;
 
@@ -868,10 +868,10 @@ namespace ChampionsOfForest
 		}
 		void DropItem(int itemIndex, Item i)
 		{
-			if (i.Equipped)
+			if (i.isEquipped)
 			{
 				i.OnUnequip();
-				i.Equipped = false;
+				i.isEquipped = false;
 			}
 			Inventory.Instance.DropItem(itemIndex);
 			CustomCrafting.ClearIndex(itemIndex);

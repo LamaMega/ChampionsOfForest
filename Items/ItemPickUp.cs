@@ -39,10 +39,10 @@ namespace ChampionsOfForest
 
 			if (amount == 0)
 			{
-				amount = item.Amount;
+				amount = item.stackedAmount;
 			}
-			if (item.Amount < 1)
-				item.Amount = 1;
+			if (item.stackedAmount < 1)
+				item.stackedAmount = 1;
 
 			if (ModSettings.IsDedicated)
 				return;
@@ -124,12 +124,12 @@ namespace ChampionsOfForest
 				float lineheight = statStyle.CalcHeight(new GUIContent(" "), r.width);
 				Rect bg = new Rect(r)
 				{
-					height = titleHeight + (lineheight * item.Stats.Count + 1 )
+					height = titleHeight + (lineheight * item.stats.Count + 1 )
 				};
 				GUI.Box(bg, string.Empty);
-				for (int i = 0; i < item.Stats.Count; i++)
+				for (int i = 0; i < item.stats.Count; i++)
 				{
-					ItemStat stat = item.Stats[i];
+					ItemStat stat = item.stats[i];
 					double amount = stat.amount;
 					if (stat.displayAsPercent)
 					{

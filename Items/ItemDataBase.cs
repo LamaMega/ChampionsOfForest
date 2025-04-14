@@ -41,14 +41,14 @@ namespace ChampionsOfForest
 			{
 				try
 				{
-					ItemBases.Add(_Item_Bases[i].ID, _Item_Bases[i]);
+					ItemBases.Add(_Item_Bases[i].id, _Item_Bases[i]);
 					if (ItemRarityGroups.ContainsKey(_Item_Bases[i].rarity))
 					{
-						ItemRarityGroups[_Item_Bases[i].rarity].Add(_Item_Bases[i].ID);
+						ItemRarityGroups[_Item_Bases[i].rarity].Add(_Item_Bases[i].id);
 					}
 					else
 					{
-						ItemRarityGroups.Add(_Item_Bases[i].rarity, new List<int>() { _Item_Bases[i].ID });
+						ItemRarityGroups.Add(_Item_Bases[i].rarity, new List<int>() { _Item_Bases[i].id });
 					}
 				}
 				catch (System.Exception ex)
@@ -83,7 +83,7 @@ namespace ChampionsOfForest
 				s += " • Rarity tier of item [" + i + "] =  " + items.Length;
 				foreach (BaseItem a in items)
 				{
-					s += "\n\t • Item \"" + a.name + "    ID [" + a.ID + "]\"";
+					s += "\n\t • Item \"" + a.name + "    ID [" + a.id + "]\"";
 				}
 				s += "\n";
 			}
@@ -105,7 +105,7 @@ namespace ChampionsOfForest
 
 				foreach (BaseItem a in items)
 				{
-					s += "\n\t • Item \"" + a.name + "    ID [" + a.ID + "]    RARITY [" + a.rarity + "]\"";
+					s += "\n\t • Item \"" + a.name + "    ID [" + a.id + "]    RARITY [" + a.rarity + "]\"";
 				}
 				s += "\n";
 			}
@@ -125,7 +125,7 @@ namespace ChampionsOfForest
 				{
 					for (int j = 1; j <= (int)BaseItem.WeaponModelType.Greatbow; j++)
 					{
-						var weapons = itemsByType.Where(a => a.weaponModel == (BaseItem.WeaponModelType)j).OrderBy(a => a.ID + a.rarity * 100000);
+						var weapons = itemsByType.Where(a => a.subtype == (BaseItem.WeaponModelType)j).OrderBy(a => a.id + a.rarity * 100000);
 						f.WriteLine(((BaseItem.WeaponModelType)j) + ";" + weapons.Count());
 						f.WriteLine("ID;RARITY;NAME;UNIQUE STAT;MIN LEVEL; MIN STATS QUANTITY;MAX STATS QUANTITY");
 						foreach (var weapon in weapons)
@@ -139,11 +139,11 @@ namespace ChampionsOfForest
 				}
 				else
 				{
-					itemsByType = itemsByType.OrderBy(a => a.ID + a.rarity * 100000);
+					itemsByType = itemsByType.OrderBy(a => a.id + a.rarity * 100000);
 					f.WriteLine("ID;RARITY;NAME;UNIQUE STAT;MIN LEVEL; MIN STATS QUANTITY;MAX STATS QUANTITY");
 					foreach (var item in itemsByType)
 					{
-						f.WriteLine(item.ID + ";" + item.rarity + ";" + item.name + ";" + item.uniqueStat + " ;" + item.minLevel + ";" + item.PossibleStats.Count(y => !y.Contains(null)) + ";" + item.PossibleStats.Count);
+						f.WriteLine(item.id + ";" + item.rarity + ";" + item.name + ";" + item.uniqueStat + " ;" + item.minLevel + ";" + item.statSlots.Count(y => !y.Contains(null)) + ";" + item.statSlots.Count);
 
 					}
 					f.WriteLine(" ");

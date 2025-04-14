@@ -212,7 +212,7 @@ namespace ChampionsOfForest.Network
 				using (System.IO.BinaryWriter w = new System.IO.BinaryWriter(answerStream))
 				{
 					w.Write(5);
-					w.Write(item.ID);
+					w.Write(item.id);
 					w.Write(id);
 					w.Write(item.level);
 					w.Write(amount);
@@ -220,7 +220,7 @@ namespace ChampionsOfForest.Network
 					w.Write(pos.y);
 					w.Write(pos.z);
 					w.Write((int)dropSource);
-					foreach (ItemStat stat in item.Stats)
+					foreach (ItemStat stat in item.stats)
 					{
 						w.Write(stat.id);
 						w.Write(stat.possibleStatsIndex);
@@ -241,10 +241,10 @@ namespace ChampionsOfForest.Network
 				{
 					w.Write(26);
 					w.Write(playerID);
-					w.Write(item.ID);
+					w.Write(item.id);
 					w.Write(amount);
 					w.Write(item.level);
-					foreach (ItemStat stat in item.Stats)
+					foreach (ItemStat stat in item.stats)
 					{
 						w.Write(stat.id);
 						w.Write(stat.possibleStatsIndex);

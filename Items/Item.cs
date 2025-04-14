@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using ChampionsOfForest.Items;
@@ -13,16 +14,19 @@ namespace ChampionsOfForest
 {
 	public class Item : BaseItem
 	{
-		public int Amount;
-		public bool Equipped;
-		public List<ItemStat> Stats = new List<ItemStat>();
+		public int level;
+		public int stackedAmount;
+		public bool isEquipped;
+		public List<ItemStat> stats = new List<ItemStat>();
+		public int currentEmptySockets;
+		public int currentMaxEmptySockets;
 
+		#region Grouping stats of the same id
 		private Dictionary<int, float> groupedStats;
-
 		private void GroupStats()
 		{
 			var grouped = new Dictionary<int, List<float>>();
-			foreach (var stat in Stats)
+			foreach (var stat in stats)
 			{
 				if (grouped.ContainsKey(stat.id))
 					grouped[stat.id].Add(stat.amount);
@@ -35,44 +39,65 @@ namespace ChampionsOfForest
 				groupedStats.Add(group.Key, ItemDataBase.StatByID(group.Key).EvaluateTotalIncrease(group.Value));
 			}
 		}
-
 		public Dictionary<int, float> GetGroupedStats()
 		{
-			if (Stats.Count == 0)
+			if (stats.Count == 0)
 				return null;
 			if (groupedStats == null)
 				GroupStats();
 			return groupedStats;
 		}
+		#endregion
 
+		public bool HasEmptySocket => currentEmptySockets > 0;
+
+		public bool PlaceItemInSocket(Item other)
+		{
+			if (other == null)
+				return false;
+			if (other.type == ItemType.SocketableGem
+				&& HasEmptySocket)
+			{
+				if (other.onConsumeCallback.Invoke(this))
+				{
+					//item was successfully socketed
+					currentEmptySockets--;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		// called when another item is dragged and dropped on top of this item
 		public bool CombineItems(Item other)
 		{
-			//if other is a socketable item
+			// if other is a material
+			// materials can be used to upgrade items, reroll their values, etc
 			if (other.type == ItemType.Material)
 			{
-				if (other.onConsume != null)
+				if (other.onConsumeCallback != null)
 				{
-					if (Equipped)
+					if (isEquipped)
 						OnUnequip();
 
-					bool returnval = other.onConsume.Invoke(this);
+					bool returnval = other.onConsumeCallback.Invoke(this);
 					OnEquip();
 
 					return returnval;
 				}
-				else if (this.Stats.Any(x => x.id == 3000))
-				{
-					if (Equipped)
-					{
-						OnUnequip();
-					}
-
-					int statindex = Stats.FindIndex(x => x.id == 3000);
-					Stats[statindex] = StatActions.GetSocketedStat(other.rarity, this.type, other.subtype);
-					OnEquip();
-					return true;
-				}
 			}
+			else if (other.type == ItemType.SocketableGem)
+			{
+				bool wasEquipped = isEquipped;
+				if (isEquipped)
+					OnUnequip();
+				PlaceItemInSocket(other);
+				if (wasEquipped)
+					OnEquip();
+
+				return true;
+			}
+
 			return false;
 		}
 
@@ -246,181 +271,153 @@ namespace ChampionsOfForest
 		/// <summary>
 		/// creates a item based on a BaseItem object, rolls values
 		/// </summary>
-		public Item(BaseItem b, int amount = 1, int increasedLevel = 0, bool roll = true)
-		{
-			base.description = b.description;
-			base.minLevel = b.minLevel;
-			base.maxLevel = b.maxLevel;
-			if (increasedLevel != -1)
-			{
-				base.level = Random.Range(minLevel, maxLevel + 1) + increasedLevel;
-			}
-			else
-			{
-				int averageLevel;
-				if (GameSetup.IsMultiplayer)
-				{
-					int sum = ModReferences.PlayerLevels.Values.Sum();
-					int count = ModReferences.PlayerLevels.Values.Count;
+		//public Item(BaseItem b, int amount = 1, int increasedLevel = 0, bool roll = true)
+		//{
+		//	base.description = b.description;
+		//	base.minLevel = b.minLevel;
+		//	base.maxLevel = b.maxLevel;
+		//	if (increasedLevel != -1)
+		//	{
+		//		this.level = Random.Range(minLevel, maxLevel + 1) + increasedLevel;
+		//	}
+		//	else
+		//	{
+		//		int averageLevel;
+		//		if (GameSetup.IsMultiplayer)
+		//		{
+		//			int sum = ModReferences.PlayerLevels.Values.Sum();
+		//			int count = ModReferences.PlayerLevels.Values.Count;
 
-					if (!ModSettings.IsDedicated)
-					{
-						sum += ModdedPlayer.instance.level;
-						count++;
-					}
-					else
-					{
-						//ModAPI.Log.Write("Is dedicated server bool set to true.");
-					}
-					sum = Mathf.Max(1, sum);
-					count = Mathf.Max(1, count);
-					sum /= count;
-					averageLevel = sum;
-				}
-				else
-				{
-					averageLevel = ModdedPlayer.instance.level;
-				}
-				averageLevel = Mathf.Max(1, averageLevel);
-				base.level = averageLevel;
-			}
-			base.lore = b.lore;
-			base.name = b.name;
-			base.onEquip = b.onEquip;
-			base.onUnequip = b.onUnequip;
-			base.PossibleStats = b.PossibleStats;
-			base.rarity = b.rarity;
-			base.uniqueStat = b.uniqueStat;
-			base.ID = b.ID;
-			base.type = b.type;
-			base.StackSize = b.StackSize;
-			base.icon = b.icon;
-			base.onConsume = b.onConsume;
-			base.CanConsume = b.CanConsume;
-			base.weaponModel = b.weaponModel;
-			base.lootTable = b.lootTable;
-			base.subtype = b.subtype;
-			Amount = amount;
-			Equipped = false;
-			Stats = new List<ItemStat>();
-			if (roll)
-			{
-				RollStats();
-			}
-		}
+		//			if (!ModSettings.IsDedicated)
+		//			{
+		//				sum += ModdedPlayer.instance.level;
+		//				count++;
+		//			}
+		//			else
+		//			{
+		//				//ModAPI.Log.Write("Is dedicated server bool set to true.");
+		//			}
+		//			sum = Mathf.Max(1, sum);
+		//			count = Mathf.Max(1, count);
+		//			sum /= count;
+		//			averageLevel = sum;
+		//		}
+		//		else
+		//		{
+		//			averageLevel = ModdedPlayer.instance.level;
+		//		}
+		//		averageLevel = Mathf.Max(1, averageLevel);
+		//		base.level = averageLevel;
+		//	}
+		//	base.lore = b.lore;
+		//	base.name = b.name;
+		//	base.onEquipCallback = b.onEquipCallback;
+		//	base.onUnequipCallback = b.onUnequipCallback;
+		//	base.statSlots = b.statSlots;
+		//	base.rarity = b.rarity;
+		//	base.uniqueStat = b.uniqueStat;
+		//	base.id = b.id;
+		//	base.type = b.type;
+		//	base.stackSize = b.stackSize;
+		//	base.icon = b.icon;
+		//	base.onConsumeCallback = b.onConsumeCallback;
+		//	base.canConsume = b.canConsume;
+		//	base.subtype = b.subtype;
+		//	base.lootTable = b.lootTable;
+		//	this.stackedAmount = amount;
+		//	isEquipped = false;
+		//	stats = new List<ItemStat>();
+		//	if (roll)
+		//	{
+		//		RollStats();
+		//	}
+		//}
+		// TODO MAKE A CONSTRUCTOR FOR ITEMS FROM BASE ITEMS
+
+
 
 		public float GetRarityMultiplier()
 		{
-			switch (rarity)
-			{
-				case 0:
-					return 0.5f;
-
-				case 1:
-					return 0.7f;
-
-				case 2:
-					return 1f;
-
-				case 3:
-					return 1.4f;
-
-				case 4:
-					return 2.3f;
-
-				case 5:
-					return 3.4f;
-
-				case 6:
-					return 4.5f;
-
-				case 7:
-					return 5.6f;
-			}
-			return 1;
+			return Mathf.Pow(1.3f, (int)rarity);
 		}
 
+		public bool isEquippable => destinationSlotID < -1;
 		//rolls 'amount' on every item stat on this object
 		public void RollStats()
 		{
 			groupedStats = null;
-			Stats.Clear();
-			int i = 0;
-			foreach (List<ItemStat> PS in PossibleStats)
-			{
-				int random = Random.Range(0, PS.Count);
-				if (PS[random] != null)
-				{
-					ItemStat stat = new ItemStat(PS[random], level);
-					stat.amount *= GetRarityMultiplier();
-					if (stat.valueCap != 0)
-					{
-						stat.amount = Mathf.Min(stat.amount, stat.valueCap);
-					}
-					stat.possibleStatsIndex = i;
-					Stats.Add(stat);
-				}
-				i++;
-			}
+			stats.Clear();
+			float rarityMult = GetRarityMultiplier();
 
-			if (this.destinationSlotID < -1 && this.level > 20 && Random.value <= 0.175f)
+			for (int i = 0; i < statSlots.Count; i++)
 			{
-				var socketAmount = StatActions.GetMaxSocketAmountOnItem(this.type);
-				if (socketAmount > 0)
+				StatSlot statSlot = statSlots[i];
+
+				if (UnityEngine.Random.value <= statSlot.chance)
 				{
-					socketAmount = Random.Range(1, socketAmount + 1);
-					for (int j = 0; j < socketAmount; j++)
+					// roll a random stat from pool
+					int selected = Random.Range(0, statSlot.options.Count);
+
+					ItemStat newstat = new ItemStat(statSlot.options[selected], level, i, rarityMult);
+					//if (stats.Any(stat => stat.id == newstat.id)) // if stats should be grouped
+					//{
+					//	stats.First(stat => stat.id == newstat.id).amount += newstat.amount;
+					//}
+					//else
 					{
-						Stats.Add(new ItemStat(ItemDataBase.StatByID(3000)));
+						stats.Add(newstat);
 					}
 				}
 			}
-			SortStats();
 		}
-		public void SortStats()
+		public void RollSockets()
 		{
-			Stats = Stats.OrderBy(x => -x.rarity).ToList();
+			if (isEquippable && level >= ModSettings.MinimumLevelForSocketsToAppear && Random.value <= ModSettings.ChanceForFirstSocketToAppear)
+			{
+				int socketAmount = 1;
+
+				while (Random.value <= ModSettings.ChanceForSubsequentSocketsToAppear && socketAmount < maximumSocketSlots)
+				{
+					socketAmount++;
+				}
+
+				currentMaxEmptySockets = socketAmount;
+				currentEmptySockets = socketAmount;
+
+			}
 		}
 
 		public void OnEquip()
 		{
-			Equipped = true;
-			foreach (ItemStat item in Stats)
+			isEquipped = true;
+			foreach (ItemStat item in stats)
 			{
 				if (item.amount != 0)
 				{
 					item.OnEquip?.Invoke(item.amount);
 				}
 			}
-			onEquip?.Invoke();
+			onEquipCallback?.Invoke();
 		}
 
 		public void OnUnequip()
 		{
-			Equipped = false;
-			foreach (ItemStat item in Stats)
+			isEquipped = false;
+			foreach (ItemStat item in stats)
 			{
 				if (item.amount != 0)
 				{
 					item.OnUnequip(item.amount);
 				}
 			}
-			onUnequip?.Invoke();
+			onUnequipCallback?.Invoke();
 		}
 
 		public bool OnConsume()
 		{
-			if (CanConsume)
+			if (canConsume)
 			{
-				onEquip?.Invoke();
-				foreach (ItemStat item in Stats)
-				{
-					if (item.amount != 0)
-					{
-						item.OnConsume(item.amount);
-					}
-				}
-				return true;
+				return onConsumeCallback.Invoke(this);
 			}
 			return false;
 		}

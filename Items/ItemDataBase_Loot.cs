@@ -115,7 +115,7 @@ namespace ChampionsOfForest
 			Item item = new Item(ItemBases[itemIdPool[randomID]]);
 
 			item.level = level;
-			if (item.ID == 42 || item.ID == 103 || item.type == BaseItem.ItemType.Material)
+			if (item.id == 42 || item.id == 103 || item.type == BaseItem.ItemType.Material)
 				item.level = 1;
 			item.RollStats();
 			return item;
@@ -157,7 +157,7 @@ namespace ChampionsOfForest
 			Item item = new Item(ItemBases[itemIdPool[randomID]]);
 
 			item.level = level;
-			if (item.ID == 42 || item.ID == 103 || item.type == BaseItem.ItemType.Material)
+			if (item.id == 42 || item.id == 103 || item.type == BaseItem.ItemType.Material)
 				item.level = 1;
 			item.RollStats();
 			return item;

@@ -41,7 +41,7 @@ namespace ChampionsOfForest.Player.Crafting
 					if (validRecipe)
 					{
 						CraftingHandler.changedItem.i.level = ModdedPlayer.instance.level;
-						foreach (var stat in CraftingHandler.changedItem.i.Stats)
+						foreach (var stat in CraftingHandler.changedItem.i.stats)
 						{
 							if (stat.id >= 3000)
 								continue;
@@ -75,7 +75,7 @@ namespace ChampionsOfForest.Player.Crafting
 					try
 					{
 						float mult = CustomCrafting.instance.changedItem.i.GetRarityMultiplier();
-						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.Stats)
+						foreach (ItemStat stat in CustomCrafting.instance.changedItem.i.stats)
 						{
 							Rect statRect = new Rect(x + 10 * screenScale, ypos, w - 20 * screenScale, 26 * screenScale);
 							Rect valueMinMaxRect = new Rect(statRect.xMax + 15 * screenScale, ypos, statRect.width, statRect.height);

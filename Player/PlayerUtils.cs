@@ -12,9 +12,9 @@
 			float atkSpeed = 1;
 			if (equippedWeapon != null)
 			{
-				if (PlayerInventoryMod.customWeapons.ContainsKey(equippedWeapon.weaponModel))
+				if (PlayerInventoryMod.customWeapons.ContainsKey(equippedWeapon.subtype))
 				{
-					var cw = PlayerInventoryMod.customWeapons[equippedWeapon.weaponModel];
+					var cw = PlayerInventoryMod.customWeapons[equippedWeapon.subtype];
 					dmg = cw.damage;
 				}
 			}
@@ -33,7 +33,7 @@
 			float atkSpeed = 1;
 			if (equippedWeapon != null)
 			{
-				greatbow = equippedWeapon.weaponModel == BaseItem.WeaponModelType.Greatbow;
+				greatbow = equippedWeapon.subtype == BaseItem.WeaponModelType.Greatbow;
 				if (greatbow)
 				{
 					dmg += 140;

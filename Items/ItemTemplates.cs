@@ -47,7 +47,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				recoveryStats = ToItemStatList(recoveryStatIds);
 			}
 
-			ID = ItemDataBase._Item_Bases.Count;
+			id = ItemDataBase._Item_Bases.Count;
 			ItemDataBase._Item_Bases.Add(this);
 		}
 
@@ -56,7 +56,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			var list = new List<ItemStat>();
 			foreach (var stat in defaultStatIds)
 			{
-				list.Add(new ItemStat(ItemDataBase.Stats[(int)stat]));
+				list.Add(new ItemStat(ItemDataBase.Stats[(int)stat], 1, -1, 1));
 			}
 			return list;
 		}
@@ -95,17 +95,13 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			ATTACK_COST_REDUCTION,
 			SPELL_COST_REDUCTION,
 			SPELL_COST_TO_STAMINA,
-			LESSERSTRENGTH,
-			LESSERAGILITY,
-			LESSERVITALITY,
-			LESSERINTELLIGENCE,
-			LESSERARMOR,
 			ENERGY_REGEN_BASE,
 			MAX_LIFE_MULT,
 			MAX_ENERGY_MULT,
 			COOLDOWN_REDUCTION,
 			ENERGY_ON_HIT,
 			LOOT_QUANTITY,  // think about keeping this later
+			LOOT_QUALITY,
 			ALL_ATTRIBUTES,
 			JUMP_POWER,
 			THORNS
@@ -115,13 +111,13 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public ItemTemplateBuilder DefaultStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(defaultStats);
+				statSlots.Add(defaultStats);
 			return this;
 		}
 
 		public ItemTemplateBuilder StatSlot(Stat[] statPool)
 		{
-			PossibleStats.Add(ToItemStatList(statPool));
+			statSlots.Add(ToItemStatList(statPool));
 			return this;
 		}
 
@@ -151,8 +147,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 
 		public ItemTemplateBuilder UniqueStat(string s, OnItemEquip _onEquip, OnItemUnequip _onUnequip)
 		{
-			onEquip = _onEquip;
-			onUnequip = _onUnequip;
+			onEquipCallback = _onEquip;
+			onUnequipCallback = _onUnequip;
 			uniqueStat = s;
 			return this;
 		}
@@ -166,10 +162,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 
 		public ItemTemplateBuilder Consumable(string consumableDescriptiuon, OnItemConsume _onConsume, OnItemUnequip _onUnequip)
 		{
-			onConsume = _onConsume;
+			onConsumeCallback = _onConsume;
 			uniqueStat = consumableDescriptiuon;
-			StackSize = 100;
-			CanConsume = true;
+			stackSize = 100;
+			canConsume = true;
 			return this;
 		}
 
@@ -200,7 +196,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public ItemTemplateBuilder MagicStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(magicStats);
+				statSlots.Add(magicStats);
 			return this;
 		}
 
@@ -217,7 +213,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public ItemTemplateBuilder MeleeStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(meleeStats);
+				statSlots.Add(meleeStats);
 			return this;
 		}
 
@@ -238,7 +234,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public ItemTemplateBuilder RangedStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(rangedStats);
+				statSlots.Add(rangedStats);
 			return this;
 		}
 
@@ -259,7 +255,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public ItemTemplateBuilder DefenseStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(defenseStats);
+				statSlots.Add(defenseStats);
 			return this;
 		}
 
@@ -278,7 +274,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public ItemTemplateBuilder RecoveryStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(recoveryStats);
+				statSlots.Add(recoveryStats);
 			return this;
 		}
 	}
@@ -288,7 +284,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Greatsword()
 		{
 			type = ItemType.Weapon;
-			weaponModel = WeaponModelType.GreatSword;
+			subtype = WeaponModelType.GreatSword;
 			Icon(88);
 
         }
@@ -299,7 +295,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Longsword()
 		{
 			type = ItemType.Weapon;
-			weaponModel = WeaponModelType.LongSword;
+			subtype = WeaponModelType.LongSword;
 			Icon(89);
 		}
 	}
@@ -309,7 +305,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Hammer()
 		{
 			type = ItemType.Weapon;
-			weaponModel = WeaponModelType.Hammer;
+			subtype = WeaponModelType.Hammer;
 			Icon(109);
 
         }
@@ -320,7 +316,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Polearm()
 		{
 			type = ItemType.Weapon;
-			weaponModel = WeaponModelType.Polearm;
+			subtype = WeaponModelType.Polearm;
             Icon(181);
         }
 	}
@@ -330,7 +326,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Axe()
 		{
 			type = ItemType.Weapon;
-			weaponModel = WeaponModelType.Axe;
+			subtype = WeaponModelType.Axe;
             Icon(138);
         }
 	}
@@ -340,7 +336,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Greatbow()
 		{
 			type = ItemType.Weapon;
-			weaponModel = WeaponModelType.Greatbow;
+			subtype = WeaponModelType.Greatbow;
             Icon(170);
         }
 	}
@@ -400,7 +396,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Shield ShieldStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(shieldStats);
+				statSlots.Add(shieldStats);
 			return this;
 		}
 
@@ -584,7 +580,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Amulet RingStatSlot(int n = 1)
 		{
 			for (int i = 0; i < n; i++)
-				PossibleStats.Add(amuletStats);
+				statSlots.Add(amuletStats);
 			return this;
 		}
 
@@ -648,7 +644,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Ring RingStatSlot(int n = 1)
 		{
 			for(int i = 0; i<n; i++)
-				PossibleStats.Add(ringStats);
+				statSlots.Add(ringStats);
 			return this;
 		}
 	}
