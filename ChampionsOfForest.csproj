@@ -52,9 +52,6 @@
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/bolt.user.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="BuilderCore">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\The Forest\TheForest_Data\Managed\BuilderCore.dll</HintPath>
-    </Reference>
     <Reference Include="SteamworksManaged">
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/SteamworksManaged.dll</HintPath>
       <Private>False</Private>
@@ -211,7 +208,19 @@
     <Compile Include="ExpSources\FishEX.cs" />
     <Compile Include="Fun\Cheats.cs" />
     <Compile Include="Fun\SpaceX.cs" />
-    <Compile Include="Items\ItemDefinitions\Shields.cs" />
+    <Compile Include="Items\ItemDefinitions\Amulet.cs" />
+    <Compile Include="Items\ItemDefinitions\Boot.cs" />
+    <Compile Include="Items\ItemDefinitions\Bracer.cs" />
+    <Compile Include="Items\ItemDefinitions\ChestArmor.cs" />
+    <Compile Include="Items\ItemDefinitions\Glove.cs" />
+    <Compile Include="Items\ItemDefinitions\Helmets.cs" />
+    <Compile Include="Items\ItemDefinitions\Other.cs" />
+    <Compile Include="Items\ItemDefinitions\Pants.cs" />
+    <Compile Include="Items\ItemDefinitions\Quivers.cs" />
+    <Compile Include="Items\ItemDefinitions\Rings.cs" />
+    <Compile Include="Items\ItemDefinitions\Shields_Lama_Mega.cs" />
+    <Compile Include="Items\ItemDefinitions\ShoulderArmor.cs" />
+    <Compile Include="Items\ItemDefinitions\SpellScroll.cs" />
     <Compile Include="Items\ItemTemplates.cs" />
     <Compile Include="Items\MoreCraftingReceipes.cs" />
     <Compile Include="Items\ItemDefinitions\ItemDataBase_ItemDefinitions.cs" />
