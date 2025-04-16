@@ -20,6 +20,16 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		private static List<ItemStat> rangedStats = null;
 		private static List<ItemStat> defenseStats = null;
 		private static List<ItemStat> recoveryStats = null;
+
+		protected const int PADDING = 10000;
+		protected void Register()
+		{
+
+			id = ItemDataBase._Item_Bases[type].Count() + PADDING * (int)type;
+			ItemDataBase._Item_Bases[type].Add(this);
+
+		}
+
 		public ItemTemplateBuilder()
 		{
 			if (defaultStats == null || defaultStats.Count() == 0)
@@ -46,9 +56,6 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			{
 				recoveryStats = ToItemStatList(recoveryStatIds);
 			}
-
-			id = ItemDataBase._Item_Bases.Count;
-			ItemDataBase._Item_Bases.Add(this);
 		}
 
 		protected List<ItemStat> ToItemStatList(Stat[] stats)
@@ -287,6 +294,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			subtype = WeaponModelType.GreatSword;
 			Icon(88);
 
+			Register();
         }
 	}
 
@@ -297,6 +305,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Weapon;
 			subtype = WeaponModelType.LongSword;
 			Icon(89);
+
+			Register();
 		}
 	}
 
@@ -308,7 +318,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			subtype = WeaponModelType.Hammer;
 			Icon(109);
 
-        }
+			Register();
+		}
 	}
 
 	public class Polearm : ItemTemplateBuilder
@@ -318,7 +329,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Weapon;
 			subtype = WeaponModelType.Polearm;
             Icon(181);
-        }
+
+			Register();
+		}
 	}
 
 	public class Axe : ItemTemplateBuilder
@@ -328,7 +341,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Weapon;
 			subtype = WeaponModelType.Axe;
             Icon(138);
-        }
+
+			Register();
+		}
 	}
 
 	public class Greatbow : ItemTemplateBuilder
@@ -338,7 +353,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Weapon;
 			subtype = WeaponModelType.Greatbow;
             Icon(170);
-        }
+
+			Register();
+		}
 	}
 
 
@@ -349,6 +366,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Material;
 			LevelRequirement(20);
 			// Materials dont have a default icon
+
+			Register();
 		}
 	}
 
@@ -407,7 +426,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				shieldStats = ToItemStatList(shieldStatIds);
 			LevelRequirement(10);
             Icon(99);
-        }
+			maximumSocketSlots = 1;
+
+			Register();
+		}
 	}
 
 	public class Quiver : ItemTemplateBuilder
@@ -417,7 +439,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Quiver;
 			LevelRequirement(10);
             Icon(98);
-        }
+
+			Register();
+		}
 	}
 
 	public class Other : ItemTemplateBuilder
@@ -426,7 +450,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		{
 			type = ItemType.Other;
             Icon(105);
-        }
+
+			Register();
+		}
 	}
 
 	public class Helmet : ItemTemplateBuilder
@@ -436,7 +462,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Helmet;
 			LevelRequirement(6);
             Icon(91);
-        }
+
+			Register();
+		}
 	}
 
 	public class Boot : ItemTemplateBuilder
@@ -446,7 +474,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Boot;
 			LevelRequirement(5);
             Icon(85);
-        }
+
+			Register();
+		}
 	}
 
 	public class Pants : ItemTemplateBuilder
@@ -455,7 +485,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		{
 			type = ItemType.Pants;
             Icon(87);
-        }
+
+			Register();
+		}
 	}
 
 	public class ChestArmor : ItemTemplateBuilder
@@ -465,7 +497,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.ChestArmor;
 			LevelRequirement(1);
             Icon(96);
-        }
+
+			Register();
+		}
 	}
 
 	public class ShoulderArmor : ItemTemplateBuilder
@@ -475,7 +509,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.ShoulderArmor;
 			LevelRequirement(8);
             Icon(95);
-        }
+
+			Register();
+		}
 	}
 
 	public class Glove : ItemTemplateBuilder
@@ -485,7 +521,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Glove;
 			LevelRequirement(7);
             Icon(86);
-        }
+
+			Register();
+		}
 	}
 
 	public class Bracer : ItemTemplateBuilder
@@ -495,7 +533,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Bracer;
 			LevelRequirement(9);
             Icon(93);
-        }
+
+			Register();
+		}
 	}
 
 	public class Amulet : ItemTemplateBuilder
@@ -575,6 +615,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				amuletStats = ToItemStatList(amuletStatIds);
 			LevelRequirement(20);
 			Icon(101);
+
+			Register();
 		}
 
 		public Amulet RingStatSlot(int n = 1)
@@ -639,6 +681,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				ringStats = ToItemStatList(ringStatIds);
 			Icon(90);
 			LevelRequirement(15);
+
+			Register();
 		}
 
 		public Ring RingStatSlot(int n = 1)
@@ -656,6 +700,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.SpellScroll;
 			LevelRequirement(10);
 			Icon(110);
+
+			Register();
 		}
 	}
 
@@ -666,6 +712,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			type = ItemType.Other;
 			LevelRequirement(10);
 			Icon(105);
+
+			Register();
 		}
 	}
 

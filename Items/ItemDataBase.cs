@@ -6,7 +6,7 @@ namespace ChampionsOfForest
 {
 	public static partial class ItemDataBase
 	{
-		public static List<BaseItem> _Item_Bases;
+		public static Dictionary<BaseItem.ItemType, List<BaseItem>> _Item_Bases;
 		public static Dictionary<int, BaseItem> ItemBases;
 		public static List<ItemStat> statList;
 		public static Dictionary<int, ItemStat> Stats;
