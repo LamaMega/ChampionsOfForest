@@ -43,6 +43,10 @@ namespace ChampionsOfForest
 
 		public const float MagicFindPerDifficultyLevel = 0.25f;
 
+		// TODO use this
+		// TODO Add gui toggle for this
+		public static bool PrivateLoot = false; // new, if true, drops from enemies are private to each player. No more racing for items
+
 		public static readonly List<int> outdatedFiles = new List<int>();
 
 		public static float DropQuantityMultiplier = 1;

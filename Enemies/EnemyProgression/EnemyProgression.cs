@@ -407,8 +407,8 @@ namespace ChampionsOfForest
 					int pc = ModReferences.Players.Count;
 					for (int i = 0; i < pc; i++)
 					{
-						//Drop megan only amulet
-						Network.NetworkManager.SendItemDrop(new Item(ItemDatabase.itemLookup[80]), LocalPlayer.Transform.position + Vector3.up * 2, ItemPickUp.DropSource.EnemyOnDeath);
+						////Drop megan only amulet
+						//Network.NetworkManager.SendItemDrop(new Item(ItemDatabase.itemLookup[80]), LocalPlayer.Transform.position + Vector3.up * 2, ItemPickUp.DropSource.EnemyOnDeath);
 					}
 				}
 				else if (abilities.Count >= 3)
