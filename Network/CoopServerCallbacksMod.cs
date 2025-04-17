@@ -250,18 +250,28 @@ namespace ChampionsOfForest.Network
 
 		}
 
+		public override void Disconnected(BoltConnection connection)
+		{
+			NetworkManager.SendText("IIA champion left", NetworkManager.Target.Everyone);
+			base.Disconnected(connection);
+		}
+
 
 	}
 
 	internal class CoopClientCallbacksMod : CoopClientCallbacks
 	{
 		public override void Disconnected(BoltConnection connection)
-			{
+		{
 			ModAPI.Console.Write("Saving client data to avoid item duping");
-			Serializer.EmergencySave();
+			Serializer.ForceSave();
 			base.Disconnected(connection);
+		}
+		public override void Connected(BoltConnection connection) 
+		{
+
+		}
 	}
-}
 
 	public class BoltConnectionEx : BoltConnection
 	{
@@ -301,7 +311,7 @@ namespace ChampionsOfForest.Network
 
 		public override void Disconnect()
 		{
-			Serializer.EmergencySave();
+			Serializer.ForceSave();
 			base.Disconnect();
 		}
 	}

@@ -53,7 +53,7 @@ namespace ChampionsOfForest.Player.Crafting
 						var stat = CraftingHandler.changedItem.i.stats[selectedStat];
 						if (stat.id > 3000)
 						{
-							CraftingHandler.changedItem.i.stats[selectedStat] = new ItemStat(ItemDataBase.Stats[3000]); //set to empty socket
+							CraftingHandler.changedItem.i.stats[selectedStat] = new ItemStat(ItemDatabase.Stats[3000]); //set to empty socket
 						}
 						else
 						{

@@ -33,7 +33,7 @@
 			float atkSpeed = 1;
 			if (equippedWeapon != null)
 			{
-				greatbow = equippedWeapon.subtype == BaseItem.WeaponModelType.Greatbow;
+				greatbow = equippedWeapon.subtype == ItemDefinition.ItemSubtype.Greatbow;
 				if (greatbow)
 				{
 					dmg += 140;

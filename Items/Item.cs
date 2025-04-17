@@ -10,9 +10,11 @@ using TheForest.Utils;
 
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 namespace ChampionsOfForest
 {
-	public class Item : BaseItem
+	public class Item : ItemDefinition
 	{
 		public int level;
 		public int stackedAmount;
@@ -36,7 +38,7 @@ namespace ChampionsOfForest
 			groupedStats = new Dictionary<int, float>(grouped.Count);
 			foreach (var group in grouped)
 			{
-				groupedStats.Add(group.Key, ItemDataBase.StatByID(group.Key).EvaluateTotalIncrease(group.Value));
+				groupedStats.Add(group.Key, ItemDatabase.StatByID(group.Key).EvaluateTotalIncrease(group.Value));
 			}
 		}
 		public Dictionary<int, float> GetGroupedStats()
@@ -228,35 +230,35 @@ namespace ChampionsOfForest
 		{
 			switch (this.type)
 			{
-				case BaseItem.ItemType.Shield:
+				case ItemDefinition.ItemType.Shield:
 					return Translations.Item_1/*Shield*/;    //tr
-				case BaseItem.ItemType.Quiver:
+				case ItemDefinition.ItemType.Quiver:
 					return Translations.Item_2/*Quiver*/;    //tr
-				case BaseItem.ItemType.Weapon:
+				case ItemDefinition.ItemType.Weapon:
 					return Translations.Item_3/*Weapon*/;    //tr
-				case BaseItem.ItemType.Other:
+				case ItemDefinition.ItemType.Other:
 					return Translations.Item_4/*Other*/; //tr
-				case BaseItem.ItemType.Material:
+				case ItemDefinition.ItemType.Material:
 					return Translations.Item_5/*Material*/;      //tr
-				case BaseItem.ItemType.Helmet:
+				case ItemDefinition.ItemType.Helmet:
 					return Translations.Item_6/*Helmet*/;    //tr
-				case BaseItem.ItemType.Boot:
+				case ItemDefinition.ItemType.Boot:
 					return Translations.Item_7/*Boots*/; //tr
-				case BaseItem.ItemType.Pants:
+				case ItemDefinition.ItemType.Pants:
 					return Translations.Item_8/*Pants*/; //tr
-				case BaseItem.ItemType.ChestArmor:
+				case ItemDefinition.ItemType.ChestArmor:
 					return Translations.Item_9/*Chest armor*/;   //tr
-				case BaseItem.ItemType.ShoulderArmor:
+				case ItemDefinition.ItemType.ShoulderArmor:
 					return Translations.Item_10/*Shoulder armor*/;    //tr
-				case BaseItem.ItemType.Glove:
+				case ItemDefinition.ItemType.Glove:
 					return Translations.Item_11/*Gloves*/;    //tr
-				case BaseItem.ItemType.Bracer:
+				case ItemDefinition.ItemType.Bracer:
 					return Translations.Item_12/*Bracers*/;   //tr
-				case BaseItem.ItemType.Amulet:
+				case ItemDefinition.ItemType.Amulet:
 					return Translations.Item_13/*Amulet*/;    //tr
-				case BaseItem.ItemType.Ring:
+				case ItemDefinition.ItemType.Ring:
 					return Translations.Item_14/*Ring*/;  //tr
-				case BaseItem.ItemType.SpellScroll:
+				case ItemDefinition.ItemType.SpellScroll:
 					return Translations.Item_15/*Scroll*/;    //tr		
 				default:
 					return type.ToString();
@@ -271,69 +273,33 @@ namespace ChampionsOfForest
 		/// <summary>
 		/// creates a item based on a BaseItem object, rolls values
 		/// </summary>
-		//public Item(BaseItem b, int amount = 1, int increasedLevel = 0, bool roll = true)
-		//{
-		//	base.description = b.description;
-		//	base.minLevel = b.minLevel;
-		//	base.maxLevel = b.maxLevel;
-		//	if (increasedLevel != -1)
-		//	{
-		//		this.level = Random.Range(minLevel, maxLevel + 1) + increasedLevel;
-		//	}
-		//	else
-		//	{
-		//		int averageLevel;
-		//		if (GameSetup.IsMultiplayer)
-		//		{
-		//			int sum = ModReferences.PlayerLevels.Values.Sum();
-		//			int count = ModReferences.PlayerLevels.Values.Count;
+		/// 
 
-		//			if (!ModSettings.IsDedicated)
-		//			{
-		//				sum += ModdedPlayer.instance.level;
-		//				count++;
-		//			}
-		//			else
-		//			{
-		//				//ModAPI.Log.Write("Is dedicated server bool set to true.");
-		//			}
-		//			sum = Mathf.Max(1, sum);
-		//			count = Mathf.Max(1, count);
-		//			sum /= count;
-		//			averageLevel = sum;
-		//		}
-		//		else
-		//		{
-		//			averageLevel = ModdedPlayer.instance.level;
-		//		}
-		//		averageLevel = Mathf.Max(1, averageLevel);
-		//		base.level = averageLevel;
-		//	}
-		//	base.lore = b.lore;
-		//	base.name = b.name;
-		//	base.onEquipCallback = b.onEquipCallback;
-		//	base.onUnequipCallback = b.onUnequipCallback;
-		//	base.statSlots = b.statSlots;
-		//	base.rarity = b.rarity;
-		//	base.uniqueStat = b.uniqueStat;
-		//	base.id = b.id;
-		//	base.type = b.type;
-		//	base.stackSize = b.stackSize;
-		//	base.icon = b.icon;
-		//	base.onConsumeCallback = b.onConsumeCallback;
-		//	base.canConsume = b.canConsume;
-		//	base.subtype = b.subtype;
-		//	base.lootTable = b.lootTable;
-		//	this.stackedAmount = amount;
-		//	isEquipped = false;
-		//	stats = new List<ItemStat>();
-		//	if (roll)
-		//	{
-		//		RollStats();
-		//	}
-		//}
-		// TODO MAKE A CONSTRUCTOR FOR ITEMS FROM BASE ITEMS
+		public Item(ItemDefinition itemDefinition, int level)
+		{
+			this.level = level;
+			this.minLevel = itemDefinition.minLevel;
+			this.maxLevel = itemDefinition.maxLevel;
+			this.lore = itemDefinition.lore;
+			this.name = itemDefinition.name;
+			this.onEquipCallback = itemDefinition.onEquipCallback;
+			this.onUnequipCallback = itemDefinition.onUnequipCallback;
+			this.statSlots = itemDefinition.statSlots;
+			this.rarity = itemDefinition.rarity;
+			this.uniqueStat = itemDefinition.uniqueStat;
+			this.id = itemDefinition.id;
+			this.type = itemDefinition.type;
+			this.stackSize = itemDefinition.stackSize;
+			this.icon = itemDefinition.icon;
+			this.onConsumeCallback = itemDefinition.onConsumeCallback;
+			this.canConsume = itemDefinition.canConsume;
+			this.subtype = itemDefinition.subtype;
+			this.lootTable = itemDefinition.lootTable;
+			isEquipped = false;
+			stats = new List<ItemStat>();
+		}
 
+		
 
 
 		public float GetRarityMultiplier()
@@ -353,7 +319,7 @@ namespace ChampionsOfForest
 			{
 				StatSlot statSlot = statSlots[i];
 
-				if (UnityEngine.Random.value <= statSlot.chance)
+				if (Random.value <= statSlot.probability)
 				{
 					// roll a random stat from pool
 					int selected = Random.Range(0, statSlot.options.Count);
@@ -372,9 +338,9 @@ namespace ChampionsOfForest
 		}
 		public void RollSockets()
 		{
-			if (isEquippable && level >= ModSettings.MinimumLevelForSocketsToAppear && Random.value <= ModSettings.ChanceForFirstSocketToAppear)
+			if (minimumEmptySockets > 0 || (isEquippable && level >= ModSettings.MinimumLevelForSocketsToAppear && Random.value <= ModSettings.ChanceForFirstSocketToAppear))
 			{
-				int socketAmount = 1;
+				int socketAmount = Math.Max(minimumEmptySockets,1);
 
 				while (Random.value <= ModSettings.ChanceForSubsequentSocketsToAppear && socketAmount < maximumSocketSlots)
 				{

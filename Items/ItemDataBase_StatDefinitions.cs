@@ -8,11 +8,11 @@ using TheForest.Utils;
 
 using UnityEngine;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 		public enum Stat
 		{
@@ -97,7 +97,7 @@ namespace ChampionsOfForest
 
 		}
 
-		public static void PopulateStats()
+		private static void PopulateStats()
 		{
 			// Attributes
 			new ItemStatBuilder(Stat.STRENGTH, "Strength", 2f, 3f)

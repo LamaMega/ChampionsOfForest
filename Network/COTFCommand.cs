@@ -2,22 +2,30 @@
 using System.IO;
 using System.Runtime.InteropServices;
 
+using UnityEngine.Windows.Speech;
+
 namespace ChampionsOfForest.Network
 {
 	public class COTFCommand<ParamT> where ParamT : struct
 	{
-		public int commandIndex;
-		public static COTFCommand<ParamT> instance;
+		public int commandIndex = 0;
+		private static COTFCommand<ParamT> instance;
 
-		static protected void Init(Type type)
+		public delegate void ReceivedDelegate(ParamT p);
+
+		private ReceivedDelegate receivedDelegate;
+
+		public static void Initialize(ReceivedDelegate receivedDelegate)
 		{
 			if (instance == null)
 			{
-				var o = (COTFCommand<ParamT>)Activator.CreateInstance(type);
-				instance = o;
+				instance = new COTFCommand<ParamT>();
 				instance.commandIndex = CommandReader.curr_cmd_index++;
-				CommandReader.commandsObjects_dict.Add(instance.commandIndex, type.GetMethod("Received", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public));
-				ModAPI.Log.Write($"command {instance.commandIndex} registered: {type}");
+				CommandReader.callbacks.Add(instance.commandIndex, COTFCommand<ParamT>.Received);
+				instance.receivedDelegate = receivedDelegate;
+
+				var type = typeof(COTFCommand<ParamT>);
+				ModAPI.Log.Write($"command {instance.commandIndex} registered: {type.Name}");
 			}
 		}
 
@@ -42,15 +50,7 @@ namespace ChampionsOfForest.Network
 			return param;
 		}
 
-		protected virtual void OnSendDataWrite(BinaryWriter w)
-		{
-		}
-
-		protected virtual void OnReceived(ParamT param, BinaryReader r)
-		{
-		}
-
-		public static void Send(NetworkManager.Target target, ParamT param)
+		public static void Send(NetworkManager.Target target, in ParamT param)
 		{
 			using (MemoryStream answerStream = new MemoryStream())
 			{
@@ -58,7 +58,6 @@ namespace ChampionsOfForest.Network
 				{
 					w.Write(instance.commandIndex);
 					w.Write(GetBytes(param));
-					instance.OnSendDataWrite(w);
 					w.Close();
 				}
 				NetworkManager.SendLine(answerStream.ToArray(), target);
@@ -73,7 +72,6 @@ namespace ChampionsOfForest.Network
 				{
 					w.Write(instance.commandIndex);
 					w.Write(GetBytes(param));
-					instance.OnSendDataWrite(w);
 					w.Close();
 				}
 				NetworkManager.SendLine(answerStream.ToArray(), target_connection);
@@ -83,7 +81,7 @@ namespace ChampionsOfForest.Network
 		public static void Received(BinaryReader r)
 		{
 			var p = GetParam(r);
-			instance.OnReceived(p, r);
+			instance.receivedDelegate.Invoke(p);
 			r.Close();
 		}
 	}

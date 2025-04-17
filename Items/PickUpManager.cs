@@ -42,48 +42,48 @@ namespace ChampionsOfForest
 
 					switch (item.type)
 					{
-						case BaseItem.ItemType.Shield:
+						case ItemDefinition.ItemType.Shield:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[49];
 
 							break;
 
-						case BaseItem.ItemType.Quiver:
+						case ItemDefinition.ItemType.Quiver:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[116];
 
 							break;
 
-						case BaseItem.ItemType.SpellScroll:
+						case ItemDefinition.ItemType.SpellScroll:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[124];
 
 							break;
 
-						case BaseItem.ItemType.Weapon:
+						case ItemDefinition.ItemType.Weapon:
 
-							if (item.subtype == BaseItem.WeaponModelType.GreatSword)
+							if (item.subtype == ItemDefinition.ItemSubtype.GreatSword)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[52];
 							}
-							else if (item.subtype == BaseItem.WeaponModelType.LongSword)
+							else if (item.subtype == ItemDefinition.ItemSubtype.LongSword)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[51];
 							}
-							else if (item.subtype == BaseItem.WeaponModelType.Hammer)
+							else if (item.subtype == ItemDefinition.ItemSubtype.Hammer)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[108];
 								spawn.transform.localScale *= 1.2f;
 							}
-							else if (item.subtype == BaseItem.WeaponModelType.Axe)
+							else if (item.subtype == ItemDefinition.ItemSubtype.Axe)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[2001];
 								renderer.materials = new Material[] { pickupMaterial, pickupMaterial };
 								spawn.transform.localScale *= 1.12f;
 							}
-							else if (item.subtype == BaseItem.WeaponModelType.Greatbow)
+							else if (item.subtype == ItemDefinition.ItemSubtype.Greatbow)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[167];
 								spawn.transform.localScale *= 1.1f;
 							}
-							else if (item.subtype == BaseItem.WeaponModelType.Polearm)
+							else if (item.subtype == ItemDefinition.ItemSubtype.Polearm)
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[175];
 								spawn.transform.localScale *= 0.60f;
@@ -91,7 +91,7 @@ namespace ChampionsOfForest
 
 							break;
 
-						case BaseItem.ItemType.Other:
+						case ItemDefinition.ItemType.Other:
 							if (item.name == "Greater Mutated Heart")
 							{
 								filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[102];
@@ -113,7 +113,7 @@ namespace ChampionsOfForest
 
 							break;
 
-						case BaseItem.ItemType.Material:
+						case ItemDefinition.ItemType.Material:
 							Object.Destroy(filter);
 							Object.Destroy(renderer);
 							if (!chestPrefab)
@@ -160,47 +160,47 @@ namespace ChampionsOfForest
 							}
 							goto aftercolorsetup;
 
-						case BaseItem.ItemType.Helmet:
+						case ItemDefinition.ItemType.Helmet:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[48];
 							spawn.transform.localScale *= 0.95f;
 							break;
 
-						case BaseItem.ItemType.Boot:
+						case ItemDefinition.ItemType.Boot:
 
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[44];
 							spawn.transform.localScale *= 1.1f;
 							break;
 
-						case BaseItem.ItemType.Pants:
+						case ItemDefinition.ItemType.Pants:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[50];
 							spawn.transform.localScale *= 1.75f;
 							break;
 
-						case BaseItem.ItemType.ChestArmor:
+						case ItemDefinition.ItemType.ChestArmor:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[42];
 							spawn.transform.localScale *= 1.5f;
 							break;
 
-						case BaseItem.ItemType.ShoulderArmor:
+						case ItemDefinition.ItemType.ShoulderArmor:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[53];
 							spawn.transform.localScale *= 1.65f;
 							break;
 
-						case BaseItem.ItemType.Glove:
+						case ItemDefinition.ItemType.Glove:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[41];
 							spawn.transform.localScale *= 2.22f;
 							break;
 
-						case BaseItem.ItemType.Bracer:
+						case ItemDefinition.ItemType.Bracer:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[45];
 							break;
 
-						case BaseItem.ItemType.Amulet:
+						case ItemDefinition.ItemType.Amulet:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[40];
 							spawn.transform.localScale *= 0.85f;
 							break;
 
-						case BaseItem.ItemType.Ring:
+						case ItemDefinition.ItemType.Ring:
 							filter.mesh = Res.ResourceLoader.instance.LoadedMeshes[43];
 							spawn.transform.localScale *= 0.85f;
 							break;

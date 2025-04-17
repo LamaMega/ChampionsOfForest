@@ -306,7 +306,7 @@ namespace ChampionsOfForest.Player
 					PlayerInventoryMod.ToEquipWeaponType = Inventory.Instance.ItemSlots[-12].subtype;
 					switch (Inventory.Instance.ItemSlots[-12].subtype)
 					{
-						case BaseItem.WeaponModelType.Polearm:
+						case ItemDefinition.ItemSubtype.Polearm:
 							if (LocalPlayer.Inventory.AmountOf(56) <= 0)
 							{
 								LocalPlayer.Inventory.AddItem(56);
@@ -315,7 +315,7 @@ namespace ChampionsOfForest.Player
 							LocalPlayer.Inventory.Equip(56, false);
 							break;
 
-						case BaseItem.WeaponModelType.Greatbow:
+						case ItemDefinition.ItemSubtype.Greatbow:
 							if (LocalPlayer.Inventory.AmountOf(79) <= 0)
 							{
 								LocalPlayer.Inventory.AddItem(79);
@@ -323,7 +323,7 @@ namespace ChampionsOfForest.Player
 							LocalPlayer.Inventory.StashEquipedWeapon(false);
 							if (CustomBowBase.baseBow == null)
 							{
-								PlayerInventoryMod.ToEquipWeaponType = BaseItem.WeaponModelType.None;
+								PlayerInventoryMod.ToEquipWeaponType = ItemDefinition.ItemSubtype.None;
 								LocalPlayer.Inventory.Equip(79, false);
 							}
 							else if (LocalPlayer.Inventory.Equip(79, false))
@@ -358,7 +358,7 @@ namespace ChampionsOfForest.Player
 							break;
 					}
 
-					PlayerInventoryMod.ToEquipWeaponType = BaseItem.WeaponModelType.None;
+					PlayerInventoryMod.ToEquipWeaponType = ItemDefinition.ItemSubtype.None;
 				}
 			}
 			try
@@ -950,7 +950,7 @@ namespace ChampionsOfForest.Player
 		{
 			if ((level % 10) == 0 && level > 1)
 			{
-				var item = new Item(ItemDataBase.ItemBaseByName("Heart of Purity"));
+				var item = new Item(ItemDatabase.ItemBaseByName("Heart of Purity"));
 				item.level = 1;
 				if (!Inventory.Instance.AddItem(item))
 				{
@@ -959,7 +959,7 @@ namespace ChampionsOfForest.Player
 			}
 			else if (level >= 10 && level % 20 == 5 )
 			{
-				var item = new Item(ItemDataBase.ItemBaseByName("Greater Mutated Heart"));
+				var item = new Item(ItemDatabase.ItemBaseByName("Greater Mutated Heart"));
 				item.level = 1;
 				if (!Inventory.Instance.AddItem(item))
 				{

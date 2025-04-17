@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using ChampionsOfForest.Player;
@@ -9,9 +10,9 @@ using UnityEngine;
 
 using Random = UnityEngine.Random;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 		private static int GetLevel(Vector3 pos)
 		{
@@ -19,65 +20,33 @@ namespace ChampionsOfForest
 			{
 				if (GameSetup.IsMultiplayer)
 				{
+					var states = ModReferences.PlayerStates.All;
 					switch (ModSettings.lootLevelPolicy)
 					{
 						case ModSettings.LootLevelPolicy.HighestPlayerLevel:
-							{
-								ModReferences.RequestAllPlayerLevels();
-								int highestLevel = ModdedPlayer.instance.level;
-								foreach (var l in ModReferences.PlayerLevels.Values)
-								{
-									if (l > highestLevel)
-										highestLevel = l;
-								}
-								level = highestLevel;
-							}
-
+							level = states.Max(x => x.level);
 							break;
 						case ModSettings.LootLevelPolicy.AverageLevel:
-							{
-								ModReferences.RequestAllPlayerLevels();
-								float levelSum = ModdedPlayer.instance.level;
-								foreach (var l in ModReferences.PlayerLevels.Values)
-								{
-									levelSum += l;
-								}
-								level = Convert.ToInt32(levelSum / (1 + ModReferences.PlayerLevels.Count));
-							}
-
+							level = (int)states.Average(x => (double)x.level);
 							break;
 						case ModSettings.LootLevelPolicy.LowestLevel:
-							{
-								ModReferences.RequestAllPlayerLevels();
-								int lowestLevel
-									= ModdedPlayer.instance.level;
-								foreach (var l in ModReferences.PlayerLevels.Values)
-								{
-									if (l < lowestLevel)
-										lowestLevel = l;
-								}
-								level = lowestLevel;
-							}
+							level = states.Min(x => x.level);
 							break;
 						case ModSettings.LootLevelPolicy.ClosestPlayer:
 							{
 								level = ModdedPlayer.instance.level;
-								float dist = Vector3.Distance(LocalPlayer.Transform.position, pos);
-								IPlayerState state = null;
-								foreach (var playerstate in ModReferences.PlayerStates)
+								float dist = (LocalPlayer.Transform.position - pos).sqrMagnitude;
+								foreach (var state in states)
 								{
-									float d = Vector3.Distance(playerstate.Transform.Position, pos);
+									float d = (state.gameObject.transform.position - pos).sqrMagnitude;
 									if (d < dist)
 									{
 										dist = d;
-										state = playerstate;
+										level = state.level;
 									}
 								}
-								if(state != null)
-									level = ModReferences.PlayerLevels[state.name];
 							}
 							break;
-						case ModSettings.LootLevelPolicy.HostLevel:
 						default:
 							level = ModdedPlayer.instance.level;
 							break;
@@ -112,10 +81,10 @@ namespace ChampionsOfForest
 			}
 
 			int randomID = Random.Range(0, itemIdPool.Length);
-			Item item = new Item(ItemBases[itemIdPool[randomID]]);
+			Item item = new Item(itemLookup[itemIdPool[randomID]]);
 
 			item.level = level;
-			if (item.id == 42 || item.id == 103 || item.type == BaseItem.ItemType.Material)
+			if (item.id == 42 || item.id == 103 || item.type == ItemDefinition.ItemType.Material)
 				item.level = 1;
 			item.RollStats();
 			return item;
@@ -123,23 +92,73 @@ namespace ChampionsOfForest
 
 		public static bool AllowItemDrop(int i, in int level, EnemyProgression.Enemy e)
 		{
-			if (!ItemBases.ContainsKey(i))
+			if (!itemLookup.ContainsKey(i))
 			{
 				return true;
 			}
-			if ((int)ItemBases[i].lootTable != 0)
-				return (ItemBases[i].lootTable & e) != 0 && ItemBases[i].minLevel <= level;
-			return ItemBases[i].minLevel <= level;
+			if ((int)itemLookup[i].lootTable != 0)
+				return (itemLookup[i].lootTable & e) != 0 && itemLookup[i].minLevel <= level;
+			return itemLookup[i].minLevel <= level;
 		}
+
+
+		struct RandomItemPoolEntry
+		{
+			public int totalWeight;
+			public List<ItemDefinition> items;
+
+			public RandomItemPoolEntry(int level, int rarity)
+			{
+				totalWeight = 0;
+				items = new List<ItemDefinition>();
+				foreach (var item in ItemRarityGroups[rarity])
+				{
+					if (itemLookup[item].minLevel <= level && itemLookup[item].lootTable != 0)
+					{
+						totalWeight += itemLookup[item].lootWeight;
+						items.Add(itemLookup[item]);
+					}
+				}
+			}
+			public ItemDefinition Get(int randomWeight)
+			{
+				randomWeight = Mathf.Max(randomWeight, totalWeight);
+				int i = 0;
+				while (randomWeight > totalWeight && i < items.Count-1)
+				{
+					if (randomWeight < items[i].lootWeight)
+						return items[i];
+					else
+					{
+						randomWeight -= items[i].lootWeight;
+						i++;
+					}
+				}
+				return items[i];
+			}
+		};
+
+		static int randomItemPoolLevel = -1; // at which level was the random item pool created
+		static RandomItemPoolEntry[] randomItemPoolEntries = new RandomItemPoolEntry[(int)ItemDefinition.Rarity.Max];
+
+		static RandomItemPoolEntry GetPool(int level, int rarity)
+		{
+			if(randomItemPoolLevel != level)
+			{
+				randomItemPoolLevel = level;
+				for (int i = 0; i < randomItemPoolEntries.Length; i++)
+					randomItemPoolEntries[i] = new RandomItemPoolEntry();
+			}
+			if ()
+		}
+
 
 		public static Item GetRandomItem(float Worth, EnemyProgression.Enemy killedEnemyType, ModSettings.Difficulty difficulty, Vector3 pos)
 		{
 			int level = GetLevel(pos);
-			float w = Worth / (level);
-			w *= ModdedPlayer.Stats.magicFind_quantity.Value;
+			ItemDefinition.Rarity rarity = GetRandomRarity(level, ModdedPlayer.Stats.magicFind_quality.Value, difficulty);
 
-			int rarity = GetRarity(w, difficulty);
-
+			
 			int[] itemIdPool = null;
 			while (itemIdPool == null)
 			{
@@ -154,66 +173,41 @@ namespace ChampionsOfForest
 			}
 
 			int randomID = Random.Range(0, itemIdPool.Length);
-			Item item = new Item(ItemBases[itemIdPool[randomID]]);
+			Item item = new Item(itemLookup[itemIdPool[randomID]]);
 
 			item.level = level;
-			if (item.id == 42 || item.id == 103 || item.type == BaseItem.ItemType.Material)
+			if (item.id == 42 || item.id == 103 || item.type == ItemDefinition.ItemType.Material)
 				item.level = 1;
 			item.RollStats();
 			return item;
 		}
 
-		public static int GetRarity(float w, ModSettings.Difficulty difficulty)
+		static int[] odds = new int[]
 		{
-			int dif = (int)difficulty;
-			int rarity = 0;
-			float mf = Mathf.Sqrt(ModdedPlayer.Stats.magicFind_quantity.Value) - 1;
-			if ((w > 20 && Random.value < 0.70f + 0.45 * mf + dif * 0.075) || (dif > 5 && w > 2000))
+			// odds of upgrading from one rarity to another
+			// the odds are 1 in x
+			3, // Common
+			10, // Magic
+			25, // Rare
+			100, // Legendary
+		};
+
+		static System.Random rng = new System.Random();
+		public static ItemDefinition.Rarity GetRandomRarity(int level, float qualitymult, ModSettings.Difficulty difficulty)
+		{
+			qualitymult += (int)difficulty * ModSettings.MagicFindPerDifficultyLevel;
+
+			int rarityNum = 0;			
+			while (rarityNum < (int) ItemDefinition.Rarity.Max-1)
 			{
-				rarity = 1;
-
-				if (w > 80 && (Random.value < 0.50f + 0.4 * mf + dif * 0.07 || w > 2200 && dif > 6))
-				{
-					rarity = 2;
-					if (w > 180 && (Random.value < 0.50f + 0.35 * mf + 0.05f * dif) || w > 5000 && dif > 7 && Random.value < 0.90f)
-					{
-						if (dif > 0 || Random.value < 0.05f)
-						{
-							rarity = 3;
-							if (w > 360 && (Random.value < 0.5f + 0.22 * mf + 0.034f * dif) || dif > 8 && Random.value < 0.70f)
-							{
-								if (dif > 1 || Random.value < 0.02f)
-								{
-									rarity = 4;
-									if (w > 720 && (Random.value < 0.26f + 0.085 * mf + 0.02f * dif))
-									{
-										if (dif > 2 || Random.value < 0.01f)
-										{
-											rarity = 5;
-											if (w > 1440 && (Random.value < 0.18f + 0.033 * mf + (0.003f * dif)))
-											{
-												if (dif > 3 || Random.value < 0.05f)
-												{
-													rarity = 6;
-													if (w > 5000 && (Random.value < 0.04f + 0.01 * mf))
-													{
-														if (dif > 4 || Random.value < 0.001f)
-														{
-															rarity = 7;
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-
+				double chance = (odds[rarityNum] / qualitymult);
+				double rand = rng.NextDouble() * chance;
+				if (rand < 1.0)
+					rarityNum++;
+				else
+					break;
 			}
-			return rarity;
+			return (ItemDefinition.Rarity) rarityNum;
 		}
 	}
 }

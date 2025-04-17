@@ -21,8 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="BaseModLib">
       <HintPath>../../../libs/BaseModLib.dll</HintPath>
@@ -51,6 +50,9 @@
     <Reference Include="bolt.user">
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/bolt.user.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="BuilderCore">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\The Forest\TheForest_Data\Managed\BuilderCore.dll</HintPath>
     </Reference>
     <Reference Include="SteamworksManaged">
       <HintPath>../../../modlib/TheForest/TheForest_data/Managed/SteamworksManaged.dll</HintPath>
@@ -218,18 +220,20 @@
     <Compile Include="Items\ItemDefinitions\Pants.cs" />
     <Compile Include="Items\ItemDefinitions\Quivers.cs" />
     <Compile Include="Items\ItemDefinitions\Rings.cs" />
-    <Compile Include="Items\ItemDefinitions\Shields_Lama_Mega.cs" />
+    <Compile Include="Items\ItemDefinitions\Shields.cs" />
     <Compile Include="Items\ItemDefinitions\ShoulderArmor.cs" />
     <Compile Include="Items\ItemDefinitions\SpellScroll.cs" />
     <Compile Include="Items\ItemTemplates.cs" />
     <Compile Include="Items\MoreCraftingReceipes.cs" />
     <Compile Include="Items\ItemDefinitions\ItemDataBase_ItemDefinitions.cs" />
-    <Compile Include="Items\ItemDataBase_Loot.cs" />
-    <Compile Include="Items\ItemDataBase_StatDefinitions.cs" />
+    <Compile Include="Items\ItemDatabase_Loot.cs" />
+    <Compile Include="Items\ItemDatabase_StatDefinitions.cs" />
     <Compile Include="Items\Sets\ItemSets.cs" />
     <Compile Include="Items\TheForestItemDBMod.cs" />
     <Compile Include="Items\UniqueItemFunctions.cs" />
     <Compile Include="Network\CommandInitializer.cs" />
+    <Compile Include="Network\Commands\GetPlayerStateParams.cs" />
+    <Compile Include="Network\CommandType.cs" />
     <Compile Include="Network\COTFCommand.cs" />
     <Compile Include="Player\Crafting\CraftingIngredient.cs" />
     <Compile Include="Player\Crafting\CraftingInterface.cs" />
@@ -294,12 +298,12 @@
     <Compile Include="Enemies\EnemyAbilities\SnowAura.cs" />
     <Compile Include="Enemies\EnemyAbilities\TrapSphereSpell.cs" />
     <Compile Include="Enemies\WormHealthMod.cs" />
-    <Compile Include="Items\BaseItem.cs" />
+    <Compile Include="Items\ItemDefinitions\ItemDefinition.cs" />
     <Compile Include="Enemies\EnemyHealthMod.cs" />
     <Compile Include="Enemies\EnemyProgression\EnemyProgression.cs" />
     <Compile Include="Configuration\Initializer.cs" />
     <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\ItemDataBase.cs" />
+    <Compile Include="Items\ItemDatabase.cs" />
     <Compile Include="Items\ItemPicker.cs" />
     <Compile Include="Items\ItemPickUp.cs" />
     <Compile Include="Items\ItemStat.cs" />
@@ -334,6 +338,7 @@
     <Compile Include="Res\ResourceInitializer.cs" />
     <Compile Include="Res\ResourceLoader.cs" />
     <Compile Include="Serializer.cs" />
+    <Compile Include="ServerPlayerState.cs" />
     <Compile Include="TranslationManager.cs" />
     <Compile Include="Translations.cs" />
     <Compile Include="TrapHitMod.cs" />

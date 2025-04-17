@@ -46,7 +46,7 @@ namespace ChampionsOfForest.Player.Crafting
 					if (validRecipe)
 					{
 						int lvl = CraftingHandler.changedItem.i.level;
-						var v = ItemDataBase.ItemBases.Where(x => x.Value.id != CraftingHandler.changedItem.i.id && x.Value.rarity == CraftingHandler.changedItem.i.rarity).Select(x => x.Value).ToArray();
+						var v = ItemDatabase.itemLookup.Where(x => x.Value.id != CraftingHandler.changedItem.i.id && x.Value.rarity == CraftingHandler.changedItem.i.rarity).Select(x => x.Value).ToArray();
 						var ib = v[UnityEngine.Random.Range(0, v.Length)];
 
 						var newItem = new Item(ib, 1, 0, false)

@@ -41,6 +41,8 @@ namespace ChampionsOfForest
 		public const float ChanceForFirstSocketToAppear = 0.25f;
 		public const float ChanceForSubsequentSocketsToAppear = 0.35f;
 
+		public const float MagicFindPerDifficultyLevel = 0.25f;
+
 		public static readonly List<int> outdatedFiles = new List<int>();
 
 		public static float DropQuantityMultiplier = 1;

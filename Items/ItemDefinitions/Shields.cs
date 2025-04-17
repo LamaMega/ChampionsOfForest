@@ -5,11 +5,11 @@ using System.Security.Policy;
 using System.Text;
 
 using ChampionsOfForest.Items.ItemTemplates;
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 		public static void AddShields()
 		{
@@ -95,22 +95,92 @@ namespace ChampionsOfForest
 			//Rarity 3 (Blue)
 			//------------------------------------------------------
 
+			new Shield()
+			.ShieldStatSlot(3)
+			.StatSlot(new Stat[] { BLOCK })
+			.StatSlot(new Stat[] { DODGE_CHANCE })
+			.Name("1st Blue Shield")
+			.Description("")
+			.Rarity(3);
+
 			//------------------------------------------------------
 			//Rarity 4 (Yellow)
 			//------------------------------------------------------
+
+			new Shield()
+			.ShieldStatSlot(4)
+			.StatSlot(new Stat[] { BLOCK })
+			.StatSlot(new Stat[] { DODGE_CHANCE })
+			.Name("1st Yellow Shield")
+			.Description("")
+			.Rarity(4);
 
 			//------------------------------------------------------
 			//Rarity 5 (Orange)
 			//------------------------------------------------------
 
+			new Shield()
+			.ShieldStatSlot(5)
+			.StatSlot(new Stat[] { BLOCK })
+			.StatSlot(new Stat[] { DODGE_CHANCE })
+			.Name("1st Orange Shield")
+			.Description("")
+			.Rarity(5);
+
 			//------------------------------------------------------
 			//Rarity 6 (Green)
 			//------------------------------------------------------
 
+			new Shield()
+			.ShieldStatSlot(6)
+			.StatSlot(new Stat[] { BLOCK })
+			.StatSlot(new Stat[] { DODGE_CHANCE })
+			.Name("1st Green Shield")
+			.Description("")
+			.Rarity(6);
+
 			//------------------------------------------------------
 			//Rarity 7 (Red)
 			//------------------------------------------------------
+
+			new Shield()
+			.ShieldStatSlot(7)
+			.StatSlot(new Stat[] { BLOCK })
+			.StatSlot(new Stat[] { DODGE_CHANCE })
+			.Name("1st Red Shield")
+			.Description("")
+			.Rarity(7);
+
 		}
 
 	}
 }
+
+
+//------------------------------------------------------
+//Rarity 0 (White)
+//------------------------------------------------------
+
+
+
+//------------------------------------------------------
+//Rarity 1 (Green)
+//------------------------------------------------------
+
+
+
+//------------------------------------------------------
+//Rarity 2 (Blue)
+//------------------------------------------------------
+
+
+
+//------------------------------------------------------
+//Rarity 3 (Yellow)
+//------------------------------------------------------
+
+
+
+//------------------------------------------------------
+//Rarity 4 (Red)
+//------------------------------------------------------
