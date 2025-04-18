@@ -347,6 +347,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			lootWeight = w;
 			return this;
 		}
+
+		//TODO add a method to set the loot table to drop only from caves
 	}
 	public class Greatsword : ItemTemplateBuilder
 	{

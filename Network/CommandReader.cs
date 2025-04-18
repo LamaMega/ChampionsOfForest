@@ -65,9 +65,9 @@ namespace ChampionsOfForest.Network
 
 										int index = r.ReadInt32();
 										ModSettings.FriendlyFire = r.ReadBoolean();
-										ModSettings.dropsOnDeath = (ModSettings.DropsOnDeathMode)r.ReadInt32();
+										ModSettings.dropsOnDeath = (ModSettings.DropsOnDeathModes)r.ReadInt32();
 										ModSettings.killOnDowned = r.ReadBoolean();
-										ModSettings.difficulty = (ModSettings.Difficulty)index;
+										ModSettings.difficulty = (ModSettings.GameDifficulty)index;
 										if (!ModSettings.DifficultyChosen)
 										{
 											LocalPlayer.FpCharacter.UnLockView();
@@ -335,7 +335,7 @@ namespace ChampionsOfForest.Network
 											}
 											else
 											{
-												CotfUtils.Log("no enemy in host's dictionary");
+												Utils.Log("no enemy in host's dictionary");
 											}
 										}
 

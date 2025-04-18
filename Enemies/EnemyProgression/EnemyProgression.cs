@@ -91,7 +91,7 @@ namespace ChampionsOfForest
 		public Avenger avengerability;
 		private float timeOfDeath;
 		private Color normalColor;
-		private ModSettings.Difficulty setupDifficulty;
+		private ModSettings.GameDifficulty setupDifficulty;
 		public enum Abilities
 		{
 			Steadfast, BossSteadfast, EliteSteadfast, Blizzard, Radiance, Chains, BlackHole, Trapper, Juggernaut, Gargantuan, Tiny, ExtraDamage, ExtraHealth, Basher, Warp, RainEmpowerment, Shielding, Meteor, Flare, Undead, Laser, Poisonous, Sacrifice, Avenger, FireCataclysm, ArcaneCataclysm
@@ -390,7 +390,7 @@ namespace ChampionsOfForest
 			}
 			catch (Exception ex)
 			{
-				ModAPI.Log.Write("DIEING ENEMY EXCEPTION  " + ex);
+				ModAPI.Log.Write("DYING ENEMY EXCEPTION  " + ex);
 			}
 
 			return true;

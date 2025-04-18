@@ -180,8 +180,8 @@ namespace ChampionsOfForest.Fun
 		private void _cotfsetdifficulty(string param)
 		{
 			int i = int.Parse(param);
-			ModSettings.difficulty = (ModSettings.Difficulty)i;
-			Debug.LogWarning("Difficulty changed to: " + (ModSettings.Difficulty)i);
+			ModSettings.difficulty = (ModSettings.GameDifficulty)i;
+			Debug.LogWarning("Difficulty changed to: " + (ModSettings.GameDifficulty)i);
 		}
 
 		private void _cotfspawnitem(string param)

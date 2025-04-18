@@ -23,7 +23,7 @@ namespace ChampionsOfForest.Items
 			3, // Common
 			10, // Magic
 			25, // Rare
-			100, // Legendary
+			200, // Legendary
 		};
 
 		static System.Random rng = new System.Random();
@@ -36,7 +36,7 @@ namespace ChampionsOfForest.Items
 				if (GameSetup.IsMultiplayer)
 				{
 					var states = ModReferences.PlayerStates.All;
-					switch (ModSettings.lootLevelPolicy)
+					switch (ModSettings.m_lootLevelRule)
 					{
 						case ModSettings.LootLevelPolicy.HighestPlayerLevel:
 							level = states.Max(x => x.level);
@@ -125,7 +125,7 @@ namespace ChampionsOfForest.Items
 		}
 
 		// returns a list of random items that meet the criteria of the enemy type and level of players
-		public static Item[] GetRandomItems(EnemyProgression.Enemy killedEnemyType, ModSettings.Difficulty difficulty, Vector3 pos, int count)
+		public static Item[] GetRandomItems(EnemyProgression.Enemy killedEnemyType, ModSettings.GameDifficulty difficulty, Vector3 pos, int count)
 		{
 			int level = GetLevel(pos);
 			ItemDefinition.Rarity rarity = GetRandomRarity(level, ModdedPlayer.Stats.magicFind_quality.Value, difficulty);
@@ -146,7 +146,7 @@ namespace ChampionsOfForest.Items
 
 		}
 
-		public static ItemDefinition.Rarity GetRandomRarity(int level, float qualitymult, ModSettings.Difficulty difficulty)
+		public static ItemDefinition.Rarity GetRandomRarity(int level, float qualitymult, ModSettings.GameDifficulty difficulty)
 		{
 			qualitymult += (int)difficulty * ModSettings.MagicFindPerDifficultyLevel;
 

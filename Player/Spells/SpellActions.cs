@@ -72,8 +72,8 @@ namespace ChampionsOfForest.Player
 						{
 							PlayerHitEnemy playerHitEnemy = PlayerHitEnemy.Create(enemyEntity);
 							playerHitEnemy.hitFallDown = true;
-							playerHitEnemy.getAttackerType = DamageMath.CONVERTEDFLOATattackerType;
-							playerHitEnemy.Hit = DamageMath.GetSendableDamage(dmg);
+							playerHitEnemy.getAttackerType = DamageUtils.CONVERTEDFLOATattackerType;
+							playerHitEnemy.Hit = DamageUtils.GetSendableDamage(dmg);
 							playerHitEnemy.Send();
 						}
 					}
@@ -111,8 +111,8 @@ namespace ChampionsOfForest.Player
 							{
 								PlayerHitEnemy playerHitEnemy = PlayerHitEnemy.Create(enemyEntity);
 								playerHitEnemy.hitFallDown = true;
-								playerHitEnemy.getAttackerType = DamageMath.CONVERTEDFLOATattackerType;
-								playerHitEnemy.Hit = DamageMath.GetSendableDamage(dmg);
+								playerHitEnemy.getAttackerType = DamageUtils.CONVERTEDFLOATattackerType;
+								playerHitEnemy.Hit = DamageUtils.GetSendableDamage(dmg);
 								playerHitEnemy.Send();
 							}
 						}

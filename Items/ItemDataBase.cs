@@ -36,7 +36,7 @@ namespace ChampionsOfForest.Items
 				AddAmulets();
 				AddBoots();
 				AddBracers();
-				AddChestArmor();
+				AddChestArmors();
 				AddConsumables();
 				AddGloves();
 				AddHelmets();
@@ -46,11 +46,13 @@ namespace ChampionsOfForest.Items
 				AddRings();
 				AddShields();
 				AddShoulderArmor();
-				AddSpellScrolls
+				AddSpellScrolls();
+
+				SanitizeItems();
 			}
 			catch (System.Exception ex)
 			{
-				CotfUtils.Log("Error with item " + ex.ToString());
+				Utils.Log("Error with item " + ex.ToString());
 			}
 			itemLookup.Clear();
 			for (int i = 0; i < ItemTemplateStorage.Count; i++)

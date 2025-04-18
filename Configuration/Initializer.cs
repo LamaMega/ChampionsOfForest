@@ -4,6 +4,7 @@ using ChampionsOfForest.Effects;
 using ChampionsOfForest.Effects.Sound_Effects;
 using ChampionsOfForest.Enemies.EnemyAbilities;
 using ChampionsOfForest.ExpSources;
+using ChampionsOfForest.Items;
 using ChampionsOfForest.Localization;
 using ChampionsOfForest.Player;
 using ChampionsOfForest.Player.Crafting;

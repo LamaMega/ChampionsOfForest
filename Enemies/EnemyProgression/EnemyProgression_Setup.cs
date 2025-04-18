@@ -318,7 +318,7 @@ namespace ChampionsOfForest
 			}
 			catch (Exception e)
 			{
-				CotfUtils.Log(e.Message);
+				Utils.Log(e.Message);
 			}
 
 			{

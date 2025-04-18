@@ -485,7 +485,7 @@ namespace ChampionsOfForest.Player
 								dmgUnclamped *= SpellActions.FocusOnBodyShot();
 							}
 
-							DamageMath.ReduceDamageToSendOverNet(dmgUnclamped, out int sendDamage, out int reps);
+							DamageUtils.ReduceDamageToSendOverNet(dmgUnclamped, out int sendDamage, out int reps);
 
 							HitPlayer HP = HitPlayer.Create(be, EntityTargets.Everyone);
 							HP.damage = sendDamage;
@@ -800,7 +800,7 @@ namespace ChampionsOfForest.Player
 							playerHitEnemy.getAttackDirection = 3;
 						}
 						playerHitEnemy.getAttackerType = 4;
-						playerHitEnemy.Hit = DamageMath.GetSendableDamage(dmgUnclamped);
+						playerHitEnemy.Hit = DamageUtils.GetSendableDamage(dmgUnclamped);
 						if ((GreatBow.isEnabled && ModdedPlayer.Stats.i_greatBowIgnites) || (ignite && Random.value < 0.5f))
 						{
 							COTFEvents.Instance.OnIgniteRanged.Invoke();
@@ -830,8 +830,8 @@ namespace ChampionsOfForest.Player
 							playerHitEnemy2.Burn = true;
 
 						}
-						playerHitEnemy2.Hit = DamageMath.GetSendableDamage(dmgUnclamped);
-						playerHitEnemy2.getAttackerType += DamageMath.CONVERTEDFLOATattackerType;
+						playerHitEnemy2.Hit = DamageUtils.GetSendableDamage(dmgUnclamped);
+						playerHitEnemy2.getAttackerType += DamageUtils.CONVERTEDFLOATattackerType;
 						playerHitEnemy2.Send();
 					}
 					goto afterdamage;

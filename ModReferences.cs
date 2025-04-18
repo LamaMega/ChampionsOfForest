@@ -37,7 +37,7 @@ namespace ChampionsOfForest
 			}
 		}
 
-		public static void SendRandomItemDrops(int count, EnemyProgression.Enemy type, long value, ModSettings.Difficulty difficulty, Vector3 position)
+		public static void SendRandomItemDrops(int count, EnemyProgression.Enemy type, long value, ModSettings.GameDifficulty difficulty, Vector3 position)
 		{
 			instance.StartCoroutine(Player.RCoroutines.i.AsyncSendRandomItemDrops(count, type, value, difficulty, position));
 		}

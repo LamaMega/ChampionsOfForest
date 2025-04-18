@@ -186,8 +186,8 @@ namespace ChampionsOfForest
 						if (GUI.Button(r, "", ButtonStyle))
 						{
 							ModSettings.DifficultyChosen = true;
-							Array values = Enum.GetValues(typeof(ModSettings.Difficulty));
-							ModSettings.difficulty = (ModSettings.Difficulty)values.GetValue(ii);
+							Array values = Enum.GetValues(typeof(ModSettings.GameDifficulty));
+							ModSettings.difficulty = (ModSettings.GameDifficulty)values.GetValue(ii);
 							LocalPlayer.FpCharacter.UnLockView();
 							LocalPlayer.FpCharacter.MovementLocked = false;
 							Cheats.GodMode = false;
@@ -301,19 +301,19 @@ namespace ChampionsOfForest
 				//Drops on death
 				switch (ModSettings.dropsOnDeath)
 				{
-					case ModSettings.DropsOnDeathMode.All:
+					case ModSettings.DropsOnDeathModes.All:
 						GUI.color = Color.red;
 						break;
 
-					case ModSettings.DropsOnDeathMode.Equipped:
+					case ModSettings.DropsOnDeathModes.Equipped:
 						GUI.color = Color.yellow;
 						break;
 
-					case ModSettings.DropsOnDeathMode.NonEquipped:
+					case ModSettings.DropsOnDeathModes.NonEquipped:
 						GUI.color = Color.cyan;
 						break;
 
-					case ModSettings.DropsOnDeathMode.Disabled:
+					case ModSettings.DropsOnDeathModes.Disabled:
 						GUI.color = Color.gray;
 						break;
 
@@ -328,22 +328,22 @@ namespace ChampionsOfForest
 				{
 					int i = (int)ModSettings.dropsOnDeath + 1;
 					i %= 4;
-					ModSettings.dropsOnDeath = (ModSettings.DropsOnDeathMode)i;
+					ModSettings.dropsOnDeath = (ModSettings.DropsOnDeathModes)i;
 				}
 
 
 
 				GUI.color = Color.white;
 
-				if (GUI.Button(new Rect(Screen.width / 2 - 300 * screenScale, 220 * screenScale, 600 * screenScale, 50 * screenScale), Translations.MainMenu_DifficultySelection_26 +  ModSettings.lootLevelPolicy, new GUIStyle(GUI.skin.button)    //tr
+				if (GUI.Button(new Rect(Screen.width / 2 - 300 * screenScale, 220 * screenScale, 600 * screenScale, 50 * screenScale), Translations.MainMenu_DifficultySelection_26 +  ModSettings.m_lootLevelRule, new GUIStyle(GUI.skin.button)    //tr
 				{
 					font = mainFont,
 					fontSize = Mathf.FloorToInt(20 * screenScale)
 				}))
 				{
-					int i = (int)ModSettings.lootLevelPolicy + 1;
+					int i = (int)ModSettings.m_lootLevelRule + 1;
 					i %= 5;
-					ModSettings.lootLevelPolicy = (ModSettings.LootLevelPolicy)i;
+					ModSettings.m_lootLevelRule = (ModSettings.LootLevelRules)i;
 				}
 
 				float y = 350;

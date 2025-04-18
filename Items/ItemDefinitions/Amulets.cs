@@ -84,6 +84,8 @@ namespace ChampionsOfForest.Items
 				.Description("")
 				.Rarity(3);
 
+
+
 			new Amulet()
 				.AmuletStatSlot(3)
 				.DefenseStatSlot(1)

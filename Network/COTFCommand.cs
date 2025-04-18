@@ -24,31 +24,12 @@ namespace ChampionsOfForest.Network
 				CommandReader.callbacks.Add(instance.commandIndex, COTFCommand<ParamT>.Received);
 				instance.receivedDelegate = receivedDelegate;
 
-				var type = typeof(COTFCommand<ParamT>);
+				Type type = typeof(COTFCommand<ParamT>);
 				ModAPI.Log.Write($"command {instance.commandIndex} registered: {type.Name}");
 			}
 		}
 
-		static byte[] GetBytes(ParamT p)
-		{
-			int size = Marshal.SizeOf(p);
-			byte[] arr = new byte[size];
-			IntPtr ptr = Marshal.AllocHGlobal(size);
-			Marshal.StructureToPtr(p, ptr, true);
-			Marshal.Copy(ptr, arr, 0, size);
-			Marshal.FreeHGlobal(ptr);
-			return arr;
-		}
-		static ParamT GetParam(BinaryReader reader)
-		{
-			int size = Marshal.SizeOf(default(ParamT));
-			IntPtr ptr = Marshal.AllocHGlobal(size);
-			byte[] arr = reader.ReadBytes(size);
-			Marshal.Copy(arr, 0, ptr, size);
-			var param = (ParamT)Marshal.PtrToStructure(ptr, typeof(ParamT));
-			Marshal.FreeHGlobal(ptr);
-			return param;
-		}
+	
 
 		public static void Send(NetworkManager.Target target, in ParamT param)
 		{
@@ -57,7 +38,7 @@ namespace ChampionsOfForest.Network
 				using (BinaryWriter w = new BinaryWriter(answerStream))
 				{
 					w.Write(instance.commandIndex);
-					w.Write(GetBytes(param));
+					w.Write(Utils.GetBytesFromObject(param));
 					w.Close();
 				}
 				NetworkManager.SendLine(answerStream.ToArray(), target);
@@ -71,7 +52,7 @@ namespace ChampionsOfForest.Network
 				using (BinaryWriter w = new BinaryWriter(answerStream))
 				{
 					w.Write(instance.commandIndex);
-					w.Write(GetBytes(param));
+					w.Write(Utils.GetBytesFromObject(param));
 					w.Close();
 				}
 				NetworkManager.SendLine(answerStream.ToArray(), target_connection);
@@ -80,7 +61,7 @@ namespace ChampionsOfForest.Network
 		}
 		public static void Received(BinaryReader r)
 		{
-			var p = GetParam(r);
+			ParamT p = Utils.GetObjectFromBytes<ParamT>(r);
 			instance.receivedDelegate.Invoke(p);
 			r.Close();
 		}

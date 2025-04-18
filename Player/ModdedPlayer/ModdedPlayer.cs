@@ -913,8 +913,8 @@ namespace ChampionsOfForest.Player
 								if (entity != null)
 								{
 									PlayerHitEnemy playerHitEnemy = PlayerHitEnemy.Create(GlobalTargets.OnlyServer);
-									playerHitEnemy.Hit =  DamageMath.GetSendableDamage( d);
-									playerHitEnemy.getAttackerType = DamageMath.SILENTattackerType;		//silent hit
+									playerHitEnemy.Hit =  DamageUtils.GetSendableDamage( d);
+									playerHitEnemy.getAttackerType = DamageUtils.SILENTattackerType;		//silent hit
 									playerHitEnemy.Target = entity;
 									playerHitEnemy.Send();
 								}

@@ -27,7 +27,7 @@ namespace ChampionsOfForest.Player
 		//	}
 		//}
 
-		public IEnumerator AsyncSendRandomItemDrops(int count, EnemyProgression.Enemy type, long bounty,ModSettings.Difficulty difficulty, Vector3 position)
+		public IEnumerator AsyncSendRandomItemDrops(int count, EnemyProgression.Enemy type, long bounty,ModSettings.GameDifficulty difficulty, Vector3 position)
 		{
 			for (int i = 0; i < count; i++)
 			{

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using ChampionsOfForest.Network.Commands;
+
 using UnityEngine;
 
 namespace ChampionsOfForest
@@ -10,8 +12,8 @@ namespace ChampionsOfForest
 		public class ModdedPlayerState
 		{
 			public int level;
-			public int maxHealth;
-			public int health;
+			public float maxHealth;
+			public float health;
 			public Transform hand;
 			public GameObject gameObject;
 			public string playerID;
@@ -95,7 +97,31 @@ namespace ChampionsOfForest
 				return true;
 			}
 			return false;
-
+		}
+		public void UpdateOrAddPlayerState(GetPlayerStateParams commandparams)
+		{
+			var state = GetPlayerState(commandparams.playerID);
+			if (state == null || state.entity == null || state.gameObject == null)
+			{
+				var _entity = BoltNetwork.FindEntity(new Bolt.NetworkId(commandparams.entityNetworkID));
+				AddPlayerState(new ModdedPlayerState()
+				{
+					level = commandparams.level,
+					maxHealth = (int)commandparams.maxHealth,
+					health = (int)commandparams.health,
+					playerID = commandparams.playerID,
+					entity = _entity,
+					gameObject = _entity.gameObject,
+				});
+			}
+			else
+			{
+				//avoid calling FindHand() if not needed
+				state.level = commandparams.level;
+				state.maxHealth = commandparams.maxHealth;
+				state.health = commandparams.health;
+				state.playerID = commandparams.playerID;
+			}
 		}
 	}
 }

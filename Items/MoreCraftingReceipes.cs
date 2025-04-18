@@ -147,7 +147,7 @@ public static class MoreCraftingReceipes
 			}
 			catch
 			{
-				CotfUtils.Log("Crafting: Merging Failed");
+				Utils.Log("Crafting: Merging Failed");
 			}
 			foreach (var item in customReceipes)
 			{

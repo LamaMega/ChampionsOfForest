@@ -5,39 +5,22 @@ using System.Reflection;
 
 using ChampionsOfForest.Network.Commands;
 
+using TheForest.Utils;
+
 namespace ChampionsOfForest.Network
 {
-	public class CommandInitializer
+	public static class CommandInitializer
 	{
-		//public static void Init()
-		//{
-		//	CommandReader.curr_cmd_index = 100;
-		//	CommandReader.callbacks.Clear();
-		//	var types = GetTypesInNamespace(Assembly.GetExecutingAssembly(), "ChampionsOfForest.Network.Commands");
-		//	foreach (var t in types)
-		//	{
-		//		var initMethod = t.GetMethod("Initialize");
-		//		if (initMethod != null)
-		//			initMethod.Invoke(null, new object[0]);
-		//	}
-		//}
-		//private static IEnumerable<Type> GetTypesInNamespace(Assembly assembly, string nameSpace)
-		//{
-		//	return
-		//	  assembly.GetTypes()
-		//			  .Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal) && t.IsClass);
-		//}
 
-		public void Init()
+		public static void Init()
 		{
 			CommandReader.curr_cmd_index = 100;
 
 			COTFCommand<GetPlayerStateParams>.Initialize(
-			param =>
-			{
-				ModReferences.PlayerStates.
-			});
-			
+				param =>ModReferences.PlayerStates.UpdateOrAddPlayerState(param));
+
+			COTFCommand<BroadcastModSettings>.Initialize(
+				param => ModSettings.ReceivedSettingsFromServer(param));
 
 		}
 	}

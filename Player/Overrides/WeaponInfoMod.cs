@@ -151,8 +151,8 @@ namespace ChampionsOfForest.Player
 						}
 						var phe = PlayerHitEnemy.Create(GlobalTargets.OnlyServer);
 						phe.Target = entity;
-						phe.getAttackerType = 4 + DamageMath.CONVERTEDFLOATattackerType;
-						phe.Hit = DamageMath.GetSendableDamage(outputdmg);
+						phe.getAttackerType = 4 + DamageUtils.CONVERTEDFLOATattackerType;
+						phe.Hit = DamageUtils.GetSendableDamage(outputdmg);
 						phe.HitAxe = axe;
 						phe.hitFallDown = fsmHeavyAttackBool.Value && axe;
 						phe.getAttackDirection = animator.GetInteger("hitDirection");
@@ -356,7 +356,7 @@ namespace ChampionsOfForest.Player
 							ModdedPlayer.instance.OnHit();
 							ModdedPlayer.instance.OnHit_Melee(other.transform);
 
-							DamageMath.ReduceDamageToSendOverNet(2f * (WeaponDamage + ModdedPlayer.Stats.baseMeleeDamage + SpellActions.GetParryCounterStrikeDmg()) * ModdedPlayer.Stats.MeleeDamageMult * ModdedPlayer.Stats.RandomCritDamage, out int dmg, out int repetitions);
+							DamageUtils.ReduceDamageToSendOverNet(2f * (WeaponDamage + ModdedPlayer.Stats.baseMeleeDamage + SpellActions.GetParryCounterStrikeDmg()) * ModdedPlayer.Stats.MeleeDamageMult * ModdedPlayer.Stats.RandomCritDamage, out int dmg, out int repetitions);
 
 							HitPlayer hitPlayer = HitPlayer.Create(component3, EntityTargets.Everyone);
 							hitPlayer.damage = dmg;
