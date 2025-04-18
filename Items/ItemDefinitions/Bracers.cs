@@ -13,14 +13,14 @@ namespace ChampionsOfForest.Items
 	public static partial class ItemDatabase
 	{
 
-		public static void AddGlove()
+		public static void AddBracers()
 		{
 
 			//------------------------------------------------------
 			//Rarity 0 (White)
 			//------------------------------------------------------
 
-			new Glove()
+			new Bracer()
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -30,7 +30,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 1 (Green)
 			//------------------------------------------------------
 
-			new Glove()
+			new Bracer()
 				.DefaultStatSlot(2)
 				.Name("")
 				.Description("")
@@ -40,7 +40,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 2 (Blue)
 			//------------------------------------------------------
 
-			new Glove()
+			new Bracer()
 				.DefaultStatSlot(3)
 				.Name("")
 				.Description("")
@@ -50,7 +50,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 3 (Yellow)
 			//------------------------------------------------------
 
-			new Glove()
+			new Bracer()
 				.DefaultStatSlot(4)
 				.Name("")
 				.Description("")
@@ -60,7 +60,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 4 (Red)
 			//------------------------------------------------------
 
-			new Glove()
+			new Bracer()
 				.DefaultStatSlot(5)
 				.Name("")
 				.Description("")

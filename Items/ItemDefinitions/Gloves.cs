@@ -13,14 +13,14 @@ namespace ChampionsOfForest.Items
 	public static partial class ItemDatabase
 	{
 
-		public static void AddSpellScroll()
+		public static void AddGloves()
 		{
 
 			//------------------------------------------------------
 			//Rarity 0 (White)
 			//------------------------------------------------------
 
-			new SpellScroll()
+			new Glove()
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -30,7 +30,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 1 (Green)
 			//------------------------------------------------------
 
-			new SpellScroll()
+			new Glove()
 				.DefaultStatSlot(2)
 				.Name("")
 				.Description("")
@@ -40,7 +40,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 2 (Blue)
 			//------------------------------------------------------
 
-			new SpellScroll()
+			new Glove()
 				.DefaultStatSlot(3)
 				.Name("")
 				.Description("")
@@ -50,7 +50,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 3 (Yellow)
 			//------------------------------------------------------
 
-			new SpellScroll()
+			new Glove()
 				.DefaultStatSlot(4)
 				.Name("")
 				.Description("")
@@ -60,7 +60,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 4 (Red)
 			//------------------------------------------------------
 
-			new SpellScroll()
+			new Glove()
 				.DefaultStatSlot(5)
 				.Name("")
 				.Description("")

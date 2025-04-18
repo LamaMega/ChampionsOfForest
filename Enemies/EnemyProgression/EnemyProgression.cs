@@ -121,7 +121,7 @@ namespace ChampionsOfForest
 			PaintedMale = 0b1000000000000000000,
 			PaintedLeaderMale = 0b10000000000000000000,
 			PaintedFemale = 0b100000000000000000000,
-			Fireman = 0b1000000000000000000000
+			Fireman =	0b1000000000000000000000,
 		};
 
 		#endregion Variables

@@ -189,10 +189,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		}
 
 		public ItemTemplateBuilder Icon(int iconid)
-        {
+		{
 			icon = Res.ResourceLoader.GetTexture(iconid); // Texture2D <- int
-            return this;
-        }
+			return this;
+		}
 
 		private readonly Stat[] magicStatIds = new Stat[]
 		{
@@ -290,8 +290,64 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				statSlots.Add(new StatSlot(recoveryStats, probability));
 			return this;
 		}
-	}
 
+
+		public ItemTemplateBuilder SetDropFromEverything()
+		{
+			//Lootable from everything
+			lootTable = (EnemyProgression.Enemy)0b11111111111111111111111;
+			return this;
+		}
+
+		//Sets the item to drop from only a specyfic group of enemies
+		public ItemTemplateBuilder SetDropArmsy()
+		{
+			lootTable = EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropVags()
+		{
+			lootTable = EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.RegularVags;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropCow()
+		{
+			lootTable |= EnemyProgression.Enemy.Cowman;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropBaby()
+		{
+			lootTable |= EnemyProgression.Enemy.Baby;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropMegan()
+		{
+			lootTable |= EnemyProgression.Enemy.Megan;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropCreepy()
+		{
+			lootTable |= EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy | EnemyProgression.Enemy.RegularVags | EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.Cowman | EnemyProgression.Enemy.Baby | EnemyProgression.Enemy.Girl | EnemyProgression.Enemy.Worm | EnemyProgression.Enemy.Megan;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropCannibals()
+		{
+			lootTable |=
+				EnemyProgression.Enemy.NormalMale | EnemyProgression.Enemy.NormalLeaderMale | EnemyProgression.Enemy.NormalFemale | EnemyProgression.Enemy.NormalSkinnyMale | EnemyProgression.Enemy.NormalSkinnyFemale | EnemyProgression.Enemy.PaleMale | EnemyProgression.Enemy.PaleSkinnyMale | EnemyProgression.Enemy.PaleSkinnedMale | EnemyProgression.Enemy.PaleSkinnedSkinnyMale | EnemyProgression.Enemy.PaintedMale | EnemyProgression.Enemy.PaintedLeaderMale | EnemyProgression.Enemy.PaintedFemale | EnemyProgression.Enemy.Fireman;
+			return this;
+		}
+		public ItemTemplateBuilder Weight(int w)
+		{
+			lootWeight = w;
+			return this;
+		}
+	}
 	public class Greatsword : ItemTemplateBuilder
 	{
 		public Greatsword()
@@ -625,7 +681,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			Register();
 		}
 
-		public Amulet RingStatSlot(int n = 1, float probability = 1)
+		public Amulet AmuletStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
 				statSlots.Add(new StatSlot(amuletStats, probability));
@@ -705,9 +761,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		}
 	}
 
-	public class Consumables : ItemTemplateBuilder
+	public class Consumable : ItemTemplateBuilder
 	{
-		public Consumables()
+		public Consumable()
 		{
 			type = ItemType.Other;
 			LevelRequirement(10);

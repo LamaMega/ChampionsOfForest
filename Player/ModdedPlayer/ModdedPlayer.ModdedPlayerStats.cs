@@ -30,7 +30,7 @@ namespace ChampionsOfForest.Player
 			public readonly MultiplicativePlayerStat<float> cooldown, cooldownRate;
 			public readonly MultiOperationPlayerStat<float> allDamage;
 			public readonly MultiOperationPlayerStat<float> attackSpeed;
-			public readonly MultiOperationPlayerStat<float> movementSpeed;
+			public readonly MultiOperationPlayerStat<float> mOVEMENT_SPEED;
 			public readonly AdditivePlayerStat<float> critChance;
 			public readonly AdditivePlayerStat<float> critDamage;
 
@@ -248,7 +248,7 @@ namespace ChampionsOfForest.Player
 
 			public readonly AdditivePlayerStat<float> spell_berserkDuration;
 			public readonly AdditivePlayerStat<float> spell_berserkDamage;
-			public readonly AdditivePlayerStat<float> spell_berserkMovementSpeed;
+			public readonly AdditivePlayerStat<float> spell_berserkMOVEMENT_SPEED;
 			public readonly AdditivePlayerStat<float> spell_berserkAttackSpeed;
 			public readonly AdditivePlayerStat<float> spell_berserkMaxHP;
 
@@ -349,7 +349,7 @@ namespace ChampionsOfForest.Player
 				this.cooldownRate = new MultiplicativePlayerStat<float>(1, multfloat, dividefloat, "P1");
 				this.allDamage = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
 				this.attackSpeed = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P0");
-				this.movementSpeed = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P1");
+				this.mOVEMENT_SPEED = new MultiOperationPlayerStat<float>(1, 1, addfloat, substractfloat, multfloat, dividefloat, "P1");
 				this.critChance = new AdditivePlayerStat<float>(0.05f, addfloat, substractfloat, "P1");
 				this.critDamage = new AdditivePlayerStat<float>(0.5f, addfloat, substractfloat, "P0");
 
@@ -568,7 +568,7 @@ namespace ChampionsOfForest.Player
 
 				this.spell_berserkDuration = new AdditivePlayerStat<float>(30, addfloat, substractfloat);
 				this.spell_berserkDamage = new AdditivePlayerStat<float>(1.3f, addfloat, substractfloat);
-				this.spell_berserkMovementSpeed = new AdditivePlayerStat<float>(1.35f, addfloat, substractfloat);
+				this.spell_berserkMOVEMENT_SPEED = new AdditivePlayerStat<float>(1.35f, addfloat, substractfloat);
 				this.spell_berserkAttackSpeed = new AdditivePlayerStat<float>(1.25f, addfloat, substractfloat);
 				this.spell_berserkMaxHP = new AdditivePlayerStat<float>(1f, addfloat, substractfloat);
 

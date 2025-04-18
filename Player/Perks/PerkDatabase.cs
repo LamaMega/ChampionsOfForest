@@ -544,7 +544,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => ModdedPlayer.Stats.movementSpeed.valueAdditive += 0.1f,
+				onApply = () => ModdedPlayer.Stats.mOVEMENT_SPEED.valueAdditive += 0.1f,
 
 				category = PerkCategory.Utility,
 				unlockPath = new int[] { 27 },
@@ -2391,7 +2391,7 @@ namespace ChampionsOfForest.Player
 			};
 			new Perk()
 			{
-				onApply = () => { ModdedPlayer.Stats.rangedIncreasedDmg.valueAdditive += 2.0f; ModdedPlayer.Stats.movementSpeed.valueMultiplicative *= 0.75f; ModdedPlayer.Stats.jumpPower.valueAdditive -= 0.65f; },
+				onApply = () => { ModdedPlayer.Stats.rangedIncreasedDmg.valueAdditive += 2.0f; ModdedPlayer.Stats.mOVEMENT_SPEED.valueMultiplicative *= 0.75f; ModdedPlayer.Stats.jumpPower.valueAdditive -= 0.65f; },
 				category = PerkCategory.RangedOffense,
 				texture = null,
 				unlockPath = new int[] { 89 },

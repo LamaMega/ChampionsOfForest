@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 
 using static ChampionsOfForest.ItemDefinition;
+using static TheForest.Items.World.PickUp;
 
 namespace ChampionsOfForest.Items
 {
@@ -32,7 +33,20 @@ namespace ChampionsOfForest.Items
 			
 			try
 			{
-				PopulateItems();
+				AddAmulets();
+				AddBoots();
+				AddBracers();
+				AddChestArmor();
+				AddConsumables();
+				AddGloves();
+				AddHelmets();
+				AddMaterials();
+				AddPants();
+				AddQuivers();
+				AddRings();
+				AddShields();
+				AddShoulderArmor();
+				AddSpellScrolls
 			}
 			catch (System.Exception ex)
 			{
@@ -69,6 +83,22 @@ namespace ChampionsOfForest.Items
 		public static ItemDefinition ItemBaseByName(string name)
 		{
 			return itemLookup.Values.First(x => x.name == name);
+		}
+
+		private static void SanitizeItems()
+		{
+			foreach (var keyValuePair in itemLookup)
+			{
+				var itemDef = keyValuePair.Value;
+				if (itemDef.lootTable == EnemyProgression.Enemy.All)
+				{
+					itemDef.lootTable = (EnemyProgression.Enemy)0b11111111111111111111111;
+				}
+				if (itemDef.lootWeight <= 0)
+				{
+					itemDef.lootWeight = 1;
+				}
+			}
 		}
 	}
 }

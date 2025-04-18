@@ -21,7 +21,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 0 (White)
 			//------------------------------------------------------
 
-				new Consumables()
+			new Consumable();
 					
 
 

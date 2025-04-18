@@ -22,7 +22,7 @@ namespace ChampionsOfForest.Effects
 			active = true;
 			ModdedPlayer.Stats.allDamage.Multiply(ModdedPlayer.Stats.spell_berserkDamage);
 			ModdedPlayer.Stats.attackSpeed.Multiply(ModdedPlayer.Stats.spell_berserkAttackSpeed);
-			ModdedPlayer.Stats.movementSpeed.Multiply(ModdedPlayer.Stats.spell_berserkMovementSpeed);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Multiply(ModdedPlayer.Stats.spell_berserkMOVEMENT_SPEED);
 			ModdedPlayer.Stats.maxLifeMult.Multiply(ModdedPlayer.Stats.spell_berserkMaxHP);
 
 			ModdedPlayer.Stats.allDamageTaken.Multiply(2f);
@@ -35,7 +35,7 @@ namespace ChampionsOfForest.Effects
 			active = false;
 			ModdedPlayer.Stats.allDamage.Divide(ModdedPlayer.Stats.spell_berserkDamage);
 			ModdedPlayer.Stats.attackSpeed.Divide(ModdedPlayer.Stats.spell_berserkAttackSpeed);
-			ModdedPlayer.Stats.movementSpeed.Divide(ModdedPlayer.Stats.spell_berserkMovementSpeed);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Divide(ModdedPlayer.Stats.spell_berserkMOVEMENT_SPEED);
 			ModdedPlayer.Stats.maxLifeMult.Divide(ModdedPlayer.Stats.spell_berserkMaxHP);
 			ModdedPlayer.Stats.allDamageTaken.Divide( 2f);
 			if (ModdedPlayer.Stats.i_setcount_BerserkSet < 2)

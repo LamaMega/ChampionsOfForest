@@ -330,15 +330,15 @@ namespace ChampionsOfForest.Items
 				.RarityScaling(0.2f);
 
 			new ItemStatBuilder(Stat.MOVEMENT_SPEED, "Movement speed", 0.03f, 0.07f)
-				.AffectsStat(ModdedPlayer.Stats.movementSpeed)
-				.Additive(ModdedPlayer.Stats.movementSpeed)
+				.AffectsStat(ModdedPlayer.Stats.mOVEMENT_SPEED)
+				.Additive(ModdedPlayer.Stats.mOVEMENT_SPEED)
 				.PercentFormatting()
 				.LevelScaling(0.1f)
 				.RarityScaling(0.2f);
 
 			new ItemStatBuilder(Stat.JUMP_POWER, "Jump power", 0.03f, 0.07f)
-				.AffectsStat(ModdedPlayer.Stats.movementSpeed)
-				.Additive(ModdedPlayer.Stats.movementSpeed)
+				.AffectsStat(ModdedPlayer.Stats.mOVEMENT_SPEED)
+				.Additive(ModdedPlayer.Stats.mOVEMENT_SPEED)
 				.PercentFormatting()
 				.LevelScaling(0.1f)
 				.RarityScaling(0.2f);

@@ -327,12 +327,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddMoveSpeed(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Add(f);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Add(f);
 		}
 
 		public static void RemoveMoveSpeed(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Sub(f);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Sub(f);
 		}
 
 		public static void AddJump(float f)

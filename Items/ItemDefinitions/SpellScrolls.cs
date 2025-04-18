@@ -13,14 +13,14 @@ namespace ChampionsOfForest.Items
 	public static partial class ItemDatabase
 	{
 
-		public static void AddBracer()
+		public static void AddSpellScrolls()
 		{
 
 			//------------------------------------------------------
 			//Rarity 0 (White)
 			//------------------------------------------------------
 
-			new Bracer()
+			new SpellScroll()
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -30,7 +30,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 1 (Green)
 			//------------------------------------------------------
 
-			new Bracer()
+			new SpellScroll()
 				.DefaultStatSlot(2)
 				.Name("")
 				.Description("")
@@ -40,7 +40,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 2 (Blue)
 			//------------------------------------------------------
 
-			new Bracer()
+			new SpellScroll()
 				.DefaultStatSlot(3)
 				.Name("")
 				.Description("")
@@ -50,7 +50,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 3 (Yellow)
 			//------------------------------------------------------
 
-			new Bracer()
+			new SpellScroll()
 				.DefaultStatSlot(4)
 				.Name("")
 				.Description("")
@@ -60,7 +60,7 @@ namespace ChampionsOfForest.Items
 			//Rarity 4 (Red)
 			//------------------------------------------------------
 
-			new Bracer()
+			new SpellScroll()
 				.DefaultStatSlot(5)
 				.Name("")
 				.Description("")

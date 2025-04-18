@@ -72,50 +72,6 @@ namespace ChampionsOfForest.Items
 		}
 
 
-
-		private void SetDropFromEverything()
-		{
-			//Lootable from everything
-			lootTable = (EnemyProgression.Enemy)0b1111111111111111111111;
-		}
-
-		//Sets the item to drop from only a specyfic group of enemies
-		public void SetDropOnlyArmsy()
-		{
-			lootTable = EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy;
-		}
-
-		public void SetDropOnlyVags()
-		{
-			lootTable = EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.RegularVags;
-		}
-
-		public void SetDropOnlyCow()
-		{
-			lootTable = EnemyProgression.Enemy.Cowman;
-		}
-
-		public void SetDropOnlyBaby()
-		{
-			lootTable = EnemyProgression.Enemy.Baby;
-		}
-
-		public void SetDropOnlyMegan()
-		{
-			lootTable = EnemyProgression.Enemy.Megan;
-		}
-
-		public void SetDropOnlyCreepy()
-		{
-			lootTable = EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy | EnemyProgression.Enemy.RegularVags | EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.Cowman | EnemyProgression.Enemy.Baby | EnemyProgression.Enemy.Girl | EnemyProgression.Enemy.Worm | EnemyProgression.Enemy.Megan;
-		}
-
-		public void SetDropOnlyCannibals()
-		{
-			lootTable =
-				EnemyProgression.Enemy.NormalMale | EnemyProgression.Enemy.NormalLeaderMale | EnemyProgression.Enemy.NormalFemale | EnemyProgression.Enemy.NormalSkinnyMale | EnemyProgression.Enemy.NormalSkinnyFemale | EnemyProgression.Enemy.PaleMale | EnemyProgression.Enemy.PaleSkinnyMale | EnemyProgression.Enemy.PaleSkinnedMale | EnemyProgression.Enemy.PaleSkinnedSkinnyMale | EnemyProgression.Enemy.PaintedMale | EnemyProgression.Enemy.PaintedLeaderMale | EnemyProgression.Enemy.PaintedFemale | EnemyProgression.Enemy.Fireman;
-		}
-
 		public GlobalSFX.SFX GetInvSound()
 		{
 			switch (type)
