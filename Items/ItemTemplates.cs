@@ -5,13 +5,14 @@ using ChampionsOfForest.Items.Sets;
 using ChampionsOfForest.Localization;
 using ChampionsOfForest.Player;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
-using static ChampionsOfForest.ItemDataBase;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
+using static ChampionsOfForest.ItemDatabase;
+using static ChampionsOfForest.Items.ItemDatabase;
 
 namespace ChampionsOfForest.Items.ItemTemplates
 {
 
-	public abstract class ItemTemplateBuilder : BaseItem
+	public abstract class ItemTemplateBuilder : ItemDefinition
 	{
 
 		private static List<ItemStat> defaultStats = null;
@@ -25,8 +26,8 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		protected void Register()
 		{
 
-			id = ItemDataBase._Item_Bases[type].Count() + PADDING * (int)type;
-			ItemDataBase._Item_Bases[type].Add(this);
+			id = ItemDatabase.ItemTemplateStorage[type].Count() + PADDING * (int)type;
+			ItemDatabase.ItemTemplateStorage[type].Add(this);
 
 		}
 
@@ -63,7 +64,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			var list = new List<ItemStat>();
 			foreach (var stat in defaultStatIds)
 			{
-				list.Add(new ItemStat(ItemDataBase.Stats[(int)stat], 1, -1, 1));
+				list.Add(new ItemStat(ItemDatabase.Stats[(int)stat], 1, -1, 1));
 			}
 			return list;
 		}
@@ -115,16 +116,16 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		};
 
 		// adds the defaultStatIds n times to the stat pool for the item
-		public ItemTemplateBuilder DefaultStatSlot(int n = 1)
+		public ItemTemplateBuilder DefaultStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(defaultStats);
+				statSlots.Add(new StatSlot(defaultStats, probability));
 			return this;
 		}
 
-		public ItemTemplateBuilder StatSlot(Stat[] statPool)
+		public ItemTemplateBuilder StatSlot(Stat[] statPool, float probability = 1)
 		{
-			statSlots.Add(ToItemStatList(statPool));
+			statSlots.Add(new StatSlot(ToItemStatList(statPool), probability));
 			return this;
 		}
 
@@ -152,11 +153,11 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			return this;
 		}
 
-		public ItemTemplateBuilder UniqueStat(string s, OnItemEquip _onEquip, OnItemUnequip _onUnequip)
+		public ItemTemplateBuilder UniqueStat(string statDescription, OnItemUsed _onEquip, OnItemUsed _onUnequip)
 		{
 			onEquipCallback = _onEquip;
 			onUnequipCallback = _onUnequip;
-			uniqueStat = s;
+			uniqueStat = statDescription;
 			return this;
 		}
 
@@ -167,7 +168,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			return this;
 		}
 
-		public ItemTemplateBuilder Consumable(string consumableDescriptiuon, OnItemConsume _onConsume, OnItemUnequip _onUnequip)
+		public ItemTemplateBuilder Consumable(string consumableDescriptiuon, OnItemConsume _onConsume)
 		{
 			onConsumeCallback = _onConsume;
 			uniqueStat = consumableDescriptiuon;
@@ -178,15 +179,20 @@ namespace ChampionsOfForest.Items.ItemTemplates
 
 		public ItemTemplateBuilder Rarity(int r)
 		{
+			base.rarity = (Rarity)r;
+			return this;
+		}
+		public ItemTemplateBuilder Rarity(Rarity r)
+		{
 			base.rarity = r;
 			return this;
 		}
 
-        public ItemTemplateBuilder Icon(int iconid)
-        {
+		public ItemTemplateBuilder Icon(int iconid)
+		{
 			icon = Res.ResourceLoader.GetTexture(iconid); // Texture2D <- int
-            return this;
-        }
+			return this;
+		}
 
 		private readonly Stat[] magicStatIds = new Stat[]
 		{
@@ -200,10 +206,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			SPELL_DMG_FROM_INT
 		};
 
-		public ItemTemplateBuilder MagicStatSlot(int n = 1)
+		public ItemTemplateBuilder MagicStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(magicStats);
+				statSlots.Add(new StatSlot(magicStats, probability));
 			return this;
 		}
 
@@ -217,10 +223,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			MELEE_ARMOR_PIERCING,
 		};
 
-		public ItemTemplateBuilder MeleeStatSlot(int n = 1)
+		public ItemTemplateBuilder MeleeStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(meleeStats);
+				statSlots.Add(new StatSlot(meleeStats, probability));
 			return this;
 		}
 
@@ -238,10 +244,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			THROWN_SPEAR_DAMAGE,
 		};
 
-		public ItemTemplateBuilder RangedStatSlot(int n = 1)
+		public ItemTemplateBuilder RangedStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(rangedStats);
+				statSlots.Add(new StatSlot(rangedStats, probability));
 			return this;
 		}
 
@@ -259,10 +265,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			THORNS,
 		};
 
-		public ItemTemplateBuilder DefenseStatSlot(int n = 1)
+		public ItemTemplateBuilder DefenseStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(defenseStats);
+				statSlots.Add(new StatSlot(defenseStats, probability));
 			return this;
 		}
 
@@ -278,20 +284,78 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			STAMINA_AND_ENERGY_REGEN_MULT,
 		};
 
-		public ItemTemplateBuilder RecoveryStatSlot(int n = 1)
+		public ItemTemplateBuilder RecoveryStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(recoveryStats);
+				statSlots.Add(new StatSlot(recoveryStats, probability));
 			return this;
 		}
-	}
 
+
+		public ItemTemplateBuilder SetDropFromEverything()
+		{
+			//Lootable from everything
+			lootTable = (EnemyProgression.Enemy)0b11111111111111111111111;
+			return this;
+		}
+
+		//Sets the item to drop from only a specyfic group of enemies
+		public ItemTemplateBuilder SetDropArmsy()
+		{
+			lootTable = EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropVags()
+		{
+			lootTable = EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.RegularVags;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropCow()
+		{
+			lootTable |= EnemyProgression.Enemy.Cowman;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropBaby()
+		{
+			lootTable |= EnemyProgression.Enemy.Baby;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropMegan()
+		{
+			lootTable |= EnemyProgression.Enemy.Megan;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropCreepy()
+		{
+			lootTable |= EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy | EnemyProgression.Enemy.RegularVags | EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.Cowman | EnemyProgression.Enemy.Baby | EnemyProgression.Enemy.Girl | EnemyProgression.Enemy.Worm | EnemyProgression.Enemy.Megan;
+			return this;
+		}
+
+		public ItemTemplateBuilder SetDropCannibals()
+		{
+			lootTable |=
+				EnemyProgression.Enemy.NormalMale | EnemyProgression.Enemy.NormalLeaderMale | EnemyProgression.Enemy.NormalFemale | EnemyProgression.Enemy.NormalSkinnyMale | EnemyProgression.Enemy.NormalSkinnyFemale | EnemyProgression.Enemy.PaleMale | EnemyProgression.Enemy.PaleSkinnyMale | EnemyProgression.Enemy.PaleSkinnedMale | EnemyProgression.Enemy.PaleSkinnedSkinnyMale | EnemyProgression.Enemy.PaintedMale | EnemyProgression.Enemy.PaintedLeaderMale | EnemyProgression.Enemy.PaintedFemale | EnemyProgression.Enemy.Fireman;
+			return this;
+		}
+		public ItemTemplateBuilder Weight(int w)
+		{
+			lootWeight = w;
+			return this;
+		}
+
+		//TODO add a method to set the loot table to drop only from caves
+	}
 	public class Greatsword : ItemTemplateBuilder
 	{
 		public Greatsword()
 		{
 			type = ItemType.Weapon;
-			subtype = WeaponModelType.GreatSword;
+			subtype = ItemSubtype.GreatSword;
 			Icon(88);
 
 			Register();
@@ -303,7 +367,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Longsword()
 		{
 			type = ItemType.Weapon;
-			subtype = WeaponModelType.LongSword;
+			subtype = ItemSubtype.LongSword;
 			Icon(89);
 
 			Register();
@@ -315,7 +379,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Hammer()
 		{
 			type = ItemType.Weapon;
-			subtype = WeaponModelType.Hammer;
+			subtype = ItemSubtype.Hammer;
 			Icon(109);
 
 			Register();
@@ -327,7 +391,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Polearm()
 		{
 			type = ItemType.Weapon;
-			subtype = WeaponModelType.Polearm;
+			subtype = ItemSubtype.Polearm;
             Icon(181);
 
 			Register();
@@ -339,7 +403,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Axe()
 		{
 			type = ItemType.Weapon;
-			subtype = WeaponModelType.Axe;
+			subtype = ItemSubtype.Axe;
             Icon(138);
 
 			Register();
@@ -351,7 +415,7 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		public Greatbow()
 		{
 			type = ItemType.Weapon;
-			subtype = WeaponModelType.Greatbow;
+			subtype = ItemSubtype.Greatbow;
             Icon(170);
 
 			Register();
@@ -412,10 +476,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			};
 		private static List<ItemStat> shieldStats = null;
 
-		public Shield ShieldStatSlot(int n = 1)
+		public Shield ShieldStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(shieldStats);
+				statSlots.Add(new StatSlot(shieldStats, probability));
 			return this;
 		}
 
@@ -619,10 +683,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			Register();
 		}
 
-		public Amulet RingStatSlot(int n = 1)
+		public Amulet AmuletStatSlot(int n = 1, float probability = 1)
 		{
 			for (int i = 0; i < n; i++)
-				statSlots.Add(amuletStats);
+				statSlots.Add(new StatSlot(amuletStats, probability));
 			return this;
 		}
 
@@ -653,14 +717,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				ATTACKSPEED,
 				EXP_GAIN_MULT,
 				ALL_RECOVERY,
-				EXPERIENCE,
 				ATTACK_COST_REDUCTION,
 				SPELL_COST_REDUCTION,
 				SPELL_COST_TO_STAMINA,
-				LESSERSTRENGTH,
-				LESSERAGILITY,
-				LESSERVITALITY,
-				LESSERINTELLIGENCE,
 				ENERGY_REGEN_BASE,
 				MAX_LIFE_MULT,
 				MAX_ENERGY_MULT,
@@ -670,7 +729,6 @@ namespace ChampionsOfForest.Items.ItemTemplates
 				PROJECTILE_SIZE,
 				LOOT_QUANTITY,
 				ALL_ATTRIBUTES
-
 			};
 		private static List<ItemStat> ringStats = null;
 
@@ -685,10 +743,10 @@ namespace ChampionsOfForest.Items.ItemTemplates
 			Register();
 		}
 
-		public Ring RingStatSlot(int n = 1)
+		public Ring RingStatSlot(int n = 1, float probability = 1)
 		{
 			for(int i = 0; i<n; i++)
-				statSlots.Add(ringStats);
+				statSlots.Add(new StatSlot(ringStats, probability));
 			return this;
 		}
 	}
@@ -705,9 +763,9 @@ namespace ChampionsOfForest.Items.ItemTemplates
 		}
 	}
 
-	public class Consumables : ItemTemplateBuilder
+	public class Consumable : ItemTemplateBuilder
 	{
-		public Consumables()
+		public Consumable()
 		{
 			type = ItemType.Other;
 			LevelRequirement(10);
@@ -720,13 +778,13 @@ namespace ChampionsOfForest.Items.ItemTemplates
     /*
 	 * OLD
 		new BaseItem(new int[][]
-					 {
-					 })
 		{
-			name = Translations.ItemDataBase_ItemDefinitions_201, //tr
-			description = Translations.ItemDataBase_ItemDefinitions_202, //tr
-			lore = Translations.ItemDataBase_ItemDefinitions_203, //tr
-			uniqueStat = Translations.ItemDataBase_ItemDefinitions_204, //tr
+		})
+		{
+			name = Translations.ItemDatabase_ItemDefinitions_201, //tr
+			description = Translations.ItemDatabase_ItemDefinitions_202, //tr
+			lore = Translations.ItemDatabase_ItemDefinitions_203, //tr
+			uniqueStat = Translations.ItemDatabase_ItemDefinitions_204, //tr
 			Rarity = 4,
 			minLevel = 1,
 			maxLevel = 2,

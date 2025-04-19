@@ -794,7 +794,7 @@ namespace ChampionsOfForest
 			}
 			if (ModdedPlayer.Stats.i_KingQruiesSword)
 				BuffDB.AddBuff(22, 80, f, 1);
-			CotfUtils.Log("Tanked damage: " + f, true);
+			Utils.Log("Tanked damage: " + f, true);
 			base.Hit(damage, ignoreArmor, type);
 		}
 
@@ -940,15 +940,15 @@ namespace ChampionsOfForest
 					COTFEvents.Instance.OnDeath.Invoke();
 					switch (ModSettings.dropsOnDeath)
 					{
-						case ModSettings.DropsOnDeathMode.All:
+						case ModSettings.DropsOnDeathModes.All:
 							Inventory.Instance.DropAll();
 							break;
 
-						case ModSettings.DropsOnDeathMode.Equipped:
+						case ModSettings.DropsOnDeathModes.Equipped:
 							Inventory.Instance.DropEquipped();
 							break;
 
-						case ModSettings.DropsOnDeathMode.NonEquipped:
+						case ModSettings.DropsOnDeathModes.NonEquipped:
 							Inventory.Instance.DropNonEquipped();
 							break;
 					}

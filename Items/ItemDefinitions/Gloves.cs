@@ -6,22 +6,22 @@ using System.Text;
 
 using ChampionsOfForest.Items.ItemTemplates;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 
-		public static void AddBoots()
+		public static void AddGloves()
 		{
+
 			//------------------------------------------------------
 			//Rarity 0 (White)
 			//------------------------------------------------------
 
-			new Boot()
+			new Glove()
 				.DefaultStatSlot(1)
-				.StatSlot(new Stat[] { MOVEMENTSPEED })
 				.Name("")
 				.Description("")
 				.Rarity(0);
@@ -30,9 +30,8 @@ namespace ChampionsOfForest
 			//Rarity 1 (Green)
 			//------------------------------------------------------
 
-			new Boot()
+			new Glove()
 				.DefaultStatSlot(2)
-				.StatSlot(new Stat[] { MOVEMENTSPEED })
 				.Name("")
 				.Description("")
 				.Rarity(1);
@@ -41,9 +40,8 @@ namespace ChampionsOfForest
 			//Rarity 2 (Blue)
 			//------------------------------------------------------
 
-			new Boot()
+			new Glove()
 				.DefaultStatSlot(3)
-				.StatSlot(new Stat[] { MOVEMENTSPEED })
 				.Name("")
 				.Description("")
 				.Rarity(2);
@@ -52,9 +50,8 @@ namespace ChampionsOfForest
 			//Rarity 3 (Yellow)
 			//------------------------------------------------------
 
-			new Boot()
+			new Glove()
 				.DefaultStatSlot(4)
-				.StatSlot(new Stat[] { MOVEMENTSPEED })
 				.Name("")
 				.Description("")
 				.Rarity(3);
@@ -63,14 +60,12 @@ namespace ChampionsOfForest
 			//Rarity 4 (Red)
 			//------------------------------------------------------
 
-			new Boot()
+			new Glove()
 				.DefaultStatSlot(5)
-				.StatSlot(new Stat[] { MOVEMENTSPEED })
 				.Name("")
 				.Description("")
 				.Rarity(4);
-		
+
 		}
 	}
-
 }

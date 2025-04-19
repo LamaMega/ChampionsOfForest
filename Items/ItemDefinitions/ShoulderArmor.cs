@@ -6,11 +6,11 @@ using System.Text;
 
 using ChampionsOfForest.Items.ItemTemplates;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 
 		public static void AddShoulderArmor()

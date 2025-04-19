@@ -6,13 +6,13 @@ using ChampionsOfForest.Items.ItemTemplates;
 using ChampionsOfForest.Localization;
 using ChampionsOfForest.Player;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
-using static ChampionsOfForest.ItemDataBase;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
+using static ChampionsOfForest.ItemDatabase;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
 	
-    public static partial class ItemDataBase
+    public static partial class ItemDatabase
     {
 		// todo remove this method once rarity 7 items are re-added.
 		public static void PopulateItems()

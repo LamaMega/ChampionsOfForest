@@ -72,8 +72,8 @@ namespace ChampionsOfForest.Player
 						{
 							PlayerHitEnemy playerHitEnemy = PlayerHitEnemy.Create(enemyEntity);
 							playerHitEnemy.hitFallDown = true;
-							playerHitEnemy.getAttackerType = DamageMath.CONVERTEDFLOATattackerType;
-							playerHitEnemy.Hit = DamageMath.GetSendableDamage(dmg);
+							playerHitEnemy.getAttackerType = DamageUtils.CONVERTEDFLOATattackerType;
+							playerHitEnemy.Hit = DamageUtils.GetSendableDamage(dmg);
 							playerHitEnemy.Send();
 						}
 					}
@@ -111,8 +111,8 @@ namespace ChampionsOfForest.Player
 							{
 								PlayerHitEnemy playerHitEnemy = PlayerHitEnemy.Create(enemyEntity);
 								playerHitEnemy.hitFallDown = true;
-								playerHitEnemy.getAttackerType = DamageMath.CONVERTEDFLOATattackerType;
-								playerHitEnemy.Hit = DamageMath.GetSendableDamage(dmg);
+								playerHitEnemy.getAttackerType = DamageUtils.CONVERTEDFLOATattackerType;
+								playerHitEnemy.Hit = DamageUtils.GetSendableDamage(dmg);
 								playerHitEnemy.Send();
 							}
 						}
@@ -187,12 +187,12 @@ namespace ChampionsOfForest.Player
 
 		public static void BUFF_MultMS(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Multiply(f);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Multiply(f);
 		}
 
 		public static void BUFF_DivideMS(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Divide(f);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Divide(f);
 		}
 
 		public static void BUFF_MultAS(float f)

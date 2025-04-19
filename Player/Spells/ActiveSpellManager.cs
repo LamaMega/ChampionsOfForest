@@ -182,8 +182,8 @@ namespace ChampionsOfForest.Player.Spells
 
 							var phe = PlayerHitEnemy.Create(GlobalTargets.OnlyServer);
 							phe.Target = entity;
-							phe.getAttackerType = DamageMath.SILENTattackerTypeMagic;
-							phe.Hit = DamageMath.GetSendableDamage(dmg);
+							phe.getAttackerType = DamageUtils.SILENTattackerTypeMagic;
+							phe.Hit = DamageUtils.GetSendableDamage(dmg);
 
 							phe.Send();
 							if (onHitEffectProcs < 6)
@@ -485,8 +485,8 @@ namespace ChampionsOfForest.Player.Spells
 							}
 							var phe = PlayerHitEnemy.Create(GlobalTargets.OnlyServer);
 							phe.Target = entity;
-							phe.getAttackerType = DamageMath.SILENTattackerTypeMagic;
-							phe.Hit = DamageMath.GetSendableDamage(dmgOutput);
+							phe.getAttackerType = DamageUtils.SILENTattackerTypeMagic;
+							phe.Hit = DamageUtils.GetSendableDamage(dmgOutput);
 							ModdedPlayer.instance.OnHitEffectsClient(entity, dmgOutput);
 
 							if (crit > 1)

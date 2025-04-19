@@ -4,17 +4,17 @@ using ChampionsOfForest.Effects.Sound_Effects;
 
 using UnityEngine;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public class BaseItem
+	public class ItemDefinition
 	{
 		public class StatSlot
 		{
-			public float chance;
+			public float probability;
 			public List<ItemStat> options;
 			public StatSlot(List<ItemStat> options, float chance = 1)
 			{
-				this.chance = chance;
+				this.probability = chance;
 				this.options = options;
 			}
 		}
@@ -25,7 +25,7 @@ namespace ChampionsOfForest
 		}
 		public enum Rarity
 		{
-			Common = 0, Uncommon, Rare, Magic, Legendary
+			Common = 0, Uncommon, Rare, Magic, Legendary, Max
 		}
 		public enum ItemSubtype 
 		{ 
@@ -47,6 +47,8 @@ namespace ChampionsOfForest
 		public OnItemUsed onEquipCallback, onUnequipCallback;
 		public List<StatSlot> statSlots;
 		public int maximumSocketSlots;
+		public int minimumEmptySockets;
+
 
 		// display properties of the item
 		public string name;                 
@@ -64,55 +66,11 @@ namespace ChampionsOfForest
 		public EnemyProgression.Enemy lootTable = EnemyProgression.Enemy.All;
 		public int lootWeight = 1; //weight of the item in loot table, used to calculate drop chance
 		
-		public BaseItem()
+		public ItemDefinition()
 		{
 			statSlots = new List<StatSlot>();
 		}
 
-
-
-		private void SetDropFromEverything()
-		{
-			//Lootable from everything
-			lootTable = (EnemyProgression.Enemy)0b1111111111111111111111;
-		}
-
-		//Sets the item to drop from only a specyfic group of enemies
-		public void SetDropOnlyArmsy()
-		{
-			lootTable = EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy;
-		}
-
-		public void SetDropOnlyVags()
-		{
-			lootTable = EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.RegularVags;
-		}
-
-		public void SetDropOnlyCow()
-		{
-			lootTable = EnemyProgression.Enemy.Cowman;
-		}
-
-		public void SetDropOnlyBaby()
-		{
-			lootTable = EnemyProgression.Enemy.Baby;
-		}
-
-		public void SetDropOnlyMegan()
-		{
-			lootTable = EnemyProgression.Enemy.Megan;
-		}
-
-		public void SetDropOnlyCreepy()
-		{
-			lootTable = EnemyProgression.Enemy.RegularArmsy | EnemyProgression.Enemy.PaleArmsy | EnemyProgression.Enemy.RegularVags | EnemyProgression.Enemy.PaleVags | EnemyProgression.Enemy.Cowman | EnemyProgression.Enemy.Baby | EnemyProgression.Enemy.Girl | EnemyProgression.Enemy.Worm | EnemyProgression.Enemy.Megan;
-		}
-
-		public void SetDropOnlyCannibals()
-		{
-			lootTable =
-				EnemyProgression.Enemy.NormalMale | EnemyProgression.Enemy.NormalLeaderMale | EnemyProgression.Enemy.NormalFemale | EnemyProgression.Enemy.NormalSkinnyMale | EnemyProgression.Enemy.NormalSkinnyFemale | EnemyProgression.Enemy.PaleMale | EnemyProgression.Enemy.PaleSkinnyMale | EnemyProgression.Enemy.PaleSkinnedMale | EnemyProgression.Enemy.PaleSkinnedSkinnyMale | EnemyProgression.Enemy.PaintedMale | EnemyProgression.Enemy.PaintedLeaderMale | EnemyProgression.Enemy.PaintedFemale | EnemyProgression.Enemy.Fireman;
-		}
 
 		public GlobalSFX.SFX GetInvSound()
 		{

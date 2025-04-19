@@ -6,21 +6,21 @@ using System.Text;
 
 using ChampionsOfForest.Items.ItemTemplates;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 
-		public static void AddAmulet()
+		public static void AddSpellScrolls()
 		{
 
 			//------------------------------------------------------
 			//Rarity 0 (White)
 			//------------------------------------------------------
 
-			new Amulet()
+			new SpellScroll()
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -30,7 +30,7 @@ namespace ChampionsOfForest
 			//Rarity 1 (Green)
 			//------------------------------------------------------
 
-			new Amulet()
+			new SpellScroll()
 				.DefaultStatSlot(2)
 				.Name("")
 				.Description("")
@@ -40,7 +40,7 @@ namespace ChampionsOfForest
 			//Rarity 2 (Blue)
 			//------------------------------------------------------
 
-			new	Amulet()
+			new SpellScroll()
 				.DefaultStatSlot(3)
 				.Name("")
 				.Description("")
@@ -50,7 +50,7 @@ namespace ChampionsOfForest
 			//Rarity 3 (Yellow)
 			//------------------------------------------------------
 
-			new Amulet()
+			new SpellScroll()
 				.DefaultStatSlot(4)
 				.Name("")
 				.Description("")
@@ -60,7 +60,7 @@ namespace ChampionsOfForest
 			//Rarity 4 (Red)
 			//------------------------------------------------------
 
-			new Amulet()
+			new SpellScroll()
 				.DefaultStatSlot(5)
 				.Name("")
 				.Description("")

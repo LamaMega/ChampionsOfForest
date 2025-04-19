@@ -6,11 +6,11 @@ using System.Text;
 
 using ChampionsOfForest.Items.ItemTemplates;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 
 		public static void AddQuivers()
@@ -21,7 +21,6 @@ namespace ChampionsOfForest
 
 			new Quiver()
 				.RangedStatSlot(1)
-				//.StatSlot(new Stat[] {})
 				.Name("")
 				.Description("")
 				.Rarity(0);
@@ -32,7 +31,6 @@ namespace ChampionsOfForest
 
 			new Quiver()
 				.RangedStatSlot(1)
-				//.StatSlot(new Stat[] {})
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -44,7 +42,6 @@ namespace ChampionsOfForest
 
 			new Quiver()
 				.RangedStatSlot(2)
-				//.StatSlot(new Stat[] {})
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -56,7 +53,6 @@ namespace ChampionsOfForest
 
 			new Quiver()
 				.RangedStatSlot(2)
-				//.StatSlot(new Stat[] {})
 				.DefaultStatSlot(2)
 				.Name("")
 				.Description("")
@@ -68,7 +64,6 @@ namespace ChampionsOfForest
 
 			new Quiver()
 				.RangedStatSlot(3)
-				//.StatSlot(new Stat[] {})
 				.DefaultStatSlot(2)
 				.Name("")
 				.Description("")

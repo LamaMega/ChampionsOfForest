@@ -8,11 +8,11 @@ using TheForest.Utils;
 
 using UnityEngine;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 		public enum Stat
 		{
@@ -97,7 +97,7 @@ namespace ChampionsOfForest
 
 		}
 
-		public static void PopulateStats()
+		private static void PopulateStats()
 		{
 			// Attributes
 			new ItemStatBuilder(Stat.STRENGTH, "Strength", 2f, 3f)
@@ -330,15 +330,15 @@ namespace ChampionsOfForest
 				.RarityScaling(0.2f);
 
 			new ItemStatBuilder(Stat.MOVEMENT_SPEED, "Movement speed", 0.03f, 0.07f)
-				.AffectsStat(ModdedPlayer.Stats.movementSpeed)
-				.Additive(ModdedPlayer.Stats.movementSpeed)
+				.AffectsStat(ModdedPlayer.Stats.mOVEMENT_SPEED)
+				.Additive(ModdedPlayer.Stats.mOVEMENT_SPEED)
 				.PercentFormatting()
 				.LevelScaling(0.1f)
 				.RarityScaling(0.2f);
 
 			new ItemStatBuilder(Stat.JUMP_POWER, "Jump power", 0.03f, 0.07f)
-				.AffectsStat(ModdedPlayer.Stats.movementSpeed)
-				.Additive(ModdedPlayer.Stats.movementSpeed)
+				.AffectsStat(ModdedPlayer.Stats.mOVEMENT_SPEED)
+				.Additive(ModdedPlayer.Stats.mOVEMENT_SPEED)
 				.PercentFormatting()
 				.LevelScaling(0.1f)
 				.RarityScaling(0.2f);

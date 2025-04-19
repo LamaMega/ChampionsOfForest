@@ -1,35 +1,94 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
+using ChampionsOfForest.Network;
+using ChampionsOfForest.Network.Commands;
+
 using TheForest.Utils;
 
 namespace ChampionsOfForest
 {
 	public class ModSettings
 	{
-		public enum Difficulty
+		private static ModSettings instance;
+		public enum GameDifficulty
 		{
 			Easy, Veteran, Elite, Master, Challenge1, Challenge2, Challenge3, Challenge4, Challenge5, Challenge6, Hell
 		}
-
-		public enum DropsOnDeathMode
+		public enum DropsOnDeathModes
 		{
 			All, Equipped, Disabled, NonEquipped
 		}
-		public enum LootLevelPolicy
+		public enum LootLevelRules
 		{
 			HighestPlayerLevel, AverageLevel, LowestLevel, ClosestPlayer, HostLevel
 		}
-		public static Difficulty difficulty = Difficulty.Easy;
-		public static DropsOnDeathMode dropsOnDeath = DropsOnDeathMode.Disabled;
-		public static bool DifficultyChosen = false;
-		public static bool FriendlyFire = true;
-		public static bool IsDedicated = false;
-		public static bool killOnDowned = false;
-		public static bool AllowRandomCaveSpawn = true;
-		public static bool AllowCaveRespawn = true;
-		public static int CaveMaxAdditionalEnemies = 1;	
-		public static float CaveRespawnDelay = 1;
+
+		GameDifficulty m_difficulty = GameDifficulty.Easy;
+		public static GameDifficulty Difficulty => instance.m_difficulty;
+
+		// non static properties
+		// these are saved
+		DropsOnDeathModes m_dropsOnDeathMode = DropsOnDeathModes.Disabled;
+		LootLevelRules m_lootLevelRule = LootLevelRules.HighestPlayerLevel;
+		bool m_friendlyFire = false;
+		bool m_isDedicated = false;
+		bool m_killOnDowned = false;
+		bool m_allowRandomCaveSpawn = true;
+		bool m_allowCaveRespawn = true;
+		int m_caveMaxAdditionalEnemies = 2;
+		float m_caveRespawnDelay = 120.0f;
+		int m_minimumLevelForSocketsToAppear = 20;
+		float m_chanceForFirstSocketToAppear = 0.25f;
+		float m_chanceForSubsequentSocketsToAppear = 0.35f;
+
+		float m_magicFindPerDifficultyLevel = 0.25f;
+		bool m_privateLoot = false;
+		float m_dropQuantityMultiplier = 1;
+		float m_dropQualityMultiplier = 1;
+		float m_dropChanceMultiplier = 1;
+		float m_expMultiplier = 1;
+		int m_enemyLevelIncreaseGlobal = 0;
+		int m_enemyLevelIncreaseCaves = 0;
+		float m_enemyDamageMultiplier = 1;
+		float m_enemyHealthMultiplier = 1;
+		float m_enemyArmorMultiplier = 1;
+		float m_enemySpeedMultiplier = 1;
+		bool m_allowElites = true;
+		int m_lootFilterMinRarity = -1;
+
+		// getters
+		public static DropsOnDeathModes DropsOnDeath => instance.m_dropsOnDeathMode;
+		public static LootLevelRules LootLevelRule => instance.m_lootLevelRule;
+		public static bool FriendlyFire => instance.m_friendlyFire;
+		public static bool IsDedicated => instance.m_isDedicated;
+		public static bool KillOnDowned => instance.m_killOnDowned;
+		public static bool AllowRandomCaveSpawn => instance.m_allowRandomCaveSpawn;
+		public static bool AllowCaveRespawn => instance.m_allowCaveRespawn;
+		public static int CaveMaxAdditionalEnemies => instance.m_caveMaxAdditionalEnemies;
+		public static float CaveRespawnDelay => instance.m_caveRespawnDelay;
+		public static int MinimumLevelForSocketsToAppear => instance.m_minimumLevelForSocketsToAppear;
+		public static float ChanceForFirstSocketToAppear => instance.m_chanceForFirstSocketToAppear;
+		public static float ChanceForSubsequentSocketsToAppear => instance.m_chanceForSubsequentSocketsToAppear;
+		public static float MagicFindPerDifficultyLevel => instance.m_magicFindPerDifficultyLevel;
+		public static bool PrivateLoot => instance.m_privateLoot;
+		public static float DropQuantityMultiplier => instance.m_dropQuantityMultiplier;
+		public static float DropQualityMultiplier => instance.m_dropQualityMultiplier;
+		public static float DropChanceMultiplier => instance.m_dropChanceMultiplier;
+		public static float ExpMultiplier => instance.m_expMultiplier;
+		public static int EnemyLevelIncreaseGlobal => instance.m_enemyLevelIncreaseGlobal;
+		public static int EnemyLevelIncreaseCaves => instance.m_enemyLevelIncreaseCaves;
+		public static float EnemyDamageMultiplier => instance.m_enemyDamageMultiplier;
+		public static float EnemyHealthMultiplier => instance.m_enemyHealthMultiplier;
+		public static float EnemyArmorMultiplier => instance.m_enemyArmorMultiplier;
+		public static float EnemySpeedMultiplier => instance.m_enemySpeedMultiplier;
+		public static bool AllowElites => instance.m_allowElites;
+		public static int LootFilterMinRarity => instance.m_lootFilterMinRarity;
+
+
+		// static properties
+		// these are not saved
+		static bool DifficultyChosen = false;
 
 		public static string Version;
 		public const bool RequiresNewFiles = false;
@@ -37,40 +96,37 @@ namespace ChampionsOfForest
 		public const bool RequiresNewSave = true;
 		public const string RequiresNewSaveVersion = "1.6.0.2";
 
-		public const int MinimumLevelForSocketsToAppear = 20;
-		public const float ChanceForFirstSocketToAppear = 0.25f;
-		public const float ChanceForSubsequentSocketsToAppear = 0.35f;
+		public static readonly List<int> outdatedFiles = new List<int>(); // files to remove from disk
 
-		public static readonly List<int> outdatedFiles = new List<int>();
 
-		public static float DropQuantityMultiplier = 1;
-		public static float DropChanceMultiplier = 1;
-		public static float ExpMultiplier = 1;
-		public static int EnemyLevelIncrease = 0;
-		public static float EnemyDamageMultiplier = 1;
-		public static float EnemyHealthMultiplier = 1;
-		public static float EnemyArmorMultiplier = 1;
-		public static float EnemySpeedMultiplier = 1;
-		public static bool AllowElites = true;
-		public static LootLevelPolicy lootLevelPolicy = LootLevelPolicy.HighestPlayerLevel;
-		public static int LootFilterMinRarity = 0;
-		public static void Reset()
+		public void Reset()
 		{
-			DropQuantityMultiplier = 1;
-			DropChanceMultiplier = 1;
-			ExpMultiplier = 1;
-			EnemyLevelIncrease = 0;
-			EnemyDamageMultiplier = 1;
-			EnemyHealthMultiplier = 1;
-			EnemyArmorMultiplier = 1;
-			EnemySpeedMultiplier = 1;
-			AllowElites = true;
-			lootLevelPolicy = LootLevelPolicy.HighestPlayerLevel;
-			AllowRandomCaveSpawn = true;
-			AllowCaveRespawn = true;
-			CaveMaxAdditionalEnemies = 1;
-			CaveRespawnDelay = 1;
-			LootFilterMinRarity = 0;
+			m_dropsOnDeathMode = DropsOnDeathModes.Disabled;
+			m_lootLevelRule = LootLevelRules.HighestPlayerLevel;
+			m_friendlyFire = false;
+			m_isDedicated = false;
+			m_killOnDowned = false;
+			m_allowRandomCaveSpawn = true;
+			m_allowCaveRespawn = true;
+			m_caveMaxAdditionalEnemies = 2;
+			m_caveRespawnDelay = 120.0f;
+			m_minimumLevelForSocketsToAppear = 20;
+			m_chanceForFirstSocketToAppear = 0.25f;
+			m_chanceForSubsequentSocketsToAppear = 0.35f;
+			m_magicFindPerDifficultyLevel = 0.25f;
+			m_privateLoot = false;
+			m_dropQuantityMultiplier = 1;
+			m_dropQualityMultiplier = 1;
+			m_dropChanceMultiplier = 1;
+			m_expMultiplier = 1;
+			m_enemyLevelIncreaseGlobal = 0;
+			m_enemyLevelIncreaseCaves = 0;
+			m_enemyDamageMultiplier = 1;
+			m_enemyHealthMultiplier = 1;
+			m_enemyArmorMultiplier = 1;
+			m_enemySpeedMultiplier = 1;
+			m_allowElites = true;
+			m_lootFilterMinRarity = -1;
 		}
 
 
@@ -78,21 +134,32 @@ namespace ChampionsOfForest
 		{
 			if (GameSetup.IsMpServer)
 			{
-				using (MemoryStream answerStream = new MemoryStream())
+				COTFCommand<BroadcastModSettings>.Send(NetworkManager.Target.Clients, new BroadcastModSettings()
 				{
-					using (BinaryWriter w = new BinaryWriter(answerStream))
-					{
-						w.Write(2);
-						w.Write((int)ModSettings.difficulty);
-						w.Write(ModSettings.FriendlyFire);
-						w.Write((int)ModSettings.dropsOnDeath);
-						w.Write(ModSettings.killOnDowned);
-						w.Close();
-					}
-					Network.NetworkManager.SendLine(answerStream.ToArray(), Network.NetworkManager.Target.Clients);
-					answerStream.Close();
-				}
+					dieOnDowned = instance.m_killOnDowned,
+					dropsOnDeath = instance.m_dropsOnDeathMode,
+					difficulty = instance.m_difficulty,
+					friendlyFire = instance.m_friendlyFire,
+				});
 			}
+		}
+		public static void ReceivedSettingsFromServer(BroadcastModSettings receivedSettings)
+		{
+			if (!GameSetup.IsMpClient || ModSettings.IsDedicated)
+				return;
+			instance.m_difficulty = receivedSettings.difficulty;
+			instance.m_dropsOnDeathMode = receivedSettings.dropsOnDeath;
+			instance.m_killOnDowned = receivedSettings.dieOnDowned;
+			instance.m_friendlyFire = receivedSettings.friendlyFire;
+
+			if (!ModSettings.DifficultyChosen)
+			{
+				LocalPlayer.FpCharacter.UnLockView();
+				LocalPlayer.FpCharacter.MovementLocked = false;
+				Cheats.GodMode = false;
+				MainMenu.Instance.ClearDiffSelectionObjects();
+			}
+			ModSettings.DifficultyChosen = true;
 		}
 
 		const string PATH = "Mods/Champions of the Forest/Settings.save";
@@ -102,26 +169,9 @@ namespace ChampionsOfForest
 			{
 				using (BinaryWriter buf = new BinaryWriter(stream))
 				{
-					buf.Write(FriendlyFire);
-					buf.Write(killOnDowned);
-					buf.Write(DropQuantityMultiplier);
-					buf.Write(DropChanceMultiplier);
-					buf.Write(ExpMultiplier);
-					buf.Write(EnemyLevelIncrease);
-					buf.Write(EnemyDamageMultiplier);
-					buf.Write(EnemyHealthMultiplier);
-					buf.Write(EnemyArmorMultiplier);
-					buf.Write(EnemySpeedMultiplier);
-					buf.Write(AllowElites);
-					buf.Write((int)dropsOnDeath);
-					buf.Write((int)lootLevelPolicy);
-					buf.Write(AllowRandomCaveSpawn);
-					buf.Write(AllowCaveRespawn);
-					buf.Write(CaveMaxAdditionalEnemies);
-					buf.Write(CaveRespawnDelay);
-					buf.Write(LootFilterMinRarity);
-					File.WriteAllBytes(PATH, stream.ToArray());
+					buf.Write(Utils.GetBytesFromObject(instance));
 				}
+				File.WriteAllBytes(PATH, stream.ToArray());
 			}
 		}
 		public static void LoadSettings()
@@ -131,35 +181,16 @@ namespace ChampionsOfForest
 				{
 					using (FileStream stream = new FileStream(PATH, FileMode.Open))
 					{
-						using (BinaryReader buf = new BinaryReader(stream))
+						using (BinaryReader reader = new BinaryReader(stream))
 						{
-							FriendlyFire = buf.ReadBoolean();
-							killOnDowned = buf.ReadBoolean();
-							DropQuantityMultiplier = buf.ReadSingle();
-							DropChanceMultiplier = buf.ReadSingle();
-							ExpMultiplier = buf.ReadSingle();
-							EnemyLevelIncrease = buf.ReadInt32();
-							EnemyDamageMultiplier = buf.ReadSingle();
-							EnemyHealthMultiplier = buf.ReadSingle();
-							EnemyArmorMultiplier = buf.ReadSingle();
-							EnemySpeedMultiplier = buf.ReadSingle();
-							AllowElites = buf.ReadBoolean();
-							dropsOnDeath = (DropsOnDeathMode)buf.ReadInt32();
-							lootLevelPolicy = (LootLevelPolicy)buf.ReadInt32();
-							AllowRandomCaveSpawn = buf.ReadBoolean();
-							AllowCaveRespawn = buf.ReadBoolean();
-							CaveMaxAdditionalEnemies = buf.ReadInt32();
-							CaveRespawnDelay = buf.ReadSingle();
-							LootFilterMinRarity = buf.ReadInt32();
+							instance = Utils.GetObjectFromBytes<ModSettings>(reader);
 						}
 					}
 				}
 				catch (System.Exception)
 				{
-
-					CotfUtils.Log("Failed loading settings");
+					Utils.Log("Failed loading settings");
 				}
-			
 		}
 	}
 }

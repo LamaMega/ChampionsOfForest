@@ -327,12 +327,12 @@ namespace ChampionsOfForest.Items
 
 		public static void AddMoveSpeed(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Add(f);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Add(f);
 		}
 
 		public static void RemoveMoveSpeed(float f)
 		{
-			ModdedPlayer.Stats.movementSpeed.Sub(f);
+			ModdedPlayer.Stats.mOVEMENT_SPEED.Sub(f);
 		}
 
 		public static void AddJump(float f)
@@ -392,122 +392,122 @@ namespace ChampionsOfForest.Items
 			ModdedPlayer.Stats.intelligence.Add(-Mathf.RoundToInt(f));
 		}
 
-		public static int GetMaxSocketAmountOnItem(in BaseItem.ItemType type)
+		public static int GetMaxSocketAmountOnItem(in ItemDefinition.ItemType type)
 		{
 			switch (type)
 			{
-				case BaseItem.ItemType.Other:
-				case BaseItem.ItemType.Material:
+				case ItemDefinition.ItemType.Other:
+				case ItemDefinition.ItemType.Material:
 					return 0;
 
-				case BaseItem.ItemType.ShoulderArmor:
-				case BaseItem.ItemType.Weapon:
-				case BaseItem.ItemType.Helmet:
-				case BaseItem.ItemType.Glove:
-				case BaseItem.ItemType.Boot:
-				case BaseItem.ItemType.Amulet:
-				case BaseItem.ItemType.Ring:
+				case ItemDefinition.ItemType.ShoulderArmor:
+				case ItemDefinition.ItemType.Weapon:
+				case ItemDefinition.ItemType.Helmet:
+				case ItemDefinition.ItemType.Glove:
+				case ItemDefinition.ItemType.Boot:
+				case ItemDefinition.ItemType.Amulet:
+				case ItemDefinition.ItemType.Ring:
 					return 1;
 
-				case BaseItem.ItemType.Bracer:
-				case BaseItem.ItemType.Pants:
-				case BaseItem.ItemType.SpellScroll:
-				case BaseItem.ItemType.Shield:
-				case BaseItem.ItemType.Quiver:
+				case ItemDefinition.ItemType.Bracer:
+				case ItemDefinition.ItemType.Pants:
+				case ItemDefinition.ItemType.SpellScroll:
+				case ItemDefinition.ItemType.Shield:
+				case ItemDefinition.ItemType.Quiver:
 					return 2;
 
-				case BaseItem.ItemType.ChestArmor:
+				case ItemDefinition.ItemType.ChestArmor:
 					return 3;
 
 				default:
 					return 0;
 			}
 		}
-		public static ItemStat GetSocketedStat(in int rarity, BaseItem.ItemType type, int subtypeOffset)
+		public static ItemStat GetSocketedStat(in int rarity, ItemDefinition.ItemType type, int subtypeOffset)
 		{
 			float value = 1;
 			int statid = 0;
 			switch (type)
 			{
-				case BaseItem.ItemType.Shield:
-				case BaseItem.ItemType.Quiver:
-				case BaseItem.ItemType.Pants:
-				case BaseItem.ItemType.ChestArmor:
-				case BaseItem.ItemType.ShoulderArmor:
-				case BaseItem.ItemType.Glove:
-				case BaseItem.ItemType.Bracer:
-				case BaseItem.ItemType.SpellScroll:
+				case ItemDefinition.ItemType.Shield:
+				case ItemDefinition.ItemType.Quiver:
+				case ItemDefinition.ItemType.Pants:
+				case ItemDefinition.ItemType.ChestArmor:
+				case ItemDefinition.ItemType.ShoulderArmor:
+				case ItemDefinition.ItemType.Glove:
+				case ItemDefinition.ItemType.Bracer:
+				case ItemDefinition.ItemType.SpellScroll:
 					value = GetSocketStatAmount_Other(in rarity);
 					statid = 1;
 					break;
 
-				case BaseItem.ItemType.Weapon:
+				case ItemDefinition.ItemType.Weapon:
 					value = GetSocketStatAmount_Weapon(in rarity) - 1;
 					statid = 3;
 					break;
 
-				case BaseItem.ItemType.Helmet:
+				case ItemDefinition.ItemType.Helmet:
 					value = GetSocketStatAmount_Helmet(in rarity) - 1;
 					statid = 0;
 					break;
 
-				case BaseItem.ItemType.Boot:
+				case ItemDefinition.ItemType.Boot:
 					value = GetSocketStatAmount_Boots(in rarity) - 1;
 					statid = 2;
 					break;
 
-				case BaseItem.ItemType.Ring:
-				case BaseItem.ItemType.Amulet:
+				case ItemDefinition.ItemType.Ring:
+				case ItemDefinition.ItemType.Amulet:
 					value = GetSocketStatAmount_Amulet(in rarity);
 					statid = 4;
 					break;
 			}
 			statid = 5 * (subtypeOffset - 1) + 3001 + statid;
-			ItemStat stat = new ItemStat(ItemDataBase.StatByID(statid));
+			ItemStat stat = new ItemStat(ItemDatabase.StatByID(statid));
 			stat.amount = value * stat.multipier;
 			return stat;
 		}
-		public static float GetSocketedStatAmount(in int rarity, BaseItem.ItemType type, int subtypeOffset)
+		public static float GetSocketedStatAmount(in int rarity, ItemDefinition.ItemType type, int subtypeOffset)
 		{
 			float value = 1;
 			int statid = 0;
 			switch (type)
 			{
-				case BaseItem.ItemType.Shield:
-				case BaseItem.ItemType.Quiver:
-				case BaseItem.ItemType.Pants:
-				case BaseItem.ItemType.ChestArmor:
-				case BaseItem.ItemType.ShoulderArmor:
-				case BaseItem.ItemType.Glove:
-				case BaseItem.ItemType.Bracer:
-				case BaseItem.ItemType.SpellScroll:
+				case ItemDefinition.ItemType.Shield:
+				case ItemDefinition.ItemType.Quiver:
+				case ItemDefinition.ItemType.Pants:
+				case ItemDefinition.ItemType.ChestArmor:
+				case ItemDefinition.ItemType.ShoulderArmor:
+				case ItemDefinition.ItemType.Glove:
+				case ItemDefinition.ItemType.Bracer:
+				case ItemDefinition.ItemType.SpellScroll:
 					value = GetSocketStatAmount_Other(in rarity);
 					statid = 1;
 					break;
 
-				case BaseItem.ItemType.Weapon:
+				case ItemDefinition.ItemType.Weapon:
 					value = GetSocketStatAmount_Weapon(in rarity) - 1;
 					statid = 3;
 					break;
 
-				case BaseItem.ItemType.Helmet:
+				case ItemDefinition.ItemType.Helmet:
 					value = GetSocketStatAmount_Helmet(in rarity) - 1;
 					statid = 0;
 					break;
 
-				case BaseItem.ItemType.Boot:
+				case ItemDefinition.ItemType.Boot:
 					value = GetSocketStatAmount_Boots(in rarity) - 1;
 					statid = 2;
 					break;
 
-				case BaseItem.ItemType.Ring:
-				case BaseItem.ItemType.Amulet:
+				case ItemDefinition.ItemType.Ring:
+				case ItemDefinition.ItemType.Amulet:
 					value = GetSocketStatAmount_Amulet(in rarity);
 					statid = 4;
 					break;
 			}
 			int stat = 5 * (subtypeOffset - 1) + 3001 + statid;
-			return value * ItemDataBase.StatByID(stat).multipier;
+			return value * ItemDatabase.StatByID(stat).multipier;
 		}
 		public static float GetSocketStatAmount_Amulet(in int rarity)
 		{

@@ -6,12 +6,12 @@ using System.Text;
 
 using ChampionsOfForest.Items.ItemTemplates;
 
-using static ChampionsOfForest.ItemDataBase.Stat;
+using static ChampionsOfForest.Items.ItemDatabase.Stat;
 
-namespace ChampionsOfForest
+namespace ChampionsOfForest.Items
 {
 
-	public static partial class ItemDataBase
+	public static partial class ItemDatabase
 	{
 
 		public static void AddRings()
@@ -23,8 +23,7 @@ namespace ChampionsOfForest
 
 			new Ring()
 				.RingStatSlot(1)
-				//.StatSlot(new Stat[] {})
-				.DefaultStatSlot(0)
+				//.DefaultStatSlot(0)
 				.Name("")
 				.Description("")
 				.Rarity(0);
@@ -36,7 +35,6 @@ namespace ChampionsOfForest
 
 			new Ring()
 				.RingStatSlot(1)
-				//.StatSlot(new Stat[] {})
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -47,8 +45,7 @@ namespace ChampionsOfForest
 			//------------------------------------------------------
 
 			new Ring()
-				.RingStatSlot(1)
-				//.StatSlot(new Stat[] {})
+				.RingStatSlot(2)
 				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
@@ -59,9 +56,8 @@ namespace ChampionsOfForest
 			//------------------------------------------------------
 
 			new Ring()
-				.RingStatSlot(2)
-				//.StatSlot(new Stat[] {})
-				.DefaultStatSlot(2)
+				.RingStatSlot(3)
+				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
 				.Rarity(3);
@@ -71,9 +67,8 @@ namespace ChampionsOfForest
 			//------------------------------------------------------
 
 			new Ring()
-				.RingStatSlot(3)
-				//.StatSlot(new Stat[] {})
-				.DefaultStatSlot(3)
+				.RingStatSlot(4)
+				.DefaultStatSlot(1)
 				.Name("")
 				.Description("")
 				.Rarity(4);

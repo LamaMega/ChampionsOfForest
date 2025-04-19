@@ -459,7 +459,7 @@ namespace ChampionsOfForest
 				Header(Translations.MainMenu_Guide_107);
 				Space(10);
 
-				Stat(Translations.MainMenu_Guide_109, ModdedPlayer.Stats.movementSpeed.ToString(), Translations.MainMenu_Guide_108(FPCharacterMod.basewalkSpeed, FPCharacterMod.basewalkSpeed * ModdedPlayer.Stats.movementSpeed));
+				Stat(Translations.MainMenu_Guide_109, ModdedPlayer.Stats.mOVEMENT_SPEED.ToString(), Translations.MainMenu_Guide_108(FPCharacterMod.basewalkSpeed, FPCharacterMod.basewalkSpeed * ModdedPlayer.Stats.mOVEMENT_SPEED));
 				Stat(Translations.MainMenu_Guide_111, ModdedPlayer.Stats.jumpPower.ToString(), Translations.MainMenu_Guide_111);
 				Stat(Translations.MainMenu_Guide_113, (1 / ModdedPlayer.Stats.perk_hungerRate).ToString("P"), Translations.MainMenu_Guide_113);
 				Stat(Translations.MainMenu_Guide_115, (1 / ModdedPlayer.Stats.perk_thirstRate).ToString("P"), Translations.MainMenu_Guide_115);

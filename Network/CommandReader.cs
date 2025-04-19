@@ -19,8 +19,11 @@ namespace ChampionsOfForest.Network
 	
 	public class CommandReader
 	{
-		public static Dictionary<int, MethodInfo> commandsObjects_dict = new Dictionary<int, MethodInfo>();
-		public static int curr_cmd_index = 100;
+		public delegate void CommandDelegate(BinaryReader r);
+		public static Dictionary<int, CommandDelegate> callbacks = new Dictionary<int, CommandDelegate>();
+
+
+		public static int curr_cmd_index;
 
 		public static void OnCommand(byte[] bytes)
 		{
@@ -31,9 +34,9 @@ namespace ChampionsOfForest.Network
 					int cmdIndex = r.ReadInt32();
 					try
 					{
-						if (commandsObjects_dict.TryGetValue(cmdIndex, out var t))
+						if (callbacks.TryGetValue(cmdIndex, out var t))
 						{
-							t.Invoke(null, new object[] { r });
+							t.Invoke(r);
 						}
 						else
 							switch (cmdIndex)
@@ -62,9 +65,9 @@ namespace ChampionsOfForest.Network
 
 										int index = r.ReadInt32();
 										ModSettings.FriendlyFire = r.ReadBoolean();
-										ModSettings.dropsOnDeath = (ModSettings.DropsOnDeathMode)r.ReadInt32();
+										ModSettings.dropsOnDeath = (ModSettings.DropsOnDeathModes)r.ReadInt32();
 										ModSettings.killOnDowned = r.ReadBoolean();
-										ModSettings.difficulty = (ModSettings.Difficulty)index;
+										ModSettings.difficulty = (ModSettings.GameDifficulty)index;
 										if (!ModSettings.DifficultyChosen)
 										{
 											LocalPlayer.FpCharacter.UnLockView();
@@ -275,7 +278,7 @@ namespace ChampionsOfForest.Network
 
 								case 5:
 									{
-										var baseItem = ItemDataBase.ItemBases[r.ReadInt32()];
+										var baseItem = ItemDatabase.itemLookup[r.ReadInt32()];
 										Item item = new Item(baseItem, 1, 0, false);   //reading first value, id
 										ulong id = r.ReadUInt64();
 										int itemLvl = r.ReadInt32();
@@ -285,7 +288,7 @@ namespace ChampionsOfForest.Network
 										int dropSource = r.ReadInt32();
 										while (r.BaseStream.Position != r.BaseStream.Length)
 										{
-											ItemStat stat = new ItemStat(ItemDataBase.Stats[r.ReadInt32()], itemLvl, r.ReadInt32())
+											ItemStat stat = new ItemStat(ItemDatabase.Stats[r.ReadInt32()], itemLvl, r.ReadInt32())
 											{
 												amount = r.ReadSingle()
 											};
@@ -332,7 +335,7 @@ namespace ChampionsOfForest.Network
 											}
 											else
 											{
-												CotfUtils.Log("no enemy in host's dictionary");
+												Utils.Log("no enemy in host's dictionary");
 											}
 										}
 
@@ -632,7 +635,7 @@ namespace ChampionsOfForest.Network
 										if (ModReferences.ThisPlayerID == playerID)
 										{
 											//creating the item.
-											Item item = new Item(ItemDataBase.ItemBases[r.ReadInt32()], r.ReadInt32(), 0, false)
+											Item item = new Item(ItemDatabase.itemLookup[r.ReadInt32()], r.ReadInt32(), 0, false)
 											{
 												level = r.ReadInt32()
 											};
@@ -642,7 +645,7 @@ namespace ChampionsOfForest.Network
 											{
 												int statId = r.ReadInt32();
 												int statPoolIdx = r.ReadInt32();
-												ItemStat stat = new ItemStat(ItemDataBase.Stats[statId], 1, statPoolIdx)
+												ItemStat stat = new ItemStat(ItemDatabase.Stats[statId], 1, statPoolIdx)
 												{
 													amount = r.ReadSingle()
 												};

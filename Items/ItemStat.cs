@@ -6,7 +6,7 @@ using ChampionsOfForest.Player;
 
 using UnityEngine;
 
-using static ChampionsOfForest.ItemDataBase;
+using static ChampionsOfForest.ItemDatabase;
 using static ChampionsOfForest.ItemStatBuilder;
 
 namespace ChampionsOfForest
@@ -43,7 +43,7 @@ namespace ChampionsOfForest
 			this.name = name;
 			this.rangeMin = min;
 			this.rangeMax = max;
-			ItemDataBase.AddStat(this);
+			ItemDatabase.AddStat(this);
 		}
 		public ItemStatBuilder Additive(IAdditiveStat<bool> stat)
 		{
