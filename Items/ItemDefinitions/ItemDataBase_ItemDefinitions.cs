@@ -443,7 +443,7 @@ namespace ChampionsOfForest
                 new int[] {4,17,6,44,38,21,24,8,9},
                 new int[] {4,17,6,44,38,21,24,8,9},
           })
-            {
+            {	//WIP
                 name = Translations.ItemDataBase_ItemDefinitions_52/*Mysterious robe*/, //tr
                 description = Translations.ItemDataBase_ItemDefinitions_53/*Magic flows through the entirety of this object. It's made out of unknown material*/, //tr
                 lore = Translations.ItemDataBase_ItemDefinitions_54/*Robe looks like it was created yesterday, but its older than the oldest of mankinds' civilizations. Simply looking at it sends chills down the spine.*/, //tr

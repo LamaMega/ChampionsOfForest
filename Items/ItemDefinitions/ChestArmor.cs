@@ -62,8 +62,9 @@ namespace ChampionsOfForest
 
 			new ChestArmor()
 			.DefaultStatSlot(5)
-			.Name("")
-			.Description("")
+			.Name("Mysterious Robe")
+			.Description("Magic flows through the entirety of this object. It's made out of unknown material.")
+			.UniqueStat()
 			.Rarity(4);
 
 		}
